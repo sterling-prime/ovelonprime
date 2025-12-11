@@ -1,4 +1,4 @@
-import aboutImage from "@/assets/about-ai.png";
+import aboutImage from "@/assets/manager.png";
 
 const stats = [
   { value: "98%", label: "System Uptime" },

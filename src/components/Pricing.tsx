@@ -61,8 +61,12 @@ const plans = [
 
 export const Pricing = () => {
   return (
-    <section id="pricing" className="py-24 bg-background">
+    <section
+      id="pricing"
+      className="py-24 bg-muted"  // SAME BACKGROUND AS ABOUT SECTION
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <p className="section-label mb-4">Pricing</p>
@@ -71,8 +75,8 @@ export const Pricing = () => {
             <span className="text-muted-foreground">predictable value</span>
           </h2>
           <p className="section-subtitle mx-auto">
-            Choose a package that aligns with your operational scale. All plans
-            include core security and compliance features.
+            Choose a package that aligns with your operational scale. 
+            All plans include core security and compliance features.
           </p>
         </div>
 
@@ -99,6 +103,7 @@ export const Pricing = () => {
               <h3 className="text-xl font-semibold text-foreground mb-2">
                 {plan.name}
               </h3>
+
               <p className="text-sm text-muted-foreground mb-6">
                 {plan.description}
               </p>
