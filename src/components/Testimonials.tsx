@@ -40,23 +40,26 @@ export const Testimonials = () => {
         {/* Testimonials Grid */}
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {testimonials.map((testimonial) => (
-            <div key={testimonial.name} className="flex flex-col">
+            <div
+              key={testimonial.name}
+              className="flex flex-col items-center text-center md:items-start md:text-left bg-secondary/10 rounded-2xl p-8 md:bg-transparent md:p-0 md:rounded-none"
+            >
               {/* Blue accent bar */}
               <div className="w-1 h-16 bg-accent mb-6" />
-              
+
               {/* Quote */}
               <p className="text-primary-foreground/80 text-sm leading-relaxed mb-8 flex-grow">
                 {testimonial.quote}
               </p>
-              
+
               {/* Author */}
-              <div className="flex items-center gap-4">
+              <div className="flex flex-col items-center md:flex-row md:items-center gap-4">
                 <img
                   src={testimonial.image}
                   alt={testimonial.name}
-                  className="w-12 h-12 rounded-full object-cover"
+                  className="w-16 h-16 md:w-12 md:h-12 rounded-full object-cover"
                 />
-                <div>
+                <div className="text-center md:text-left">
                   <div className="font-medium text-primary-foreground">
                     {testimonial.name}
                   </div>
