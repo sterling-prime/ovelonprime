@@ -56,6 +56,7 @@ export const Services = () => {
   return (
     <section id="services" className="py-24 bg-muted/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <p className="section-label mb-4">What We Do</p>
@@ -64,8 +65,8 @@ export const Services = () => {
             <span className="text-muted-foreground">every business need</span>
           </h2>
           <p className="section-subtitle mx-auto">
-            From lead capture to compliance, we build intelligent automation systems
-            that scale with your business.
+            From lead capture to compliance, we build intelligent automation
+            systems that scale with your business.
           </p>
         </div>
 
@@ -74,28 +75,43 @@ export const Services = () => {
           {services.map((service, index) => (
             <div
               key={service.title}
-              className="bg-card rounded-xl p-6 border border-border shadow-card card-hover"
+              className="
+                bg-card rounded-xl p-8 border border-border 
+                shadow-card card-hover text-center
+                flex flex-col items-center
+              "
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center mb-4">
-                <service.icon className="h-6 w-6 text-foreground" />
+              {/* Centered icon */}
+              <div className="w-14 h-14 rounded-xl bg-secondary flex items-center justify-center mb-4 shadow-sm">
+                <service.icon className="h-7 w-7 text-foreground" />
               </div>
-              <h3 className="text-lg font-semibold text-foreground mb-3">
+
+              {/* Centered title */}
+              <h3 className="text-lg font-semibold text-foreground mb-3 text-center">
                 {service.title}
               </h3>
-              <p className="text-muted-foreground text-sm mb-4">
+
+              {/* Centered description */}
+              <p className="text-muted-foreground text-sm mb-4 text-center leading-relaxed">
                 {service.description}
               </p>
-              <div className="flex flex-wrap gap-2">
+
+              {/* Centered tags */}
+              <div className="flex flex-wrap gap-2 justify-center">
                 {service.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="text-xs px-2 py-1 rounded-md bg-secondary text-secondary-foreground"
+                    className="
+                      text-xs px-2 py-1 rounded-md 
+                      bg-secondary text-secondary-foreground
+                    "
                   >
                     {tag}
                   </span>
                 ))}
               </div>
+
             </div>
           ))}
         </div>

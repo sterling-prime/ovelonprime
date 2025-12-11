@@ -61,12 +61,9 @@ const plans = [
 
 export const Pricing = () => {
   return (
-    <section
-      id="pricing"
-      className="py-24 bg-muted"  // SAME BACKGROUND AS ABOUT SECTION
-    >
+    <section id="pricing" className="py-24 bg-muted">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <p className="section-label mb-4">Pricing</p>
@@ -92,6 +89,7 @@ export const Pricing = () => {
                   : "border-border"
               )}
             >
+              {/* Badge */}
               {plan.popular && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                   <span className="px-3 py-1 text-xs font-medium bg-accent text-accent-foreground rounded-full">
@@ -100,21 +98,24 @@ export const Pricing = () => {
                 </div>
               )}
 
-              <h3 className="text-xl font-semibold text-foreground mb-2">
+              {/* TITLE CENTERED */}
+              <h3 className="text-xl font-semibold text-foreground mb-2 text-center">
                 {plan.name}
               </h3>
 
-              <p className="text-sm text-muted-foreground mb-6">
+              <p className="text-sm text-muted-foreground mb-6 text-center">
                 {plan.description}
               </p>
 
-              <div className="mb-6">
+              {/* PRICE CENTERED */}
+              <div className="mb-6 text-center">
                 <span className="text-4xl font-bold text-foreground">
                   {plan.price}
                 </span>
                 <span className="text-muted-foreground ml-2">{plan.period}</span>
               </div>
 
+              {/* Features remain left-aligned */}
               <ul className="space-y-3 mb-8">
                 {plan.features.map((feature) => (
                   <li
@@ -127,6 +128,7 @@ export const Pricing = () => {
                 ))}
               </ul>
 
+              {/* CTA */}
               <Button
                 variant={plan.popular ? "default" : "outline"}
                 className="w-full"
