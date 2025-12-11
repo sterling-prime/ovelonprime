@@ -28,23 +28,28 @@ const testimonials = [
 
 export const Testimonials = () => {
   return (
-    <section className="py-24 bg-background">
+    <section className="py-24 bg-primary">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="section-title">Client Testimonials</h2>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary-foreground">
+            Client Testimonials
+          </h2>
         </div>
 
         {/* Testimonials Grid */}
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {testimonials.map((testimonial) => (
-            <div
-              key={testimonial.name}
-              className="bg-card rounded-xl p-6 border border-border shadow-card"
-            >
-              <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+            <div key={testimonial.name} className="flex flex-col">
+              {/* Blue accent bar */}
+              <div className="w-1 h-16 bg-accent mb-6" />
+              
+              {/* Quote */}
+              <p className="text-primary-foreground/80 text-sm leading-relaxed mb-8 flex-grow">
                 {testimonial.quote}
               </p>
+              
+              {/* Author */}
               <div className="flex items-center gap-4">
                 <img
                   src={testimonial.image}
@@ -52,10 +57,10 @@ export const Testimonials = () => {
                   className="w-12 h-12 rounded-full object-cover"
                 />
                 <div>
-                  <div className="font-medium text-foreground">
+                  <div className="font-medium text-primary-foreground">
                     {testimonial.name}
                   </div>
-                  <div className="text-sm text-muted-foreground">
+                  <div className="text-sm text-primary-foreground/60">
                     {testimonial.title}
                   </div>
                 </div>
