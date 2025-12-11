@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
+
 const footerLinks = [
-  { label: "Services", href: "#services" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
-  { label: "Privacy", href: "#" },
+  { label: "Services", href: "#services", isExternal: false },
+  { label: "Pricing", href: "#pricing", isExternal: false },
+  { label: "About", href: "#about", isExternal: false },
+  { label: "Contact", href: "#contact", isExternal: false },
+  { label: "Privacy", href: "/privacy", isExternal: true },
 ];
 
 export const Footer = () => {
@@ -15,15 +17,25 @@ export const Footer = () => {
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
             <span className="font-semibold text-foreground">Ovelon Prime</span>
             <nav className="flex items-center gap-6">
-              {footerLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {footerLinks.map((link) =>
+                link.isExternal ? (
+                  <Link
+                    key={link.label}
+                    to={link.href}
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                )
+              )}
             </nav>
           </div>
 
