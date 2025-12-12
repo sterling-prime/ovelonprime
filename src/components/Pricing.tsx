@@ -89,7 +89,7 @@ export const Pricing = () => {
                   : "border-border"
               )}
             >
-              {/* Badge */}
+              {/* Popular badge */}
               {plan.popular && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                   <span className="px-3 py-1 text-xs font-medium bg-accent text-accent-foreground rounded-full">
@@ -98,16 +98,17 @@ export const Pricing = () => {
                 </div>
               )}
 
-              {/* TITLE CENTERED */}
+              {/* Title */}
               <h3 className="text-xl font-semibold text-foreground mb-2 text-center">
                 {plan.name}
               </h3>
 
+              {/* Description */}
               <p className="text-sm text-muted-foreground mb-6 text-center">
                 {plan.description}
               </p>
 
-              {/* PRICE CENTERED */}
+              {/* Price */}
               <div className="mb-6 text-center">
                 <span className="text-4xl font-bold text-foreground">
                   {plan.price}
@@ -115,12 +116,12 @@ export const Pricing = () => {
                 <span className="text-muted-foreground ml-2">{plan.period}</span>
               </div>
 
-              {/* Features remain left-aligned */}
-              <ul className="space-y-3 mb-8">
+              {/* Features LEFT aligned */}
+              <ul className="space-y-3 mb-8 text-left">
                 {plan.features.map((feature) => (
                   <li
                     key={feature}
-                    className="flex items-start gap-3 text-sm text-muted-foreground"
+                    className="flex items-start gap-3 text-sm text-muted-foreground text-left"
                   >
                     <Check className="h-4 w-4 text-accent mt-0.5 shrink-0" />
                     {feature}

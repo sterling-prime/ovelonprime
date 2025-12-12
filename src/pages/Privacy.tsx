@@ -73,7 +73,7 @@ const Privacy = () => {
               <h2 className="text-xl font-semibold mb-4">6. Your Rights</h2>
               <p className="leading-relaxed text-white/70">
                 You may request access, correction, or deletion of your data anytime by emailing 
-                privacy@ovelonprime.com.
+                support@ovelon-prime.com.
               </p>
             </section>
 

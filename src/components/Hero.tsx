@@ -16,6 +16,7 @@ export const Hero = () => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
         <div className="max-w-4xl mx-auto space-y-8">
+          
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-badge-bg border border-border animate-fade-in">
             <span className="w-2 h-2 rounded-full bg-badge-dot" />
@@ -30,8 +31,8 @@ export const Hero = () => {
             <span className="text-muted-foreground">for critical industries</span>
           </h1>
 
-          {/* Subheadline */}
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in [animation-delay:200ms] opacity-0">
+          {/* Subheadline → LIGHT BLACK */}
+          <p className="mt-6 text-lg sm:text-xl text-black/80 max-w-2xl mx-auto animate-fade-in opacity-0 [animation-delay:240ms]">
             We design and implement AI automation systems for industrial and medical
             sectors, enabling precision, efficiency, and trust.
           </p>
@@ -45,6 +46,7 @@ export const Hero = () => {
               </a>
             </Button>
           </div>
+
         </div>
       </div>
     </section>
