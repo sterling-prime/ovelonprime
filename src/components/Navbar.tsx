@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useLanguage } from "@/i18n/useLanguage";
+
 
 const navLinks = [
   { label: "Services", section: "services" },
