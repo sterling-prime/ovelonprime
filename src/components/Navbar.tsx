@@ -16,14 +16,12 @@ export const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Detect scroll for background
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Smooth section scroll globally
   const goToSection = (section: string) => {
     if (location.pathname !== "/") {
       navigate("/");
@@ -35,7 +33,6 @@ export const Navbar = () => {
     document.getElementById(section)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  // Check if we are on privacy/terms page
   const isLightHeaderPage =
     location.pathname === "/privacy" || location.pathname === "/terms";
 
@@ -52,20 +49,21 @@ export const Navbar = () => {
         }
       `}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
 
         {/* MAIN ROW */}
-        <div className="relative flex items-center h-16 w-full">
+        <div className="flex items-center justify-between h-16 relative">
 
-          {/* LOGO — CENTER ON MOBILE, LEFT ON DESKTOP */}
-          <div className="absolute left-1/2 -translate-x-1/2 md:static md:transform-none">
-            <a href="/" className="text-xl font-semibold text-foreground">
-              Ovelon Prime
-            </a>
-          </div>
+          {/* LOGO LEFT — DESKTOP */}
+          <a
+            href="/"
+            className="hidden md:block text-xl font-semibold text-foreground"
+          >
+            Ovelon Prime
+          </a>
 
-          {/* DESKTOP NAV CENTER */}
-          <nav className="hidden md:flex items-center gap-8 mx-auto">
+          {/* MENU EXACT IN CENTER (ABSOLUTE) */}
+          <nav className="hidden md:flex gap-8 absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
             {navLinks.map((link) => (
               <button
                 key={link.section}
@@ -77,8 +75,8 @@ export const Navbar = () => {
             ))}
           </nav>
 
-          {/* DESKTOP CTA BUTTON RIGHT */}
-          <div className="hidden md:block ml-auto">
+          {/* CTA BUTTON RIGHT */}
+          <div className="hidden md:flex ml-auto">
             <Button variant="outline" size="sm" asChild>
               <a
                 href="https://cal.com/ovelon-prime/introduction-call"
@@ -90,13 +88,24 @@ export const Navbar = () => {
             </Button>
           </div>
 
-          {/* MOBILE BURGER — ALWAYS RIGHT */}
-          <button
-            className="md:hidden p-2 absolute right-4"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          {/* MOBILE LAYOUT */}
+          <div className="md:hidden flex items-center w-full relative">
+
+            {/* CENTERED LOGO ON MOBILE */}
+            <div className="absolute left-1/2 -translate-x-1/2">
+              <a href="/" className="text-xl font-semibold text-foreground">
+                Ovelon Prime
+              </a>
+            </div>
+
+            {/* BURGER RIGHT */}
+            <button
+              className="p-2 ml-auto"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
 
         </div>
 
@@ -118,7 +127,6 @@ export const Navbar = () => {
                 </button>
               ))}
 
-              {/* MOBILE CAL.COM BUTTON */}
               <Button variant="outline" size="lg" className="w-full" asChild>
                 <a
                   href="https://cal.com/ovelon-prime/introduction-call"
