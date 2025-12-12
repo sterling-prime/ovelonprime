@@ -36,6 +36,7 @@ export const Footer = () => {
     { label: "About", section: "about", type: "scroll" },
     { label: "Contact", section: "contact", type: "scroll" },
     { label: "Privacy", href: "/privacy", type: "route" },
+    { label: "Terms", href: "/terms", type: "route" },
   ];
 
   return (
