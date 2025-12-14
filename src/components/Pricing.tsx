@@ -2,6 +2,9 @@ import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
+const CAL_ROUTING_FORM =
+  "forms/483bf917-72c7-4e94-b500-6c5add086695";
+
 const plans = [
   {
     name: "Focused Automation Engagement",
@@ -34,7 +37,7 @@ const plans = [
       "Compliance-aware system design",
       "Custom SLA & governance framework",
     ],
-    cta: "Get a Quote",
+    cta: "Request Consultation",
     popular: true,
   },
 ];
@@ -68,7 +71,6 @@ export const Pricing = () => {
                   : "border-border"
               )}
             >
-              {/* Enterprise Badge */}
               {plan.popular && (
                 <div className="absolute top-2 left-1/2 -translate-x-1/2">
                   <span className="px-3 py-1 text-[11px] font-medium bg-accent/90 text-accent-foreground rounded-full">
@@ -77,34 +79,28 @@ export const Pricing = () => {
                 </div>
               )}
 
-              {/* Title */}
               <h3 className="text-xl font-semibold text-foreground mb-2 text-center">
                 {plan.name}
               </h3>
 
-              {/* Description */}
               <p className="text-sm text-muted-foreground mb-6 text-center">
                 {plan.description}
               </p>
 
-              {/* Price */}
               <div className="mb-6 text-center">
                 {plan.priceLabel && (
                   <p className="text-xs uppercase tracking-wide text-muted-foreground mb-1">
                     {plan.priceLabel}
                   </p>
                 )}
-
                 <span className="text-4xl font-bold text-foreground">
                   {plan.price}
                 </span>
-
                 <span className="text-muted-foreground ml-2">
                   {plan.period}
                 </span>
               </div>
 
-              {/* Features */}
               <ul className="space-y-3 mb-8 flex-grow">
                 {plan.features.map((feature) => (
                   <li
@@ -117,23 +113,26 @@ export const Pricing = () => {
                 ))}
               </ul>
 
-              {/* CTA */}
+              {/* CTA → CAL MODAL */}
               <Button
                 variant={plan.popular ? "default" : "outline"}
                 className="w-full mt-auto"
                 asChild
               >
-                <a data-cal-link="ovelon-prime/introduction-call">
+                <a data-cal-link={CAL_ROUTING_FORM}>
                   {plan.cta}
                 </a>
               </Button>
+
+              <p className="text-[11px] text-muted-foreground text-center mt-3">
+                All requests are reviewed before scheduling.
+              </p>
             </div>
           ))}
         </div>
 
-        {/* Bottom Trust & CTA */}
+        {/* Bottom CTA */}
         <div className="mt-16 text-center">
-
           <p className="text-sm text-muted-foreground max-w-2xl mx-auto mb-8">
             Every engagement is built with enterprise-grade security,
             data protection, and operational compliance.
@@ -145,16 +144,15 @@ export const Pricing = () => {
 
           <div className="flex justify-center">
             <Button size="lg" asChild>
-              <a data-cal-link="ovelon-prime/introduction-call">
-                Book Strategic Call
+              <a data-cal-link={CAL_ROUTING_FORM}>
+                Request consultation
               </a>
             </Button>
           </div>
 
           <p className="text-xs text-muted-foreground mt-3">
-            40-minute scoping call · No sales pressure · Directly with an automation expert
+            Structured intake · No sales pressure · Directly with an automation expert
           </p>
-
         </div>
 
       </div>
