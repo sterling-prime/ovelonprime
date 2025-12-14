@@ -42,7 +42,7 @@ const Terms = () => {
               <h2 className="text-xl font-semibold mb-4">2. Services Provided</h2>
               <p className="leading-relaxed text-white/70">
                 Ovelon Prime provides professional automation and systems implementation
-                services for industrial, healthcare, logistics, facility management, and
+                services for industrial, logistics, facility management, and
                 other operationally critical environments. Services may include workflow
                 automation, system integrations, scheduling solutions, customer support
                 workflows, and enterprise system design.
