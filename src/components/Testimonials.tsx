@@ -30,6 +30,7 @@ export const Testimonials = () => {
   return (
     <section className="py-24 bg-primary">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary-foreground">
@@ -38,28 +39,28 @@ export const Testimonials = () => {
         </div>
 
         {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.name}
-              className="flex flex-col items-center text-center md:items-start md:text-left bg-secondary/10 rounded-2xl p-8 md:bg-transparent md:p-0 md:rounded-none"
+              className="flex flex-col items-center text-center"
             >
-              {/* Blue accent bar */}
+              {/* Centered accent line */}
               <div className="w-1 h-16 bg-accent mb-6" />
 
               {/* Quote */}
-              <p className="text-primary-foreground/80 text-sm leading-relaxed mb-8 flex-grow">
+              <p className="text-primary-foreground/80 text-sm leading-relaxed mb-8">
                 {testimonial.quote}
               </p>
 
-              {/* Author */}
-              <div className="flex flex-col items-center md:flex-row md:items-center gap-4">
+              {/* Author (fully centered) */}
+              <div className="flex flex-col items-center gap-3">
                 <img
                   src={testimonial.image}
                   alt={testimonial.name}
-                  className="w-16 h-16 md:w-12 md:h-12 rounded-full object-cover"
+                  className="w-14 h-14 rounded-full object-cover"
                 />
-                <div className="text-center md:text-left">
+                <div className="text-center">
                   <div className="font-medium text-primary-foreground">
                     {testimonial.name}
                   </div>
@@ -68,9 +69,11 @@ export const Testimonials = () => {
                   </div>
                 </div>
               </div>
+
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );

@@ -1,7 +1,6 @@
 import sector1 from "@/assets/facility.png";
 import sector2 from "@/assets/mainte.png";
 import sector3 from "@/assets/logistic.png";
-import sector4 from "@/assets/manufact.png";
 
 export const Sectors = () => {
   const sectors = [
@@ -20,14 +19,8 @@ export const Sectors = () => {
     {
       name: "Logistics & Warehousing",
       description:
-        "Coordinating workforce, equipment, and flows under strict operational timelines.",
+        "Coordinating workforce, equipment, and operational flows under strict timelines.",
       img: sector3,
-    },
-    {
-      name: "Manufacturing Automation",
-      description:
-        "Delivering specialised technical services where planning accuracy and execution control matter.",
-      img: sector4,
     },
   ];
 
@@ -36,7 +29,7 @@ export const Sectors = () => {
       id="sectors"
       className="
         bg-muted/30
-        pt-12        /* compacter boven */
+        pt-12
         md:pt-16
         pb-20
       "
@@ -53,12 +46,13 @@ export const Sectors = () => {
           </h2>
 
           <p className="section-subtitle mx-auto">
-            We design and implement intelligent automation systems for complex, time-critical environments.
+            We design and implement intelligent automation systems for complex,
+            time-critical environments.
           </p>
         </div>
 
         {/* Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {sectors.map((sec) => (
             <div
               key={sec.name}

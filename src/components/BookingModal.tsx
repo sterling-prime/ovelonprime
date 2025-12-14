@@ -1,5 +1,6 @@
 import { X } from "lucide-react";
 import { useEffect } from "react";
+import { createPortal } from "react-dom";
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -8,11 +9,7 @@ interface BookingModalProps {
 
 export const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = isOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
@@ -20,35 +17,59 @@ export const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
 
   if (!isOpen) return null;
 
-  return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center">
-      {/* Backdrop */}
-      <div 
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-fade-in"
+  return createPortal(
+    <div className="fixed inset-0 z-[9999]">
+      {/* BACKDROP */}
+      <div
+        className="absolute inset-0 bg-black/70 backdrop-blur-sm"
         onClick={onClose}
       />
-      
-      {/* Modal */}
-      <div className="relative z-10 w-full max-w-3xl h-[85vh] mx-4 bg-white rounded-2xl shadow-2xl overflow-hidden animate-scale-in">
-        {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900">Book a Call</h2>
+
+      {/* MODAL */}
+      <div
+        className="
+          absolute
+          left-1/2
+          top-1/2
+          -translate-x-1/2
+          -translate-y-1/2
+          w-[95vw]
+          max-w-6xl
+          h-[85vh]
+          bg-white
+          rounded-2xl
+          shadow-2xl
+          overflow-hidden
+        "
+      >
+        {/* HEADER */}
+        <div className="relative flex items-center px-6 py-4 border-b border-gray-200">
+          <h2 className="absolute left-1/2 -translate-x-1/2 text-lg font-semibold text-gray-900">
+            Strategic Consultation
+          </h2>
+
           <button
             onClick={onClose}
-            className="p-2 rounded-full hover:bg-gray-100 transition"
+            className="ml-auto p-2 rounded-full hover:bg-gray-100 transition"
           >
-            <X className="h-5 w-5 text-gray-500" />
+            <X className="h-5 w-5 text-gray-700" />
           </button>
         </div>
-        
-        {/* Cal.com iframe */}
+
+        {/* CAL.COM IFRAME */}
         <iframe
-          src="https://cal.com/ovelon-prime/introduction-call?embed=true"
-          className="w-full h-[calc(100%-65px)]"
+          src="https://cal.com/ovelon-prime/introduction-call
+            ?embed=true
+            &embed_type=inline
+            &theme=light
+            &layout=month_view
+            &hide_event_type_details=false"
+          className="w-full h-[calc(100%-64px)]"
           frameBorder="0"
           allow="camera; microphone"
         />
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };

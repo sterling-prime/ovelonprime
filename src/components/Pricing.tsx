@@ -4,58 +4,36 @@ import { cn } from "@/lib/utils";
 
 const plans = [
   {
-    name: "On Time AI Service",
+    name: "One-Time Prime Service",
     description:
-      "Instant AI automation that saves your team hours — delivered once, set forever.",
+      "A focused, one-off automation engagement designed to remove a specific operational bottleneck — delivered once, built to last.",
     price: "$1,999",
-    period: "On Time",
+    period: "one-time",
     features: [
-      "Single workflow automation",
-      "Standard integrations",
-      "Email support",
-      "Monthly reporting",
-      "99.5% uptime SLA",
+      "Single high-impact automation",
+      "Strategic intake & process mapping",
+      "Implementation & deployment",
+      "Documentation & handover",
+      "Post-deployment quality check",
     ],
-    cta: "Book Call",
-    href: "#contact",
+    cta: "Request Prime Engagement",
     popular: false,
   },
   {
-    name: "Professional",
+    name: "Enterprise Customized",
     description:
-      "Advanced AI automations that streamline multiple processes, and scale your operations.",
-    price: "$2,999",
-    period: "per month",
-    features: [
-      "Up to 5 workflow automations",
-      "Custom integrations",
-      "Priority support",
-      "Real-time analytics",
-      "99.9% uptime SLA",
-      "Dedicated account manager",
-    ],
-    cta: "Book Call",
-    href: "#contact",
-    popular: true,
-  },
-  {
-    name: "Enterprise",
-    description:
-      "Tailor-made AI systems engineered for complex organizations. We design, build, and deploy advanced automations.",
+      "Tailor-made automation systems engineered for complex organizations with advanced requirements, governance, and scale.",
     price: "Custom",
     period: "tailored pricing",
     features: [
-      "Unlimited automations",
-      "Full system integration",
-      "24/7 dedicated support",
-      "Advanced compliance tools",
-      "99.99% uptime SLA",
-      "On-site implementation",
-      "Custom SLA terms",
+      "Multi-system automation architecture",
+      "Custom integrations & workflows",
+      "Dedicated implementation support",
+      "Compliance-aware design",
+      "Custom SLA & governance setup",
     ],
-    cta: "Email Us",
-    href: "mailto:support@ovelon-prime.com",
-    popular: false,
+    cta: "Get a Quote",
+    popular: true,
   },
 ];
 
@@ -68,17 +46,17 @@ export const Pricing = () => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <p className="section-label mb-4">Pricing</p>
           <h2 className="section-title mb-6">
-            Transparent pricing,{" "}
-            <span className="text-muted-foreground">predictable value</span>
+            Engagement-based pricing,{" "}
+            <span className="text-muted-foreground">no subscriptions</span>
           </h2>
           <p className="section-subtitle mx-auto">
-            Choose a package that aligns with your operational scale. 
-            All plans include core security and compliance features.
+            We work on clearly scoped engagements — focused on outcomes,
+            reliability, and long-term value.
           </p>
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {plans.map((plan) => (
             <div
               key={plan.name}
@@ -89,39 +67,36 @@ export const Pricing = () => {
                   : "border-border"
               )}
             >
-              {/* Popular badge */}
               {plan.popular && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                   <span className="px-3 py-1 text-xs font-medium bg-accent text-accent-foreground rounded-full">
-                    Most Popular
+                    Enterprise
                   </span>
                 </div>
               )}
 
-              {/* Title */}
               <h3 className="text-xl font-semibold text-foreground mb-2 text-center">
                 {plan.name}
               </h3>
 
-              {/* Description */}
               <p className="text-sm text-muted-foreground mb-6 text-center">
                 {plan.description}
               </p>
 
-              {/* Price */}
               <div className="mb-6 text-center">
                 <span className="text-4xl font-bold text-foreground">
                   {plan.price}
                 </span>
-                <span className="text-muted-foreground ml-2">{plan.period}</span>
+                <span className="text-muted-foreground ml-2">
+                  {plan.period}
+                </span>
               </div>
 
-              {/* Features LEFT aligned */}
-              <ul className="space-y-3 mb-8 text-left">
+              <ul className="space-y-3 mb-8">
                 {plan.features.map((feature) => (
                   <li
                     key={feature}
-                    className="flex items-start gap-3 text-sm text-muted-foreground text-left"
+                    className="flex items-start gap-3 text-sm text-muted-foreground"
                   >
                     <Check className="h-4 w-4 text-accent mt-0.5 shrink-0" />
                     {feature}
@@ -129,22 +104,34 @@ export const Pricing = () => {
                 ))}
               </ul>
 
-              {/* CTA */}
+              {/* CTA — EXACT SAME BEHAVIOUR AS GET IN TOUCH */}
               <Button
-                variant={plan.popular ? "default" : "outline"}
+                variant="outline"
                 className="w-full"
                 asChild
               >
-                <a href={plan.href}>{plan.cta}</a>
+                <a data-cal-link="ovelon-prime/introduction-call">
+                  {plan.cta}
+                </a>
               </Button>
             </div>
           ))}
         </div>
 
-        <p className="text-center text-sm text-muted-foreground mt-8">
-          All plans include security audits, data encryption, and regulatory
-          compliance support.
+        {/* Bottom CTA — SAME STYLE / SAME BEHAVIOUR */}
+        <p className="text-center text-sm text-muted-foreground mt-10">
+          All engagements include security best practices, data protection, and
+          compliance-aware implementation.
         </p>
+
+        <div className="mt-6 flex justify-center">
+          <Button variant="outline" size="lg" asChild>
+            <a data-cal-link="ovelon-prime/introduction-call">
+              Book Strategic Call
+            </a>
+          </Button>
+        </div>
+
       </div>
     </section>
   );

@@ -1,54 +1,30 @@
 import {
-  Users,
+  Inbox,
   Calendar,
   HeadphonesIcon,
-  GitBranch,
-  ShieldCheck,
-  FileText,
 } from "lucide-react";
 
 const services = [
   {
-    icon: Users,
-    title: "Operational Intake Automation",
+    icon: Inbox,
+    title: "Intake Automation",
     description:
-      "Automated handling of service requests, breakdown reports, and inbound work orders across web, email, and messaging channels.",
-    tags: ["Smart Forms", "Lead Scoring", "CRM Sync"],
+      "Automated intake of leads, service requests, and operational inquiries across web, email, and messaging channels — structured, qualified, and routed instantly.",
+    tags: ["Smart Intake", "Lead Qualification", "System Routing"],
   },
   {
     icon: Calendar,
     title: "Scheduling Automation",
     description:
-      "Eliminate scheduling conflicts with AI-powered booking, automatic reminders, and calendar optimization across teams.",
-    tags: ["Smart Booking", "Auto Reminders", "Calendar Sync"],
+      "AI-driven scheduling that eliminates manual coordination through smart booking logic, automated confirmations, and calendar optimization across teams.",
+    tags: ["Smart Scheduling", "Auto Confirmations", "Calendar Sync"],
   },
   {
     icon: HeadphonesIcon,
     title: "Customer Support Automation",
     description:
-      "Deliver 24/7 support with intelligent chatbots, ticket routing, and escalation workflows that keep customers satisfied.",
-    tags: ["AI Chatbots", "Ticket Routing", "Auto Escalation"],
-  },
-  {
-    icon: GitBranch,
-    title: "Complex Workflow Automation",
-    description:
-      "Orchestrate multi-step processes across departments with conditional logic, approvals, and real-time status tracking.",
-    tags: ["Process Builder", "Approval Chains", "Status Tracking"],
-  },
-  {
-    icon: ShieldCheck,
-    title: "Compliance & Safety Automation",
-    description:
-      "Maintain regulatory standards with automated audits, documentation workflows, and proactive compliance monitoring.",
-    tags: ["Audit Trails", "Auto Documentation", "Risk Alerts"],
-  },
-  {
-    icon: FileText,
-    title: "Document & Report Automation",
-    description:
-      "Generate, process, and distribute documents automatically with templates, data extraction, and smart formatting.",
-    tags: ["Auto Generation", "Data Extraction", "Smart Templates"],
+      "Intelligent customer support workflows combining AI chat, ticket routing, and escalation logic to resolve issues faster with full visibility.",
+    tags: ["AI Support", "Ticket Routing", "Escalation Logic"],
   },
 ];
 
@@ -59,51 +35,53 @@ export const Services = () => {
 
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <p className="section-label mb-4">What We Do</p>
+          <p className="section-label mb-4">What We Automate</p>
           <h2 className="section-title mb-6">
-            Automation solutions for{" "}
-            <span className="text-muted-foreground">every business need</span>
+            Automation for{" "}
+            <span className="text-muted-foreground">
+              critical operational workflows
+            </span>
           </h2>
           <p className="section-subtitle mx-auto">
-            From lead capture to compliance, we build intelligent automation
-            systems that scale with your business.
+            We focus on the three operational areas that create the most friction,
+            cost, and complexity — and automate them end to end.
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <div
               key={service.title}
               className="
-                bg-card rounded-xl p-8 border border-border 
+                bg-card rounded-2xl p-10 border border-border 
                 shadow-card card-hover text-center
                 flex flex-col items-center
               "
-              style={{ animationDelay: `${index * 100}ms` }}
+              style={{ animationDelay: `${index * 120}ms` }}
             >
-              {/* Centered icon */}
-              <div className="w-14 h-14 rounded-xl bg-secondary flex items-center justify-center mb-4 shadow-sm">
-                <service.icon className="h-7 w-7 text-foreground" />
+              {/* Icon */}
+              <div className="w-16 h-16 rounded-2xl bg-secondary flex items-center justify-center mb-6 shadow-sm">
+                <service.icon className="h-8 w-8 text-foreground" />
               </div>
 
-              {/* Centered title */}
-              <h3 className="text-lg font-semibold text-foreground mb-3 text-center">
+              {/* Title */}
+              <h3 className="text-xl font-semibold text-foreground mb-4">
                 {service.title}
               </h3>
 
-              {/* Centered description */}
-              <p className="text-muted-foreground text-sm mb-4 text-center leading-relaxed">
+              {/* Description */}
+              <p className="text-muted-foreground text-sm mb-6 leading-relaxed">
                 {service.description}
               </p>
 
-              {/* Centered tags */}
+              {/* Tags */}
               <div className="flex flex-wrap gap-2 justify-center">
                 {service.tags.map((tag) => (
                   <span
                     key={tag}
                     className="
-                      text-xs px-2 py-1 rounded-md 
+                      text-xs px-3 py-1 rounded-md 
                       bg-secondary text-secondary-foreground
                     "
                   >
