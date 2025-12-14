@@ -2,7 +2,10 @@ import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-const CAL_ROUTING_FORM =
+/**
+ * Cal.com intake form (opens in Cal modal)
+ */
+const CAL_INTAKE_FORM =
   "forms/483bf917-72c7-4e94-b500-6c5add086695";
 
 const plans = [
@@ -43,6 +46,11 @@ const plans = [
 ];
 
 export const Pricing = () => {
+  // Opens the existing BookingModal (Introduction Call)
+  const openIntroductionCall = () => {
+    window.dispatchEvent(new Event("open-booking-modal"));
+  };
+
   return (
     <section id="pricing" className="py-24 bg-muted">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -113,13 +121,13 @@ export const Pricing = () => {
                 ))}
               </ul>
 
-              {/* CTA → CAL MODAL */}
+              {/* PRICING CTAs → CAL INTAKE FORM (MODAL) */}
               <Button
                 variant={plan.popular ? "default" : "outline"}
                 className="w-full mt-auto"
                 asChild
               >
-                <a data-cal-link={CAL_ROUTING_FORM}>
+                <a data-cal-link={CAL_INTAKE_FORM}>
                   {plan.cta}
                 </a>
               </Button>
@@ -142,11 +150,10 @@ export const Pricing = () => {
             Not sure which automation engagement fits your operation?
           </p>
 
+          {/* TALK TO EXPERT → INTRODUCTION CALL (BookingModal) */}
           <div className="flex justify-center">
-            <Button size="lg" asChild>
-              <a data-cal-link={CAL_ROUTING_FORM}>
-                Request consultation
-              </a>
+            <Button size="lg" onClick={openIntroductionCall}>
+              Talk to Expert
             </Button>
           </div>
 
