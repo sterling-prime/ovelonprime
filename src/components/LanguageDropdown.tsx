@@ -7,6 +7,7 @@ const languages = [
   { code: "FR", label: "Français" },
   { code: "ES", label: "Español" },
   { code: "IT", label: "Italiano" },
+  { code: "PL", label: "Polska" },
 ];
 
 export const LanguageDropdown = () => {
