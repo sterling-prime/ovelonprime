@@ -7,19 +7,19 @@ export const Sectors = () => {
     {
       name: "Facility Management",
       description:
-        "Managing distributed assets, service requests, and technical operations at scale.",
+        "Managing distributed assets and service requests across complex facilities with zero room for delay.",
       img: sector1,
     },
     {
       name: "Maintenance & Repair",
       description:
-        "Operating under reactive and preventive maintenance conditions with minimal tolerance for downtime.",
+        "Operating under constant pressure to prevent downtime across reactive and preventive maintenance workflows.",
       img: sector2,
     },
     {
       name: "Logistics & Warehousing",
       description:
-        "Coordinating workforce, equipment, and operational flows under strict timelines.",
+        "Coordinating workforce, equipment, and workflows under strict timelines and continuous operational pressure.",
       img: sector3,
     },
   ];
@@ -42,12 +42,12 @@ export const Sectors = () => {
 
           <h2 className="section-title mb-4">
             Automation for{" "}
-            <span className="text-muted-foreground">critical industries</span>
+            <span className="text-muted-foreground">Mission-Critical Industries</span>
           </h2>
 
           <p className="section-subtitle mx-auto">
-            We design and implement intelligent automation systems for complex,
-            time-critical environments.
+            We design automation systems for complex, time-critical environments
+            where failure is not an option.
           </p>
         </div>
 

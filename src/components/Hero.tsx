@@ -28,12 +28,13 @@ export const Hero = () => {
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight animate-fade-in [animation-delay:100ms] opacity-0">
             Intelligent automation{" "}
-            <span className="text-muted-foreground">for high-stakes industrial environments</span>
+            <span className="text-muted-foreground">for mission-critical industrial environments</span>
           </h1>
 
           {/* Subheadline → LIGHT BLACK */}
           <p className="mt-6 text-lg sm:text-xl text-black/80 max-w-2xl mx-auto animate-fade-in opacity-0 [animation-delay:240ms]">
-            We design and implement intelligent automation systems for industrial service and operations companies, reducing operational friction across intake, planning, and execution.
+            We design and implement automation systems that reduce manual work,
+            eliminate operational errors, and scale complex industrial workflows.
           </p>
 
           {/* CTA */}

@@ -5,22 +5,52 @@ const faqs = [
   {
     question: "How does Ovelon Prime work?",
     answer:
-      "We design and implement tailored automation systems that remove operational bottlenecks across intake, scheduling, and customer support workflows.",
+      "Ovelon Prime delivers clearly scoped automation engagements. We identify operational bottlenecks, design a tailored automation solution, and implement it directly into your existing workflows without disrupting day-to-day operations.",
   },
   {
     question: "What industries do you specialize in?",
     answer:
-      "We specialize in industrial services, logistics, facility management, maintenance operations, and other time-critical environments.",
+      "We work with organizations operating in time-critical and regulated environments, including industrial services, facility management, logistics and warehousing, maintenance and repair operations, and healthcare-related services.",
   },
   {
-    question: "Is this a subscription service?",
+    question: "Is this a subscription or ongoing service?",
     answer:
-      "No. All engagements are project-based with a clearly defined scope. No subscriptions, no retainers.",
+      "No. All engagements are delivered as one-time, clearly defined projects. There are no subscriptions or mandatory retainers involved.",
   },
   {
-    question: "How long does an implementation take?",
+    question: "How long does a typical implementation take?",
     answer:
-      "Most Prime engagements are delivered within 7-10 days, depending on system complexity and integrations.",
+      "Implementation timelines depend on scope and complexity. Focused automation engagements typically take between 10-12 days, while larger enterprise programs are delivered in phased rollouts.",
+  },
+  {
+    question: "Will this integrate with our existing systems?",
+    answer:
+      "Yes. All solutions are engineered to integrate with your existing tools, platforms, and operational systems. Compatibility and minimal disruption are core design principles.",
+  },
+  {
+    question: "Do we need to change our current workflows?",
+    answer:
+      "No. Our approach focuses on enhancing and automating existing workflows. Any necessary process adjustments are identified upfront and agreed upon before implementation.",
+  },
+  {
+    question: "Who owns the automation after delivery?",
+    answer:
+      "You do. All delivered systems, configurations, and documentation are handed over upon completion, ensuring full ownership and operational control.",
+  },
+  {
+    question: "How do you handle security and compliance?",
+    answer:
+      "Security and compliance are built into every engagement. We follow industry best practices for data protection, access control, and compliance-aware system design tailored to your operational environment.",
+  },
+  {
+    question: "What level of internal involvement is required?",
+    answer:
+      "Internal involvement is kept minimal. Typically this includes an initial scoping session and periodic check-ins. Day-to-day execution is handled by our team.",
+  },
+  {
+    question: "Is Ovelon Prime suitable for large enterprise environments?",
+    answer:
+      "Yes. We regularly work with complex organizations that require governance, documentation, and structured implementation processes across multiple teams and systems.",
   },
 ];
 
@@ -38,7 +68,7 @@ export const Faq = () => {
 
         {/* Category */}
         <div className="text-sm font-semibold text-accent uppercase tracking-wide mb-10 text-center">
-          Product Info
+          Engagement & Delivery
         </div>
 
         {/* FAQ list */}

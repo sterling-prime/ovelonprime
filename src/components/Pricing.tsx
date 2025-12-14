@@ -4,33 +4,35 @@ import { cn } from "@/lib/utils";
 
 const plans = [
   {
-    name: "One-Time Prime Service",
+    name: "Focused Automation Engagement",
     description:
-      "A focused, one-off automation engagement designed to remove a specific operational bottleneck — delivered once, built to last.",
+      "A fixed-scope automation engagement designed to remove a specific operational bottleneck with measurable impact.",
     price: "$1,999",
-    period: "one-time",
+    period: "one-time fee",
+    priceLabel: "Starting from",
     features: [
       "Single high-impact automation",
-      "Strategic intake & process mapping",
+      "Process & intake mapping",
       "Implementation & deployment",
       "Documentation & handover",
-      "Post-deployment quality check",
+      "Post-deployment validation",
     ],
-    cta: "Request Prime Engagement",
+    cta: "Request Engagement Details",
     popular: false,
   },
   {
-    name: "Enterprise Customized",
+    name: "Enterprise Automation Program",
     description:
-      "Tailor-made automation systems engineered for complex organizations with advanced requirements, governance, and scale.",
-    price: "Custom",
-    period: "tailored pricing",
+      "Tailor-made automation systems for complex organizations with advanced governance, compliance, and scale requirements.",
+    price: "Custom Service",
+    period: "one-time fee",
+    priceLabel: "Tailored pricing",
     features: [
       "Multi-system automation architecture",
       "Custom integrations & workflows",
       "Dedicated implementation support",
-      "Compliance-aware design",
-      "Custom SLA & governance setup",
+      "Compliance-aware system design",
+      "Custom SLA & governance framework",
     ],
     cta: "Get a Quote",
     popular: true,
@@ -46,53 +48,64 @@ export const Pricing = () => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <p className="section-label mb-4">Pricing</p>
           <h2 className="section-title mb-6">
-            Engagement-based pricing,{" "}
-            <span className="text-muted-foreground">no subscriptions</span>
+            Engagement-based pricing, built around outcomes
           </h2>
           <p className="section-subtitle mx-auto">
-            We work on clearly scoped engagements — focused on outcomes,
-            reliability, and long-term value.
+            Clearly scoped automation engagements focused on reliability,
+            measurable impact, and long-term operational value.
           </p>
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
           {plans.map((plan) => (
             <div
               key={plan.name}
               className={cn(
-                "relative bg-card rounded-xl p-8 border shadow-card card-hover",
+                "relative bg-card rounded-xl pt-12 p-8 border shadow-card card-hover flex flex-col",
                 plan.popular
                   ? "border-accent ring-2 ring-accent/20"
                   : "border-border"
               )}
             >
+              {/* Enterprise Badge */}
               {plan.popular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <span className="px-3 py-1 text-xs font-medium bg-accent text-accent-foreground rounded-full">
+                <div className="absolute top-2 left-1/2 -translate-x-1/2">
+                  <span className="px-3 py-1 text-[11px] font-medium bg-accent/90 text-accent-foreground rounded-full">
                     Enterprise
                   </span>
                 </div>
               )}
 
+              {/* Title */}
               <h3 className="text-xl font-semibold text-foreground mb-2 text-center">
                 {plan.name}
               </h3>
 
+              {/* Description */}
               <p className="text-sm text-muted-foreground mb-6 text-center">
                 {plan.description}
               </p>
 
+              {/* Price */}
               <div className="mb-6 text-center">
+                {plan.priceLabel && (
+                  <p className="text-xs uppercase tracking-wide text-muted-foreground mb-1">
+                    {plan.priceLabel}
+                  </p>
+                )}
+
                 <span className="text-4xl font-bold text-foreground">
                   {plan.price}
                 </span>
+
                 <span className="text-muted-foreground ml-2">
                   {plan.period}
                 </span>
               </div>
 
-              <ul className="space-y-3 mb-8">
+              {/* Features */}
+              <ul className="space-y-3 mb-8 flex-grow">
                 {plan.features.map((feature) => (
                   <li
                     key={feature}
@@ -104,10 +117,10 @@ export const Pricing = () => {
                 ))}
               </ul>
 
-              {/* CTA — EXACT SAME BEHAVIOUR AS GET IN TOUCH */}
+              {/* CTA */}
               <Button
-                variant="outline"
-                className="w-full"
+                variant={plan.popular ? "default" : "outline"}
+                className="w-full mt-auto"
                 asChild
               >
                 <a data-cal-link="ovelon-prime/introduction-call">
@@ -118,18 +131,30 @@ export const Pricing = () => {
           ))}
         </div>
 
-        {/* Bottom CTA — SAME STYLE / SAME BEHAVIOUR */}
-        <p className="text-center text-sm text-muted-foreground mt-10">
-          All engagements include security best practices, data protection, and
-          compliance-aware implementation.
-        </p>
+        {/* Bottom Trust & CTA */}
+        <div className="mt-16 text-center">
 
-        <div className="mt-6 flex justify-center">
-          <Button variant="outline" size="lg" asChild>
-            <a data-cal-link="ovelon-prime/introduction-call">
-              Book Strategic Call
-            </a>
-          </Button>
+          <p className="text-sm text-muted-foreground max-w-2xl mx-auto mb-8">
+            Every engagement is built with enterprise-grade security,
+            data protection, and operational compliance.
+          </p>
+
+          <p className="text-base text-foreground mb-4">
+            Not sure which automation engagement fits your operation?
+          </p>
+
+          <div className="flex justify-center">
+            <Button size="lg" asChild>
+              <a data-cal-link="ovelon-prime/introduction-call">
+                Book Strategic Call
+              </a>
+            </Button>
+          </div>
+
+          <p className="text-xs text-muted-foreground mt-3">
+            40-minute scoping call · No sales pressure · Directly with an automation expert
+          </p>
+
         </div>
 
       </div>

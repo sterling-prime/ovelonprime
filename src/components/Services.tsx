@@ -7,24 +7,24 @@ import {
 const services = [
   {
     icon: Inbox,
-    title: "Intake Automation",
+    title: "Lead Intake Automation",
     description:
-      "Automated intake of leads, service requests, and operational inquiries across web, email, and messaging channels — structured, qualified, and routed instantly.",
-    tags: ["Smart Intake", "Lead Qualification", "System Routing"],
+      "Automated capture, qualification, and routing of inbound leads and service requests — without manual handling.",
+    tags: ["Smart Lead Capture", "Lead Qualification", "System Routing"],
   },
   {
     icon: Calendar,
-    title: "Scheduling Automation",
+    title: "Scheduling & Resource Automation",
     description:
-      "AI-driven scheduling that eliminates manual coordination through smart booking logic, automated confirmations, and calendar optimization across teams.",
-    tags: ["Smart Scheduling", "Auto Confirmations", "Calendar Sync"],
+      "Intelligent scheduling that optimizes people, assets, and time across complex operations. - minimizing conflicts and maximizing efficiency.",
+    tags: ["Smart Scheduling", "Auto Confirmations", "Calendar Optimization"],
   },
   {
     icon: HeadphonesIcon,
-    title: "Customer Support Automation",
+    title: "Incident & Support Automation",
     description:
-      "Intelligent customer support workflows combining AI chat, ticket routing, and escalation logic to resolve issues faster with full visibility.",
-    tags: ["AI Support", "Ticket Routing", "Escalation Logic"],
+      "Automated incident handling, routing, and escalation for faster resolution and full operational visibility. -- reducing downtime and improving service levels.",
+    tags: ["Bot Support", "Ticket Routing", "Escalation Methodology"],
   },
 ];
 
@@ -37,14 +37,14 @@ export const Services = () => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <p className="section-label mb-4">What We Automate</p>
           <h2 className="section-title mb-6">
-            Automation for{" "}
+            Automation where{" "}
             <span className="text-muted-foreground">
-              critical operational workflows
+              operational failure is not an option
             </span>
           </h2>
           <p className="section-subtitle mx-auto">
-            We focus on the three operational areas that create the most friction,
-            cost, and complexity — and automate them end to end.
+            We automate the workflows where downtime, delays,
+            and errors are not an option.
           </p>
         </div>
 

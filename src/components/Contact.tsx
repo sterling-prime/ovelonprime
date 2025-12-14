@@ -14,11 +14,11 @@ export const Contact = () => {
           </h2>
 
           <p className="section-subtitle mx-auto mb-8">
-            Let's discuss how AI automation can address your specific challenges.
-            Schedule a consultation with our team.
+            Let’s discuss how targeted automation can remove operational
+            bottlenecks and improve reliability across your workflows.
           </p>
 
-          {/* SAME BEHAVIOR AS NAVBAR */}
+          {/* CTA — same behavior as navbar */}
           <div className="flex justify-center">
             <Button
               size="lg"
@@ -31,6 +31,16 @@ export const Contact = () => {
             </Button>
           </div>
 
+          {/* Guarantee */}
+          <p className="text-sm text-muted-foreground mt-6">
+            Not satisfied? We offer a straightforward{" "}
+            <span className="font-medium text-foreground">
+              money-back guarantee
+            </span>{" "}
+            on qualifying engagements.
+          </p>
+
+          {/* Contact */}
           <p className="text-sm text-muted-foreground mt-8">
             Enterprise inquiries:{" "}
             <a
