@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate, useLocation } from "react-router-dom";
+import { LanguageDropdown } from "./LanguageDropdown";
+import { BookingModal } from "./BookingModal";
 
 
 const navLinks = [
@@ -14,6 +16,7 @@ const navLinks = [
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [bookingOpen, setBookingOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -76,16 +79,11 @@ export const Navbar = () => {
             ))}
           </nav>
 
-          {/* CTA BUTTON RIGHT */}
-          <div className="hidden md:flex ml-auto">
-            <Button variant="outline" size="sm" asChild>
-              <a
-                href="https://cal.com/ovelon-prime/introduction-call"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Get in Touch
-              </a>
+          {/* CTA BUTTON + LANGUAGE DROPDOWN RIGHT */}
+          <div className="hidden md:flex items-center gap-3 ml-auto">
+            <LanguageDropdown />
+            <Button variant="outline" size="sm" onClick={() => setBookingOpen(true)}>
+              Get in Touch
             </Button>
           </div>
 
@@ -128,14 +126,17 @@ export const Navbar = () => {
                 </button>
               ))}
 
-              <Button variant="outline" size="lg" className="w-full" asChild>
-                <a
-                  href="https://cal.com/ovelon-prime/introduction-call"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Get in Touch
-                </a>
+              <LanguageDropdown />
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="w-full"
+                onClick={() => {
+                  setBookingOpen(true);
+                  setIsOpen(false);
+                }}
+              >
+                Get in Touch
               </Button>
 
             </div>
@@ -143,6 +144,8 @@ export const Navbar = () => {
         )}
 
       </div>
+
+      <BookingModal isOpen={bookingOpen} onClose={() => setBookingOpen(false)} />
     </header>
   );
 };
