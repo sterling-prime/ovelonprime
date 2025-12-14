@@ -21,20 +21,19 @@ export const Hero = () => {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-badge-bg border border-border animate-fade-in">
             <span className="w-2 h-2 rounded-full bg-badge-dot" />
             <span className="text-sm font-medium text-muted-foreground">
-              AI-Powered Automation Solutions
+              Automation For Industrial Operations
             </span>
           </div>
 
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight animate-fade-in [animation-delay:100ms] opacity-0">
             Intelligent automation{" "}
-            <span className="text-muted-foreground">for critical industries</span>
+            <span className="text-muted-foreground">for high-stakes industrial environments</span>
           </h1>
 
           {/* Subheadline → LIGHT BLACK */}
           <p className="mt-6 text-lg sm:text-xl text-black/80 max-w-2xl mx-auto animate-fade-in opacity-0 [animation-delay:240ms]">
-            We design and implement AI automation systems for industrial and medical
-            sectors, enabling precision, efficiency, and trust.
+            We design and implement intelligent automation systems for industrial service and operations companies, reducing operational friction across intake, planning, and execution.
           </p>
 
           {/* CTA */}

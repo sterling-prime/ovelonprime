@@ -1,32 +1,32 @@
 import sector1 from "@/assets/facility.png";
-import sector2 from "@/assets/medical.png";
+import sector2 from "@/assets/mainte.png";
 import sector3 from "@/assets/logistic.png";
 import sector4 from "@/assets/manufact.png";
 
 export const Sectors = () => {
   const sectors = [
     {
-      name: "Industrial Facilities",
+      name: "Facility Management",
       description:
-        "AI-driven automation for maintenance, scheduling, asset coordination, and large-scale operational workflows.",
+        "Managing distributed assets, service requests, and technical operations at scale.",
       img: sector1,
     },
     {
-      name: "Medical & Clinics",
+      name: "Maintenance & Repair",
       description:
-        "Automated intake, AI scheduling, patient routing, and lead generation — optimized for healthcare efficiency.",
+        "Operating under reactive and preventive maintenance conditions with minimal tolerance for downtime.",
       img: sector2,
     },
     {
       name: "Logistics & Warehousing",
       description:
-        "Automation for routing, load optimization, inventory accuracy, and customer support across distributed operations.",
+        "Coordinating workforce, equipment, and flows under strict operational timelines.",
       img: sector3,
     },
     {
       name: "Manufacturing Automation",
       description:
-        "AI systems for production lines, quality assurance, predictive maintenance, and workflow orchestration.",
+        "Delivering specialised technical services where planning accuracy and execution control matter.",
       img: sector4,
     },
   ];
@@ -53,8 +53,7 @@ export const Sectors = () => {
           </h2>
 
           <p className="section-subtitle mx-auto">
-            We design AI systems that optimize operations across complex
-            high-value industries.
+            We design and implement intelligent automation systems for complex, time-critical environments.
           </p>
         </div>
 

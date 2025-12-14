@@ -10,9 +10,9 @@ import {
 const services = [
   {
     icon: Users,
-    title: "Lead Intake Automation",
+    title: "Operational Intake Automation",
     description:
-      "Capture and qualify leads automatically with intelligent forms, instant response systems, and seamless CRM integration.",
+      "Automated handling of service requests, breakdown reports, and inbound work orders across web, email, and messaging channels.",
     tags: ["Smart Forms", "Lead Scoring", "CRM Sync"],
   },
   {
