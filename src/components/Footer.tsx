@@ -1,5 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { Calendar } from "lucide-react";
 
 export const Footer = () => {
   const { t } = useTranslation();
@@ -8,7 +9,7 @@ export const Footer = () => {
   const isHome = location.pathname === "/";
 
   const scrollToSection = (section: string) => {
-    if (location.pathname === "/privacy") {
+    if (location.pathname === "/privacy" || location.pathname === "/terms") {
       navigate("/");
       setTimeout(() => {
         document.getElementById(section)?.scrollIntoView({ behavior: "smooth" });
@@ -36,37 +37,60 @@ export const Footer = () => {
   ];
 
   return (
-    <footer className="py-6 border-t border-border bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
-            <span className="font-semibold text-foreground">Ovelon Prime</span>
-            <nav className="flex items-center gap-6">
-              {footerLinks.map((link) =>
-                link.type === "route" ? (
-                  <Link
-                    key={link.label}
-                    to={link.href!}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                ) : (
-                  <button
-                    key={link.label}
-                    onClick={() => scrollToSection(link.section!)}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    {link.label}
-                  </button>
-                )
-              )}
-            </nav>
-          </div>
+    <footer className="bg-background border-t border-border">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
-          <div className="text-sm text-muted-foreground">
+        {/* MOBILE BRAND + CTA FEEL */}
+        <div className="md:hidden flex flex-col items-center gap-6 mb-8 text-center">
+          <span className="text-lg font-semibold text-foreground">
+            Ovelon Prime
+          </span>
+
+          <p className="text-sm text-muted-foreground max-w-xs">
+            Enterprise automation systems built for clarity, control, and scale.
+          </p>
+        </div>
+
+        {/* NAVIGATION */}
+        <nav className="flex flex-wrap justify-center md:justify-start gap-x-8 gap-y-4 mb-8">
+          {footerLinks.map((link) =>
+            link.type === "route" ? (
+              <Link
+                key={link.label}
+                to={link.href!}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <button
+                key={link.label}
+                onClick={() => scrollToSection(link.section!)}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {link.label}
+              </button>
+            )
+          )}
+        </nav>
+
+        {/* DIVIDER */}
+        <div className="border-t border-border my-6" />
+
+        {/* BOTTOM ROW */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
+          <span>
             © {new Date().getFullYear()} {t("footer.copyright")}
-          </div>
+          </span>
+
+          {/* DESKTOP ONLY MINI CTA */}
+          <button
+            onClick={() => window.dispatchEvent(new Event("open-booking-modal"))}
+            className="hidden md:flex items-center gap-2 text-sm font-medium text-foreground hover:opacity-80 transition"
+          >
+            <Calendar className="h-4 w-4" />
+            Book consultation
+          </button>
         </div>
       </div>
     </footer>
