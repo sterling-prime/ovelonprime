@@ -8,10 +8,19 @@ interface BookingModalProps {
 }
 
 export const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
+  // ✅ MOBILE-SAFE body lock
   useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "";
+    if (isOpen) {
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
+    } else {
+      document.body.style.position = "";
+      document.body.style.width = "";
+    }
+
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
     };
   }, [isOpen]);
 
@@ -21,25 +30,31 @@ export const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
     <div className="fixed inset-0 z-[9999]">
       {/* BACKDROP */}
       <div
-        className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/70"
         onClick={onClose}
       />
 
       {/* MODAL */}
       <div
         className="
-          absolute
-          left-1/2
-          top-1/2
-          -translate-x-1/2
-          -translate-y-1/2
-          w-[95vw]
-          max-w-6xl
-          h-[85vh]
+          fixed
+          inset-x-0
+          bottom-0
           bg-white
-          rounded-2xl
+          rounded-t-2xl
           shadow-2xl
-          overflow-hidden
+          h-[90vh]
+          overflow-y-auto
+
+          md:inset-auto
+          md:top-1/2
+          md:left-1/2
+          md:-translate-x-1/2
+          md:-translate-y-1/2
+          md:w-[95vw]
+          md:max-w-6xl
+          md:h-[85vh]
+          md:rounded-2xl
         "
       >
         {/* HEADER */}
@@ -58,12 +73,7 @@ export const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
 
         {/* CAL.COM IFRAME */}
         <iframe
-          src="https://cal.com/ovelon-prime/introduction-call
-            ?embed=true
-            &embed_type=inline
-            &theme=light
-            &layout=month_view
-            &hide_event_type_details=false"
+          src="https://cal.com/ovelon-prime/introduction-call?embed=true&embed_type=inline&theme=light"
           className="w-full h-[calc(100%-64px)]"
           frameBorder="0"
           allow="camera; microphone"
