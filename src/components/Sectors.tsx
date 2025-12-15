@@ -2,6 +2,7 @@ import sector1 from "@/assets/facility.png";
 import sector2 from "@/assets/mainte.png";
 import sector3 from "@/assets/logistic.png";
 
+
 export const Sectors = () => {
   const sectors = [
     {
