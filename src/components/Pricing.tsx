@@ -18,9 +18,12 @@ export const Pricing = () => {
       name: t("pricing.focused.name"),
       description: t("pricing.focused.description"),
       price: "$1,999",
+      subPriceLabel: "one-time fee",
       period: t("pricing.focused.period"),
       priceLabel: t("pricing.focused.priceLabel"),
-      features: t("pricing.focused.features", { returnObjects: true }) as string[],
+      features: t("pricing.focused.features", {
+        returnObjects: true,
+      }) as string[],
       cta: t("pricing.focused.cta"),
       popular: false,
       href: "/intake",
@@ -30,9 +33,12 @@ export const Pricing = () => {
       name: t("pricing.enterprise.name"),
       description: t("pricing.enterprise.description"),
       price: "Custom Service",
-      period: t("pricing.enterprise.period"),
+      subPriceLabel: "one-time fee", // ✅ REQUIRED
+      period: "",
       priceLabel: t("pricing.enterprise.priceLabel"),
-      features: t("pricing.enterprise.features", { returnObjects: true }) as string[],
+      features: t("pricing.enterprise.features", {
+        returnObjects: true,
+      }) as string[],
       cta: t("pricing.enterprise.cta"),
       popular: true,
       badge: t("pricing.enterprise.badge"),
@@ -46,8 +52,12 @@ export const Pricing = () => {
 
         {/* HEADER */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <p className="section-label mb-4">{t("pricing.label")}</p>
-          <h2 className="section-title mb-6">{t("pricing.title")}</h2>
+          <p className="section-label mb-4">
+            {t("pricing.label")}
+          </p>
+          <h2 className="section-title mb-6">
+            {t("pricing.title")}
+          </h2>
           <p className="section-subtitle mx-auto">
             {t("pricing.subtitle")}
           </p>
@@ -73,28 +83,42 @@ export const Pricing = () => {
                 </div>
               )}
 
+              {/* TITLE */}
               <h3 className="text-xl font-semibold text-foreground mb-2 text-center">
                 {plan.name}
               </h3>
 
+              {/* DESCRIPTION */}
               <p className="text-sm text-muted-foreground mb-6 text-center">
                 {plan.description}
               </p>
 
+              {/* PRICE */}
               <div className="mb-6 text-center">
                 {plan.priceLabel && (
                   <p className="text-xs uppercase tracking-wide text-muted-foreground mb-1">
                     {plan.priceLabel}
                   </p>
                 )}
+
                 <span className="text-4xl font-bold text-foreground">
                   {plan.price}
                 </span>
-                <span className="text-muted-foreground ml-2">
-                  {plan.period}
-                </span>
+
+                {plan.subPriceLabel && (
+                  <p className="text-xs text-muted-foreground mt-1">
+                    {plan.subPriceLabel}
+                  </p>
+                )}
+
+                {plan.period && (
+                  <span className="text-muted-foreground ml-2">
+                    {plan.period}
+                  </span>
+                )}
               </div>
 
+              {/* FEATURES */}
               <ul className="space-y-3 mb-8 flex-grow">
                 {plan.features.map((feature) => (
                   <li
@@ -107,7 +131,7 @@ export const Pricing = () => {
                 ))}
               </ul>
 
-              {/* ✅ CARD CTA — ROUTER SAFE */}
+              {/* CARD CTA */}
               <Button
                 variant={plan.popular ? "default" : "outline"}
                 className="w-full mt-auto"
@@ -125,7 +149,7 @@ export const Pricing = () => {
           ))}
         </div>
 
-        {/* BOTTOM CTA — INTRODUCTION CALL */}
+        {/* BOTTOM CTA */}
         <div className="mt-16 text-center">
           <p className="text-sm text-muted-foreground max-w-2xl mx-auto mb-8">
             {t("pricing.securityNote")}
