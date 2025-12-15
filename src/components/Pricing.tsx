@@ -17,13 +17,17 @@ export const Pricing = () => {
       key: "focused",
       name: t("pricing.focused.name"),
       description: t("pricing.focused.description"),
+
+      // PRICE
       price: "$1,999",
-      subPriceLabel: "one-time fee",
-      period: t("pricing.focused.period"),
-      priceLabel: t("pricing.focused.priceLabel"),
+      priceLabel: t("pricing.focused.priceLabel"), // e.g. "Starting from"
+      period: t("pricing.focused.period"), // e.g. "one-time fee"
+
+      // NO subPriceLabel here → avoids duplication
       features: t("pricing.focused.features", {
         returnObjects: true,
       }) as string[],
+
       cta: t("pricing.focused.cta"),
       popular: false,
       href: "/intake",
@@ -32,13 +36,19 @@ export const Pricing = () => {
       key: "enterprise",
       name: t("pricing.enterprise.name"),
       description: t("pricing.enterprise.description"),
+
+      // PRICE
       price: "Custom Service",
-      subPriceLabel: "one-time fee", // ✅ REQUIRED
+      priceLabel: t("pricing.enterprise.priceLabel"), // e.g. "Tailored pricing"
       period: "",
-      priceLabel: t("pricing.enterprise.priceLabel"),
+
+      // Enterprise explicitly shows fee type
+      subPriceLabel: "one-time fee",
+
       features: t("pricing.enterprise.features", {
         returnObjects: true,
       }) as string[],
+
       cta: t("pricing.enterprise.cta"),
       popular: true,
       badge: t("pricing.enterprise.badge"),
@@ -112,9 +122,9 @@ export const Pricing = () => {
                 )}
 
                 {plan.period && (
-                  <span className="text-muted-foreground ml-2">
+                  <p className="text-xs text-muted-foreground mt-1">
                     {plan.period}
-                  </span>
+                  </p>
                 )}
               </div>
 
@@ -154,6 +164,7 @@ export const Pricing = () => {
           <p className="text-sm text-muted-foreground max-w-2xl mx-auto mb-8">
             {t("pricing.securityNote")}
           </p>
+
           <p className="text-base text-foreground mb-4">
             {t("pricing.unsureText")}
           </p>
