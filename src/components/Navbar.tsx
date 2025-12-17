@@ -10,6 +10,7 @@ import ServiceIcon from "@/assets/service.apng";
 
 export const Navbar = () => {
   const { t } = useTranslation();
+
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [bookingOpen, setBookingOpen] = useState(false);
@@ -31,6 +32,14 @@ export const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  /* ------------------ LOCK BODY SCROLL WHEN MENU OPEN ------------------ */
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   /* ------------------ BOOKING MODAL LISTENER ------------------ */
   useEffect(() => {
     const handler = () => setBookingOpen(true);
@@ -43,52 +52,53 @@ export const Navbar = () => {
     if (location.pathname !== "/") {
       navigate("/");
       setTimeout(() => {
-        document.getElementById(section)?.scrollIntoView({ behavior: "smooth" });
+        document
+          .getElementById(section)
+          ?.scrollIntoView({ behavior: "smooth" });
       }, 200);
       return;
     }
-    document.getElementById(section)?.scrollIntoView({ behavior: "smooth" });
+    document
+      .getElementById(section)
+      ?.scrollIntoView({ behavior: "smooth" });
   };
 
   /* ------------------ HEADER STYLE CONTROL ------------------ */
-  const lightHeaderPages = [
-    "/privacy",
-    "/terms",
-    "/intake",
-    "/intake2",
-  ];
-
+  const lightHeaderPages = ["/privacy", "/terms", "/intake", "/intake2"];
   const isLightHeaderPage = lightHeaderPages.includes(location.pathname);
 
   return (
     <>
+      {/* HEADER */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isLightHeaderPage
-            ? "bg-gray-100 border-b border-gray-300"
-            : scrolled
-            ? "bg-white/90 backdrop-blur-md border-b border-gray-200"
-            : "bg-transparent"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300
+          ${
+            isOpen || isLightHeaderPage
+              ? "bg-gray-100 border-b border-gray-300/60"
+              : scrolled
+              ? "bg-white/95 backdrop-blur-sm border-b border-gray-300/60"
+              : "bg-transparent"
+          }
+        `}
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 relative">
 
-            {/* LOGO (DESKTOP) */}
+            {/* LOGO DESKTOP */}
             <a
               href="/"
-              className="hidden md:flex items-center gap-3 text-xl font-semibold text-foreground"
+              className="hidden md:flex items-center gap-3 text-xl font-semibold"
             >
               <img
                 src={ServiceIcon}
                 alt="Ovelon Prime icon"
                 className="h-6 w-6"
               />
-              <span>Ovelon Prime</span>
+              Ovelon Prime
             </a>
 
-            {/* NAV LINKS (DESKTOP) */}
-            <nav className="hidden md:flex gap-8 absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
+            {/* DESKTOP NAV */}
+            <nav className="hidden md:flex gap-8 absolute left-1/2 -translate-x-1/2">
               {navLinks.map((link) => (
                 <button
                   key={link.section}
@@ -100,7 +110,7 @@ export const Navbar = () => {
               ))}
             </nav>
 
-            {/* ACTIONS (DESKTOP) */}
+            {/* DESKTOP ACTIONS */}
             <div className="hidden md:flex items-center gap-3 ml-auto">
               <LanguageDropdown />
               <Button
@@ -114,22 +124,20 @@ export const Navbar = () => {
 
             {/* MOBILE HEADER */}
             <div className="md:hidden flex items-center w-full relative">
-              <div className="absolute left-1/2 -translate-x-1/2">
-                <a
-                  href="/"
-                  className="flex items-center gap-2 text-xl font-semibold text-foreground"
-                >
-                  <img
-                    src={ServiceIcon}
-                    alt="Ovelon Prime icon"
-                    className="h-5 w-5"
-                  />
-                  <span>Ovelon Prime</span>
-                </a>
-              </div>
+              <a
+                href="/"
+                className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2 text-lg font-semibold"
+              >
+                <img
+                  src={ServiceIcon}
+                  alt="Ovelon Prime icon"
+                  className="h-5 w-5"
+                />
+                Ovelon Prime
+              </a>
 
               <button
-                className="p-2 ml-auto"
+                className="ml-auto p-2"
                 onClick={() => setIsOpen(!isOpen)}
               >
                 {isOpen ? (
@@ -140,42 +148,57 @@ export const Navbar = () => {
               </button>
             </div>
           </div>
-
-          {/* MOBILE MENU */}
-          {isOpen && (
-            <div className="md:hidden border-t border-gray-300 py-4">
-              <div className="flex flex-col gap-4">
-                {navLinks.map((link) => (
-                  <button
-                    key={link.section}
-                    onClick={() => {
-                      goToSection(link.section);
-                      setIsOpen(false);
-                    }}
-                    className="text-left text-lg font-medium text-gray-700 hover:text-black transition"
-                  >
-                    {link.label}
-                  </button>
-                ))}
-
-                <LanguageDropdown />
-
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="w-full"
-                  onClick={() => {
-                    setBookingOpen(true);
-                    setIsOpen(false);
-                  }}
-                >
-                  {t("nav.cta")}
-                </Button>
-              </div>
-            </div>
-          )}
         </div>
       </header>
+
+      {/* MOBILE DROPDOWN */}
+      {isOpen && (
+        <div className="md:hidden fixed top-16 left-0 right-0 z-40 bg-gray-100 border-t border-gray-300/60">
+          <div className="px-6 py-8 flex flex-col gap-8">
+
+            {navLinks.map((link) => (
+              <button
+                key={link.section}
+                onClick={() => {
+                  goToSection(link.section);
+                  setIsOpen(false);
+                }}
+                className="text-left text-2xl font-medium text-gray-900"
+              >
+                {link.label}
+              </button>
+            ))}
+
+            <LanguageDropdown />
+
+            {/* MOBILE CTA */}
+            <Button
+  variant="outline"
+  size="lg"
+  className="
+    w-full
+    font-semibold
+    tracking-wide
+    border-gray-300
+    text-gray-900
+    hover:bg-emerald-600
+    hover:border-emerald-600
+    hover:text-white
+    active:bg-emerald-600
+    active:border-emerald-600
+    active:text-white
+    transition-colors
+  "
+  onClick={() => {
+    setBookingOpen(true);
+    setIsOpen(false);
+  }}
+>
+  {t("nav.cta")}
+</Button>
+          </div>
+        </div>
+      )}
 
       {/* BOOKING MODAL */}
       <BookingModal
