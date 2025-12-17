@@ -179,14 +179,12 @@ export const Navbar = () => {
     w-full
     font-semibold
     tracking-wide
-    border-gray-300
-    text-gray-900
-    hover:bg-emerald-600
-    hover:border-emerald-600
-    hover:text-white
-    active:bg-emerald-600
-    active:border-emerald-600
-    active:text-white
+    border-input
+    text-foreground
+    hover:bg-primary
+    hover:text-primary-foreground
+    active:bg-primary
+    active:text-primary-foreground
     transition-colors
   "
   onClick={() => {
