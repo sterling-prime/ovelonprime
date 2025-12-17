@@ -8,13 +8,28 @@ export const Hero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      
       {/* Background */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroBg})` }}
-      >
-        <div className="absolute inset-0 bg-background/70 backdrop-blur-sm" />
-      </div>
+      <div className="absolute inset-0 z-0">
+  <img
+    src={heroBg}
+    alt=""
+    className="
+      w-full
+      h-full
+      object-cover
+      brightness-[1.15]
+      contrast-[1.2]
+      saturate-[1.05]
+    "
+  />
+
+  {/* Readability overlay – +40% darker */}
+  <div className="absolute inset-0 bg-background/40" />
+
+  {/* Control-room gradient – slightly stronger */}
+  <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-transparent to-background/50" />
+</div>
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center pt-24">
@@ -41,30 +56,29 @@ export const Hero = () => {
             {t("hero.subtitle")}
           </p>
 
-          {/* Secondary subline (short, decisive) */}
+          {/* Secondary subline */}
           <p className="text-base sm:text-lg text-foreground/70 max-w-2xl mx-auto animate-fade-in opacity-0 [animation-delay:300ms]">
             {t("hero.subtitle2")}
           </p>
 
           {/* CTA */}
-    <div className="pt-4 animate-fade-in [animation-delay:340ms] opacity-0">
-    <Button
-      size="lg"
-      variant="default"
-      className="group hover:bg-accent hover:text-accent-foreground transition-colors"
-      asChild
-    >
-      <a href="#services">
-        {t("hero.cta")}
-        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-      </a>
-    </Button>
-  </div>
+          <div className="pt-4 animate-fade-in [animation-delay:340ms] opacity-0">
+            <Button
+              size="lg"
+              variant="default"
+              className="group hover:bg-accent hover:text-accent-foreground transition-colors"
+              asChild
+            >
+              <a href="#services">
+                {t("hero.cta")}
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </a>
+            </Button>
+          </div>
 
-          {/* Trust line / Anchor */}
+          {/* Trust line */}
           <div className="pt-10 animate-fade-in opacity-0 [animation-delay:420ms]">
-            <p className="inline-block text-sm font-semibold tracking-widest text-foreground/90 
-             border-b border-foreground/50 pb-1">
+            <p className="inline-block text-sm font-semibold tracking-widest text-foreground/90 border-b border-foreground/50 pb-1">
               {t("hero.trustline")}
             </p>
           </div>
