@@ -95,8 +95,8 @@ export const translations = {
       reviewNote: "All requests are reviewed before scheduling.",
     },
     contact: {
-      label: "Get Started",
-      title: "Ready to transform",
+      label: "ENGAGE",
+      title: "Ready to regain operational control",
       titleHighlight: "your operations?",
       subtitle: "Let's discuss how targeted automation can remove operational bottlenecks and improve reliability across your workflows.",
       cta: "Schedule Consultation",

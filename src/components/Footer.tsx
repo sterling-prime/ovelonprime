@@ -37,10 +37,10 @@ export const Footer = () => {
   ];
 
   return (
-    <footer className="bg-background border-t border-border">
+    <footer className="bg-muted/40 border-t border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
-        {/* MOBILE BRAND + CTA FEEL */}
+        {/* MOBILE BRAND */}
         <div className="md:hidden flex flex-col items-center gap-6 mb-8 text-center">
           <span className="text-lg font-semibold text-foreground">
             Ovelon Prime
@@ -52,13 +52,13 @@ export const Footer = () => {
         </div>
 
         {/* NAVIGATION */}
-        <nav className="flex flex-wrap justify-center md:justify-start gap-x-8 gap-y-4 mb-8">
+        <nav className="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-8">
           {footerLinks.map((link) =>
             link.type === "route" ? (
               <Link
                 key={link.label}
                 to={link.href!}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm tracking-wide text-muted-foreground hover:text-foreground transition-colors"
               >
                 {link.label}
               </Link>
@@ -66,7 +66,7 @@ export const Footer = () => {
               <button
                 key={link.label}
                 onClick={() => scrollToSection(link.section!)}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm tracking-wide text-muted-foreground hover:text-foreground transition-colors"
               >
                 {link.label}
               </button>
@@ -75,7 +75,7 @@ export const Footer = () => {
         </nav>
 
         {/* DIVIDER */}
-        <div className="border-t border-border my-6" />
+        <div className="border-t border-border/50 my-6" />
 
         {/* BOTTOM ROW */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
@@ -83,10 +83,10 @@ export const Footer = () => {
             © {new Date().getFullYear()} {t("footer.copyright")}
           </span>
 
-          {/* DESKTOP ONLY MINI CTA */}
+          {/* DESKTOP MINI CTA */}
           <button
             onClick={() => window.dispatchEvent(new Event("open-booking-modal"))}
-            className="hidden md:flex items-center gap-2 text-sm font-medium text-foreground hover:opacity-80 transition"
+            className="hidden md:flex items-center gap-2 text-sm tracking-wide text-foreground hover:opacity-70 transition"
           >
             <Calendar className="h-4 w-4" />
             Book consultation
