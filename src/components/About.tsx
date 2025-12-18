@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import aboutImage from "@/assets/manager.png";
+import aboutImage from "@/assets/facility.png";
 
 export const About = () => {
   const { t } = useTranslation();
@@ -7,7 +7,7 @@ export const About = () => {
   const stats = [
     { value: "98%", label: t("about.stats.uptime") },
     { value: "150+", label: t("about.stats.deployments") },
-    { value: "12", label: t("about.stats.industries") },
+    { value: "3", label: t("about.stats.industries") },
   ];
 
   return (

@@ -94,7 +94,7 @@ export const Navbar = () => {
                 <button
                   key={link.section}
                   onClick={() => goToSection(link.section)}
-                  className="text-sm font-medium text-gray-700 hover:text-black transition"
+                  className="text-sm font-medium text-gray-900 hover:text-black transition"
                 >
                   {link.label}
                 </button>

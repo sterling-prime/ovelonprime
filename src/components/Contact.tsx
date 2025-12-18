@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
-import contactBg from "@/assets/u3714841198_Sleek_minimalistic_abstract_visual_inspired_by_he_53bffa3d-7c36-4acb-858b-afa6bbf35d2a_0.png";
+import contactBg from "@/assets/u3714841198_Minimalistic_abstract_background_designed_for_a_c_e56f8162-43f3-47ed-8b5e-63ec90910a05_0.png";
 
 export const Contact = () => {
   const { t } = useTranslation();

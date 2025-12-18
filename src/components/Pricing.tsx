@@ -7,9 +7,38 @@ import { Link } from "react-router-dom";
 export const Pricing = () => {
   const { t } = useTranslation();
 
-  // Same behavior as header "Get in touch"
+  /**
+   * Open booking modal WITHOUT scroll jump
+   * (pricing stays in view)
+   */
   const openIntroductionCall = () => {
+    const scrollY = window.scrollY;
+
+    // 🔒 Lock scroll
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+
+    // 🔔 Open booking modal
     window.dispatchEvent(new Event("open-booking-modal"));
+
+    // 🔓 Restore scroll when modal closes
+    const restoreScroll = () => {
+      const y = document.body.style.top;
+
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+
+      window.scrollTo(0, parseInt(y || "0") * -1);
+      window.removeEventListener("close-booking-modal", restoreScroll);
+    };
+
+    window.addEventListener("close-booking-modal", restoreScroll);
   };
 
   const plans = [
@@ -17,17 +46,12 @@ export const Pricing = () => {
       key: "focused",
       name: t("pricing.focused.name"),
       description: t("pricing.focused.description"),
-
-      // PRICE
       price: "$1,999",
-      priceLabel: t("pricing.focused.priceLabel"), // e.g. "Starting from"
-      period: t("pricing.focused.period"), // e.g. "one-time fee"
-
-      // NO subPriceLabel here → avoids duplication
+      priceLabel: t("pricing.focused.priceLabel"),
+      period: t("pricing.focused.period"),
       features: t("pricing.focused.features", {
         returnObjects: true,
       }) as string[],
-
       cta: t("pricing.focused.cta"),
       popular: false,
       href: "/intake",
@@ -36,19 +60,13 @@ export const Pricing = () => {
       key: "enterprise",
       name: t("pricing.enterprise.name"),
       description: t("pricing.enterprise.description"),
-
-      // PRICE
       price: "Custom Service",
-      priceLabel: t("pricing.enterprise.priceLabel"), // e.g. "Tailored pricing"
+      priceLabel: t("pricing.enterprise.priceLabel"),
       period: "",
-
-      // Enterprise explicitly shows fee type
       subPriceLabel: "one-time fee",
-
       features: t("pricing.enterprise.features", {
         returnObjects: true,
       }) as string[],
-
       cta: t("pricing.enterprise.cta"),
       popular: true,
       badge: t("pricing.enterprise.badge"),
@@ -62,15 +80,9 @@ export const Pricing = () => {
 
         {/* HEADER */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <p className="section-label mb-4">
-            {t("pricing.label")}
-          </p>
-          <h2 className="section-title mb-6">
-            {t("pricing.title")}
-          </h2>
-          <p className="section-subtitle mx-auto">
-            {t("pricing.subtitle")}
-          </p>
+          <p className="section-label mb-4">{t("pricing.label")}</p>
+          <h2 className="section-title mb-6">{t("pricing.title")}</h2>
+          <p className="section-subtitle mx-auto">{t("pricing.subtitle")}</p>
         </div>
 
         {/* PRICING CARDS */}
@@ -93,17 +105,14 @@ export const Pricing = () => {
                 </div>
               )}
 
-              {/* TITLE */}
               <h3 className="text-xl font-semibold text-foreground mb-2 text-center">
                 {plan.name}
               </h3>
 
-              {/* DESCRIPTION */}
               <p className="text-sm text-muted-foreground mb-6 text-center">
                 {plan.description}
               </p>
 
-              {/* PRICE */}
               <div className="mb-6 text-center">
                 {plan.priceLabel && (
                   <p className="text-xs uppercase tracking-wide text-muted-foreground mb-1">
@@ -128,7 +137,6 @@ export const Pricing = () => {
                 )}
               </div>
 
-              {/* FEATURES */}
               <ul className="space-y-3 mb-8 flex-grow">
                 {plan.features.map((feature) => (
                   <li
@@ -141,15 +149,13 @@ export const Pricing = () => {
                 ))}
               </ul>
 
-              {/* CARD CTA */}
+              {/* CARD CTA → routing is correct here */}
               <Button
                 variant={plan.popular ? "default" : "outline"}
                 className="w-full mt-auto"
                 asChild
               >
-                <Link to={plan.href}>
-                  {plan.cta}
-                </Link>
+                <Link to={plan.href}>{plan.cta}</Link>
               </Button>
 
               <p className="text-[11px] text-muted-foreground text-center mt-3">
@@ -159,18 +165,26 @@ export const Pricing = () => {
           ))}
         </div>
 
-        {/* BOTTOM CTA */}
+        {/* BOTTOM CTA — stays on pricing */}
         <div className="mt-16 text-center">
           <p className="text-sm text-muted-foreground max-w-2xl mx-auto mb-8">
             {t("pricing.securityNote")}
           </p>
 
-          <p className="text-base text-foreground mb-4">
-            {t("pricing.unsureText")}
-          </p>
-
           <div className="flex justify-center">
-            <Button size="lg" onClick={openIntroductionCall}>
+            <Button
+              size="lg"
+              onClick={openIntroductionCall}
+              className="
+                bg-slate-900
+                text-white
+                font-medium
+                px-8
+                transition-colors
+                hover:bg-[#3A8F94]
+                focus-visible:bg-[#3A8F94]
+              "
+            >
               {t("pricing.talkToExpert")}
             </Button>
           </div>
