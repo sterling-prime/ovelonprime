@@ -47,7 +47,7 @@ export const Footer = () => {
           </span>
 
           <p className="text-sm text-muted-foreground max-w-xs">
-            Enterprise automation systems built for clarity, control, and scale.
+            Enterprise operating systems built for clarity, control, and scale.
           </p>
         </div>
 
@@ -78,15 +78,27 @@ export const Footer = () => {
         <div className="border-t border-border/50 my-6" />
 
         {/* BOTTOM ROW */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-muted-foreground">
+
           <span>
             © {new Date().getFullYear()} {t("footer.copyright")}
           </span>
 
-          {/* DESKTOP MINI CTA */}
+          {/* DESKTOP CTA — SAME SYSTEM AS HEADER */}
           <button
             onClick={() => window.dispatchEvent(new Event("open-booking-modal"))}
-            className="hidden md:flex items-center gap-2 text-sm tracking-wide text-foreground hover:opacity-70 transition"
+            className="
+              hidden md:inline-flex
+              items-center gap-2
+              px-6 py-3
+              rounded-full
+              bg-slate-900
+              text-white
+              font-medium
+              transition-colors
+              hover:bg-[#3A8F94]
+              focus-visible:bg-[#3A8F94]
+            "
           >
             <Calendar className="h-4 w-4" />
             Book consultation

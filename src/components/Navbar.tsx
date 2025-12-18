@@ -52,15 +52,11 @@ export const Navbar = () => {
     if (location.pathname !== "/") {
       navigate("/");
       setTimeout(() => {
-        document
-          .getElementById(section)
-          ?.scrollIntoView({ behavior: "smooth" });
+        document.getElementById(section)?.scrollIntoView({ behavior: "smooth" });
       }, 200);
       return;
     }
-    document
-      .getElementById(section)
-      ?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById(section)?.scrollIntoView({ behavior: "smooth" });
   };
 
   const lightHeaderPages = ["/privacy", "/terms", "/intake", "/intake2"];
@@ -88,11 +84,7 @@ export const Navbar = () => {
               href="/"
               className="hidden md:flex items-center gap-3 text-xl font-semibold"
             >
-              <img
-                src={ServiceIcon}
-                alt="Ovelon Prime icon"
-                className="h-6 w-6"
-              />
+              <img src={ServiceIcon} alt="Ovelon Prime icon" className="h-6 w-6" />
               Ovelon Prime
             </a>
 
@@ -137,27 +129,29 @@ export const Navbar = () => {
                 href="/"
                 className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2 text-lg font-semibold"
               >
-                <img
-                  src={ServiceIcon}
-                  alt="Ovelon Prime icon"
-                  className="h-5 w-5"
-                />
+                <img src={ServiceIcon} alt="Ovelon Prime icon" className="h-5 w-5" />
                 Ovelon Prime
               </a>
 
               {/* HAMBURGER / CLOSE */}
               <button
-                className={`
-                  ml-auto p-2 rounded-md transition-colors
-                  ${isOpen ? "bg-slate-900 hover:bg-[#3A8F94]" : "bg-transparent"}
-                `}
                 onClick={() => setIsOpen(!isOpen)}
                 aria-label="Toggle menu"
+                className="
+                  ml-auto
+                  p-2
+                  rounded-md
+                  bg-transparent
+                  transition-colors
+                  focus:outline-none
+                "
               >
                 {isOpen ? (
-                  <X className="h-6 w-6 text-white" />
+                  <div className="p-2 rounded-md hover:bg-slate-200 active:bg-slate-300 transition-colors">
+                    <X className="h-6 w-6 text-slate-900" />
+                  </div>
                 ) : (
-                  <Menu className="h-6 w-6 text-gray-900" />
+                  <Menu className="h-6 w-6 text-slate-900" />
                 )}
               </button>
             </div>
@@ -187,26 +181,26 @@ export const Navbar = () => {
 
             {/* MOBILE CTA */}
             <Button
-  size="lg"
-  className="
-    w-full
-    bg-slate-900
-    text-white
-    font-semibold
-    tracking-wide
-    rounded-md
-    transition-colors
-    hover:bg-[#3A8F94]
-    active:bg-[#3A8F94]
-    focus-visible:bg-[#3A8F94]
-  "
-  onClick={() => {
-    setBookingOpen(true);
-    setIsOpen(false);
-  }}
->
-  {t("nav.cta")}
-</Button>
+              size="lg"
+              className="
+                w-full
+                bg-slate-900
+                text-white
+                font-semibold
+                tracking-wide
+                rounded-md
+                transition-colors
+                hover:bg-[#3A8F94]
+                active:bg-[#3A8F94]
+                focus-visible:bg-[#3A8F94]
+              "
+              onClick={() => {
+                setBookingOpen(true);
+                setIsOpen(false);
+              }}
+            >
+              {t("nav.cta")}
+            </Button>
           </div>
         </div>
       )}

@@ -3,12 +3,21 @@ import { getCalApi } from "@calcom/embed-react";
 
 export const CalInit = () => {
   useEffect(() => {
-    (async () => {
+    let calInstance: any = null;
+
+    const initCal = async () => {
+      // ❌ No floating CTA on mobile / tablet
+      if (window.matchMedia("(max-width: 1024px)").matches) {
+        return;
+      }
+
       const cal = await getCalApi({
         namespace: "introduction-call",
       });
 
-      // Floating button (rechtsonder)
+      calInstance = cal;
+
+      // ✅ Floating button — DESKTOP ONLY
       cal("floatingButton", {
         calLink: "ovelon-prime/introduction-call",
         config: {
@@ -26,11 +35,29 @@ export const CalInit = () => {
             "cal-brand": "#fafafa",
           },
         },
-        hideEventTypeDetails: false,
         layout: "month_view",
       });
-    })();
+    };
+
+    initCal();
+
+    // 🔁 Kill floating button if viewport shrinks
+    const handleResize = () => {
+      if (
+        window.matchMedia("(max-width: 1024px)").matches &&
+        calInstance
+      ) {
+        const el = document.querySelector('[data-cal-floating-button]');
+        if (el) el.remove();
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
-  return null; // dit rendert niks
+  return null;
 };
