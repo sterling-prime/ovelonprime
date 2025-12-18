@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Calendar } from "lucide-react";
+import { Calendar, Facebook, Instagram } from "lucide-react";
 
 export const Footer = () => {
   const { t } = useTranslation();
@@ -80,11 +80,35 @@ export const Footer = () => {
         {/* BOTTOM ROW */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-muted-foreground">
 
+          {/* LEFT */}
           <span>
             © {new Date().getFullYear()} {t("footer.copyright")}
           </span>
 
-          {/* DESKTOP CTA — SAME SYSTEM AS HEADER */}
+          {/* CENTER — SOCIALS */}
+          <div className="flex items-center gap-4">
+            <a
+              href="https://www.facebook.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Facebook className="h-4 w-4" />
+            </a>
+
+            <a
+              href="https://www.instagram.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Instagram className="h-4 w-4" />
+            </a>
+          </div>
+
+          {/* RIGHT — CTA */}
           <button
             onClick={() => window.dispatchEvent(new Event("open-booking-modal"))}
             className="
