@@ -12,9 +12,7 @@ const Intake = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0B1020]">
-      {/* Dark page background like screenshot */}
-
+    <div className="min-h-screen bg-slate-50">
       <Navbar />
 
       <main className="pt-28 pb-20">
@@ -22,23 +20,22 @@ const Intake = () => {
 
           {/* PAGE HEADER */}
           <div className="text-center mb-14">
-            <h1 className="text-4xl font-semibold text-white mb-4">
+            <h1 className="text-4xl font-semibold text-slate-900 mb-4">
               Consultation Qualification
             </h1>
-            <p className="text-gray-300">
+            <p className="text-slate-600">
               Please complete the short intake below. All submissions are reviewed
               before scheduling.
             </p>
           </div>
 
           {/* FORM CARD */}
-          <div className="bg-[#EDEEF0] rounded-3xl p-10">
+          <div className="bg-slate-100 rounded-3xl p-10">
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
               <iframe
                 src={FORM_URL}
                 title="Consultation Intake Form"
-                className="w-full h-[900px]"
-                frameBorder="0"
+                className="w-full min-h-[900px] border-0"
               />
             </div>
           </div>

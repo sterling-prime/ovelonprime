@@ -11,7 +11,6 @@ import { Faq } from "@/components/faq";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 
-
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
