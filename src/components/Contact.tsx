@@ -33,7 +33,16 @@ export const Contact = () => {
         <div className="max-w-3xl mx-auto text-center">
 
           {/* Label */}
-          <p className="mb-6 text-xs sm:text-sm tracking-[0.35em] font-medium text-accent">
+          <p
+  className="
+    mb-6
+    text-xs sm:text-sm
+    tracking-[0.3em]
+    font-semibold
+    uppercase
+    text-[#3A8F94]
+  "
+>
   ENGAGE
 </p>
 
