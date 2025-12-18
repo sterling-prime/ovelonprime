@@ -1,84 +1,98 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
-import heroBg from "@/assets/chipAI2.png";
+import heroBg from "@/assets/u3714841198_Sleek_minimalistic_abstract_visual_inspired_by_he_53bffa3d-7c36-4acb-858b-afa6bbf35d2a_0.png";
 
 export const Hero = () => {
   const { t } = useTranslation();
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      
-      {/* Background */}
+
+      {/* ===== Background ===== */}
       <div className="absolute inset-0 z-0">
-  <img
-    src={heroBg}
-    alt=""
-    className="
-      w-full
-      h-full
-      object-cover
-      brightness-[1.15]
-      contrast-[1.2]
-      saturate-[1.05]
-    "
-  />
+        <img
+          src={heroBg}
+          alt=""
+          className="
+            w-full
+            h-full
+            object-cover
+            brightness-[1.1]
+            contrast-[1.15]
+            saturate-[1.05]
+          "
+        />
 
-  {/* Readability overlay – +40% darker */}
-  <div className="absolute inset-0 bg-background/40" />
+        {/* Readability overlay — 6% */}
+        <div className="absolute inset-0 bg-background/35" />
 
-  {/* Control-room gradient – slightly stronger */}
-  <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-transparent to-background/50" />
-</div>
+        {/* Subtle control-room gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/10 via-transparent to-background/10" />
+      </div>
 
-      {/* Content */}
+      {/* ===== Content ===== */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center pt-24">
         <div className="max-w-4xl mx-auto space-y-8">
 
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-badge-bg border border-border animate-fade-in">
+          {/* ===== Badge ===== */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-badge-bg border border-border animate-fade-in scale-95 sm:scale-100">
             <span className="w-2 h-2 rounded-full bg-badge-dot" />
             <span className="text-sm font-medium text-muted-foreground">
               {t("hero.badge")}
             </span>
           </div>
 
-          {/* Headline */}
+          {/* ===== Headline ===== */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight animate-fade-in [animation-delay:120ms] opacity-0">
-            {t("hero.title")}{" "}
-            <span className="block text-muted-foreground">
+            {t("hero.title")}
+            <span className="block text-foreground/70 mt-1 sm:mt-0">
               {t("hero.titleHighlight")}
             </span>
           </h1>
 
-          {/* Primary subline */}
-          <p className="mt-6 text-lg sm:text-xl text-foreground/80 max-w-3xl mx-auto animate-fade-in opacity-0 [animation-delay:240ms]">
+          {/* ===== Subline ===== */}
+          {/* Desktop */}
+          <p className="mt-6 text-lg sm:text-xl text-foreground/65 max-w-3xl mx-auto animate-fade-in opacity-0 [animation-delay:240ms] hidden sm:block">
             {t("hero.subtitle")}
           </p>
 
-          {/* Secondary subline */}
-          <p className="text-base sm:text-lg text-foreground/70 max-w-2xl mx-auto animate-fade-in opacity-0 [animation-delay:300ms]">
+          {/* Mobile (short, higher contrast) */}
+            <p className="mt-6 text-base text-foreground/80 max-w-xl mx-auto animate-fade-in opacity-0 [animation-delay:240ms] sm:hidden">
+            {t("hero.subtitleMobile")}
+           </p>
+
+          {/* ===== Supporting line (desktop only) ===== */}
+          <p className="text-base sm:text-lg text-foreground/55 max-w-2xl mx-auto animate-fade-in opacity-0 [animation-delay:300ms] hidden sm:block">
             {t("hero.subtitle2")}
           </p>
 
-          {/* CTA */}
-          <div className="pt-4 animate-fade-in [animation-delay:340ms] opacity-0">
-            <Button
-              size="lg"
-              variant="default"
-              className="group hover:bg-accent hover:text-accent-foreground transition-colors"
-              asChild
-            >
-              <a href="#services">
+          {/* ===== CTA ===== */}
+          <div className="pt-10 sm:pt-4 animate-fade-in [animation-delay:340ms] opacity-0">
+  <Button
+  size="lg"
+  className="
+    bg-slate-900
+    text-white
+    font-medium
+    px-6
+    py-3
+    rounded-md
+    transition-colors
+    hover:!bg-[#3A8F94]
+  "
+  asChild
+>
+              <a href="#services" className="inline-flex items-center">
                 {t("hero.cta")}
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
             </Button>
           </div>
 
-          {/* Trust line */}
+          {/* ===== Trust line ===== */}
           <div className="pt-10 animate-fade-in opacity-0 [animation-delay:420ms]">
-            <p className="inline-block text-sm font-semibold tracking-widest text-foreground/90 border-b border-foreground/50 pb-1">
+            <p className="inline-block text-sm font-semibold tracking-widest text-foreground/80 border-b border-foreground/40 pb-1">
               {t("hero.trustline")}
             </p>
           </div>

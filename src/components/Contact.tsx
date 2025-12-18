@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
-import contactBg from "@/assets/chipAI.png"; // zelfde image of variatie
+import contactBg from "@/assets/u3714841198_Sleek_minimalistic_abstract_visual_inspired_by_he_53bffa3d-7c36-4acb-858b-afa6bbf35d2a_0.png"; // zelfde image of variatie
 
 export const Contact = () => {
   const { t } = useTranslation();
@@ -20,7 +20,9 @@ export const Contact = () => {
   }}
 >
   {/* Gradient overlay */}
-  <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/68 to-background/85" />
+  <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/30
+   to-background/50
+  " />
 
   {/* Center focus glow */}
   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_60%)]" />

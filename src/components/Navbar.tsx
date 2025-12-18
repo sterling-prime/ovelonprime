@@ -32,7 +32,7 @@ export const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /* ------------------ LOCK BODY SCROLL WHEN MENU OPEN ------------------ */
+  /* ------------------ LOCK BODY SCROLL ------------------ */
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
     return () => {
@@ -63,13 +63,12 @@ export const Navbar = () => {
       ?.scrollIntoView({ behavior: "smooth" });
   };
 
-  /* ------------------ HEADER STYLE CONTROL ------------------ */
   const lightHeaderPages = ["/privacy", "/terms", "/intake", "/intake2"];
   const isLightHeaderPage = lightHeaderPages.includes(location.pathname);
 
   return (
     <>
-      {/* HEADER */}
+      {/* ================= HEADER ================= */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300
           ${
@@ -114,9 +113,19 @@ export const Navbar = () => {
             <div className="hidden md:flex items-center gap-3 ml-auto">
               <LanguageDropdown />
               <Button
-                variant="outline"
                 size="sm"
                 onClick={() => setBookingOpen(true)}
+                className="
+                  bg-slate-900
+                  text-white
+                  font-medium
+                  px-4
+                  py-2
+                  rounded-md
+                  transition-colors
+                  hover:bg-[#3A8F94]
+                  focus-visible:bg-[#3A8F94]
+                "
               >
                 {t("nav.cta")}
               </Button>
@@ -136,14 +145,19 @@ export const Navbar = () => {
                 Ovelon Prime
               </a>
 
+              {/* HAMBURGER / CLOSE */}
               <button
-                className="ml-auto p-2"
+                className={`
+                  ml-auto p-2 rounded-md transition-colors
+                  ${isOpen ? "bg-slate-900 hover:bg-[#3A8F94]" : "bg-transparent"}
+                `}
                 onClick={() => setIsOpen(!isOpen)}
+                aria-label="Toggle menu"
               >
                 {isOpen ? (
-                  <X className="h-6 w-6" />
+                  <X className="h-6 w-6 text-white" />
                 ) : (
-                  <Menu className="h-6 w-6" />
+                  <Menu className="h-6 w-6 text-gray-900" />
                 )}
               </button>
             </div>
@@ -151,7 +165,7 @@ export const Navbar = () => {
         </div>
       </header>
 
-      {/* MOBILE DROPDOWN */}
+      {/* ================= MOBILE DROPDOWN ================= */}
       {isOpen && (
         <div className="md:hidden fixed top-16 left-0 right-0 z-40 bg-gray-100 border-t border-gray-300/60">
           <div className="px-6 py-8 flex flex-col gap-8">
@@ -173,19 +187,18 @@ export const Navbar = () => {
 
             {/* MOBILE CTA */}
             <Button
-  variant="outline"
   size="lg"
   className="
     w-full
+    bg-slate-900
+    text-white
     font-semibold
     tracking-wide
-    border-input
-    text-foreground
-    hover:bg-primary
-    hover:text-primary-foreground
-    active:bg-primary
-    active:text-primary-foreground
+    rounded-md
     transition-colors
+    hover:bg-[#3A8F94]
+    active:bg-[#3A8F94]
+    focus-visible:bg-[#3A8F94]
   "
   onClick={() => {
     setBookingOpen(true);
@@ -198,7 +211,7 @@ export const Navbar = () => {
         </div>
       )}
 
-      {/* BOOKING MODAL */}
+      {/* ================= BOOKING MODAL ================= */}
       <BookingModal
         isOpen={bookingOpen}
         onClose={() => setBookingOpen(false)}

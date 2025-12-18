@@ -12,10 +12,11 @@ export const translations = {
     hero: {
       badge: "Outcome-Driven Critical Industries",
       title: "Operational complexity erodes",
-      titleHighlight: "reliability, cost control, and execution discipline",
-      subtitle: "Ovilon Prime supports industrial organisations when operational control begins to fragment — when facility coordination turns manual, maintenance becomes reactive, and warehouse execution depends on workarounds.",
-      subtitle2: "We restore predictable, disciplined execution in live operations — without replacing core systems or disrupting daily workflows.",
-      cta: "View Services",
+      titleHighlight: "reliability and breaks execution discipline",
+      subtitle: "When coordination turns manual, maintenance becomes reactive, and operations rely on workarounds, control is already lost.",
+      subtitle2: "We restore predictable, disciplined execution inside live operations — without replacing core systems or disrupting daily workflows.",
+      subtitleMobile: "When coordination turns manual, control is already lost.",
+      cta: "Explore Operational Support",
       trustline: "No rip-and-replace · No vendor lock-in · Operational outcomes first",
     },
     services: {
