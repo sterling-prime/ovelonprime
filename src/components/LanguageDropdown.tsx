@@ -4,11 +4,6 @@ import { useTranslation } from "react-i18next";
 
 const languages = [
   { code: "EN", lang: "en", label: "English" },
-  { code: "DE", lang: "de", label: "Deutsch" },
-  { code: "FR", lang: "fr", label: "Français" },
-  { code: "ES", lang: "es", label: "Español" },
-  { code: "IT", lang: "it", label: "Italiano" },
-  { code: "PL", lang: "pl", label: "Polski" },
 ];
 
 export const LanguageDropdown = () => {
