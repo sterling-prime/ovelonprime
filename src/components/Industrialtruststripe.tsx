@@ -7,11 +7,9 @@ export const IndustrialTrustStrip = () => {
     "JLL",
     "SCHNEIDER ELECTRIC",
     "BALFOUR BEATTY",
-    "GENERAL ELECTRIC",
-    "VERSA MFG",
+    "CUSHMAN & WAKEFIELD",
+    "SIEMENS",
     "KONE",
-    "DAIMLER",
-    "SPIE",
   ];
 
   const trackRef = useRef<HTMLDivElement>(null);

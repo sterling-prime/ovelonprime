@@ -102,26 +102,52 @@ export const Navbar = () => {
             </nav>
 
             {/* DESKTOP ACTIONS */}
-            <div className="hidden md:flex items-center gap-3 ml-auto">
-              <LanguageDropdown />
-              <Button
-                size="sm"
-                onClick={() => setBookingOpen(true)}
-                className="
-                  bg-slate-900
-                  text-white
-                  font-medium
-                  px-4
-                  py-2
-                  rounded-md
-                  transition-colors
-                  hover:bg-[#3A8F94]
-                  focus-visible:bg-[#3A8F94]
-                "
-              >
-                {t("nav.cta")}
-              </Button>
-            </div>
+<div className="hidden md:flex items-center gap-3 ml-auto">
+  <LanguageDropdown />
+
+  {/* VIEW DEMO — SECONDARY */}
+  <button
+    onClick={() =>
+      window.dispatchEvent(new Event("open-demo-surface"))
+    }
+    className="
+      px-4
+      py-2
+      rounded-md
+      border
+      border-gray-300
+      bg-gray-100
+      text-sm
+      font-medium
+      text-gray-900
+      transition
+      hover:bg-gray-200
+      active:bg-gray-200
+    "
+  >
+    View Demo
+  </button>
+
+  {/* PRIMARY CTA */}
+  <Button
+    size="sm"
+    onClick={() => setBookingOpen(true)}
+    className="
+      bg-slate-900
+      text-white
+      font-medium
+      px-4
+      py-2
+      rounded-md
+      transition-colors
+      hover:bg-[#3A8F94]
+      focus-visible:bg-[#3A8F94]
+    "
+  >
+    {t("nav.cta")}
+  </Button>
+</div>
+
 
             {/* MOBILE HEADER */}
             <div className="md:hidden flex items-center w-full relative">
@@ -137,19 +163,10 @@ export const Navbar = () => {
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 aria-label="Toggle menu"
-                className="
-                  ml-auto
-                  p-2
-                  rounded-md
-                  bg-transparent
-                  transition-colors
-                  focus:outline-none
-                "
+                className="ml-auto p-2 rounded-md bg-transparent"
               >
                 {isOpen ? (
-                  <div className="p-2 rounded-md hover:bg-slate-200 active:bg-slate-300 transition-colors">
-                    <X className="h-6 w-6 text-slate-900" />
-                  </div>
+                  <X className="h-6 w-6 text-slate-900" />
                 ) : (
                   <Menu className="h-6 w-6 text-slate-900" />
                 )}
@@ -162,24 +179,56 @@ export const Navbar = () => {
       {/* ================= MOBILE DROPDOWN ================= */}
       {isOpen && (
         <div className="md:hidden fixed top-16 left-0 right-0 z-40 bg-gray-100 border-t border-gray-300/60">
-          <div className="px-6 py-8 flex flex-col gap-8">
+          <div className="px-6 py-8 flex flex-col gap-10">
 
-            {navLinks.map((link) => (
-              <button
-                key={link.section}
-                onClick={() => {
-                  goToSection(link.section);
-                  setIsOpen(false);
-                }}
-                className="text-left text-2xl font-medium text-gray-900"
-              >
-                {link.label}
-              </button>
-            ))}
+            {/* NAV LINKS */}
+            <div className="flex flex-col gap-8">
+              {navLinks.map((link) => (
+                <button
+                  key={link.section}
+                  onClick={() => {
+                    goToSection(link.section);
+                    setIsOpen(false);
+                  }}
+                  className="text-left text-2xl font-medium text-gray-900"
+                >
+                  {link.label}
+                </button>
+              ))}
+            </div>
 
+            {/* LANGUAGE */}
             <LanguageDropdown />
 
-            {/* MOBILE CTA */}
+            {/* VIEW DEMO — CENTERED */}
+            <div className="flex justify-center">
+              <button
+                onClick={() => {
+                  window.dispatchEvent(new Event("open-demo-surface"));
+                  setIsOpen(false);
+                }}
+                className="
+                  w-full
+                  max-w-sm
+                  py-3
+                  rounded-xl
+                  border
+                  border-gray-300
+                  bg-gray-200
+                  text-gray-900
+                  text-base
+                  font-medium
+                  text-center
+                  transition
+                  hover:bg-gray-300
+                  active:bg-gray-300
+                "
+              >
+                View Demo
+              </button>
+            </div>
+
+            {/* PRIMARY CTA */}
             <Button
               size="lg"
               className="
@@ -188,7 +237,8 @@ export const Navbar = () => {
                 text-white
                 font-semibold
                 tracking-wide
-                rounded-md
+                rounded-xl
+                py-4
                 transition-colors
                 hover:bg-[#3A8F94]
                 active:bg-[#3A8F94]
@@ -199,7 +249,7 @@ export const Navbar = () => {
                 setIsOpen(false);
               }}
             >
-              {t("nav.cta")}
+              Talk to Expert
             </Button>
           </div>
         </div>

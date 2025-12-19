@@ -30,7 +30,7 @@ export const translations: Record<Lang, any> = {
       subtitle2:
         "We restore predictable, disciplined execution inside live operations — without replacing core systems or disrupting daily workflows.",
       subtitleMobile: "When coordination turns manual, control is already lost.",
-      cta: "Explore Operational Support",
+      cta: "Regain Control Over Operations",
       trustline:
         "No rip-and-replace · No vendor lock-in · Operational outcomes first",
     },
@@ -39,7 +39,7 @@ export const translations: Record<Lang, any> = {
       title: "Operational reliability in environments",
       titleHighlight: "that cannot afford mistakes",
       subtitle:
-        "We support operational workflows where delays, manual intervention, and misalignment directly impact safety, continuity, or output.",
+        "We remove operational breakdowns caused by manual coordination, unclear execution, and reactive incident handling — restoring control, accountability, and predictable outcomes inside live operations.",
       items: [
         {
           title: "Request & Demand Handling",
@@ -93,7 +93,7 @@ export const translations: Record<Lang, any> = {
           "A fixed-scope engagement designed to resolve a clearly defined operational bottleneck with measurable impact.",
         priceLabel: "Starting from",
         period: "one-time fee",
-        cta: "Request Engagement Details",
+        cta: "Request Engagement Assessment",
         features: [
           "Single, clearly defined operational improvement",
           "Process & responsibility mapping",
@@ -149,7 +149,7 @@ export const translations: Record<Lang, any> = {
         {
           question: "What industries do you specialize in?",
           answer:
-            "We work with organizations operating in mission-critical environments, including manufacturing, logistics, healthcare operations, and facility management. If delays, errors, or downtime directly impact safety, output, or continuity, we are in scope.",
+            "We work with organizations operating in mission-critical environments, including manufacturing, logistics, and facility management. If delays, errors, or downtime directly impact safety, output, or continuity, we are in scope.",
         },
         {
           question: "Is this a subscription or ongoing service?",
@@ -159,7 +159,7 @@ export const translations: Record<Lang, any> = {
         {
           question: "How long does a typical implementation take?",
           answer:
-            "Most focused engagements are delivered within 2–4 weeks,depending on scope and system access. Enterprise programs follow a phased rollout aligned with operational priorities.",
+            "Most focused engagements are delivered within 12-16 days,depending on scope and system access. Enterprise programs follow a phased rollout aligned with operational priorities.",
         },
         {
           question: "Will this integrate with our existing systems?",

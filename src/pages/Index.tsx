@@ -10,6 +10,7 @@ import { IndustrialTrustStrip } from "@/components/Industrialtruststripe";
 import { Faq } from "@/components/faq";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
+import { DemoSurface } from "@/components/demosurface";
 
 const Index = () => {
   return (
@@ -27,6 +28,7 @@ const Index = () => {
         <Faq />
         <Contact />
       </main>
+      <DemoSurface />
       <Footer />
     </div>
   );
