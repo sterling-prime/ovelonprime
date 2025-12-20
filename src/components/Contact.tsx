@@ -56,8 +56,7 @@ export const Contact = () => {
 
           {/* Subtitle */}
           <p className="text-lg sm:text-xl text-foreground/60 max-w-2xl mx-auto mb-12">
-            Let&apos;s discuss how targeted automation can remove operational
-            bottlenecks and improve reliability across your workflows.
+            {t("contact.subtitle")}
           </p>
 
           {/* CTA */}
@@ -86,17 +85,17 @@ export const Contact = () => {
 
           {/* Guarantee */}
           <p className="text-sm text-foreground/60 max-w-xl mx-auto mb-16">
-            {" "}
+            
             <span className="font-semibold text-foreground/75">
               {t("contact.guaranteeHighlight")}
-            </span>{" "}
+            </span>
             {t("contact.guaranteeSuffix")}
 
           </p>
 
           {/* Enterprise */}
           <p className="text-sm text-foreground/60">
-            Enterprise inquiries:{" "}
+            {t("contact.enterpriseLabel")}
             <a
               href="mailto:support@ovelon-prime.com"
               className="text-[#3A8F94] hover:underline"

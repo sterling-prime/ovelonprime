@@ -129,7 +129,7 @@ export const translations: Record<Lang, any> = {
       label: "ENGAGE",
       title: "Ready to regain control of",
       titleHighlight:" your operations?",
-      subtitle: "Let's discuss how targeted automation can remove operational bottlenecks and improve reliability across your workflows.",
+      subtitle: "All engagements are scoped upfront and subject to a formal review before continuation.",
       cta: "Schedule Consultation",
       guarantee: "No long-term commitments.",
       guaranteeHighlight: "Engagements continue only when operational value is demonstrated.",
