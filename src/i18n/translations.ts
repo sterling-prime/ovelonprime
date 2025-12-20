@@ -128,7 +128,7 @@ export const translations: Record<Lang, any> = {
     contact: {
       label: "ENGAGE",
       title: "Ready to regain control of",
-      titleHighlight:"your operations?",
+      titleHighlight:" your operations?",
       subtitle: "Let's discuss how targeted automation can remove operational bottlenecks and improve reliability across your workflows.",
       cta: "Schedule Consultation",
       guarantee: "No long-term commitments.",

@@ -48,10 +48,10 @@ export const Contact = () => {
 
           {/* Title */}
           <h2 className="text-4xl sm:text-5xl font-bold leading-tight mb-8 text-foreground/80">
-            Ready to regain operational control
             <span className="block mt-2 text-foreground/70">
-              your operations?
+              {t("contact.title")}
             </span>
+            {t("contact.titleHighlight")}
           </h2>
 
           {/* Subtitle */}
@@ -86,11 +86,12 @@ export const Contact = () => {
 
           {/* Guarantee */}
           <p className="text-sm text-foreground/60 max-w-xl mx-auto mb-16">
-            Not satisfied? We offer a straightforward{" "}
+            {" "}
             <span className="font-semibold text-foreground/75">
-              money-back guarantee
+              {t("contact.guaranteeHighlight")}
             </span>{" "}
-            on qualifying engagements.
+            {t("contact.guaranteeSuffix")}
+
           </p>
 
           {/* Enterprise */}
