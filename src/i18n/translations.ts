@@ -30,7 +30,7 @@ export const translations: Record<Lang, any> = {
       subtitle2:
         "We restore predictable, disciplined execution inside live operations — without replacing core systems or disrupting daily workflows.",
       subtitleMobile: "When coordination turns manual, control is already lost.",
-      cta: "Regain Control Over Operations",
+      cta: "Take Back Control Over Operations",
       trustline:
         "No rip-and-replace · No vendor lock-in · Operational outcomes first",
     },
@@ -127,13 +127,12 @@ export const translations: Record<Lang, any> = {
     },
     contact: {
       label: "ENGAGE",
-      title: "Ready to regain operational control",
-      titleHighlight: "your operations?",
-      subtitle:
-        "Let's discuss how targeted automation can remove operational bottlenecks and improve reliability across your workflows.",
+      title: "Ready to regain control of",
+      titleHighlight:"your operations?",
+      subtitle: "Let's discuss how targeted automation can remove operational bottlenecks and improve reliability across your workflows.",
       cta: "Schedule Consultation",
-      guarantee: "Not satisfied? We offer a straightforward",
-      guaranteeHighlight: "money-back guarantee",
+      guarantee: "No long-term commitments.",
+      guaranteeHighlight: "Engagements continue only when operational value is demonstrated.",
       guaranteeSuffix: "on qualifying engagements.",
       enterpriseLabel: "Enterprise inquiries:",
     },
