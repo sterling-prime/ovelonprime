@@ -15,7 +15,7 @@ export const translations: Record<Lang, any> = {
   /* ===================== EN ===================== */
   en: {
     nav: {
-      services: "Sssservices",
+      services: "Services",
       pricing: "Pricing",
       about: "About",
       contact: "Contact",
