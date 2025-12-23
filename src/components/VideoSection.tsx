@@ -1,4 +1,4 @@
-import Video from "@/assets/video.mp4";
+import Video from "@/assets/introduction.mp4";
 
 export const VideoSection = () => {
   return (
@@ -16,13 +16,11 @@ export const VideoSection = () => {
         </div>
 
         {/* Video */}
-        <div className="relative w-full aspect-video overflow-hidden rounded-xl">
+<div className="w-full flex justify-center bg-black rounded-xl overflow-hidden">
   <video
     src={Video}
-    className="absolute inset-0 w-full h-full object-cover"
-    autoPlay
-    muted
-    loop
+    className="max-w-full h-auto"
+    controls
     playsInline
   />
 </div>

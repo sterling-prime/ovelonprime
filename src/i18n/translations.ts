@@ -171,7 +171,7 @@ export const translations: Record<Lang, any> = {
             "No. We design around your existing workflows. Where changes are required, they are minimal, documented, and validated with your operational teams before deployment.",
         },
         {
-          question: "Who owns the automation after delivery?",
+          question: "Who owns the optimization after delivery?",
           answer:
             "You do. All systems, configurations, and documentation are handed over upon completion. There is no vendor lock-in. You retain full operational and technical ownership.",
         },
