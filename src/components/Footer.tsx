@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Calendar, Facebook, Instagram } from "lucide-react";
+import { Calendar} from "lucide-react";
 
 export const Footer = () => {
   const { t } = useTranslation();
@@ -84,6 +84,8 @@ export const Footer = () => {
           <span>
             © {new Date().getFullYear()} {t("footer.copyright")}
           </span>
+
+          
 
           {/* RIGHT — CTA */}
           <button
