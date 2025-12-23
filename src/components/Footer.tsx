@@ -102,7 +102,7 @@ export const Footer = () => {
             "
           >
             <Calendar className="h-4 w-4" />
-            Book consultation
+            Book Strategy Consultation
           </button>
         </div>
       </div>
