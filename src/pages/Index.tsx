@@ -11,6 +11,7 @@ import { Faq } from "@/components/faq";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { DemoSurface } from "@/components/demosurface";
+import { VideoSection } from "@/components/videosection";
 
 const Index = () => {
   return (
@@ -18,6 +19,7 @@ const Index = () => {
       <Navbar />
       <main>
         <Hero />
+        <VideoSection />
         <Services />
         <Sectors />
         <Pricing />
