@@ -86,27 +86,18 @@ export const Footer = () => {
           </span>
 
           {/* CENTER — SOCIALS */}
-          <div className="flex items-center gap-4">
-            <a
-              href="https://www.facebook.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <Facebook className="h-4 w-4" />
-            </a>
+<div className="flex items-center">
+  <a
+    href="https://www.linkedin.com/"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="LinkedIn"
+    className="text-muted-foreground hover:text-foreground transition-colors"
+  >
+    <Linkedin className="h-4 w-4" />
+  </a>
+</div>
 
-            <a
-              href="https://www.instagram.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <Instagram className="h-4 w-4" />
-            </a>
-          </div>
 
           {/* RIGHT — CTA */}
           <button
