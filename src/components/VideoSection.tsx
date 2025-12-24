@@ -1,5 +1,5 @@
-import Video from "@/assets/introduction.mp4";
-
+import Video from "@/assets/Intro.mp4";
+import { Button } from "@/components/ui/button";
 export const VideoSection = () => {
   return (
     <section className="relative py-24 bg-background">
@@ -24,6 +24,31 @@ export const VideoSection = () => {
     playsInline
   />
 </div>
+
+{/* CTA */}
+<div className="flex justify-center mt-10 mb-12">
+  <Button
+    size="lg"
+    className="
+      bg-slate-900
+      text-white
+      font-medium
+      px-10
+      py-4
+      rounded-md
+      transition-colors
+      hover:bg-[#3A8F94]
+      active:bg-[#3A8F94]
+      focus-visible:bg-[#3A8F94]
+    "
+    onClick={() =>
+      window.dispatchEvent(new Event("open-booking-modal"))
+    }
+  >
+    Take Back Control
+  </Button>
+</div>
+
 
       </div>
     </section>
