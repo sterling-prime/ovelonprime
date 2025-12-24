@@ -128,7 +128,7 @@ export const Footer = () => {
             "
           >
             <Calendar className="h-4 w-4" />
-            Book Strategy Consultation
+            Book Strategy Session
           </button>
         </div>
       </div>
