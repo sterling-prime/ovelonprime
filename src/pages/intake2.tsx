@@ -1,15 +1,31 @@
 import { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 
-const FORM_URL =
-  "https://cal.com/forms/35953db6-1b33-43bf-912a-77b157841bdd";
+const FORM_URL = "https://cal.com/forms/35953db6-1b33-43bf-912a-77b157841bdd";
 
-const Intake = () => {
+const Intake2 = () => {
+  const [searchParams] = useSearchParams();
+  const { i18n, t } = useTranslation();
+
+  // Set language from URL param if provided
+  useEffect(() => {
+    const lang = searchParams.get("lang");
+    if (lang && ["en", "de", "fr", "pl"].includes(lang)) {
+      i18n.changeLanguage(lang);
+    }
+  }, [searchParams, i18n]);
+
   // Always start at top
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "auto" });
   }, []);
+
+  // Map language for cal.com
+  const calLocale = i18n.language === "en" ? "en" : i18n.language;
+  const formUrlWithLang = `${FORM_URL}?locale=${calLocale}`;
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -21,11 +37,10 @@ const Intake = () => {
           {/* PAGE HEADER */}
           <div className="text-center mb-14">
             <h1 className="text-4xl font-semibold text-slate-900 mb-4">
-              Consultation Qualification
+              {t("intake.title")}
             </h1>
             <p className="text-slate-600">
-              Please complete the short intake below. All submissions are reviewed
-              before scheduling.
+              {t("intake.subtitle")}
             </p>
           </div>
 
@@ -33,7 +48,7 @@ const Intake = () => {
           <div className="bg-slate-100 rounded-3xl p-10">
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
               <iframe
-                src={FORM_URL}
+                src={formUrlWithLang}
                 title="Consultation Intake Form"
                 className="w-full min-h-[900px] border-0"
               />
@@ -48,4 +63,4 @@ const Intake = () => {
   );
 };
 
-export default Intake;
+export default Intake2;
