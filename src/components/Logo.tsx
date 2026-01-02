@@ -35,12 +35,8 @@ export const Logo = ({ className = "", size = "md" }: LogoProps) => {
         xmlns="http://www.w3.org/2000/svg"
         className={`${sizeClasses[size]} w-auto`}
         aria-hidden="true"
-        style={{
-          transform: isAnimating ? "rotate(0deg)" : "rotate(360deg)",
-          transition: "transform 1.4s cubic-bezier(0.4, 0, 0.2, 1)",
-        }}
       >
-        {/* Outer hexagonal frame */}
+        {/* Outer hexagonal frame - static */}
         <path
           d="M16 2L28 9V23L16 30L4 23V9L16 2Z"
           strokeWidth="1.5"
@@ -51,58 +47,64 @@ export const Logo = ({ className = "", size = "md" }: LogoProps) => {
           }}
         />
         
-        {/* Center node */}
-        <circle
-          cx="16"
-          cy="16"
-          r="2.5"
+        {/* Inner rotating group - lines and center node */}
+        <g
           style={{
-            fill: isAnimating ? "#000000" : "#ffffff",
-            transition: "fill 1.4s cubic-bezier(0.4, 0, 0.2, 1)",
+            transform: isAnimating ? "rotate(0deg)" : "rotate(360deg)",
+            transformOrigin: "16px 16px",
+            transition: "transform 1.4s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
-        />
-        
-        {/* Top line */}
-        <line
-          x1="16"
-          y1="13.5"
-          x2="16"
-          y2="5.5"
-          strokeWidth="1.5"
-          style={{
-            stroke: isAnimating ? "#000000" : "#ffffff",
-            opacity: 0.7,
-            transition: "stroke 1.4s cubic-bezier(0.4, 0, 0.2, 1)",
-          }}
-        />
-        
-        {/* Bottom-right line */}
-        <line
-          x1="18.2"
-          y1="17.8"
-          x2="24.5"
-          y2="21.5"
-          strokeWidth="1.5"
-          style={{
-            stroke: isAnimating ? "#000000" : "#ffffff",
-            opacity: 0.7,
-            transition: "stroke 1.4s cubic-bezier(0.4, 0, 0.2, 1)",
-          }}
-        />
-        
-        {/* Bottom-left line */}
-        <line
-          x1="13.8"
-          y1="17.8"
-          x2="7.5"
-          y2="21.5"
-          strokeWidth="1.5"
-          style={{
-            stroke: isAnimating ? "#000000" : "#ffffff",
-            opacity: 0.7,
-            transition: "stroke 1.4s cubic-bezier(0.4, 0, 0.2, 1)",
-          }}
-        />
+        >
+          {/* Center node */}
+          <circle
+            cx="16"
+            cy="16"
+            r="2.5"
+            style={{
+              fill: isAnimating ? "#000000" : "#ffffff",
+              transition: "fill 1.4s cubic-bezier(0.4, 0, 0.2, 1)",
+            }}
+          />
+          
+          {/* Top line */}
+          <line
+            x1="16"
+            y1="13.5"
+            x2="16"
+            y2="5.5"
+            strokeWidth="1.5"
+            style={{
+              stroke: isAnimating ? "#000000" : "#ffffff",
+              transition: "stroke 1.4s cubic-bezier(0.4, 0, 0.2, 1)",
+            }}
+          />
+          
+          {/* Bottom-right line */}
+          <line
+            x1="18.2"
+            y1="17.8"
+            x2="24.5"
+            y2="21.5"
+            strokeWidth="1.5"
+            style={{
+              stroke: isAnimating ? "#000000" : "#ffffff",
+              transition: "stroke 1.4s cubic-bezier(0.4, 0, 0.2, 1)",
+            }}
+          />
+          
+          {/* Bottom-left line */}
+          <line
+            x1="13.8"
+            y1="17.8"
+            x2="7.5"
+            y2="21.5"
+            strokeWidth="1.5"
+            style={{
+              stroke: isAnimating ? "#000000" : "#ffffff",
+              transition: "stroke 1.4s cubic-bezier(0.4, 0, 0.2, 1)",
+            }}
+          />
+        </g>
       </svg>
 
       {/* Wordmark */}
