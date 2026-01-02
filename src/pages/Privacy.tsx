@@ -1,12 +1,17 @@
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 
 const Privacy = () => {
-  // Always start at top
+  const { t } = useTranslation();
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "auto" });
   }, []);
+
+  const howWeUseItems = t("privacy.sections.howWeUse.items", { returnObjects: true }) as string[];
+  const dataSharingItems = t("privacy.sections.dataSharing.items", { returnObjects: true }) as string[];
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -16,11 +21,11 @@ const Privacy = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
 
           <h1 className="text-4xl font-bold text-slate-900 text-center mb-4">
-            Privacy Policy
+            {t("privacy.title")}
           </h1>
 
           <p className="text-slate-500 text-center mb-12">
-            Last Updated: 01.12.2025
+            {t("privacy.lastUpdated")}
           </p>
 
           <div className="space-y-12 text-slate-700">
@@ -28,142 +33,124 @@ const Privacy = () => {
             {/* 1. INTRODUCTION */}
             <section>
               <h2 className="text-xl font-semibold mb-4 text-slate-900">
-                1. Introduction
+                {t("privacy.sections.introduction.title")}
               </h2>
               <p className="leading-relaxed">
-                At Ovelon Prime, we take data protection and confidentiality seriously.
-                This Privacy Policy explains how we collect, use, and safeguard personal
-                and business information when you interact with our website, intake forms,
-                and services.
+                {t("privacy.sections.introduction.p1")}
               </p>
               <p className="leading-relaxed mt-3">
-                We process data responsibly and only to the extent required to deliver
-                our services, ensure operational integrity, and meet legal obligations.
+                {t("privacy.sections.introduction.p2")}
               </p>
             </section>
 
             {/* 2. INFORMATION WE COLLECT */}
             <section>
               <h2 className="text-xl font-semibold mb-4 text-slate-900">
-                2. Information We Collect
+                {t("privacy.sections.informationCollected.title")}
               </h2>
 
               <ul className="space-y-4">
                 <li>
-                  <strong className="text-slate-900">Personal Information:</strong>{" "}
-                  Name, business email address, phone number, and information submitted
-                  via forms or direct correspondence.
+                  <strong className="text-slate-900">{t("privacy.sections.informationCollected.personal")}</strong>{" "}
+                  {t("privacy.sections.informationCollected.personalDesc")}
                 </li>
 
                 <li>
-                  <strong className="text-slate-900">Business & Operational Information:</strong>{" "}
-                  Company name, business address or jurisdiction, industry classification,
-                  operational context, and compliance-related information voluntarily provided
-                  during intake.
+                  <strong className="text-slate-900">{t("privacy.sections.informationCollected.business")}</strong>{" "}
+                  {t("privacy.sections.informationCollected.businessDesc")}
                 </li>
 
                 <li>
-                  <strong className="text-slate-900">Technical Information:</strong>{" "}
-                  IP address, browser and device metadata, cookies, and basic usage analytics.
+                  <strong className="text-slate-900">{t("privacy.sections.informationCollected.technical")}</strong>{" "}
+                  {t("privacy.sections.informationCollected.technicalDesc")}
                 </li>
               </ul>
 
               <p className="leading-relaxed mt-4 text-sm text-slate-600">
-                We do not intentionally collect sensitive personal data unless explicitly
-                required for compliance or service delivery.
+                {t("privacy.sections.informationCollected.note")}
               </p>
             </section>
 
             {/* 3. HOW WE USE INFORMATION */}
             <section>
               <h2 className="text-xl font-semibold mb-4 text-slate-900">
-                3. How We Use Your Information
+                {t("privacy.sections.howWeUse.title")}
               </h2>
 
               <ul className="space-y-3 list-disc pl-5">
-                <li>Assessing and qualifying consultation requests</li>
-                <li>Delivering and supporting operational automation services</li>
-                <li>Communicating regarding engagements, updates, or clarifications</li>
-                <li>Maintaining platform reliability, security, and performance</li>
-                <li>Fulfilling legal, regulatory, or contractual obligations</li>
+                {howWeUseItems.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
               </ul>
 
               <p className="leading-relaxed mt-4 text-sm text-slate-600">
-                We do not use your data for unsolicited marketing, profiling,
-                or third-party advertising purposes.
+                {t("privacy.sections.howWeUse.note")}
               </p>
             </section>
 
             {/* 4. DATA SHARING */}
             <section>
               <h2 className="text-xl font-semibold mb-4 text-slate-900">
-                4. Data Sharing & Disclosure
+                {t("privacy.sections.dataSharing.title")}
               </h2>
 
               <p className="leading-relaxed">
-                Ovelon Prime does <strong>not</strong> sell, rent, or trade personal or
-                business data.
+                {t("privacy.sections.dataSharing.p1")}
               </p>
 
               <p className="leading-relaxed mt-3">
-                Information may only be shared when strictly necessary:
+                {t("privacy.sections.dataSharing.p2")}
               </p>
 
               <ul className="space-y-3 list-disc pl-5 mt-3">
-                <li>With vetted service providers required for service delivery</li>
-                <li>To comply with legal or regulatory obligations</li>
-                <li>To protect the security, integrity, or rights of our systems and clients</li>
+                {dataSharingItems.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
               </ul>
 
               <p className="leading-relaxed mt-4">
-                Data is never shared for third-party marketing or promotional purposes.
+                {t("privacy.sections.dataSharing.note")}
               </p>
             </section>
 
             {/* 5. DATA SECURITY */}
             <section>
               <h2 className="text-xl font-semibold mb-4 text-slate-900">
-                5. Data Security
+                {t("privacy.sections.dataSecurity.title")}
               </h2>
 
               <p className="leading-relaxed">
-                We apply industry-standard technical and organizational safeguards,
-                including encryption, access controls, and secure infrastructure practices.
+                {t("privacy.sections.dataSecurity.p1")}
               </p>
 
               <p className="leading-relaxed mt-3">
-                While no system can guarantee absolute security, we operate under strict
-                internal protocols designed to minimize risk and protect confidentiality
-                at all times.
+                {t("privacy.sections.dataSecurity.p2")}
               </p>
             </section>
 
             {/* 6. DATA RETENTION & RIGHTS */}
             <section>
               <h2 className="text-xl font-semibold mb-4 text-slate-900">
-                6. Data Retention & Your Rights
+                {t("privacy.sections.dataRetention.title")}
               </h2>
 
               <p className="leading-relaxed">
-                We retain data only for as long as necessary to fulfill the purposes
-                outlined in this policy or to meet legal requirements.
+                {t("privacy.sections.dataRetention.p1")}
               </p>
 
               <p className="leading-relaxed mt-3">
-                You have the right to request access, correction, or deletion of your data,
-                where applicable.
+                {t("privacy.sections.dataRetention.p2")}
               </p>
             </section>
 
             {/* 7. CONTACT */}
             <section>
               <h2 className="text-xl font-semibold mb-4 text-slate-900">
-                7. Contact
+                {t("privacy.sections.contact.title")}
               </h2>
 
               <p className="leading-relaxed">
-                For questions regarding this Privacy Policy or data handling practices,
-                please contact:
+                {t("privacy.sections.contact.p1")}
               </p>
 
               <p className="mt-2 font-medium text-slate-900">

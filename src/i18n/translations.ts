@@ -265,6 +265,10 @@ export const translations: Record<Lang, any> = {
       copyright: "Ovelon Prime. All rights reserved.",
       tagline: "Enterprise operating systems built for clarity, control, and scale.",
     },
+    industrialTrust: {
+      heading: "Trusted by operators in mission-critical environments",
+      disclaimer: "Representative operators from industrial, logistics, manufacturing, and infrastructure sectors. Engagements vary by scope and environment.",
+    },
     cookie: {
       message: "We use cookies to enhance your experience. By continuing to visit this site, you agree to our use of cookies.",
       accept: "Accept",
@@ -643,6 +647,10 @@ export const translations: Record<Lang, any> = {
       terms: "AGB",
       copyright: "Ovelon Prime. Alle Rechte vorbehalten.",
       tagline: "Enterprise-Betriebssysteme für Klarheit, Kontrolle und Skalierbarkeit.",
+    },
+    industrialTrust: {
+      heading: "Vertrauenswürdig für Betreiber in missionskritischen Umgebungen",
+      disclaimer: "Repräsentative Betreiber aus Industrie-, Logistik-, Fertigungs- und Infrastruktursektoren. Engagements variieren nach Umfang und Umgebung.",
     },
     cookie: {
       message: "Wir verwenden Cookies, um Ihre Erfahrung zu verbessern. Durch die weitere Nutzung dieser Website stimmen Sie der Verwendung von Cookies zu.",
@@ -1023,6 +1031,10 @@ export const translations: Record<Lang, any> = {
       copyright: "Ovelon Prime. Tous droits réservés.",
       tagline: "Systèmes d'exploitation d'entreprise conçus pour la clarté, le contrôle et l'évolutivité.",
     },
+    industrialTrust: {
+      heading: "Approuvé par les opérateurs dans les environnements critiques",
+      disclaimer: "Opérateurs représentatifs des secteurs industriel, logistique, manufacturier et infrastructure. Les engagements varient selon la portée et l'environnement.",
+    },
     cookie: {
       message: "Nous utilisons des cookies pour améliorer votre expérience. En continuant à visiter ce site, vous acceptez notre utilisation des cookies.",
       accept: "Accepter",
@@ -1401,6 +1413,10 @@ export const translations: Record<Lang, any> = {
       terms: "Regulamin",
       copyright: "Ovelon Prime. Wszelkie prawa zastrzeżone.",
       tagline: "Systemy operacyjne dla przedsiębiorstw zbudowane dla jasności, kontroli i skalowalności.",
+    },
+    industrialTrust: {
+      heading: "Zaufanie operatorów w środowiskach o znaczeniu krytycznym",
+      disclaimer: "Reprezentatywni operatorzy z sektorów przemysłowego, logistycznego, produkcyjnego i infrastrukturalnego. Zaangażowania różnią się zakresem i środowiskiem.",
     },
     cookie: {
       message: "Używamy plików cookie, aby poprawić Twoje doświadczenie. Kontynuując odwiedzanie tej strony, zgadzasz się na nasze używanie plików cookie.",

@@ -1,6 +1,9 @@
 import { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 export const IndustrialTrustStrip = () => {
+  const { t } = useTranslation();
+  
   const brands = [
     "DOWNER GROUP",
     "GXO LOGISTICS",
@@ -21,12 +24,11 @@ export const IndustrialTrustStrip = () => {
     let position = 0;
     let rafId: number;
 
-    const speed = 0.3; // lager = trager, hoger = sneller
+    const speed = 0.3;
 
     const animate = () => {
       position -= speed;
 
-      // reset zodra helft voorbij is
       if (Math.abs(position) >= track.scrollWidth / 2) {
         position = 0;
       }
@@ -46,7 +48,7 @@ export const IndustrialTrustStrip = () => {
 
         {/* SECTION LABEL */}
         <p className="text-xs tracking-[0.35em] uppercase text-muted-foreground text-center mb-14">
-          Trusted by operators in mission-critical environments
+          {t("industrialTrust.heading")}
         </p>
 
         {/* MARQUEE */}
@@ -75,8 +77,7 @@ export const IndustrialTrustStrip = () => {
 
         {/* DISCLAIMER */}
         <p className="mt-16 text-xs text-muted-foreground text-center leading-relaxed max-w-sm mx-auto">
-          Representative operators from industrial, logistics, manufacturing,
-          and infrastructure sectors. Engagements vary by scope and environment.
+          {t("industrialTrust.disclaimer")}
         </p>
       </div>
     </section>
