@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Calendar } from "lucide-react";
+import { Logo } from "./Logo";
 
 /* Inline LinkedIn icon – zero deps */
 const LinkedInIcon = ({ className }: { className?: string }) => (
@@ -111,25 +111,10 @@ export const Footer = () => {
             </span>
           </a>
 
-          {/* RIGHT — CTA */}
-          <button
-            onClick={() => window.dispatchEvent(new Event("open-booking-modal"))}
-            className="
-              hidden md:inline-flex
-              items-center gap-2
-              px-6 py-3
-              rounded-full
-              bg-slate-900
-              text-white
-              font-medium
-              transition-colors
-              hover:bg-[#3A8F94]
-              focus-visible:bg-[#3A8F94]
-            "
-          >
-            <Calendar className="h-4 w-4" />
-            Book Strategy Session
-          </button>
+          {/* RIGHT — LOGO */}
+          <a href="/" className="hidden md:block">
+            <Logo size="sm" forceBlack />
+          </a>
         </div>
       </div>
     </footer>
