@@ -50,6 +50,11 @@ export const translations: Record<Lang, any> = {
       trustline:
         "No rip-and-replace · No vendor lock-in · Operational outcomes first",
     },
+    video: {
+      title: "Designed for uninterrupted operations",
+      subtitle: "See how Ovelon Prime supports mission-critical environments without disrupting live systems.",
+      cta: "Operational Fit Session",
+    },
     services: {
       label: "WHAT WE STABILIZE",
       title: "Operational reliability in environments",
@@ -437,6 +442,11 @@ export const translations: Record<Lang, any> = {
       cta: "Kontrolle über den Betrieb zurückgewinnen",
       trustline:
         "Kein Komplettersatz · Keine Anbieterabhängigkeit · Operative Ergebnisse zuerst",
+    },
+    video: {
+      title: "Konzipiert für unterbrechungsfreien Betrieb",
+      subtitle: "Sehen Sie, wie Ovelon Prime missionskritische Umgebungen unterstützt, ohne laufende Systeme zu stören.",
+      cta: "Operative Eignungssitzung",
     },
     services: {
       label: "WAS WIR STABILISIEREN",
@@ -826,6 +836,11 @@ export const translations: Record<Lang, any> = {
       trustline:
         "Pas de remplacement complet · Pas de dépendance fournisseur · Résultats opérationnels d'abord",
     },
+    video: {
+      title: "Conçu pour des opérations ininterrompues",
+      subtitle: "Découvrez comment Ovelon Prime soutient les environnements critiques sans perturber les systèmes en cours.",
+      cta: "Session d'adéquation opérationnelle",
+    },
     services: {
       label: "CE QUE NOUS STABILISONS",
       title: "Fiabilité opérationnelle dans les environnements",
@@ -1213,6 +1228,11 @@ export const translations: Record<Lang, any> = {
       cta: "Odzyskaj kontrolę nad operacjami",
       trustline:
         "Bez całkowitej wymiany · Bez uzależnienia od dostawcy · Wyniki operacyjne na pierwszym miejscu",
+    },
+    video: {
+      title: "Zaprojektowane dla nieprzerwanego działania",
+      subtitle: "Zobacz, jak Ovelon Prime wspiera środowiska krytyczne bez zakłócania działających systemów.",
+      cta: "Sesja dopasowania operacyjnego",
     },
     services: {
       label: "CO STABILIZUJEMY",
