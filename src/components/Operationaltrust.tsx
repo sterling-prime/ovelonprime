@@ -1,6 +1,15 @@
+import { useTranslation } from "react-i18next";
 import { ShieldCheck, FileCheck, HardHat, Lock, Layers } from "lucide-react";
 
+const icons = [ShieldCheck, FileCheck, HardHat, Lock, Layers];
+
 export const OperationalTrust = () => {
+  const { t } = useTranslation();
+
+  const items = t("operationalTrust.items", { returnObjects: true }) as Array<{
+    text: string;
+  }>;
+
   return (
     <div className="mt-14">
 
@@ -9,42 +18,25 @@ export const OperationalTrust = () => {
 
       {/* Heading */}
       <p className="text-xs tracking-widest uppercase text-muted-foreground text-center mb-6">
-        Designed for regulated & safety-critical environments
+        {t("operationalTrust.heading")}
       </p>
 
       {/* Trust items */}
       <div className="flex flex-wrap justify-center gap-x-10 gap-y-6 text-sm text-muted-foreground">
-
-        <div className="flex items-center gap-2">
-          <ShieldCheck className="h-4 w-4 text-foreground/70" />
-          ISO 27001-aligned security principles
-        </div>
-
-        <div className="flex items-center gap-2">
-          <FileCheck className="h-4 w-4 text-foreground/70" />
-          ISO 9001-style process control
-        </div>
-
-        <div className="flex items-center gap-2">
-          <HardHat className="h-4 w-4 text-foreground/70" />
-          HSE-aware operational design
-        </div>
-
-        <div className="flex items-center gap-2">
-          <Lock className="h-4 w-4 text-foreground/70" />
-          Audit-ready documentation & controls
-        </div>
-
-        <div className="flex items-center gap-2">
-          <Layers className="h-4 w-4 text-foreground/70" />
-          Full client ownership — no black-box systems
-        </div>
+        {items.map((item, index) => {
+          const Icon = icons[index];
+          return (
+            <div key={index} className="flex items-center gap-2">
+              <Icon className="h-4 w-4 text-foreground/70" />
+              {item.text}
+            </div>
+          );
+        })}
       </div>
 
       {/* CISO / governance line */}
       <p className="mt-8 text-xs text-muted-foreground text-center max-w-3xl mx-auto">
-        Designed for CISO-reviewed environments with internal security governance,
-        access control policies, and change-management procedures.
+        {t("operationalTrust.footer")}
       </p>
     </div>
   );

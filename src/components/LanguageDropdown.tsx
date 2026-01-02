@@ -1,55 +1,105 @@
-import { useState } from "react";
-import { ChevronDown, Globe } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 const languages = [
-  { code: "EN", lang: "en", label: "English" },
+  { code: "EN", lang: "en" },
+  { code: "DE", lang: "de" },
+  { code: "FR", lang: "fr" },
+  { code: "PL", lang: "pl" },
 ];
 
 export const LanguageDropdown = () => {
   const { i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-  
-  const currentLang = languages.find(l => l.lang === i18n.language) || languages[0];
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const handleLanguageChange = (lang: typeof languages[0]) => {
+  const currentLang = languages.find((l) => l.lang === i18n.language) || languages[0];
+
+  const handleLanguageChange = (lang: (typeof languages)[0]) => {
     i18n.changeLanguage(lang.lang);
     setIsOpen(false);
   };
 
+  // Close on outside click
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
+
   return (
-    <div className="relative">
+    <div ref={dropdownRef} className="relative">
+      {/* Trigger */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-gray-700 hover:text-black transition rounded-md hover:bg-gray-100"
+        className="
+          flex items-center gap-1
+          px-3 py-1.5
+          text-sm font-medium tracking-wide
+          text-gray-600
+          border-b border-transparent
+          hover:text-gray-900 hover:border-gray-400
+          transition-all duration-200
+        "
+        aria-expanded={isOpen}
+        aria-haspopup="listbox"
       >
-        <Globe className="h-4 w-4" />
         <span>{currentLang.code}</span>
-        <ChevronDown className={`h-3.5 w-3.5 transition-transform ${isOpen ? "rotate-180" : ""}`} />
+        <svg
+          className={`h-3 w-3 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
       </button>
 
-      {isOpen && (
-        <>
-          <div 
-            className="fixed inset-0 z-40" 
-            onClick={() => setIsOpen(false)} 
-          />
-          <div className="absolute right-0 top-full mt-2 z-50 min-w-[140px] bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden animate-fade-in">
-            {languages.map((lang) => (
-              <button
-                key={lang.code}
-                onClick={() => handleLanguageChange(lang)}
-                className={`w-full px-4 py-2.5 text-left text-sm flex items-center justify-between hover:bg-gray-50 transition ${
-                  currentLang.code === lang.code ? "bg-gray-50 text-primary font-medium" : "text-gray-700"
-                }`}
-              >
-                <span>{lang.label}</span>
-                <span className="text-xs text-gray-400">{lang.code}</span>
-              </button>
-            ))}
-          </div>
-        </>
-      )}
+      {/* Dropdown */}
+      <div
+        className={`
+          absolute right-0 top-full mt-2 z-50
+          min-w-[100px]
+          bg-white border border-gray-200
+          shadow-md
+          overflow-hidden
+          transition-all duration-200 origin-top
+          ${isOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"}
+        `}
+        role="listbox"
+      >
+        {languages.map((lang) => (
+          <button
+            key={lang.code}
+            onClick={() => handleLanguageChange(lang)}
+            role="option"
+            aria-selected={currentLang.code === lang.code}
+            className={`
+              w-full px-4 py-2.5
+              text-left text-sm font-medium tracking-wide
+              transition-colors duration-150
+              ${
+                currentLang.code === lang.code
+                  ? "bg-gray-100 text-gray-900"
+                  : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+              }
+            `}
+          >
+            {lang.code}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };
