@@ -174,6 +174,7 @@ export const translations: Record<Lang, any> = {
         description:
           "Tailored operational systems for complex organizations with strict governance, compliance, and continuity requirements.",
         priceLabel: "Tailored pricing",
+        price: "Custom Service",
         period: "one-time fee",
         cta: "Request Initial Assessment",
         badge: "Enterprise",
@@ -268,6 +269,10 @@ export const translations: Record<Lang, any> = {
     industrialTrust: {
       heading: "Trusted by operators in mission-critical environments",
       disclaimer: "Representative operators from industrial, logistics, manufacturing, and infrastructure sectors. Engagements vary by scope and environment.",
+    },
+    intake: {
+      title: "Consultation Qualification",
+      subtitle: "Please complete the short intake below. All submissions are reviewed before scheduling.",
     },
     cookie: {
       message: "We use cookies to enhance your experience. By continuing to visit this site, you agree to our use of cookies.",
@@ -557,6 +562,7 @@ export const translations: Record<Lang, any> = {
         description:
           "Maßgeschneiderte operative Systeme für komplexe Organisationen mit strengen Governance-, Compliance- und Kontinuitätsanforderungen.",
         priceLabel: "Individuelle Preisgestaltung",
+        price: "Individuelle Leistung",
         period: "einmalige Gebühr",
         cta: "Erstbewertung anfordern",
         badge: "Enterprise",
@@ -651,6 +657,10 @@ export const translations: Record<Lang, any> = {
     industrialTrust: {
       heading: "Vertrauenswürdig für Betreiber in missionskritischen Umgebungen",
       disclaimer: "Repräsentative Betreiber aus Industrie-, Logistik-, Fertigungs- und Infrastruktursektoren. Engagements variieren nach Umfang und Umgebung.",
+    },
+    intake: {
+      title: "Beratungsqualifizierung",
+      subtitle: "Bitte füllen Sie das kurze Formular unten aus. Alle Einsendungen werden vor der Terminplanung geprüft.",
     },
     cookie: {
       message: "Wir verwenden Cookies, um Ihre Erfahrung zu verbessern. Durch die weitere Nutzung dieser Website stimmen Sie der Verwendung von Cookies zu.",
@@ -940,6 +950,7 @@ export const translations: Record<Lang, any> = {
         description:
           "Systèmes opérationnels sur mesure pour les organisations complexes avec des exigences strictes de gouvernance, de conformité et de continuité.",
         priceLabel: "Tarification sur mesure",
+        price: "Service personnalisé",
         period: "frais unique",
         cta: "Demander une évaluation initiale",
         badge: "Enterprise",
@@ -1034,6 +1045,10 @@ export const translations: Record<Lang, any> = {
     industrialTrust: {
       heading: "Approuvé par les opérateurs dans les environnements critiques",
       disclaimer: "Opérateurs représentatifs des secteurs industriel, logistique, manufacturier et infrastructure. Les engagements varient selon la portée et l'environnement.",
+    },
+    intake: {
+      title: "Qualification de consultation",
+      subtitle: "Veuillez remplir le court formulaire ci-dessous. Toutes les soumissions sont examinées avant la planification.",
     },
     cookie: {
       message: "Nous utilisons des cookies pour améliorer votre expérience. En continuant à visiter ce site, vous acceptez notre utilisation des cookies.",
@@ -1323,6 +1338,7 @@ export const translations: Record<Lang, any> = {
         description:
           "Dostosowane systemy operacyjne dla złożonych organizacji ze ścisłymi wymaganiami dotyczącymi zarządzania, zgodności i ciągłości.",
         priceLabel: "Wycena indywidualna",
+        price: "Usługa niestandardowa",
         period: "jednorazowa opłata",
         cta: "Poproś o wstępną ocenę",
         badge: "Enterprise",
@@ -1417,6 +1433,10 @@ export const translations: Record<Lang, any> = {
     industrialTrust: {
       heading: "Zaufanie operatorów w środowiskach o znaczeniu krytycznym",
       disclaimer: "Reprezentatywni operatorzy z sektorów przemysłowego, logistycznego, produkcyjnego i infrastrukturalnego. Zaangażowania różnią się zakresem i środowiskiem.",
+    },
+    intake: {
+      title: "Kwalifikacja konsultacji",
+      subtitle: "Proszę wypełnić krótki formularz poniżej. Wszystkie zgłoszenia są sprawdzane przed zaplanowaniem.",
     },
     cookie: {
       message: "Używamy plików cookie, aby poprawić Twoje doświadczenie. Kontynuując odwiedzanie tej strony, zgadzasz się na nasze używanie plików cookie.",

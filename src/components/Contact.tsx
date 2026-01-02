@@ -75,9 +75,9 @@ export const Contact = () => {
                 active:bg-[#3A8F94]
                 focus-visible:bg-[#3A8F94]
               "
-              onClick={() =>
-                window.dispatchEvent(new Event("open-booking-modal"))
-              }
+              onClick={() => {
+                window.dispatchEvent(new Event("open-booking-modal"));
+              }}
             >
               {t("contact.cta")}
             </Button>

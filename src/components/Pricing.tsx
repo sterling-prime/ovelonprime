@@ -2,10 +2,11 @@ import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const Pricing = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
 
   /**
    * Open booking modal WITHOUT scroll jump
@@ -60,10 +61,9 @@ export const Pricing = () => {
       key: "enterprise",
       name: t("pricing.enterprise.name"),
       description: t("pricing.enterprise.description"),
-      price: "Custom Service",
+      price: t("pricing.enterprise.price"),
       priceLabel: t("pricing.enterprise.priceLabel"),
-      period: "",
-      subPriceLabel: "one-time fee",
+      period: t("pricing.enterprise.period"),
       features: t("pricing.enterprise.features", {
         returnObjects: true,
       }) as string[],
@@ -124,12 +124,6 @@ export const Pricing = () => {
                   {plan.price}
                 </span>
 
-                {plan.subPriceLabel && (
-                  <p className="text-xs text-muted-foreground mt-1">
-                    {plan.subPriceLabel}
-                  </p>
-                )}
-
                 {plan.period && (
                   <p className="text-xs text-muted-foreground mt-1">
                     {plan.period}
@@ -149,13 +143,13 @@ export const Pricing = () => {
                 ))}
               </ul>
 
-              {/* CARD CTA → routing is correct here */}
+              {/* CARD CTA → navigate with language param */}
               <Button
                 variant={plan.popular ? "default" : "outline"}
                 className="w-full mt-auto"
-                asChild
+                onClick={() => navigate(`${plan.href}?lang=${i18n.language}`)}
               >
-                <Link to={plan.href}>{plan.cta}</Link>
+                {plan.cta}
               </Button>
 
               <p className="text-[11px] text-muted-foreground text-center mt-3">
