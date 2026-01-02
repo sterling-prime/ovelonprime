@@ -43,12 +43,11 @@ export const Logo = ({ className = "", size = "md" }: LogoProps) => {
         {/* Outer hexagonal frame */}
         <path
           d="M16 2L28 9V23L16 30L4 23V9L16 2Z"
-          stroke="currentColor"
           strokeWidth="1.5"
           fill="none"
           style={{
-            color: isAnimating ? "#3a3f47" : "currentColor",
-            transition: "color 1.4s cubic-bezier(0.4, 0, 0.2, 1)",
+            stroke: isAnimating ? "#000000" : "#ffffff",
+            transition: "stroke 1.4s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         />
         
@@ -57,10 +56,9 @@ export const Logo = ({ className = "", size = "md" }: LogoProps) => {
           cx="16"
           cy="16"
           r="2.5"
-          fill="currentColor"
           style={{
-            color: isAnimating ? "#3a3f47" : "currentColor",
-            transition: "color 1.4s cubic-bezier(0.4, 0, 0.2, 1)",
+            fill: isAnimating ? "#000000" : "#ffffff",
+            transition: "fill 1.4s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         />
         
@@ -70,12 +68,11 @@ export const Logo = ({ className = "", size = "md" }: LogoProps) => {
           y1="13.5"
           x2="16"
           y2="5.5"
-          stroke="currentColor"
           strokeWidth="1.5"
           style={{
-            color: isAnimating ? "#3a3f47" : "currentColor",
+            stroke: isAnimating ? "#000000" : "#ffffff",
             opacity: 0.7,
-            transition: "color 1.4s cubic-bezier(0.4, 0, 0.2, 1)",
+            transition: "stroke 1.4s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         />
         
@@ -85,12 +82,11 @@ export const Logo = ({ className = "", size = "md" }: LogoProps) => {
           y1="17.8"
           x2="24.5"
           y2="21.5"
-          stroke="currentColor"
           strokeWidth="1.5"
           style={{
-            color: isAnimating ? "#3a3f47" : "currentColor",
+            stroke: isAnimating ? "#000000" : "#ffffff",
             opacity: 0.7,
-            transition: "color 1.4s cubic-bezier(0.4, 0, 0.2, 1)",
+            transition: "stroke 1.4s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         />
         
@@ -100,12 +96,11 @@ export const Logo = ({ className = "", size = "md" }: LogoProps) => {
           y1="17.8"
           x2="7.5"
           y2="21.5"
-          stroke="currentColor"
           strokeWidth="1.5"
           style={{
-            color: isAnimating ? "#3a3f47" : "currentColor",
+            stroke: isAnimating ? "#000000" : "#ffffff",
             opacity: 0.7,
-            transition: "color 1.4s cubic-bezier(0.4, 0, 0.2, 1)",
+            transition: "stroke 1.4s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         />
       </svg>
