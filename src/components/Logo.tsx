@@ -28,9 +28,9 @@ export const Logo = ({ className = "", size = "md", forceBlack = false }: LogoPr
   };
 
   const textSizes = {
-    sm: "text-xs",
-    md: "text-sm",
-    lg: "text-base",
+    sm: "text-sm",
+    md: "text-base",
+    lg: "text-lg",
   };
 
   const letterSpacing = {
