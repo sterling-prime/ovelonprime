@@ -6,11 +6,11 @@ interface LogoProps {
 }
 
 export const Logo = ({ className = "", size = "md" }: LogoProps) => {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(true);
 
   useEffect(() => {
-    // Trigger animation after mount
-    const timer = setTimeout(() => setIsLoaded(true), 50);
+    // End animation state after completion
+    const timer = setTimeout(() => setIsAnimating(false), 1400);
     return () => clearTimeout(timer);
   }, []);
 
@@ -27,103 +27,99 @@ export const Logo = ({ className = "", size = "md" }: LogoProps) => {
   };
 
   return (
-    <div
-      className={`flex items-center gap-2.5 ${className}`}
-      style={{
-        opacity: isLoaded ? 1 : 0,
-        transform: isLoaded ? "translateY(0)" : "translateY(4px)",
-        transition: "opacity 400ms ease-out, transform 400ms ease-out",
-      }}
-    >
-      {/* Abstract Icon Mark */}
+    <div className={`flex items-center gap-2.5 ${className}`}>
+      {/* Animated Icon Mark */}
       <svg
         viewBox="0 0 32 32"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className={`${sizeClasses[size]} w-auto`}
         aria-hidden="true"
+        style={{
+          transform: isAnimating ? "rotate(0deg)" : "rotate(360deg)",
+          transition: "transform 1.4s cubic-bezier(0.4, 0, 0.2, 1)",
+        }}
       >
-        {/* Outer hexagonal frame - represents system architecture */}
+        {/* Outer hexagonal frame */}
         <path
           d="M16 2L28 9V23L16 30L4 23V9L16 2Z"
           stroke="currentColor"
           strokeWidth="1.5"
           fill="none"
-          className="text-foreground"
           style={{
-            strokeDasharray: isLoaded ? "0" : "100",
-            strokeDashoffset: isLoaded ? "0" : "100",
-            transition: "stroke-dasharray 500ms ease-out 100ms, stroke-dashoffset 500ms ease-out 100ms",
+            color: isAnimating ? "#3a3f47" : "currentColor",
+            transition: "color 1.4s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         />
         
-        {/* Inner node network - represents operational connectivity */}
+        {/* Center node */}
         <circle
           cx="16"
           cy="16"
-          r="3"
+          r="2.5"
           fill="currentColor"
-          className="text-foreground"
           style={{
-            opacity: isLoaded ? 1 : 0,
-            transform: isLoaded ? "scale(1)" : "scale(0.5)",
-            transformOrigin: "center",
-            transition: "opacity 300ms ease-out 300ms, transform 300ms ease-out 300ms",
+            color: isAnimating ? "#3a3f47" : "currentColor",
+            transition: "color 1.4s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         />
         
-        {/* Connecting lines from center to vertices */}
+        {/* Top line */}
         <line
           x1="16"
-          y1="13"
+          y1="13.5"
           x2="16"
-          y2="5"
+          y2="5.5"
           stroke="currentColor"
           strokeWidth="1.5"
-          className="text-foreground"
           style={{
-            opacity: isLoaded ? 0.6 : 0,
-            transition: "opacity 300ms ease-out 400ms",
+            color: isAnimating ? "#3a3f47" : "currentColor",
+            opacity: 0.7,
+            transition: "color 1.4s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         />
+        
+        {/* Bottom-right line */}
         <line
-          x1="18.6"
-          y1="17.5"
-          x2="24"
-          y2="21"
+          x1="18.2"
+          y1="17.8"
+          x2="24.5"
+          y2="21.5"
           stroke="currentColor"
           strokeWidth="1.5"
-          className="text-foreground"
           style={{
-            opacity: isLoaded ? 0.6 : 0,
-            transition: "opacity 300ms ease-out 450ms",
+            color: isAnimating ? "#3a3f47" : "currentColor",
+            opacity: 0.7,
+            transition: "color 1.4s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         />
+        
+        {/* Bottom-left line */}
         <line
-          x1="13.4"
-          y1="17.5"
-          x2="8"
-          y2="21"
+          x1="13.8"
+          y1="17.8"
+          x2="7.5"
+          y2="21.5"
           stroke="currentColor"
           strokeWidth="1.5"
-          className="text-foreground"
           style={{
-            opacity: isLoaded ? 0.6 : 0,
-            transition: "opacity 300ms ease-out 500ms",
+            color: isAnimating ? "#3a3f47" : "currentColor",
+            opacity: 0.7,
+            transition: "color 1.4s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         />
       </svg>
 
       {/* Wordmark */}
       <span
-        className={`font-semibold tracking-tight text-foreground ${textSizes[size]}`}
+        className={`font-semibold tracking-tight ${textSizes[size]}`}
         style={{
-          opacity: isLoaded ? 1 : 0,
-          transform: isLoaded ? "translateX(0)" : "translateX(-8px)",
-          transition: "opacity 350ms ease-out 200ms, transform 350ms ease-out 200ms",
+          opacity: isAnimating ? 0 : 1,
+          transform: isAnimating ? "translateX(-6px)" : "translateX(0)",
+          transition: "opacity 400ms ease-out 1s, transform 400ms ease-out 1s",
         }}
       >
-        <span className="font-bold">Ovelon</span>
+        <span className="font-bold text-foreground">Ovelon</span>
         <span className="font-normal text-muted-foreground ml-1">Prime</span>
       </span>
     </div>
