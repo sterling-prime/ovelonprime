@@ -120,7 +120,7 @@ export const Navbar = () => {
       active:bg-gray-200
     "
   >
-    View Demo
+    {t("nav.viewDemo")}
   </button>
 
   {/* PRIMARY CTA */}
@@ -243,7 +243,7 @@ export const Navbar = () => {
                 setIsOpen(false);
               }}
             >
-              Talk to Expert
+              {t("nav.cta")}
             </Button>
           </div>
         </div>

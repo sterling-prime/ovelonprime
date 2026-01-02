@@ -79,18 +79,16 @@ export const Contact = () => {
                 window.dispatchEvent(new Event("open-booking-modal"))
               }
             >
-              Schedule Consultation
+              {t("contact.cta")}
             </Button>
           </div>
 
           {/* Guarantee */}
           <p className="text-sm text-foreground/60 max-w-xl mx-auto mb-16">
-            
             <span className="font-semibold text-foreground/75">
               {t("contact.guaranteeHighlight")}
             </span>
             {t("contact.guaranteeSuffix")}
-
           </p>
 
           {/* Enterprise */}

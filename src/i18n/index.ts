@@ -9,6 +9,9 @@ i18n
   .init({
     resources: {
       en: { translation: translations.en },
+      de: { translation: translations.de },
+      fr: { translation: translations.fr },
+      pl: { translation: translations.pl },
     },
     fallbackLng: "en",
     interpolation: {

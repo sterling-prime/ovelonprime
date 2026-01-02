@@ -59,7 +59,7 @@ export const Footer = () => {
           </span>
 
           <p className="text-sm text-muted-foreground max-w-xs">
-            Enterprise operating systems built for clarity, control, and scale.
+            {t("footer.tagline")}
           </p>
         </div>
 

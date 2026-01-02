@@ -1,29 +1,17 @@
+import { useTranslation } from "react-i18next";
 import sector1 from "@/assets/facility.png";
 import sector2 from "@/assets/mainte.png";
 import sector3 from "@/assets/logistic.png";
 
+const images = [sector1, sector2, sector3];
 
 export const Sectors = () => {
-  const sectors = [
-    {
-      name: "Facility Management",
-      description:
-        "Managing distributed assets and service requests across complex facilities — with limited tolerance for delay or miscoordination.",
-      img: sector1,
-    },
-    {
-      name: "Maintenance & Repair",
-      description:
-        "Operating under constant pressure to prevent downtime across reactive and preventive maintenance — often with incomplete information and tight response windows.",
-      img: sector2,
-    },
-    {
-      name: "Logistics & Warehousing",
-      description:
-        "Coordinating workforce, equipment, and workflows under strict timelines and continuous operational pressure.",
-      img: sector3,
-    },
-  ];
+  const { t } = useTranslation();
+
+  const sectors = t("sectors.items", { returnObjects: true }) as Array<{
+    name: string;
+    description: string;
+  }>;
 
   return (
     <section
@@ -39,21 +27,21 @@ export const Sectors = () => {
 
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <p className="section-label mb-3">Sectors</p>
+          <p className="section-label mb-3">{t("sectors.label")}</p>
 
           <h2 className="section-title mb-4">
-            Operational Reliability For{" "}
-            <span className="text-muted-foreground">Mission-Critical Industries</span>
+            {t("sectors.title")}{" "}
+            <span className="text-muted-foreground">{t("sectors.titleHighlight")}</span>
           </h2>
 
           <p className="section-subtitle mx-auto">
-            We support operational environments where downtime, misalignment, or delayed response directly impacts safety, continuity, or output.
+            {t("sectors.subtitle")}
           </p>
         </div>
 
         {/* Cards */}
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {sectors.map((sec) => (
+          {sectors.map((sec, index) => (
             <div
               key={sec.name}
               className="
@@ -64,7 +52,7 @@ export const Sectors = () => {
             >
               <div className="flex justify-center">
                 <img
-                  src={sec.img}
+                  src={images[index]}
                   alt={sec.name}
                   className="
                     h-20 w-20 rounded-full object-cover shadow-md mb-6
