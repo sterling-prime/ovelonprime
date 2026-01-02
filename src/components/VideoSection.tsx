@@ -1,7 +1,10 @@
 import Video from "@/assets/Intro.mp4";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 export const VideoSection = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="relative pt-24 pb-8 bg-background">
       <div className="container mx-auto px-6 max-w-6xl">
@@ -9,10 +12,10 @@ export const VideoSection = () => {
         {/* Heading */}
         <div className="mb-8 text-center">
           <h2 className="text-2xl md:text-3xl font-semibold">
-            Designed for uninterrupted operations
+            {t("video.title")}
           </h2>
           <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
-            See how Ovelon Prime supports mission-critical environments without disrupting live systems.
+            {t("video.subtitle")}
           </p>
         </div>
 
@@ -46,7 +49,7 @@ export const VideoSection = () => {
               window.dispatchEvent(new Event("open-booking-modal"))
             }
           >
-            Operational Fit Session
+            {t("video.cta")}
           </Button>
         </div>
 
