@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 interface LogoProps {
   className?: string;
   size?: "sm" | "md" | "lg";
+  forceBlack?: boolean;
 }
 
-export const Logo = ({ className = "", size = "md" }: LogoProps) => {
+export const Logo = ({ className = "", size = "md", forceBlack = false }: LogoProps) => {
   const [cycle, setCycle] = useState(0);
 
   useEffect(() => {
@@ -16,7 +17,8 @@ export const Logo = ({ className = "", size = "md" }: LogoProps) => {
     return () => clearInterval(interval);
   }, []);
 
-  const isEvenCycle = cycle % 2 === 0;
+  // When forceBlack is true, always use black colors
+  const isBlack = forceBlack || cycle % 2 === 0;
   const rotation = cycle * 360;
 
   const sizeClasses = {
@@ -37,6 +39,9 @@ export const Logo = ({ className = "", size = "md" }: LogoProps) => {
     lg: "tracking-[0.16em]",
   };
 
+  const primaryColor = isBlack ? "#1a1a1a" : "#ffffff";
+  const secondaryColor = isBlack ? "#4a4a4a" : "#d0d0d0";
+
   return (
     <div className={`flex items-center gap-3 ${className}`}>
       {/* Animated Icon Mark */}
@@ -53,7 +58,7 @@ export const Logo = ({ className = "", size = "md" }: LogoProps) => {
           strokeWidth="1.5"
           fill="none"
           style={{
-            stroke: isEvenCycle ? "#1a1a1a" : "#ffffff",
+            stroke: primaryColor,
             transition: "stroke 1.8s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         />
@@ -72,7 +77,7 @@ export const Logo = ({ className = "", size = "md" }: LogoProps) => {
             cy="16"
             r="2.5"
             style={{
-              fill: isEvenCycle ? "#1a1a1a" : "#ffffff",
+              fill: primaryColor,
               transition: "fill 1.8s cubic-bezier(0.4, 0, 0.2, 1)",
             }}
           />
@@ -85,7 +90,7 @@ export const Logo = ({ className = "", size = "md" }: LogoProps) => {
             y2="5.5"
             strokeWidth="1.5"
             style={{
-              stroke: isEvenCycle ? "#1a1a1a" : "#ffffff",
+              stroke: primaryColor,
               transition: "stroke 1.8s cubic-bezier(0.4, 0, 0.2, 1)",
             }}
           />
@@ -98,7 +103,7 @@ export const Logo = ({ className = "", size = "md" }: LogoProps) => {
             y2="21.5"
             strokeWidth="1.5"
             style={{
-              stroke: isEvenCycle ? "#1a1a1a" : "#ffffff",
+              stroke: primaryColor,
               transition: "stroke 1.8s cubic-bezier(0.4, 0, 0.2, 1)",
             }}
           />
@@ -111,7 +116,7 @@ export const Logo = ({ className = "", size = "md" }: LogoProps) => {
             y2="21.5"
             strokeWidth="1.5"
             style={{
-              stroke: isEvenCycle ? "#1a1a1a" : "#ffffff",
+              stroke: primaryColor,
               transition: "stroke 1.8s cubic-bezier(0.4, 0, 0.2, 1)",
             }}
           />
@@ -126,7 +131,7 @@ export const Logo = ({ className = "", size = "md" }: LogoProps) => {
         <span 
           className="font-semibold"
           style={{
-            color: isEvenCycle ? "#1a1a1a" : "#ffffff",
+            color: primaryColor,
             transition: "color 1.8s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         >
@@ -135,7 +140,7 @@ export const Logo = ({ className = "", size = "md" }: LogoProps) => {
         <span 
           className="font-normal ml-1.5"
           style={{
-            color: isEvenCycle ? "#4a4a4a" : "#d0d0d0",
+            color: secondaryColor,
             transition: "color 1.8s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         >

@@ -80,7 +80,7 @@ export const Navbar = () => {
 
             {/* LOGO DESKTOP */}
             <a href="/" className="hidden md:block">
-              <Logo size="md" />
+              <Logo size="md" forceBlack={scrolled || isLightHeaderPage} />
             </a>
 
             {/* DESKTOP NAV */}
@@ -150,7 +150,7 @@ export const Navbar = () => {
                 href="/"
                 className="absolute left-1/2 -translate-x-1/2"
               >
-                <Logo size="sm" />
+                <Logo size="sm" forceBlack={scrolled || isOpen || isLightHeaderPage} />
               </a>
 
               {/* HAMBURGER / CLOSE */}
