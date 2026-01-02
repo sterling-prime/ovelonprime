@@ -218,7 +218,7 @@ export const Navbar = () => {
                   active:bg-gray-300
                 "
               >
-                View Demo
+                {t("nav.viewDemo")}
               </button>
             </div>
 

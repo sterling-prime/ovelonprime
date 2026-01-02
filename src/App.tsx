@@ -12,6 +12,7 @@ import Intake2 from "./pages/intake2";
 import NotFound from "./pages/NotFound";
 
 import { CalInit } from "@/components/CalInit";
+import { CookieConsent } from "@/components/CookieConsent";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,9 @@ const App = () => (
           <Route path="/intake2" element={<Intake2 />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        
+        {/* Cookie Consent Banner */}
+        <CookieConsent />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
