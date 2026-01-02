@@ -5,8 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { LanguageDropdown } from "./LanguageDropdown";
 import { BookingModal } from "./BookingModal";
-
-import ServiceIcon from "@/assets/service.apng";
+import { Logo } from "./Logo";
 
 export const Navbar = () => {
   const { t } = useTranslation();
@@ -80,12 +79,8 @@ export const Navbar = () => {
           <div className="flex items-center justify-between h-16 relative">
 
             {/* LOGO DESKTOP */}
-            <a
-              href="/"
-              className="hidden md:flex items-center gap-3 text-xl font-semibold"
-            >
-              <img src={ServiceIcon} alt="Ovelon Prime icon" className="h-6 w-6" />
-              Ovelon Prime
+            <a href="/" className="hidden md:block">
+              <Logo size="md" />
             </a>
 
             {/* DESKTOP NAV */}
@@ -153,10 +148,9 @@ export const Navbar = () => {
             <div className="md:hidden flex items-center w-full relative">
               <a
                 href="/"
-                className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2 text-lg font-semibold"
+                className="absolute left-1/2 -translate-x-1/2"
               >
-                <img src={ServiceIcon} alt="Ovelon Prime icon" className="h-5 w-5" />
-                Ovelon Prime
+                <Logo size="sm" />
               </a>
 
               {/* HAMBURGER / CLOSE */}
