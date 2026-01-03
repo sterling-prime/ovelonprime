@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 type ServiceKey = "intake" | "safety" | "incident";
 
 export const DemoSurface = () => {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState<ServiceKey>("incident");
+  const [active, setActive] = useState<ServiceKey>("intake");
 
   useEffect(() => {
     const openHandler = () => setOpen(true);
@@ -23,107 +25,95 @@ export const DemoSurface = () => {
 
   const services = {
     intake: {
-      title: "Work Intake & Demand Handling",
+      title: t("demo.intake.title"),
       metrics: [
-        { label: "Coordination Time", value: "−38%" },
-        { label: "Rework Cycles", value: "−41%" },
-        { label: "Ownership", value: "Defined upfront" },
+        { label: t("demo.intake.metrics.coordinationTime"), value: "−38%" },
+        { label: t("demo.intake.metrics.reworkCycles"), value: "−41%" },
+        { label: t("demo.intake.metrics.ownership"), value: t("demo.intake.metrics.ownershipValue") },
       ],
       before: {
-        title: "Fragmented intake and reactive coordination",
-        text:
-          "Work enters through emails, calls, and informal channels. "
-          + "Information quality varies and ownership shifts during execution.",
+        title: t("demo.intake.before.title"),
+        text: t("demo.intake.before.text"),
         bullets: [
-          "Multiple intake paths",
-          "Manual clarification loops",
-          "Priority driven by urgency",
-          "Execution depends on individuals",
+          t("demo.intake.before.bullet1"),
+          t("demo.intake.before.bullet2"),
+          t("demo.intake.before.bullet3"),
+          t("demo.intake.before.bullet4"),
         ],
-        tradeoff: "Time lost to coordination and correction.",
+        tradeoff: t("demo.intake.before.tradeoff"),
       },
       after: {
-        title: "Structured intake with controlled execution",
-        text:
-          "Requests follow a single intake path. Information is validated upfront "
-          + "and ownership is assigned before execution begins.",
+        title: t("demo.intake.after.title"),
+        text: t("demo.intake.after.text"),
         bullets: [
-          "Single structured intake",
-          "Clear classification and routing",
-          "Ownership assigned once",
-          "Predictable execution flow",
+          t("demo.intake.after.bullet1"),
+          t("demo.intake.after.bullet2"),
+          t("demo.intake.after.bullet3"),
+          t("demo.intake.after.bullet4"),
         ],
-        tradeoff: "Coordination drops, execution stabilizes.",
+        tradeoff: t("demo.intake.after.tradeoff"),
       },
     },
 
     safety: {
-      title: "Safety & Execution Standards",
+      title: t("demo.safety.title"),
       metrics: [
-        { label: "Procedure Deviations", value: "−47%" },
-        { label: "Onboarding Time", value: "−32%" },
-        { label: "Consistency", value: "Standardized" },
+        { label: t("demo.safety.metrics.procedureDeviations"), value: "−47%" },
+        { label: t("demo.safety.metrics.onboardingTime"), value: "−32%" },
+        { label: t("demo.safety.metrics.consistency"), value: t("demo.safety.metrics.consistencyValue") },
       ],
       before: {
-        title: "Interpretation-based execution",
-        text:
-          "Safety procedures exist across documents and tribal knowledge. "
-          + "Operators interpret standards differently.",
+        title: t("demo.safety.before.title"),
+        text: t("demo.safety.before.text"),
         bullets: [
-          "Inconsistent procedures",
-          "High reliance on senior staff",
-          "Contractors onboarded informally",
-          "Audit exposure",
+          t("demo.safety.before.bullet1"),
+          t("demo.safety.before.bullet2"),
+          t("demo.safety.before.bullet3"),
+          t("demo.safety.before.bullet4"),
         ],
-        tradeoff: "Safety depends on experience, not structure.",
+        tradeoff: t("demo.safety.before.tradeoff"),
       },
       after: {
-        title: "Standardized execution with shared understanding",
-        text:
-          "Execution standards are clear, visual, and uniform across teams "
-          + "and contractor groups.",
+        title: t("demo.safety.after.title"),
+        text: t("demo.safety.after.text"),
         bullets: [
-          "Uniform execution standards",
-          "Faster onboarding",
-          "Reduced interpretation errors",
-          "Aligned safety framework",
+          t("demo.safety.after.bullet1"),
+          t("demo.safety.after.bullet2"),
+          t("demo.safety.after.bullet3"),
+          t("demo.safety.after.bullet4"),
         ],
-        tradeoff: "Safety becomes repeatable and auditable.",
+        tradeoff: t("demo.safety.after.tradeoff"),
       },
     },
 
     incident: {
-      title: "Incident Handling & Escalation",
+      title: t("demo.incident.title"),
       metrics: [
-        { label: "Escalation Loops", value: "−52%" },
-        { label: "Response Time", value: "−29%" },
-        { label: "Accountability", value: "Explicit" },
+        { label: t("demo.incident.metrics.escalationLoops"), value: "−52%" },
+        { label: t("demo.incident.metrics.responseTime"), value: "−29%" },
+        { label: t("demo.incident.metrics.accountability"), value: t("demo.incident.metrics.accountabilityValue") },
       ],
       before: {
-        title: "Reactive incident handling",
-        text:
-          "Incidents are reported inconsistently and escalated manually. "
-          + "Responsibility is unclear and visibility is limited.",
+        title: t("demo.incident.before.title"),
+        text: t("demo.incident.before.text"),
         bullets: [
-          "Unclear escalation thresholds",
-          "Delayed handovers",
-          "Parallel communication threads",
-          "Limited management visibility",
+          t("demo.incident.before.bullet1"),
+          t("demo.incident.before.bullet2"),
+          t("demo.incident.before.bullet3"),
+          t("demo.incident.before.bullet4"),
         ],
-        tradeoff: "Incidents consume attention instead of being resolved.",
+        tradeoff: t("demo.incident.before.tradeoff"),
       },
       after: {
-        title: "Controlled escalation with clear accountability",
-        text:
-          "Incidents are logged, classified, and escalated through predefined paths. "
-          + "Each step has a clear owner and response window.",
+        title: t("demo.incident.after.title"),
+        text: t("demo.incident.after.text"),
         bullets: [
-          "Defined escalation levels",
-          "Clear ownership per incident",
-          "Predictable response timelines",
-          "Full operational visibility",
+          t("demo.incident.after.bullet1"),
+          t("demo.incident.after.bullet2"),
+          t("demo.incident.after.bullet3"),
+          t("demo.incident.after.bullet4"),
         ],
-        tradeoff: "Incidents are resolved systematically.",
+        tradeoff: t("demo.incident.after.tradeoff"),
       },
     },
   };
@@ -146,12 +136,12 @@ export const DemoSurface = () => {
       >
         {/* HEADER (FIXED) */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-border shrink-0">
-          <h3 className="text-base font-semibold">Operational Trade-Off Analysis</h3>
+          <h3 className="text-base font-semibold">{t("demo.header")}</h3>
           <button
             onClick={() => setOpen(false)}
             className="text-sm text-muted-foreground"
           >
-            Close
+            {t("demo.close")}
           </button>
         </div>
 
@@ -197,7 +187,7 @@ export const DemoSurface = () => {
             {/* BEFORE */}
             <div>
               <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-3">
-                Before Alignment
+                {t("demo.beforeAlignment")}
               </p>
               <h4 className="text-lg font-semibold mb-3">
                 {current.before.title}
@@ -206,19 +196,19 @@ export const DemoSurface = () => {
                 {current.before.text}
               </p>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                {current.before.bullets.map((b) => (
-                  <li key={b}>• {b}</li>
+                {current.before.bullets.map((b, idx) => (
+                  <li key={idx}>• {b}</li>
                 ))}
               </ul>
               <p className="mt-4 text-xs text-muted-foreground">
-                Trade-off: {current.before.tradeoff}
+                {t("demo.tradeoff")}: {current.before.tradeoff}
               </p>
             </div>
 
             {/* AFTER */}
             <div>
               <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-3">
-                After Alignment
+                {t("demo.afterAlignment")}
               </p>
               <h4 className="text-lg font-semibold mb-3">
                 {current.after.title}
@@ -227,12 +217,12 @@ export const DemoSurface = () => {
                 {current.after.text}
               </p>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                {current.after.bullets.map((b) => (
-                  <li key={b}>• {b}</li>
+                {current.after.bullets.map((b, idx) => (
+                  <li key={idx}>• {b}</li>
                 ))}
               </ul>
               <p className="mt-4 text-xs text-muted-foreground">
-                Trade-off: {current.after.tradeoff}
+                {t("demo.tradeoff")}: {current.after.tradeoff}
               </p>
             </div>
 
@@ -240,7 +230,7 @@ export const DemoSurface = () => {
 
           {/* FOOTER NOTE */}
           <div className="px-5 py-4 border-t border-border text-[11px] text-muted-foreground">
-            Representative operational scenarios from industrial, logistics, and facility environments.
+            {t("demo.footer")}
           </div>
 
         </div>
