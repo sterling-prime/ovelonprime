@@ -10,28 +10,29 @@ export const VideoSection = () => {
   useEffect(() => {
     const handler = () => {
       videoRef.current?.play().catch(() => {
-        // iOS / browser safety — ignore silently
+        // Browser / iOS autoplay safety — ignore silently
       });
     };
 
     window.addEventListener("play-hero-video", handler);
-    return () =>
+    return () => {
       window.removeEventListener("play-hero-video", handler);
+    };
   }, []);
 
   return (
     <section
       id="video-section"
-      className="relative pt-24 pb-8 bg-background"
+      className="relative pt-24 pb-8 bg-primary"
     >
       <div className="container mx-auto px-6 max-w-6xl">
 
         {/* Heading */}
         <div className="mb-8 text-center">
-          <h2 className="text-2xl md:text-3xl font-semibold">
+          <h2 className="text-2xl md:text-3xl font-semibold text-primary-foreground">
             {t("video.title")}
           </h2>
-          <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
+          <p className="mt-3 text-primary-foreground/70 max-w-2xl mx-auto">
             {t("video.subtitle")}
           </p>
         </div>
