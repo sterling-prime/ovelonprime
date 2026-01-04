@@ -50,26 +50,29 @@ export const ProjectSimulator = ({ isOpen, onClose }: ProjectSimulatorProps) => 
   const totalSteps = 5;
 
   const submitToServer = async () => {
-  try {
-    const res = await fetch("http://localhost:3001/api/request-review", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ data }),
-    });
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+    
+    try {
+      const res = await fetch(`${API_URL}/api/request-review`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ data }),
+      });
 
-    if (!res.ok) {
-      throw new Error("Server error");
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.error || "Server error");
+      }
+
+      handleReset();
+      onClose();
+    } catch (err) {
+      console.error("SUBMIT ERROR:", err);
+      alert(t("simulator.submitError"));
     }
-
-    handleReset();
-    onClose();
-  } catch (err) {
-    console.error("SUBMIT ERROR:", err);
-    alert("Submission failed. Check console.");
-  }
-};
+  };
 
   useEffect(() => {
     if (isOpen) {

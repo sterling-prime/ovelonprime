@@ -522,6 +522,7 @@ export const translations: Record<Lang, any> = {
       back: "Back",
       next: "Continue",
       requestReview: "Request Operational Review",
+      submitError: "Failed to submit request. Please try again or contact support.",
       stepIndicator: "Step {{current}} of {{total}}",
       step1: {
         title: "Operational Context",
@@ -1159,6 +1160,7 @@ export const translations: Record<Lang, any> = {
       back: "Zurück",
       next: "Weiter",
       requestReview: "Operative Bewertung anfordern",
+      submitError: "Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder kontaktieren Sie den Support.",
       stepIndicator: "Schritt {{current}} von {{total}}",
       step1: {
         title: "Operativer Kontext",
@@ -1796,6 +1798,7 @@ export const translations: Record<Lang, any> = {
       back: "Retour",
       next: "Continuer",
       requestReview: "Demander une revue opérationnelle",
+      submitError: "Échec de l'envoi de la demande. Veuillez réessayer ou contacter le support.",
       stepIndicator: "Étape {{current}} sur {{total}}",
       step1: {
         title: "Contexte opérationnel",
@@ -2433,6 +2436,7 @@ export const translations: Record<Lang, any> = {
       back: "Wstecz",
       next: "Dalej",
       requestReview: "Zamów przegląd operacyjny",
+      submitError: "Nie udało się przesłać żądania. Spróbuj ponownie lub skontaktuj się z pomocą techniczną.",
       stepIndicator: "Krok {{current}} z {{total}}",
       step1: {
         title: "Kontekst operacyjny",
