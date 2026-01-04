@@ -1,102 +1,111 @@
 import { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
+type LanguageDropdownProps = {
+  forceBlack?: boolean;
+};
+
 const languages = [
-  { code: "EN", lang: "en" },
-  { code: "DE", lang: "de" },
-  { code: "FR", lang: "fr" },
-  { code: "PL", lang: "pl" },
+  { code: "EN", lang: "en", label: "English", flag: "🇬🇧" },
+  { code: "DE", lang: "de", label: "Deutsch", flag: "🇩🇪" },
+  { code: "FR", lang: "fr", label: "Français", flag: "🇫🇷" },
+  { code: "PL", lang: "pl", label: "Polski", flag: "🇵🇱" },
 ];
 
-export const LanguageDropdown = () => {
+export const LanguageDropdown = ({
+  forceBlack = false,
+}: LanguageDropdownProps) => {
   const { i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
-  const currentLang = languages.find((l) => l.lang === i18n.language) || languages[0];
+  const current =
+    languages.find((l) => l.lang === i18n.language) || languages[0];
 
-  const handleLanguageChange = (lang: (typeof languages)[0]) => {
-    i18n.changeLanguage(lang.lang);
-    setIsOpen(false);
-  };
-
-  // Close on outside click
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
         setIsOpen(false);
       }
     };
-
-    if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpen]);
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
 
   return (
-    <div ref={dropdownRef} className="relative">
-      {/* Trigger */}
+    <div ref={ref} className="relative">
+      {/* TRIGGER */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="
-          flex items-center gap-1
-          px-3 py-1.5
-          text-sm font-medium tracking-wide
-          text-gray-600
-          border-b border-transparent
-          hover:text-gray-900 hover:border-gray-400
-          transition-all duration-200
-        "
-        aria-expanded={isOpen}
         aria-haspopup="listbox"
+        aria-expanded={isOpen}
+        className={`
+          flex items-center gap-2
+          text-sm font-medium tracking-wide
+          transition-colors duration-200
+
+          ${
+            forceBlack
+              ? "!text-black hover:!text-black"
+              : "text-white/80 hover:text-white"
+          }
+        `}
       >
-        <span>{currentLang.code}</span>
+        <span className="text-base leading-none">{current.flag}</span>
+        <span>{current.code}</span>
+
         <svg
-          className={`h-3 w-3 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={2}
+          className={`h-3 w-3 transition-transform ${
+            isOpen ? "rotate-180" : ""
+          }`}
+          viewBox="0 0 20 20"
+          fill="currentColor"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          <path d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.7a.75.75 0 111.06 1.06l-4.24 4.25a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" />
         </svg>
       </button>
 
-      {/* Dropdown */}
+      {/* DROPDOWN */}
       <div
-        className={`
-          absolute right-0 top-full mt-2 z-50
-          min-w-[100px]
-          bg-white border border-gray-200
-          shadow-md
-          overflow-hidden
-          transition-all duration-200 origin-top
-          ${isOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"}
-        `}
         role="listbox"
+        className={`
+          absolute right-0 mt-3 z-50 min-w-[160px]
+          rounded-md shadow-xl transition-all origin-top
+          ${
+            isOpen
+              ? "opacity-100 scale-100"
+              : "opacity-0 scale-95 pointer-events-none"
+          }
+          ${
+            forceBlack
+              ? "bg-white border border-gray-200"
+              : "bg-[#111] border border-white/10"
+          }
+        `}
       >
-        {languages.map((lang) => (
+        {languages.map((l) => (
           <button
-            key={lang.code}
-            onClick={() => handleLanguageChange(lang)}
+            key={l.code}
+            onClick={() => {
+              i18n.changeLanguage(l.lang);
+              setIsOpen(false);
+            }}
             role="option"
-            aria-selected={currentLang.code === lang.code}
             className={`
-              w-full px-4 py-2.5
-              text-left text-sm font-medium tracking-wide
-              transition-colors duration-150
+              w-full px-4 py-2 flex items-center gap-3
+              text-sm transition-colors
               ${
-                currentLang.code === lang.code
-                  ? "bg-gray-100 text-gray-900"
-                  : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                forceBlack
+                  ? "!text-black hover:bg-gray-100"
+                  : "text-white/70 hover:text-white hover:bg-white/5"
               }
             `}
           >
-            {lang.code}
+            <span className="text-base">{l.flag}</span>
+            <span>{l.code}</span>
+            <span className="ml-auto text-xs opacity-60">
+              {l.label}
+            </span>
           </button>
         ))}
       </div>

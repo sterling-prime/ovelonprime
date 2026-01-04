@@ -12,6 +12,8 @@ import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { DemoSurface } from "@/components/demosurface";
 import { VideoSection } from "@/components/VideoSection";
+import { BackToTop } from "@/components/BackToTop";
+import { HeroScrollDown } from "@/components/HeroScrollDown";
 
 const Index = () => {
   return (
@@ -19,6 +21,7 @@ const Index = () => {
       <Navbar />
       <main>
         <Hero />
+        <HeroScrollDown />
         <VideoSection />
         <Services />
         <Sectors />
@@ -29,6 +32,7 @@ const Index = () => {
         <IndustrialTrustStrip />
         <Faq />
         <Contact />
+        <BackToTop />
       </main>
       <DemoSurface />
       <Footer />

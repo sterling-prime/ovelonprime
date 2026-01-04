@@ -62,6 +62,21 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
+        "chevron-float-up": {
+    "0%, 100%": {
+      transform: "translateY(0)",
+      opacity: "1",
+    },
+    "50%": {
+      transform: "translateY(3px)", // 👈 kleiner = rustiger
+      opacity: "0.9",               // 👈 subtieler
+    },
+  },
+        "chevron-down": {
+  "0%": { transform: "translateY(0)", opacity: "1" },
+  "50%": { transform: "translateY(6px)", opacity: "0.85" },
+  "100%": { transform: "translateY(0)", opacity: "1" },
+},
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -80,6 +95,10 @@ export default {
         },
       },
       animation: {
+        "chevron-float-up": "chevron-float-up 6.5s ease-in-out infinite",
+
+        "chevron-down": "chevron-down 3.5s ease-in-out infinite",
+
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.6s ease-out forwards",
@@ -93,3 +112,5 @@ export default {
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
+
+

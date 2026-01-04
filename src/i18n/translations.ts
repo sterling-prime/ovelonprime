@@ -28,7 +28,16 @@ type TrustItem = {
 
 export const translations: Record<Lang, any> = {
   /* ===================== EN ===================== */
+  
   en: {
+
+    backToTop: "Back to top",
+    explore: "Explore",
+
+    common: {
+    back: "Back",
+    },
+
     nav: {
       services: "Services",
       pricing: "Pricing",
@@ -48,8 +57,7 @@ export const translations: Record<Lang, any> = {
       subtitleMobile: "When coordination turns manual, control is already lost.",
       cta: "Take Back Control Over Operations",
       simulatorCta: "Simulate Project",
-      trustline:
-        "No rip-and-replace · No vendor lock-in · Operational outcomes first",
+      
     },
     video: {
       title: "Designed for uninterrupted operations",
@@ -660,6 +668,13 @@ export const translations: Record<Lang, any> = {
     },
   },
   de: {
+
+    backToTop: "Nach oben",
+    explore: "Entdecken",
+
+    common: {
+    back: "Zurück",
+    },
     nav: {
       services: "Leistungen",
       pricing: "Preise",
@@ -679,8 +694,7 @@ export const translations: Record<Lang, any> = {
       subtitleMobile: "Wenn Koordination manuell wird, ist die Kontrolle bereits verloren.",
       cta: "Kontrolle über den Betrieb zurückgewinnen",
       simulatorCta: "Projekt simulieren",
-      trustline:
-        "Kein Komplettersatz · Keine Anbieterabhängigkeit · Operative Ergebnisse zuerst",
+      
     },
     video: {
       title: "Konzipiert für unterbrechungsfreien Betrieb",
@@ -1291,6 +1305,13 @@ export const translations: Record<Lang, any> = {
     },
   },
   fr: {
+
+    backToTop: "Haut de page",
+    explore: "Explorer",
+
+    common: {
+    back: "Retour",
+    },
     nav: {
       services: "Services",
       pricing: "Tarifs",
@@ -1310,8 +1331,7 @@ export const translations: Record<Lang, any> = {
       subtitleMobile: "Lorsque la coordination devient manuelle, le contrôle est déjà perdu.",
       cta: "Reprenez le contrôle de vos opérations",
       simulatorCta: "Simuler le projet",
-      trustline:
-        "Pas de remplacement complet · Pas de dépendance fournisseur · Résultats opérationnels d'abord",
+
     },
     video: {
       title: "Conçu pour des opérations ininterrompues",
@@ -1922,6 +1942,13 @@ export const translations: Record<Lang, any> = {
     },
   },
   pl: {
+    
+    backToTop: "Do góry",
+    explore: "Odkryj",
+
+    common: {
+    back: "Wstecz",
+    },
     nav: {
       services: "Usługi",
       pricing: "Cennik",
@@ -1941,8 +1968,7 @@ export const translations: Record<Lang, any> = {
       subtitleMobile: "Gdy koordynacja staje się ręczna, kontrola jest już utracona.",
       cta: "Odzyskaj kontrolę nad operacjami",
       simulatorCta: "Symuluj projekt",
-      trustline:
-        "Bez całkowitej wymiany · Bez uzależnienia od dostawcy · Wyniki operacyjne na pierwszym miejscu",
+      
     },
     video: {
       title: "Zaprojektowane dla nieprzerwanego działania",

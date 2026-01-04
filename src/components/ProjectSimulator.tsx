@@ -49,6 +49,28 @@ export const ProjectSimulator = ({ isOpen, onClose }: ProjectSimulatorProps) => 
   const [data, setData] = useState<SimulatorData>(initialData);
   const totalSteps = 5;
 
+  const submitToServer = async () => {
+  try {
+    const res = await fetch("http://localhost:3001/api/request-review", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ data }),
+    });
+
+    if (!res.ok) {
+      throw new Error("Server error");
+    }
+
+    handleReset();
+    onClose();
+  } catch (err) {
+    console.error("SUBMIT ERROR:", err);
+    alert("Submission failed. Check console.");
+  }
+};
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -222,11 +244,11 @@ export const ProjectSimulator = ({ isOpen, onClose }: ProjectSimulatorProps) => 
               </Button>
             ) : (
               <Button
-                onClick={handleClose}
-                className="gap-2 bg-accent hover:bg-accent/90 text-accent-foreground"
-              >
-                {t("simulator.requestReview")}
-              </Button>
+  onClick={submitToServer}
+  className="gap-2 bg-accent hover:bg-accent/90 text-accent-foreground"
+>
+  {t("simulator.requestReview")}
+</Button>
             )}
           </div>
         </div>

@@ -43,7 +43,8 @@ export const Navbar = () => {
   useEffect(() => {
     const handler = () => setBookingOpen(true);
     window.addEventListener("open-booking-modal", handler);
-    return () => window.removeEventListener("open-booking-modal", handler);
+    return () =>
+      window.removeEventListener("open-booking-modal", handler);
   }, []);
 
   /* ------------------ NAVIGATION ------------------ */
@@ -61,16 +62,16 @@ export const Navbar = () => {
   const lightHeaderPages = ["/privacy", "/terms", "/intake", "/intake2"];
   const isLightHeaderPage = lightHeaderPages.includes(location.pathname);
 
+  const forceBlackHeader = scrolled || isOpen || isLightHeaderPage;
+
   return (
     <>
       {/* ================= HEADER ================= */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300
           ${
-            isOpen || isLightHeaderPage
-              ? "bg-gray-100 border-b border-gray-300/60"
-              : scrolled
-              ? "bg-white/95 backdrop-blur-sm border-b border-gray-300/60"
+            forceBlackHeader
+              ? "bg-white/95 backdrop-blur-sm border-b border-gray-200"
               : "bg-transparent"
           }
         `}
@@ -80,16 +81,23 @@ export const Navbar = () => {
 
             {/* LOGO DESKTOP */}
             <a href="/" className="hidden md:block">
-              <Logo size="md" forceBlack={scrolled || isLightHeaderPage} />
+              <Logo size="md" forceBlack={forceBlackHeader} />
             </a>
 
             {/* DESKTOP NAV */}
-            <nav className="hidden md:flex gap-8 absolute left-1/2 -translate-x-1/2">
+            <nav className="hidden md:flex gap-10 absolute left-1/2 -translate-x-1/2">
               {navLinks.map((link) => (
                 <button
                   key={link.section}
                   onClick={() => goToSection(link.section)}
-                  className="text-sm font-medium text-gray-900 hover:text-black transition"
+                  className="
+                    text-[16px]
+                    font-medium
+                    tracking-wide
+                    text-gray-700
+                    hover:text-gray-900
+                    transition-colors
+                  "
                 >
                   {link.label}
                 </button>
@@ -97,52 +105,46 @@ export const Navbar = () => {
             </nav>
 
             {/* DESKTOP ACTIONS */}
-<div className="hidden md:flex items-center gap-3 ml-auto">
-  <LanguageDropdown />
+            <div className="hidden md:flex items-center gap-4 ml-auto">
+              <LanguageDropdown forceBlack={forceBlackHeader} />
 
-  {/* VIEW DEMO — SECONDARY */}
-  <button
-    onClick={() =>
-      window.dispatchEvent(new Event("open-demo-surface"))
-    }
-    className="
-      px-4
-      py-2
-      rounded-md
-      border
-      border-gray-300
-      bg-gray-100
-      text-sm
-      font-medium
-      text-gray-900
-      transition
-      hover:bg-gray-200
-      active:bg-gray-200
-    "
-  >
-    {t("nav.viewDemo")}
-  </button>
+              {/* VIEW DEMO */}
+              <button
+                onClick={() =>
+                  window.dispatchEvent(new Event("open-demo-surface"))
+                }
+                className="
+                  px-4 py-2
+                  rounded-md
+                  border border-gray-300
+                  bg-gray-100
+                  text-[15px]
+                  font-medium
+                  text-gray-800
+                  transition
+                  hover:bg-gray-200
+                "
+              >
+                {t("nav.viewDemo")}
+              </button>
 
-  {/* PRIMARY CTA */}
-  <Button
-    size="sm"
-    onClick={() => setBookingOpen(true)}
-    className="
-      bg-slate-900
-      text-white
-      font-medium
-      px-4
-      py-2
-      rounded-md
-      transition-colors
-      hover:bg-[#3A8F94]
-      focus-visible:bg-[#3A8F94]
-    "
-  >
-    {t("nav.cta")}
-  </Button>
-</div>
-
+              {/* PRIMARY CTA */}
+              <Button
+                size="sm"
+                onClick={() => setBookingOpen(true)}
+                className="
+                  bg-slate-900
+                  text-white
+                  font-medium
+                  px-4 py-2
+                  rounded-md
+                  transition-colors
+                  hover:bg-[#3A8F94]
+                "
+              >
+                {t("nav.cta")}
+              </Button>
+            </div>
 
             {/* MOBILE HEADER */}
             <div className="md:hidden flex items-center w-full relative">
@@ -150,19 +152,18 @@ export const Navbar = () => {
                 href="/"
                 className="absolute left-1/2 -translate-x-1/2"
               >
-                <Logo size="sm" forceBlack={scrolled || isOpen || isLightHeaderPage} />
+                <Logo size="sm" forceBlack={forceBlackHeader} />
               </a>
 
-              {/* HAMBURGER / CLOSE */}
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 aria-label="Toggle menu"
-                className="ml-auto p-2 rounded-md bg-transparent"
+                className="ml-auto p-2 rounded-md"
               >
                 {isOpen ? (
-                  <X className="h-6 w-6 text-slate-900" />
+                  <X className="h-6 w-6 text-gray-900" />
                 ) : (
-                  <Menu className="h-6 w-6 text-slate-900" />
+                  <Menu className="h-6 w-6 text-gray-900" />
                 )}
               </button>
             </div>
@@ -172,7 +173,7 @@ export const Navbar = () => {
 
       {/* ================= MOBILE DROPDOWN ================= */}
       {isOpen && (
-        <div className="md:hidden fixed top-16 left-0 right-0 z-40 bg-gray-100 border-t border-gray-300/60">
+        <div className="md:hidden fixed top-16 left-0 right-0 z-40 bg-white border-t border-gray-200">
           <div className="px-6 py-8 flex flex-col gap-10">
 
             {/* NAV LINKS */}
@@ -184,43 +185,42 @@ export const Navbar = () => {
                     goToSection(link.section);
                     setIsOpen(false);
                   }}
-                  className="text-left text-2xl font-medium text-gray-900"
+                  className="
+                    text-left
+                    text-[22px]
+                    font-medium
+                    tracking-wide
+                    text-gray-800
+                  "
                 >
                   {link.label}
                 </button>
               ))}
             </div>
 
-            {/* LANGUAGE */}
-            <LanguageDropdown />
+            {/* LANGUAGE — ALWAYS BLACK ON MOBILE */}
+            <LanguageDropdown forceBlack />
 
-            {/* VIEW DEMO — CENTERED */}
-            <div className="flex justify-center">
-              <button
-                onClick={() => {
-                  window.dispatchEvent(new Event("open-demo-surface"));
-                  setIsOpen(false);
-                }}
-                className="
-                  w-full
-                  max-w-sm
-                  py-3
-                  rounded-xl
-                  border
-                  border-gray-300
-                  bg-gray-200
-                  text-gray-900
-                  text-base
-                  font-medium
-                  text-center
-                  transition
-                  hover:bg-gray-300
-                  active:bg-gray-300
-                "
-              >
-                {t("nav.viewDemo")}
-              </button>
-            </div>
+            {/* VIEW DEMO */}
+            <button
+              onClick={() => {
+                window.dispatchEvent(new Event("open-demo-surface"));
+                setIsOpen(false);
+              }}
+              className="
+                w-full
+                py-3
+                rounded-xl
+                border border-gray-300
+                bg-gray-100
+                text-[15px]
+                font-medium
+                text-gray-800
+                hover:bg-gray-200
+              "
+            >
+              {t("nav.viewDemo")}
+            </button>
 
             {/* PRIMARY CTA */}
             <Button
@@ -233,10 +233,7 @@ export const Navbar = () => {
                 tracking-wide
                 rounded-xl
                 py-4
-                transition-colors
                 hover:bg-[#3A8F94]
-                active:bg-[#3A8F94]
-                focus-visible:bg-[#3A8F94]
               "
               onClick={() => {
                 setBookingOpen(true);
@@ -249,7 +246,6 @@ export const Navbar = () => {
         </div>
       )}
 
-      {/* ================= BOOKING MODAL ================= */}
       <BookingModal
         isOpen={bookingOpen}
         onClose={() => setBookingOpen(false)}

@@ -114,12 +114,7 @@ export const Hero = () => {
               </Button>
             </div>
 
-            {/* ===== Trust line ===== */}
-            <div className="pt-10 animate-fade-in opacity-0 [animation-delay:420ms]">
-              <p className="inline-block text-sm font-semibold tracking-widest text-foreground/80 border-b border-foreground/40 pb-1">
-                {t("hero.trustline")}
-              </p>
-            </div>
+          
 
           </div>
         </div>

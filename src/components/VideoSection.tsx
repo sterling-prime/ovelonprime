@@ -1,12 +1,29 @@
 import Video from "@/assets/Intro.mp4";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
+import { useEffect, useRef } from "react";
 
 export const VideoSection = () => {
   const { t } = useTranslation();
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    const handler = () => {
+      videoRef.current?.play().catch(() => {
+        // iOS / browser safety — ignore silently
+      });
+    };
+
+    window.addEventListener("play-hero-video", handler);
+    return () =>
+      window.removeEventListener("play-hero-video", handler);
+  }, []);
 
   return (
-    <section className="relative pt-24 pb-8 bg-background">
+    <section
+      id="video-section"
+      className="relative pt-24 pb-8 bg-background"
+    >
       <div className="container mx-auto px-6 max-w-6xl">
 
         {/* Heading */}
@@ -22,6 +39,7 @@ export const VideoSection = () => {
         {/* Video */}
         <div className="w-full flex justify-center bg-black rounded-xl overflow-hidden">
           <video
+            ref={videoRef}
             src={Video}
             className="max-w-full h-auto"
             controls
