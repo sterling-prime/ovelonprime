@@ -1,6 +1,7 @@
 import { useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { ArrowLeft } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 
@@ -8,6 +9,7 @@ const FORM_URL = "https://cal.com/forms/483bf917-72c7-4e94-b500-6c5add086695";
 
 const Intake = () => {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const { i18n, t } = useTranslation();
 
   // Set language from URL param if provided
@@ -23,6 +25,15 @@ const Intake = () => {
     window.scrollTo({ top: 0, behavior: "auto" });
   }, []);
 
+  // Back navigation (same as Privacy)
+  const goBack = () => {
+    if (window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate("/");
+    }
+  };
+
   // Map language for cal.com
   const calLocale = i18n.language === "en" ? "en" : i18n.language;
   const formUrlWithLang = `${FORM_URL}?locale=${calLocale}`;
@@ -33,6 +44,36 @@ const Intake = () => {
 
       <main className="pt-28 pb-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+
+          {/* BACK BUTTON */}
+          <div className="mb-8">
+            <button
+              onClick={goBack}
+              aria-label={t("common.back")}
+              className="
+                group
+                inline-flex
+                items-center
+                gap-2
+                text-sm
+                font-medium
+                text-slate-600
+                hover:text-slate-900
+                transition-colors
+              "
+            >
+              <ArrowLeft
+                className="
+                  h-4
+                  w-4
+                  transition-transform
+                  duration-200
+                  group-hover:-translate-x-1
+                "
+              />
+              {t("common.back")}
+            </button>
+          </div>
 
           {/* PAGE HEADER */}
           <div className="text-center mb-14">

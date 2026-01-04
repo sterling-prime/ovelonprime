@@ -13,6 +13,7 @@ import NotFound from "./pages/NotFound";
 
 import { CalInit } from "@/components/CalInit";
 import { CookieConsent } from "@/components/CookieConsent";
+import { DemoSurface } from "@/components/demosurface";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => (
       <CalInit />
 
       <BrowserRouter>
+        {/* ROUTES */}
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/privacy" element={<Privacy />} />
@@ -34,8 +36,11 @@ const App = () => (
           <Route path="/intake2" element={<Intake2 />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-        
-        {/* Cookie Consent Banner */}
+
+        {/* GLOBAL OVERLAYS — ALWAYS MOUNTED */}
+        <DemoSurface />
+
+        {/* COOKIE CONSENT */}
         <CookieConsent />
       </BrowserRouter>
     </TooltipProvider>

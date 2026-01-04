@@ -14,6 +14,8 @@ import { DemoSurface } from "@/components/demosurface";
 import { VideoSection } from "@/components/VideoSection";
 import { BackToTop } from "@/components/BackToTop";
 import { HeroScrollDown } from "@/components/HeroScrollDown";
+import { OperationalGovernanceTrends } from "@/components/operationalgovernancetrends";
+
 
 const Index = () => {
   return (
@@ -30,6 +32,7 @@ const Index = () => {
         <Testimonials />
         <OperationalTrust />
         <IndustrialTrustStrip />
+        <OperationalGovernanceTrends />
         <Faq />
         <Contact />
         <BackToTop />
