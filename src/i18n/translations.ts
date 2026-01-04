@@ -56,7 +56,7 @@ export const translations: Record<Lang, any> = {
         "We restore predictable, disciplined execution inside live operations — without replacing core systems or disrupting daily workflows.",
       subtitleMobile: "When coordination turns manual, control is already lost.",
       cta: "Take Back Control Over Operations",
-      simulatorCta: "Simulate Project",
+      simulatorCta: "Demand & Execution Intake",
       
     },
     video: {
@@ -694,7 +694,7 @@ export const translations: Record<Lang, any> = {
         "Wir stellen vorhersehbare, disziplinierte Ausführung in laufenden Betrieben wieder her — ohne Kernsysteme zu ersetzen oder tägliche Arbeitsabläufe zu stören.",
       subtitleMobile: "Wenn Koordination manuell wird, ist die Kontrolle bereits verloren.",
       cta: "Kontrolle über den Betrieb zurückgewinnen",
-      simulatorCta: "Projekt simulieren",
+      simulatorCta: "Bedarfs- & Ausführungsaufnahme",
       
     },
     video: {
@@ -1332,7 +1332,7 @@ export const translations: Record<Lang, any> = {
         "Nous restaurons une exécution prévisible et disciplinée au sein des opérations en cours — sans remplacer les systèmes de base ni perturber les flux de travail quotidiens.",
       subtitleMobile: "Lorsque la coordination devient manuelle, le contrôle est déjà perdu.",
       cta: "Reprenez le contrôle de vos opérations",
-      simulatorCta: "Simuler le projet",
+      simulatorCta: "Prise en charge Demande & Exécution",
 
     },
     video: {
@@ -1970,7 +1970,7 @@ export const translations: Record<Lang, any> = {
         "Przywracamy przewidywalne, zdyscyplinowane wykonanie w ramach działających operacji — bez wymiany podstawowych systemów ani zakłócania codziennych procesów.",
       subtitleMobile: "Gdy koordynacja staje się ręczna, kontrola jest już utracona.",
       cta: "Odzyskaj kontrolę nad operacjami",
-      simulatorCta: "Symuluj projekt",
+      simulatorCta: "Przyjęcie zapotrzebowania i realizacji",
       
     },
     video: {
