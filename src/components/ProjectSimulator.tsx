@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { useTranslation } from "react-i18next";
-import { X, ChevronRight, ChevronLeft, Building2, Wrench, AlertTriangle, Shield, FileText } from "lucide-react";
+import { X, ChevronRight, ChevronLeft, Building2, Wrench, AlertTriangle, Shield, FileText, ClipboardCheck, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -26,7 +26,14 @@ type SimulatorData = {
   downtimeSensitivity: string;
   safetyCompliance: string[];
   coordinationComplexity: string;
-  // Step 5 is summary only
+  // Step 7 - Personal & Company Details
+  fullName: string;
+  email: string;
+  phone: string;
+  companyName: string;
+  role: string;
+  country: string;
+  city: string;
 };
 
 const initialData: SimulatorData = {
@@ -41,24 +48,186 @@ const initialData: SimulatorData = {
   downtimeSensitivity: "",
   safetyCompliance: [],
   coordinationComplexity: "",
+  fullName: "",
+  email: "",
+  phone: "",
+  companyName: "",
+  role: "",
+  country: "",
+  city: "",
 };
 
 export const ProjectSimulator = ({ isOpen, onClose }: ProjectSimulatorProps) => {
   const { t } = useTranslation();
   const [currentStep, setCurrentStep] = useState(1);
   const [data, setData] = useState<SimulatorData>(initialData);
-  const totalSteps = 5;
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const totalSteps = 7;
+
+  // Generate operational analysis based on collected data
+  const generateOperationalAnalysis = () => {
+    const analysis = {
+      operationalObservations: generateObservations(),
+      riskExposure: generateRiskAssessment(),
+      executionReadiness: generateReadinessAssessment(),
+      advisoryDirection: generateAdvisoryDirection(),
+    };
+    return analysis;
+  };
+
+  const generateObservations = () => {
+    const observations: string[] = [];
+    
+    // Industry context
+    if (data.industry) {
+      observations.push(t(`simulator.analysis.observations.industry.${data.industry}`));
+    }
+    
+    // Scale implications
+    if (data.scale) {
+      observations.push(t(`simulator.analysis.observations.scale.${data.scale}`));
+    }
+    
+    // Structure level implications
+    if (data.structureLevel) {
+      observations.push(t(`simulator.analysis.observations.structure.${data.structureLevel}`));
+    }
+    
+    // Tools landscape
+    if (data.toolsInUse.length > 0) {
+      if (data.toolsInUse.includes("fragmented")) {
+        observations.push(t("simulator.analysis.observations.tools.fragmented"));
+      } else if (data.toolsInUse.includes("manual")) {
+        observations.push(t("simulator.analysis.observations.tools.manual"));
+      }
+    }
+    
+    return observations;
+  };
+
+  const generateRiskAssessment = () => {
+    const risks: string[] = [];
+    
+    // Predictability risks
+    if (data.frictionPoints.includes("inconsistentExecution") || data.frictionPoints.includes("unclearOwnership")) {
+      risks.push(t("simulator.analysis.risks.predictability"));
+    }
+    
+    // Coordination risks
+    if (data.frictionPoints.includes("manualCoordination") || data.frictionPoints.includes("communicationBreakdown")) {
+      risks.push(t("simulator.analysis.risks.coordination"));
+    }
+    
+    // Downtime exposure
+    if (data.downtimeSensitivity === "critical" || data.downtimeSensitivity === "high") {
+      risks.push(t("simulator.analysis.risks.downtime"));
+    }
+    
+    // Compliance exposure
+    if (data.safetyCompliance.length > 0 && data.structureLevel !== "fullyStructured") {
+      risks.push(t("simulator.analysis.risks.compliance"));
+    }
+    
+    // Escalation risks
+    if (data.frictionPoints.includes("escalationDelays") || data.frictionPoints.includes("lackVisibility")) {
+      risks.push(t("simulator.analysis.risks.escalation"));
+    }
+    
+    return risks;
+  };
+
+  const generateReadinessAssessment = () => {
+    let score = 0;
+    let maxScore = 5;
+    
+    // Structure adds readiness
+    if (data.structureLevel === "fullyStructured") score += 2;
+    else if (data.structureLevel === "semiStructured") score += 1;
+    
+    // Integrated tools add readiness
+    if (data.toolsInUse.includes("integrated")) score += 1;
+    if (data.toolsInUse.includes("semiAutomated")) score += 0.5;
+    
+    // Complexity reduces readiness
+    if (data.coordinationComplexity === "simple" || data.coordinationComplexity === "moderate") score += 1;
+    
+    // Fewer friction points indicate readiness
+    if (data.frictionPoints.length <= 2) score += 0.5;
+    
+    const percentage = Math.round((score / maxScore) * 100);
+    
+    if (percentage >= 70) return t("simulator.analysis.readiness.high");
+    if (percentage >= 40) return t("simulator.analysis.readiness.moderate");
+    return t("simulator.analysis.readiness.low");
+  };
+
+  const generateAdvisoryDirection = () => {
+    const directions: string[] = [];
+    
+    // Based on primary friction points
+    if (data.frictionPoints.includes("unclearOwnership") || data.frictionPoints.includes("manualCoordination")) {
+      directions.push(t("simulator.analysis.advisory.ownership"));
+    }
+    
+    if (data.frictionPoints.includes("inconsistentExecution") || data.structureLevel === "adhoc") {
+      directions.push(t("simulator.analysis.advisory.standardization"));
+    }
+    
+    if (data.frictionPoints.includes("escalationDelays") || data.frictionPoints.includes("slowResponse")) {
+      directions.push(t("simulator.analysis.advisory.escalation"));
+    }
+    
+    if (data.safetyCompliance.length > 0) {
+      directions.push(t("simulator.analysis.advisory.compliance"));
+    }
+    
+    if (data.scale === "multi" || data.scale === "distributed") {
+      directions.push(t("simulator.analysis.advisory.scale"));
+    }
+    
+    return directions.slice(0, 3); // Max 3 directions
+  };
 
   const submitToServer = async () => {
     const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
     
+    setIsSubmitting(true);
+    
     try {
+      const analysis = generateOperationalAnalysis();
+      
+      const payload = {
+        operationalData: {
+          industry: data.industry,
+          operationType: data.operationType,
+          scale: data.scale,
+          requestHandling: data.requestHandling,
+          structureLevel: data.structureLevel,
+          toolsInUse: data.toolsInUse,
+          frictionPoints: data.frictionPoints,
+          frictionNotes: data.frictionNotes,
+          downtimeSensitivity: data.downtimeSensitivity,
+          safetyCompliance: data.safetyCompliance,
+          coordinationComplexity: data.coordinationComplexity,
+        },
+        contactDetails: {
+          fullName: data.fullName,
+          email: data.email,
+          phone: data.phone,
+          companyName: data.companyName,
+          role: data.role,
+          country: data.country,
+          city: data.city,
+        },
+        analysis,
+      };
+      
       const res = await fetch(`${API_URL}/api/request-review`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ data }),
+        body: JSON.stringify({ data: payload }),
       });
 
       if (!res.ok) {
@@ -71,6 +240,8 @@ export const ProjectSimulator = ({ isOpen, onClose }: ProjectSimulatorProps) => 
     } catch (err) {
       console.error("SUBMIT ERROR:", err);
       alert(t("simulator.submitError"));
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -120,9 +291,22 @@ export const ProjectSimulator = ({ isOpen, onClose }: ProjectSimulatorProps) => 
     setData((prev) => ({ ...prev, [field]: value }));
   };
 
+  // Validate Step 7 form
+  const isStep7Valid = () => {
+    return (
+      data.fullName.trim() !== "" &&
+      data.email.trim() !== "" &&
+      data.phone.trim() !== "" &&
+      data.companyName.trim() !== "" &&
+      data.role.trim() !== "" &&
+      data.country.trim() !== "" &&
+      data.city.trim() !== ""
+    );
+  };
+
   if (!isOpen) return null;
 
-  const stepIcons = [Building2, Wrench, AlertTriangle, Shield, FileText];
+  const stepIcons = [Building2, Wrench, AlertTriangle, Shield, FileText, ClipboardCheck, User];
 
   return createPortal(
     <div className="fixed inset-0 z-[9999] flex items-center justify-center">
@@ -226,6 +410,14 @@ export const ProjectSimulator = ({ isOpen, onClose }: ProjectSimulatorProps) => 
             />
           )}
           {currentStep === 5 && <Step5 data={data} t={t} />}
+          {currentStep === 6 && <Step6 data={data} t={t} generateAnalysis={generateOperationalAnalysis} />}
+          {currentStep === 7 && (
+            <Step7
+              data={data}
+              onSet={setSingleValue}
+              t={t}
+            />
+          )}
         </div>
 
         {/* Footer */}
@@ -247,11 +439,12 @@ export const ProjectSimulator = ({ isOpen, onClose }: ProjectSimulatorProps) => 
               </Button>
             ) : (
               <Button
-  onClick={submitToServer}
-  className="gap-2 bg-accent hover:bg-accent/90 text-accent-foreground"
->
-  {t("simulator.requestReview")}
-</Button>
+                onClick={submitToServer}
+                disabled={!isStep7Valid() || isSubmitting}
+                className="gap-2 bg-accent hover:bg-accent/90 text-accent-foreground disabled:opacity-50"
+              >
+                {isSubmitting ? t("simulator.submitting") : t("simulator.requestReview")}
+              </Button>
             )}
           </div>
         </div>
@@ -691,6 +884,239 @@ const Step5 = ({ data, t }: { data: SimulatorData; t: (key: string, options?: an
       <div className="p-4 rounded-lg bg-muted/30 border border-border">
         <p className="text-xs text-muted-foreground leading-relaxed">
           {t("simulator.step5.disclaimer")}
+        </p>
+      </div>
+    </div>
+  );
+};
+
+// Step 6: Operational Analysis
+const Step6 = ({ 
+  data, 
+  t, 
+  generateAnalysis 
+}: { 
+  data: SimulatorData; 
+  t: (key: string, options?: any) => string;
+  generateAnalysis: () => {
+    operationalObservations: string[];
+    riskExposure: string[];
+    executionReadiness: string;
+    advisoryDirection: string[];
+  };
+}) => {
+  const analysis = generateAnalysis();
+  const hasData = data.industry || data.operationType.length > 0;
+
+  return (
+    <div className="space-y-6">
+      <p className="text-muted-foreground">{t("simulator.step6.description")}</p>
+
+      {!hasData ? (
+        <div className="p-6 rounded-lg bg-muted/50 text-center">
+          <p className="text-muted-foreground">{t("simulator.step6.noData")}</p>
+        </div>
+      ) : (
+        <div className="space-y-6">
+          {/* Operational Observations */}
+          {analysis.operationalObservations.length > 0 && (
+            <div className="p-4 rounded-lg border border-border bg-card">
+              <h4 className="text-sm font-semibold text-foreground mb-3">
+                {t("simulator.step6.observationsTitle")}
+              </h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                {analysis.operationalObservations.map((obs, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <span className="text-accent mt-1">•</span>
+                    <span>{obs}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Risk & Exposure Areas */}
+          {analysis.riskExposure.length > 0 && (
+            <div className="p-4 rounded-lg border border-destructive/30 bg-destructive/5">
+              <h4 className="text-sm font-semibold text-foreground mb-3">
+                {t("simulator.step6.risksTitle")}
+              </h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                {analysis.riskExposure.map((risk, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <AlertTriangle className="w-4 h-4 text-destructive mt-0.5 flex-shrink-0" />
+                    <span>{risk}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Execution Readiness */}
+          <div className="p-4 rounded-lg border border-border bg-card">
+            <h4 className="text-sm font-semibold text-foreground mb-3">
+              {t("simulator.step6.readinessTitle")}
+            </h4>
+            <p className="text-sm text-muted-foreground">{analysis.executionReadiness}</p>
+          </div>
+
+          {/* Advisory Direction */}
+          {analysis.advisoryDirection.length > 0 && (
+            <div className="p-4 rounded-lg border border-accent/30 bg-accent/5">
+              <h4 className="text-sm font-semibold text-foreground mb-3">
+                {t("simulator.step6.advisoryTitle")}
+              </h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                {analysis.advisoryDirection.map((dir, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <span className="text-accent mt-1">→</span>
+                    <span>{dir}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Disclaimer */}
+      <div className="p-4 rounded-lg bg-muted/30 border border-border">
+        <p className="text-xs text-muted-foreground leading-relaxed">
+          {t("simulator.step6.disclaimer")}
+        </p>
+      </div>
+    </div>
+  );
+};
+
+// Step 7: Personal & Company Details
+const Step7 = ({ 
+  data, 
+  onSet, 
+  t 
+}: { 
+  data: SimulatorData; 
+  onSet: (field: keyof SimulatorData, value: string) => void;
+  t: (key: string, options?: any) => string;
+}) => {
+  return (
+    <div className="space-y-6">
+      <p className="text-muted-foreground">{t("simulator.step7.description")}</p>
+
+      {/* Personal Details */}
+      <div className="p-4 rounded-lg border border-border bg-card">
+        <h4 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+          <User className="w-4 h-4 text-accent" />
+          {t("simulator.step7.personalTitle")}
+        </h4>
+        <div className="space-y-4">
+          <div>
+            <label className="text-sm font-medium text-foreground block mb-1.5">
+              {t("simulator.step7.fullName")} *
+            </label>
+            <input
+              type="text"
+              value={data.fullName}
+              onChange={(e) => onSet("fullName", e.target.value)}
+              placeholder={t("simulator.step7.fullNamePlaceholder")}
+              className="w-full px-4 py-2.5 rounded-lg border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
+            />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="text-sm font-medium text-foreground block mb-1.5">
+                {t("simulator.step7.email")} *
+              </label>
+              <input
+                type="email"
+                value={data.email}
+                onChange={(e) => onSet("email", e.target.value)}
+                placeholder={t("simulator.step7.emailPlaceholder")}
+                className="w-full px-4 py-2.5 rounded-lg border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
+              />
+            </div>
+            <div>
+              <label className="text-sm font-medium text-foreground block mb-1.5">
+                {t("simulator.step7.phone")} *
+              </label>
+              <input
+                type="tel"
+                value={data.phone}
+                onChange={(e) => onSet("phone", e.target.value)}
+                placeholder={t("simulator.step7.phonePlaceholder")}
+                className="w-full px-4 py-2.5 rounded-lg border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Company Details */}
+      <div className="p-4 rounded-lg border border-border bg-card">
+        <h4 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+          <Building2 className="w-4 h-4 text-accent" />
+          {t("simulator.step7.companyTitle")}
+        </h4>
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="text-sm font-medium text-foreground block mb-1.5">
+                {t("simulator.step7.companyName")} *
+              </label>
+              <input
+                type="text"
+                value={data.companyName}
+                onChange={(e) => onSet("companyName", e.target.value)}
+                placeholder={t("simulator.step7.companyNamePlaceholder")}
+                className="w-full px-4 py-2.5 rounded-lg border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
+              />
+            </div>
+            <div>
+              <label className="text-sm font-medium text-foreground block mb-1.5">
+                {t("simulator.step7.role")} *
+              </label>
+              <input
+                type="text"
+                value={data.role}
+                onChange={(e) => onSet("role", e.target.value)}
+                placeholder={t("simulator.step7.rolePlaceholder")}
+                className="w-full px-4 py-2.5 rounded-lg border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
+              />
+            </div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="text-sm font-medium text-foreground block mb-1.5">
+                {t("simulator.step7.country")} *
+              </label>
+              <input
+                type="text"
+                value={data.country}
+                onChange={(e) => onSet("country", e.target.value)}
+                placeholder={t("simulator.step7.countryPlaceholder")}
+                className="w-full px-4 py-2.5 rounded-lg border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
+              />
+            </div>
+            <div>
+              <label className="text-sm font-medium text-foreground block mb-1.5">
+                {t("simulator.step7.city")} *
+              </label>
+              <input
+                type="text"
+                value={data.city}
+                onChange={(e) => onSet("city", e.target.value)}
+                placeholder={t("simulator.step7.cityPlaceholder")}
+                className="w-full px-4 py-2.5 rounded-lg border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Required Fields Note */}
+      <div className="p-4 rounded-lg bg-muted/30 border border-border">
+        <p className="text-xs text-muted-foreground leading-relaxed">
+          {t("simulator.step7.requiredNote")}
         </p>
       </div>
     </div>
