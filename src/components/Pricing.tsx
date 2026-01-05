@@ -47,7 +47,7 @@ export const Pricing = () => {
       key: "focused",
       name: t("pricing.focused.name"),
       description: t("pricing.focused.description"),
-      price: "$3,499",
+      price: "$4,999",
       priceLabel: t("pricing.focused.priceLabel"),
       period: t("pricing.focused.period"),
       features: t("pricing.focused.features", {
