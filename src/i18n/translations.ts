@@ -581,7 +581,6 @@ export const translations: Record<Lang, any> = {
         facility: "Facility Management",
         infrastructure: "Infrastructure",
         energy: "Energy & Utilities",
-        healthcare: "Healthcare",
         other: "Other",
       },
       operationTypes: {
@@ -706,7 +705,6 @@ export const translations: Record<Lang, any> = {
             facility: "Facility management operations span multiple service categories and require coordination across internal teams and external contractors.",
             infrastructure: "Infrastructure operations often involve geographically distributed assets with varying maintenance requirements and regulatory oversight.",
             energy: "Energy sector operations require strict adherence to safety protocols, regulatory compliance, and continuous monitoring of critical systems.",
-            healthcare: "Healthcare operations demand precision, compliance with health regulations, and coordination across clinical and administrative functions.",
             other: "Operations span multiple domains with varying requirements for coordination, compliance, and execution control.",
           },
           scale: {
@@ -744,6 +742,14 @@ export const translations: Record<Lang, any> = {
           scale: "For multi-site or distributed operations, prioritize mechanisms that ensure consistency and visibility across locations.",
         },
       },
+    },
+    submission: {
+      title: "Submission Received",
+      body1: "Your operational review has been submitted successfully.",
+      body2: "Our team will carefully review your request and follow up accordingly.",
+      body3: "To accelerate next steps, you may schedule a strategic consultation below.",
+      scheduleBtn: "Schedule Strategic Consultation",
+      closeBtn: "Close",
     },
   },
   de: {
@@ -1297,7 +1303,6 @@ export const translations: Record<Lang, any> = {
         facility: "Gebäudemanagement",
         infrastructure: "Infrastruktur",
         energy: "Energie & Versorgung",
-        healthcare: "Gesundheitswesen",
         other: "Andere",
       },
       operationTypes: {
@@ -1422,7 +1427,6 @@ export const translations: Record<Lang, any> = {
             facility: "Facility-Management-Operationen umfassen mehrere Servicekategorien und erfordern Koordination zwischen internen Teams und externen Auftragnehmern.",
             infrastructure: "Infrastrukturoperationen umfassen oft geografisch verteilte Anlagen mit unterschiedlichen Wartungsanforderungen und behördlicher Aufsicht.",
             energy: "Energiesektoroperationen erfordern strikte Einhaltung von Sicherheitsprotokollen, regulatorische Compliance und kontinuierliche Überwachung kritischer Systeme.",
-            healthcare: "Gesundheitsoperationen erfordern Präzision, Einhaltung von Gesundheitsvorschriften und Koordination zwischen klinischen und administrativen Funktionen.",
             other: "Operationen erstrecken sich über mehrere Bereiche mit unterschiedlichen Anforderungen an Koordination, Compliance und Ausführungskontrolle.",
           },
           scale: {
@@ -1460,6 +1464,14 @@ export const translations: Record<Lang, any> = {
           scale: "Für Multi-Site- oder verteilte Operationen priorisieren Sie Mechanismen, die Konsistenz und Sichtbarkeit über Standorte hinweg gewährleisten.",
         },
       },
+    },
+    submission: {
+      title: "Anfrage eingereicht",
+      body1: "Ihre operative Überprüfung wurde erfolgreich eingereicht.",
+      body2: "Unser Team wird Ihre Anfrage sorgfältig prüfen und entsprechend nachfassen.",
+      body3: "Um die nächsten Schritte zu beschleunigen, können Sie unten eine strategische Beratung vereinbaren.",
+      scheduleBtn: "Strategische Beratung vereinbaren",
+      closeBtn: "Schließen",
     },
   },
   fr: {
@@ -2013,7 +2025,6 @@ export const translations: Record<Lang, any> = {
         facility: "Gestion des installations",
         infrastructure: "Infrastructure",
         energy: "Énergie et services publics",
-        healthcare: "Santé",
         other: "Autre",
       },
       operationTypes: {
@@ -2138,7 +2149,6 @@ export const translations: Record<Lang, any> = {
             facility: "Les opérations de gestion des installations couvrent plusieurs catégories de services et nécessitent une coordination entre les équipes internes et les sous-traitants externes.",
             infrastructure: "Les opérations d'infrastructure impliquent souvent des actifs géographiquement distribués avec des exigences de maintenance variables et une supervision réglementaire.",
             energy: "Les opérations du secteur énergétique exigent le strict respect des protocoles de sécurité, la conformité réglementaire et la surveillance continue des systèmes critiques.",
-            healthcare: "Les opérations de santé exigent précision, conformité aux réglementations sanitaires et coordination entre les fonctions cliniques et administratives.",
             other: "Les opérations couvrent plusieurs domaines avec des exigences variables en matière de coordination, conformité et contrôle d'exécution.",
           },
           scale: {
@@ -2176,6 +2186,14 @@ export const translations: Record<Lang, any> = {
           scale: "Pour les opérations multi-sites ou distribuées, priorisez les mécanismes qui assurent la cohérence et la visibilité entre les sites.",
         },
       },
+    },
+    submission: {
+      title: "Demande reçue",
+      body1: "Votre évaluation opérationnelle a été soumise avec succès.",
+      body2: "Notre équipe examinera attentivement votre demande et vous recontactera en conséquence.",
+      body3: "Pour accélérer les prochaines étapes, vous pouvez planifier une consultation stratégique ci-dessous.",
+      scheduleBtn: "Planifier une consultation stratégique",
+      closeBtn: "Fermer",
     },
   },
   pl: {
@@ -2729,7 +2747,6 @@ export const translations: Record<Lang, any> = {
         facility: "Zarządzanie obiektami",
         infrastructure: "Infrastruktura",
         energy: "Energetyka",
-        healthcare: "Opieka zdrowotna",
         other: "Inne",
       },
       operationTypes: {
@@ -2854,7 +2871,6 @@ export const translations: Record<Lang, any> = {
             facility: "Operacje zarządzania obiektami obejmują wiele kategorii usług i wymagają koordynacji między zespołami wewnętrznymi a zewnętrznymi wykonawcami.",
             infrastructure: "Operacje infrastrukturalne często obejmują geograficznie rozproszone zasoby o różnych wymaganiach konserwacyjnych i nadzorze regulacyjnym.",
             energy: "Operacje sektora energetycznego wymagają ścisłego przestrzegania protokołów bezpieczeństwa, zgodności regulacyjnej i ciągłego monitorowania krytycznych systemów.",
-            healthcare: "Operacje opieki zdrowotnej wymagają precyzji, zgodności z przepisami zdrowotnymi i koordynacji między funkcjami klinicznymi a administracyjnymi.",
             other: "Operacje obejmują wiele domen o różnych wymaganiach dotyczących koordynacji, zgodności i kontroli wykonania.",
           },
           scale: {
@@ -2892,6 +2908,14 @@ export const translations: Record<Lang, any> = {
           scale: "Dla operacji wielolokalizacyjnych lub rozproszonych priorytetowo traktuj mechanizmy zapewniające spójność i widoczność w różnych lokalizacjach.",
         },
       },
+    },
+    submission: {
+      title: "Zgłoszenie otrzymane",
+      body1: "Twoja ocena operacyjna została pomyślnie przesłana.",
+      body2: "Nasz zespół dokładnie przeanalizuje Twoją prośbę i odpowiednio się z Tobą skontaktuje.",
+      body3: "Aby przyspieszyć kolejne kroki, możesz umówić się na konsultację strategiczną poniżej.",
+      scheduleBtn: "Umów konsultację strategiczną",
+      closeBtn: "Zamknij",
     },
   },
 };

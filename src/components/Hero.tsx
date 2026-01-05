@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import heroBg from "@/assets/u3714841198_Sleek_minimalistic_abstract_visual_inspired_by_he_53bffa3d-7c36-4acb-858b-afa6bbf35d2a_0.png";
 import { ProjectSimulator } from "./ProjectSimulator";
+import { HeroScrollDown } from "./HeroScrollDown";
 
 export const Hero = () => {
   const { t } = useTranslation();
@@ -118,6 +119,9 @@ export const Hero = () => {
 
           </div>
         </div>
+
+        {/* Scroll Down Arrow - inside Hero for proper absolute positioning */}
+        <HeroScrollDown />
       </section>
 
       {/* Project Simulator Modal */}

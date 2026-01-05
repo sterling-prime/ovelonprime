@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { X, ChevronRight, ChevronLeft, Building2, Wrench, AlertTriangle, Shield, FileText, ClipboardCheck, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { SubmissionSuccessModal } from "./SubmissionSuccessModal";
 
 interface ProjectSimulatorProps {
   isOpen: boolean;
@@ -62,6 +63,7 @@ export const ProjectSimulator = ({ isOpen, onClose }: ProjectSimulatorProps) => 
   const [currentStep, setCurrentStep] = useState(1);
   const [data, setData] = useState<SimulatorData>(initialData);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const totalSteps = 7;
 
   // Generate operational analysis based on collected data
@@ -237,12 +239,17 @@ export const ProjectSimulator = ({ isOpen, onClose }: ProjectSimulatorProps) => 
 
       handleReset();
       onClose();
+      setShowSuccessModal(true);
     } catch (err) {
       console.error("SUBMIT ERROR:", err);
       alert(t("simulator.submitError"));
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleSuccessModalClose = () => {
+    setShowSuccessModal(false);
   };
 
   useEffect(() => {
@@ -304,17 +311,24 @@ export const ProjectSimulator = ({ isOpen, onClose }: ProjectSimulatorProps) => 
     );
   };
 
-  if (!isOpen) return null;
-
   const stepIcons = [Building2, Wrench, AlertTriangle, Shield, FileText, ClipboardCheck, User];
 
-  return createPortal(
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center">
-      {/* Backdrop */}
-      <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-fade-in"
-        onClick={handleClose}
+  return (
+    <>
+      {/* Success Modal - always rendered */}
+      <SubmissionSuccessModal
+        isOpen={showSuccessModal}
+        onClose={handleSuccessModalClose}
       />
+
+      {/* Main Modal - only when isOpen */}
+      {isOpen && createPortal(
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-fade-in"
+            onClick={handleClose}
+          />
 
       {/* Modal */}
       <div className="relative z-10 w-full max-w-3xl max-h-[90vh] mx-4 bg-card rounded-lg shadow-2xl overflow-hidden animate-scale-in">
@@ -451,6 +465,8 @@ export const ProjectSimulator = ({ isOpen, onClose }: ProjectSimulatorProps) => 
       </div>
     </div>,
     document.body
+  )}
+    </>
   );
 };
 
@@ -492,7 +508,7 @@ const SelectionButton = ({
 
 // Step 1: Operational Context
 const Step1 = ({ data, onToggle, onSet, t }: StepProps) => {
-  const industries = ["manufacturing", "logistics", "facility", "infrastructure", "energy", "healthcare", "other"];
+  const industries = ["manufacturing", "logistics", "facility", "infrastructure", "energy", "other"];
   const operationTypes = ["facility", "logistics", "maintenance", "production", "fieldService"];
   const scales = ["single", "multi", "distributed"];
 

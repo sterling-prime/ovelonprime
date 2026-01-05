@@ -1,11 +1,50 @@
-import Video from "@/assets/Intro.mp4";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+
+// Import videos - currently only one video exists
+// When language-specific videos are added, import them here:
+// import VideoEN from "@/assets/Intro-en.mp4";
+// import VideoDE from "@/assets/Intro-de.mp4";
+// etc.
+import VideoDefault from "@/assets/Intro.mp4";
+
+// Video mapping by language - extend when videos are available
+const videosByLanguage: Record<string, string> = {
+  // When language-specific videos are added:
+  // en: VideoEN,
+  // de: VideoDE,
+  // fr: VideoFR,
+  // pl: VideoPL,
+  // nl: VideoNL,
+};
+
+const getVideoForLanguage = (lang: string): string => {
+  // Check for exact language match
+  if (videosByLanguage[lang]) {
+    return videosByLanguage[lang];
+  }
+  
+  // Check for language prefix (e.g., "en-US" -> "en")
+  const langPrefix = lang.split("-")[0];
+  if (videosByLanguage[langPrefix]) {
+    return videosByLanguage[langPrefix];
+  }
+  
+  // Fallback to default video
+  return VideoDefault;
+};
 
 export const VideoSection = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [videoSrc, setVideoSrc] = useState<string>(VideoDefault);
+
+  // Update video source when language changes
+  useEffect(() => {
+    const newVideoSrc = getVideoForLanguage(i18n.language);
+    setVideoSrc(newVideoSrc);
+  }, [i18n.language]);
 
   useEffect(() => {
     const handler = () => {
@@ -40,11 +79,14 @@ export const VideoSection = () => {
         {/* Video */}
         <div className="w-full flex justify-center bg-black rounded-xl overflow-hidden">
           <video
+            key={videoSrc} // Force re-render when video changes
             ref={videoRef}
-            src={Video}
+            src={videoSrc}
             className="max-w-full h-auto"
             controls
             playsInline
+            preload="metadata"
+            // No autoplay on mobile - user must interact
           />
         </div>
 
