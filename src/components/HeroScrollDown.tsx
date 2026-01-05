@@ -18,7 +18,7 @@ export const HeroScrollDown = () => {
   };
 
   return (
-    <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20">
+    <div className="absolute bottom-20 sm:bottom-10 left-1/2 -translate-x-1/2 z-20 pb-safe">
       <button
         type="button"
         onClick={handleClick}
@@ -37,7 +37,8 @@ export const HeroScrollDown = () => {
             inline-flex
             items-center
             justify-center
-            w-12 h-12
+            w-10 h-10
+            sm:w-12 sm:h-12
             rounded-full
             border-2 border-black
             transition-all duration-300
@@ -47,7 +48,8 @@ export const HeroScrollDown = () => {
           {/* CHEVRON */}
           <ChevronDown
             className="
-              w-5 h-5
+              w-4 h-4
+              sm:w-5 sm:h-5
               text-black
               animate-chevron-down
             "
@@ -57,7 +59,8 @@ export const HeroScrollDown = () => {
         {/* LABEL */}
         <span
           className="
-            text-xs
+            text-[10px]
+            sm:text-xs
             tracking-widest
             uppercase
             font-medium

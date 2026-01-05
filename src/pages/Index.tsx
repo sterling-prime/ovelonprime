@@ -13,7 +13,6 @@ import { Footer } from "@/components/Footer";
 import { DemoSurface } from "@/components/demosurface";
 import { VideoSection } from "@/components/VideoSection";
 import { BackToTop } from "@/components/BackToTop";
-import { HeroScrollDown } from "@/components/HeroScrollDown";
 import { OperationalGovernanceTrends } from "@/components/operationalgovernancetrends";
 
 
@@ -23,7 +22,6 @@ const Index = () => {
       <Navbar />
       <main>
         <Hero />
-        <HeroScrollDown />
         <VideoSection />
         <Services />
         <Sectors />

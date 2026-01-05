@@ -61,7 +61,7 @@ const rateLimiter = (req, res, next) => {
 
 // Input validation schemas
 const operationalDataSchema = z.object({
-  industry: z.enum(['manufacturing', 'logistics', 'facility', 'infrastructure', 'energy', 'healthcare', 'other']).optional(),
+  industry: z.enum(['manufacturing', 'logistics', 'facility', 'infrastructure', 'energy', 'other']).optional(),
   operationType: z.array(z.enum(['facility', 'logistics', 'maintenance', 'production', 'fieldService'])).max(5).optional(),
   scale: z.enum(['single', 'multi', 'distributed']).optional(),
   requestHandling: z.array(z.enum(['email', 'phone', 'tickets', 'verbal', 'spreadsheets', 'erp'])).max(6).optional(),
@@ -244,12 +244,104 @@ app.post("/api/request-review", rateLimiter, async (req, res) => {
 </html>
     `;
 
+    // Send internal review email
     await resend.emails.send({
       from: "Ovelon Prime <noreply@ovelon-prime.com>",
       to: ["support@ovelon-prime.com"],
       subject: "New Operational Readiness Review",
       html: emailHtml,
     });
+
+    // Send confirmation email to user
+    const calLink = "https://cal.com/ovelon-prime/introduction-call";
+    
+    const userConfirmationHtml = `
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
+    h1 { color: #1a1a1a; font-size: 24px; margin-bottom: 20px; }
+    h2 { color: #333; font-size: 18px; margin-top: 30px; }
+    .section { background: #f9f9f9; border: 1px solid #e5e5e5; border-radius: 8px; padding: 20px; margin: 20px 0; }
+    .cta-button { display: inline-block; background: #292929; color: #ffffff !important; text-decoration: none; padding: 14px 28px; border-radius: 6px; font-weight: 600; margin: 20px 0; }
+    .cta-button:hover { background: #3A8F94; }
+    ul { margin: 10px 0; padding-left: 20px; }
+    li { margin-bottom: 8px; }
+    .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #e5e5e5; font-size: 12px; color: #888; }
+  </style>
+</head>
+<body>
+  <h1>Your Operational Review Request Has Been Received</h1>
+  
+  <p>Dear ${contactDetails?.fullName || 'Valued Client'},</p>
+  
+  <p>Thank you for submitting your operational review request. Our team will carefully review your submission and follow up accordingly.</p>
+  
+  <div class="section">
+    <h2>What Happens Next</h2>
+    <ul>
+      <li>Our team will analyze the operational context you provided</li>
+      <li>We will review the identified pain points and constraints</li>
+      <li>You will receive a detailed response within 2-3 business days</li>
+    </ul>
+  </div>
+  
+  <div class="section">
+    <h2>Accelerate Your Review</h2>
+    <p>To discuss your operational challenges directly with an expert, schedule a strategic consultation:</p>
+    <a href="${calLink}" class="cta-button" target="_blank">Schedule Strategic Consultation</a>
+  </div>
+  
+  ${analysis ? `
+  <div class="section">
+    <h2>Summary of Your Analysis</h2>
+    
+    ${analysis.operationalObservations?.length ? `
+    <h3>Operational Observations</h3>
+    <ul>
+      ${analysis.operationalObservations.map(obs => `<li>${obs}</li>`).join('')}
+    </ul>
+    ` : ''}
+    
+    ${analysis.riskExposure?.length ? `
+    <h3>Risk & Exposure Areas</h3>
+    <ul>
+      ${analysis.riskExposure.map(risk => `<li>${risk}</li>`).join('')}
+    </ul>
+    ` : ''}
+    
+    ${analysis.executionReadiness ? `
+    <h3>Execution Readiness</h3>
+    <p>${analysis.executionReadiness}</p>
+    ` : ''}
+    
+    ${analysis.advisoryDirection?.length ? `
+    <h3>Advisory Direction</h3>
+    <ul>
+      ${analysis.advisoryDirection.map(dir => `<li>${dir}</li>`).join('')}
+    </ul>
+    ` : ''}
+  </div>
+  ` : ''}
+  
+  <div class="footer">
+    <p>Best regards,<br>The Ovelon Prime Team</p>
+    <p>This is an automated message. Please do not reply directly to this email.</p>
+  </div>
+</body>
+</html>
+    `;
+
+    // Send confirmation to user
+    if (contactDetails?.email) {
+      await resend.emails.send({
+        from: "Ovelon Prime <noreply@ovelon-prime.com>",
+        to: [contactDetails.email],
+        subject: "Your Operational Review Request - Ovelon Prime",
+        html: userConfirmationHtml,
+      });
+    }
 
     res.json({ success: true });
   } catch (err) {
