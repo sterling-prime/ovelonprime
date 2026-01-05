@@ -40,29 +40,12 @@ const Terms = () => {
           {/* BACK BUTTON */}
           <div className="mb-8">
             <button
+              type="button"
               onClick={goBack}
               aria-label={t("common.back")}
-              className="
-                group
-                inline-flex
-                items-center
-                gap-2
-                text-sm
-                font-medium
-                text-slate-600
-                hover:text-slate-900
-                transition-colors
-              "
+              className="group inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
             >
-              <ArrowLeft
-                className="
-                  h-4
-                  w-4
-                  transition-transform
-                  duration-200
-                  group-hover:-translate-x-1
-                "
-              />
+              <ArrowLeft className="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-1" />
               {t("common.back")}
             </button>
           </div>
@@ -77,6 +60,24 @@ const Terms = () => {
           </p>
 
           <div className="space-y-12 text-slate-700">
+
+            {/* INTRODUCTION */}
+            <section>
+              <h2 className="text-xl font-semibold mb-4 text-slate-900">
+                {t("terms.sections.introduction.title")}
+              </h2>
+              <p>{t("terms.sections.introduction.p1")}</p>
+              <p className="mt-3">{t("terms.sections.introduction.p2")}</p>
+            </section>
+
+            {/* SERVICES */}
+            <section>
+              <h2 className="text-xl font-semibold mb-4 text-slate-900">
+                {t("terms.sections.services.title")}
+              </h2>
+              <p>{t("terms.sections.services.p1")}</p>
+              <p className="mt-3">{t("terms.sections.services.p2")}</p>
+            </section>
 
             {/* WEBSITE USE */}
             <section>
@@ -100,6 +101,92 @@ const Terms = () => {
                   <li key={i}>{item}</li>
                 ))}
               </ul>
+            </section>
+
+            {/* PAYMENTS */}
+            <section>
+              <h2 className="text-xl font-semibold mb-4 text-slate-900">
+                {t("terms.sections.payments.title")}
+              </h2>
+              <p>{t("terms.sections.payments.p1")}</p>
+              <p className="mt-3">{t("terms.sections.payments.p2")}</p>
+            </section>
+
+            {/* NO GUARANTEE */}
+            <section>
+              <h2 className="text-xl font-semibold mb-4 text-slate-900">
+                {t("terms.sections.noGuarantee.title")}
+              </h2>
+              <p>{t("terms.sections.noGuarantee.p1")}</p>
+            </section>
+
+            {/* INTELLECTUAL PROPERTY */}
+            <section>
+              <h2 className="text-xl font-semibold mb-4 text-slate-900">
+                {t("terms.sections.ip.title")}
+              </h2>
+              <p>{t("terms.sections.ip.p1")}</p>
+              <p className="mt-3">{t("terms.sections.ip.p2")}</p>
+            </section>
+
+            {/* CONFIDENTIALITY */}
+            <section>
+              <h2 className="text-xl font-semibold mb-4 text-slate-900">
+                {t("terms.sections.confidentiality.title")}
+              </h2>
+              <p>{t("terms.sections.confidentiality.p1")}</p>
+            </section>
+
+            {/* LIABILITY */}
+            <section>
+              <h2 className="text-xl font-semibold mb-4 text-slate-900">
+                {t("terms.sections.liability.title")}
+              </h2>
+              <p>{t("terms.sections.liability.p1")}</p>
+              <p className="mt-3">{t("terms.sections.liability.p2")}</p>
+            </section>
+
+            {/* THIRD PARTY */}
+            <section>
+              <h2 className="text-xl font-semibold mb-4 text-slate-900">
+                {t("terms.sections.thirdParty.title")}
+              </h2>
+              <p>{t("terms.sections.thirdParty.p1")}</p>
+            </section>
+
+            {/* TERMINATION */}
+            <section>
+              <h2 className="text-xl font-semibold mb-4 text-slate-900">
+                {t("terms.sections.termination.title")}
+              </h2>
+              <p>{t("terms.sections.termination.p1")}</p>
+            </section>
+
+            {/* GOVERNING LAW */}
+            <section>
+              <h2 className="text-xl font-semibold mb-4 text-slate-900">
+                {t("terms.sections.governingLaw.title")}
+              </h2>
+              <p>{t("terms.sections.governingLaw.p1")}</p>
+            </section>
+
+            {/* CHANGES */}
+            <section>
+              <h2 className="text-xl font-semibold mb-4 text-slate-900">
+                {t("terms.sections.changes.title")}
+              </h2>
+              <p>{t("terms.sections.changes.p1")}</p>
+            </section>
+
+            {/* CONTACT */}
+            <section>
+              <h2 className="text-xl font-semibold mb-4 text-slate-900">
+                {t("terms.sections.contactInfo.title")}
+              </h2>
+              <p>{t("terms.sections.contactInfo.p1")}</p>
+              <p className="mt-2 font-medium text-slate-900">
+                support@ovelon-prime.com
+              </p>
             </section>
 
           </div>

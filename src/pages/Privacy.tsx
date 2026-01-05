@@ -139,6 +139,37 @@ const Privacy = () => {
                 ))}
               </ul>
             </section>
+            
+            {/* DATA Securrity */}
+            <section>
+              <h2 className="text-xl font-semibold mb-4 text-slate-900">
+                {t("privacy.sections.dataSecurity.title")}
+              </h2>
+
+              <p>{t("privacy.sections.dataSecurity.p1")}</p>
+
+              <p className="mt-3">
+                {t("privacy.sections.dataSecurity.p2")}
+              </p>
+
+              
+            </section>
+
+            {/* DATA RETENTION */}
+            <section>
+              <h2 className="text-xl font-semibold mb-4 text-slate-900">
+                {t("privacy.sections.dataRetention.title")}
+              </h2>
+
+              <p>{t("privacy.sections.dataRetention.p1")}</p>
+
+              <p className="mt-3">
+                {t("privacy.sections.dataRetention.p2")}
+              </p>
+
+              
+            </section>
+
 
             {/* CONTACT */}
             <section>

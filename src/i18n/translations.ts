@@ -1018,7 +1018,7 @@ export const translations: Record<Lang, any> = {
     },
     privacy: {
       title: "Datenschutzerklärung",
-      lastUpdated: "Zuletzt aktualisiert: 01.12.2025",
+      lastUpdated: "Zuletzt aktualisiert: 01.01.2026",
       sections: {
         introduction: {
           title: "1. Einleitung",
