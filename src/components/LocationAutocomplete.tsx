@@ -14,6 +14,7 @@ interface LocationAutocompleteProps {
   isLoading?: boolean;
   disabled?: boolean;
   className?: string;
+  hasError?: boolean;
 }
 
 export const LocationAutocomplete = ({
@@ -28,6 +29,7 @@ export const LocationAutocomplete = ({
   isLoading,
   disabled,
   className,
+  hasError,
 }: LocationAutocompleteProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
@@ -104,7 +106,10 @@ export const LocationAutocomplete = ({
 
   return (
     <div className={cn("relative", className)}>
-      <label className="text-sm font-medium text-foreground block mb-1.5">
+      <label className={cn(
+        "text-sm font-medium block mb-1.5",
+        hasError ? "text-destructive" : "text-foreground"
+      )}>
         {label} {required && "*"}
       </label>
       <div className="relative">
@@ -118,10 +123,14 @@ export const LocationAutocomplete = ({
           placeholder={placeholder}
           disabled={disabled}
           className={cn(
-            "w-full px-4 py-2.5 rounded-lg border border-border bg-card text-foreground",
-            "placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50",
+            "w-full px-4 py-2.5 rounded-lg border bg-card text-foreground",
+            "placeholder:text-muted-foreground focus:outline-none focus:ring-2",
             "transition-all duration-200",
-            isPrefilled && value && "border-accent/30 bg-accent/5",
+            hasError 
+              ? "border-destructive focus:ring-destructive/50" 
+              : isPrefilled && value 
+                ? "border-accent/30 bg-accent/5 focus:ring-accent/50" 
+                : "border-border focus:ring-accent/50",
             disabled && "opacity-50 cursor-not-allowed"
           )}
         />

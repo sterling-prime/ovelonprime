@@ -1,7 +1,7 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { useTranslation } from "react-i18next";
-import { X, ChevronRight, ChevronLeft, Building2, Wrench, AlertTriangle, Shield, FileText, ClipboardCheck, User } from "lucide-react";
+import { X, ChevronRight, ChevronLeft, Building2, Wrench, AlertTriangle, Shield, FileText, ClipboardCheck, User, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { SubmissionSuccessModal } from "./SubmissionSuccessModal";
@@ -9,6 +9,8 @@ import { useGeolocation } from "@/hooks/use-geolocation";
 import { LocationAutocomplete } from "./LocationAutocomplete";
 import { searchCountries, getCountryByCode, COUNTRIES } from "@/lib/countries";
 import { searchCities, getCitiesForCountry } from "@/lib/cities";
+import { useSubmitIntake } from "@/hooks/use-submit-intake";
+import { useToast } from "@/hooks/use-toast";
 interface ProjectSimulatorProps {
   isOpen: boolean;
   onClose: () => void;
@@ -63,15 +65,17 @@ const initialData: SimulatorData = {
 
 export const ProjectSimulator = ({ isOpen, onClose }: ProjectSimulatorProps) => {
   const { t } = useTranslation();
+  const { toast } = useToast();
   const [currentStep, setCurrentStep] = useState(1);
   const [data, setData] = useState<SimulatorData>(initialData);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [submissionResult, setSubmissionResult] = useState<{
     referenceId?: string;
     pdfAttached?: boolean;
     userEmail?: string;
   }>({});
+  const [validationErrors, setValidationErrors] = useState<Record<string, boolean>>({});
+  const [showValidationErrors, setShowValidationErrors] = useState(false);
   const totalSteps = 7;
 
   // Generate operational analysis based on collected data
@@ -198,71 +202,109 @@ export const ProjectSimulator = ({ isOpen, onClose }: ProjectSimulatorProps) => 
     return directions.slice(0, 3); // Max 3 directions
   };
 
-  const submitToServer = async () => {
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
-    
-    setIsSubmitting(true);
-    
-    try {
-      const analysis = generateOperationalAnalysis();
-      
-      const payload = {
-        operationalData: {
-          industry: data.industry,
-          operationType: data.operationType,
-          scale: data.scale,
-          requestHandling: data.requestHandling,
-          structureLevel: data.structureLevel,
-          toolsInUse: data.toolsInUse,
-          frictionPoints: data.frictionPoints,
-          frictionNotes: data.frictionNotes,
-          downtimeSensitivity: data.downtimeSensitivity,
-          safetyCompliance: data.safetyCompliance,
-          coordinationComplexity: data.coordinationComplexity,
-        },
-        contactDetails: {
-          fullName: data.fullName,
-          email: data.email,
-          phone: data.phone,
-          companyName: data.companyName,
-          role: data.role,
-          country: data.country,
-          city: data.city,
-        },
-        analysis,
-      };
-      
-      const res = await fetch(`${API_URL}/api/request-review`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ data: payload }),
-      });
+  // Email validation helper
+  const isValidEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
-      if (!res.ok) {
-        const errorData = await res.json().catch(() => ({}));
-        throw new Error(errorData.error || "Server error");
-      }
+  // Validate all required fields in Step 7
+  const validateStep7 = useCallback((): Record<string, boolean> => {
+    const errors: Record<string, boolean> = {};
+    
+    if (!data.fullName.trim()) errors.fullName = true;
+    if (!data.email.trim() || !isValidEmail(data.email)) errors.email = true;
+    if (!data.phone.trim()) errors.phone = true;
+    if (!data.companyName.trim()) errors.companyName = true;
+    if (!data.role.trim()) errors.role = true;
+    if (!data.country.trim()) errors.country = true;
+    if (!data.city.trim()) errors.city = true;
+    
+    return errors;
+  }, [data]);
 
-      const responseData = await res.json();
-      
-      // Store submission result for modal
+  // Check if Step 7 is valid
+  const isStep7Valid = useCallback((): boolean => {
+    const errors = validateStep7();
+    return Object.keys(errors).length === 0;
+  }, [validateStep7]);
+
+  // Submission hook with retry logic and Safari handling
+  const { submit, isSubmitting } = useSubmitIntake({
+    onSuccess: (result) => {
       setSubmissionResult({
-        referenceId: responseData.referenceId,
-        pdfAttached: responseData.pdfAttached,
+        referenceId: result.referenceId,
+        pdfAttached: result.pdfAttached,
         userEmail: data.email,
       });
       
       handleReset();
       onClose();
       setShowSuccessModal(true);
-    } catch (err) {
-      console.error("SUBMIT ERROR:", err);
-      alert(t("simulator.submitError"));
-    } finally {
-      setIsSubmitting(false);
+      setShowValidationErrors(false);
+    },
+    onError: (errorMessage) => {
+      // Show toast notification instead of alert (works better on iOS Safari)
+      toast({
+        variant: "destructive",
+        title: t("simulator.submitErrorTitle"),
+        description: errorMessage || t("simulator.submitError"),
+        duration: 6000,
+      });
+    },
+    maxRetries: 1,
+  });
+
+  // Handle form submission
+  const handleSubmit = async () => {
+    // Validate before submission
+    const errors = validateStep7();
+    
+    if (Object.keys(errors).length > 0) {
+      setValidationErrors(errors);
+      setShowValidationErrors(true);
+      
+      toast({
+        variant: "destructive",
+        title: t("simulator.validationErrorTitle"),
+        description: t("simulator.validationErrorDescription"),
+        duration: 4000,
+      });
+      return;
     }
+
+    setValidationErrors({});
+    setShowValidationErrors(false);
+
+    const analysis = generateOperationalAnalysis();
+    
+    const payload = {
+      operationalData: {
+        industry: data.industry,
+        operationType: data.operationType,
+        scale: data.scale,
+        requestHandling: data.requestHandling,
+        structureLevel: data.structureLevel,
+        toolsInUse: data.toolsInUse,
+        frictionPoints: data.frictionPoints,
+        frictionNotes: data.frictionNotes,
+        downtimeSensitivity: data.downtimeSensitivity,
+        safetyCompliance: data.safetyCompliance,
+        coordinationComplexity: data.coordinationComplexity,
+      },
+      contactDetails: {
+        fullName: data.fullName.trim(),
+        email: data.email.trim().toLowerCase(),
+        phone: data.phone.trim(),
+        companyName: data.companyName.trim(),
+        role: data.role.trim(),
+        country: data.country.trim(),
+        city: data.city.trim(),
+      },
+      analysis,
+    };
+
+    await submit(payload);
   };
 
   const handleSuccessModalClose = () => {
@@ -313,19 +355,6 @@ export const ProjectSimulator = ({ isOpen, onClose }: ProjectSimulatorProps) => 
 
   const setSingleValue = (field: keyof SimulatorData, value: string) => {
     setData((prev) => ({ ...prev, [field]: value }));
-  };
-
-  // Validate Step 7 form
-  const isStep7Valid = () => {
-    return (
-      data.fullName.trim() !== "" &&
-      data.email.trim() !== "" &&
-      data.phone.trim() !== "" &&
-      data.companyName.trim() !== "" &&
-      data.role.trim() !== "" &&
-      data.country.trim() !== "" &&
-      data.city.trim() !== ""
-    );
   };
 
   const stepIcons = [Building2, Wrench, AlertTriangle, Shield, FileText, ClipboardCheck, User];
@@ -454,6 +483,7 @@ export const ProjectSimulator = ({ isOpen, onClose }: ProjectSimulatorProps) => 
                   onSet={setSingleValue}
                   t={t}
                   useGeolocation={useGeolocation}
+                  validationErrors={showValidationErrors ? validationErrors : {}}
                 />
               )}
             </div>
@@ -489,12 +519,19 @@ export const ProjectSimulator = ({ isOpen, onClose }: ProjectSimulatorProps) => 
                   </Button>
                 ) : (
                   <Button
-                    onClick={submitToServer}
-                    disabled={!isStep7Valid() || isSubmitting}
+                    onClick={handleSubmit}
+                    disabled={isSubmitting}
                     type="button"
                     className="gap-1 sm:gap-2 bg-accent hover:bg-accent/90 text-accent-foreground disabled:opacity-50 flex-1 sm:flex-none touch-manipulation min-h-[48px] sm:min-h-[40px] active:scale-[0.98]"
                   >
-                    {isSubmitting ? t("simulator.submitting") : t("simulator.requestReview")}
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        {t("simulator.submitting")}
+                      </>
+                    ) : (
+                      t("simulator.requestReview")
+                    )}
                   </Button>
                 )}
               </div>
@@ -1048,11 +1085,13 @@ const Step7 = ({
   onSet, 
   t,
   useGeolocation: useGeo,
+  validationErrors = {},
 }: { 
   data: SimulatorData; 
   onSet: (field: keyof SimulatorData, value: string) => void;
   t: (key: string, options?: any) => string;
   useGeolocation: () => { location: { country: string; countryCode: string; city: string; confidence: string } | null; isLoading: boolean; error: string | null };
+  validationErrors?: Record<string, boolean>;
 }) => {
   const { location, isLoading: geoLoading } = useGeo();
   const [hasUserEditedCountry, setHasUserEditedCountry] = useState(false);
@@ -1128,7 +1167,10 @@ const Step7 = ({
         </h4>
         <div className="space-y-4">
           <div>
-            <label className="text-sm font-medium text-foreground block mb-1.5">
+            <label className={cn(
+              "text-sm font-medium block mb-1.5",
+              validationErrors.fullName ? "text-destructive" : "text-foreground"
+            )}>
               {t("simulator.step7.fullName")} *
             </label>
             <input
@@ -1136,12 +1178,20 @@ const Step7 = ({
               value={data.fullName}
               onChange={(e) => onSet("fullName", e.target.value)}
               placeholder={t("simulator.step7.fullNamePlaceholder")}
-              className="w-full px-4 py-2.5 rounded-lg border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
+              className={cn(
+                "w-full px-4 py-2.5 rounded-lg border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 transition-colors",
+                validationErrors.fullName 
+                  ? "border-destructive focus:ring-destructive/50" 
+                  : "border-border focus:ring-accent/50"
+              )}
             />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="text-sm font-medium text-foreground block mb-1.5">
+              <label className={cn(
+                "text-sm font-medium block mb-1.5",
+                validationErrors.email ? "text-destructive" : "text-foreground"
+              )}>
                 {t("simulator.step7.email")} *
               </label>
               <input
@@ -1149,11 +1199,19 @@ const Step7 = ({
                 value={data.email}
                 onChange={(e) => onSet("email", e.target.value)}
                 placeholder={t("simulator.step7.emailPlaceholder")}
-                className="w-full px-4 py-2.5 rounded-lg border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
+                className={cn(
+                  "w-full px-4 py-2.5 rounded-lg border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 transition-colors",
+                  validationErrors.email 
+                    ? "border-destructive focus:ring-destructive/50" 
+                    : "border-border focus:ring-accent/50"
+                )}
               />
             </div>
             <div>
-              <label className="text-sm font-medium text-foreground block mb-1.5">
+              <label className={cn(
+                "text-sm font-medium block mb-1.5",
+                validationErrors.phone ? "text-destructive" : "text-foreground"
+              )}>
                 {t("simulator.step7.phone")} *
               </label>
               <input
@@ -1161,7 +1219,12 @@ const Step7 = ({
                 value={data.phone}
                 onChange={(e) => onSet("phone", e.target.value)}
                 placeholder={t("simulator.step7.phonePlaceholder")}
-                className="w-full px-4 py-2.5 rounded-lg border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
+                className={cn(
+                  "w-full px-4 py-2.5 rounded-lg border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 transition-colors",
+                  validationErrors.phone 
+                    ? "border-destructive focus:ring-destructive/50" 
+                    : "border-border focus:ring-accent/50"
+                )}
               />
             </div>
           </div>
@@ -1177,7 +1240,10 @@ const Step7 = ({
         <div className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="text-sm font-medium text-foreground block mb-1.5">
+              <label className={cn(
+                "text-sm font-medium block mb-1.5",
+                validationErrors.companyName ? "text-destructive" : "text-foreground"
+              )}>
                 {t("simulator.step7.companyName")} *
               </label>
               <input
@@ -1185,11 +1251,19 @@ const Step7 = ({
                 value={data.companyName}
                 onChange={(e) => onSet("companyName", e.target.value)}
                 placeholder={t("simulator.step7.companyNamePlaceholder")}
-                className="w-full px-4 py-2.5 rounded-lg border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
+                className={cn(
+                  "w-full px-4 py-2.5 rounded-lg border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 transition-colors",
+                  validationErrors.companyName 
+                    ? "border-destructive focus:ring-destructive/50" 
+                    : "border-border focus:ring-accent/50"
+                )}
               />
             </div>
             <div>
-              <label className="text-sm font-medium text-foreground block mb-1.5">
+              <label className={cn(
+                "text-sm font-medium block mb-1.5",
+                validationErrors.role ? "text-destructive" : "text-foreground"
+              )}>
                 {t("simulator.step7.role")} *
               </label>
               <input
@@ -1197,7 +1271,12 @@ const Step7 = ({
                 value={data.role}
                 onChange={(e) => onSet("role", e.target.value)}
                 placeholder={t("simulator.step7.rolePlaceholder")}
-                className="w-full px-4 py-2.5 rounded-lg border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
+                className={cn(
+                  "w-full px-4 py-2.5 rounded-lg border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 transition-colors",
+                  validationErrors.role 
+                    ? "border-destructive focus:ring-destructive/50" 
+                    : "border-border focus:ring-accent/50"
+                )}
               />
             </div>
           </div>
@@ -1214,6 +1293,7 @@ const Step7 = ({
               required
               isPrefilled={!hasUserEditedCountry && !!location?.country}
               isLoading={geoLoading}
+              hasError={validationErrors.country}
             />
             <LocationAutocomplete
               value={data.city}
@@ -1224,6 +1304,7 @@ const Step7 = ({
               required
               isPrefilled={!hasUserEditedCity && !!location?.city}
               isLoading={geoLoading && !data.country}
+              hasError={validationErrors.city}
             />
           </div>
         </div>
