@@ -28,12 +28,30 @@ export const HeroScrollDown = () => {
   };
 
   return (
-    <div className="absolute bottom-20 sm:bottom-10 left-1/2 -translate-x-1/2 z-20 pb-safe">
+    <div 
+      className="
+        absolute 
+        bottom-6
+        sm:bottom-10
+        left-0
+        right-0
+        flex
+        justify-center
+        z-20 
+        pb-safe
+        pointer-events-none
+      "
+    >
       <button
         type="button"
         onClick={handleClick}
         aria-label={t("explore")}
-        className="group flex flex-col items-center gap-3 focus:outline-none"
+        className="
+          group 
+          flex flex-col items-center gap-2 sm:gap-3 
+          focus:outline-none
+          pointer-events-auto
+        "
       >
         {/* Outer ring with pulse effect */}
         <div className="relative">
@@ -48,8 +66,9 @@ export const HeroScrollDown = () => {
               inline-flex
               items-center
               justify-center
-              w-14 h-14
-              sm:w-16 sm:h-16
+              w-12 h-12
+              sm:w-14 sm:h-14
+              md:w-16 md:h-16
               rounded-full
               bg-white/10
               backdrop-blur-sm
@@ -69,7 +88,7 @@ export const HeroScrollDown = () => {
             <span className="relative flex flex-col items-center justify-center gap-0.5">
               {/* Triple chevron animation */}
               <svg 
-                className="w-6 h-6 sm:w-7 sm:h-7 text-slate-800"
+                className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-slate-800"
                 viewBox="0 0 24 24" 
                 fill="none" 
                 xmlns="http://www.w3.org/2000/svg"
@@ -109,9 +128,11 @@ export const HeroScrollDown = () => {
         {/* Label with reveal animation */}
         <span
           className="
-            text-[10px]
-            sm:text-xs
-            tracking-[0.25em]
+            text-[9px]
+            sm:text-[10px]
+            md:text-xs
+            tracking-[0.2em]
+            sm:tracking-[0.25em]
             uppercase
             font-medium
             text-slate-700
