@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
 interface SubmitResult {
   success: boolean;
@@ -17,6 +18,7 @@ interface UseSubmitIntakeOptions {
 /**
  * Custom hook for robust intake form submission
  * Handles iOS Safari quirks, retry logic, and proper error handling
+ * Uses Supabase Edge Function for server-side PDF generation and email
  */
 export function useSubmitIntake(options: UseSubmitIntakeOptions = {}) {
   const { onSuccess, onError, maxRetries = 1 } = options;
@@ -24,7 +26,6 @@ export function useSubmitIntake(options: UseSubmitIntakeOptions = {}) {
   const [lastError, setLastError] = useState<string | null>(null);
 
   const submit = useCallback(async (payload: any): Promise<SubmitResult> => {
-    const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
     const isDev = import.meta.env.DEV;
     
     setIsSubmitting(true);
@@ -38,7 +39,6 @@ export function useSubmitIntake(options: UseSubmitIntakeOptions = {}) {
       
       if (isDev) {
         console.log(`[Intake Submit] Attempt ${attempt}/${maxRetries + 1}`, {
-          url: `${API_URL}/api/request-review`,
           payloadSize: JSON.stringify(payload).length,
         });
       }
@@ -48,78 +48,55 @@ export function useSubmitIntake(options: UseSubmitIntakeOptions = {}) {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 30000); // 30s timeout
 
-        const response = await fetch(`${API_URL}/api/request-review`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-            // Safari-specific: avoid cache issues
-            "Cache-Control": "no-cache",
-            "Pragma": "no-cache",
-          },
-          body: JSON.stringify({ data: payload }),
-          signal: controller.signal,
-          // Important for Safari: don't send credentials unless needed
-          credentials: "omit",
-          // Ensure request completes even if page navigates (Safari)
-          keepalive: true,
+        // Use Supabase Edge Function for submission
+        const { data, error } = await supabase.functions.invoke("submit-intake", {
+          body: { data: payload },
         });
 
         clearTimeout(timeoutId);
 
-        if (isDev) {
-          console.log(`[Intake Submit] Response status: ${response.status}`);
-        }
-
-        // Handle non-OK responses
-        if (!response.ok) {
-          let errorMessage = "Server error";
-          let errorCode = `HTTP_${response.status}`;
-
-          try {
-            const errorData = await response.json();
-            errorMessage = errorData.error || errorData.message || errorMessage;
-            errorCode = errorData.code || errorCode;
-            
-            if (isDev) {
-              console.error("[Intake Submit] Server error response:", errorData);
-            }
-          } catch {
-            // Response wasn't JSON, use status text
-            errorMessage = response.statusText || errorMessage;
+        if (error) {
+          if (isDev) {
+            console.error("[Intake Submit] Supabase function error:", error);
           }
-
-          // Don't retry client errors (4xx) except 429 (rate limit)
-          if (response.status >= 400 && response.status < 500 && response.status !== 429) {
-            throw new Error(errorMessage);
-          }
-
-          // Retry server errors (5xx) and rate limits
-          lastAttemptError = new Error(errorMessage);
           
-          if (attempt <= maxRetries) {
-            // Wait before retry with exponential backoff
+          // Check if it's a retryable error (network or 5xx)
+          const isRetryable = error.message?.includes("network") || 
+                              error.message?.includes("timeout") ||
+                              error.message?.includes("500");
+          
+          if (isRetryable && attempt <= maxRetries) {
+            lastAttemptError = new Error(error.message || "Server error");
             await new Promise(resolve => setTimeout(resolve, 1000 * attempt));
             continue;
           }
           
-          throw lastAttemptError;
+          throw new Error(error.message || "Failed to submit request");
         }
 
-        // Parse successful response
-        const responseData = await response.json();
+        // Handle explicit error in response data
+        if (data && !data.success) {
+          const errorMessage = data.error || "Submission failed";
+          const errorCode = data.errorCode;
+          
+          if (isDev) {
+            console.error("[Intake Submit] Server returned error:", { errorMessage, errorCode });
+          }
+          
+          throw new Error(errorMessage);
+        }
 
         if (isDev) {
           console.log("[Intake Submit] Success:", {
-            referenceId: responseData.referenceId,
-            pdfAttached: responseData.pdfAttached,
+            referenceId: data?.referenceId,
+            pdfAttached: data?.pdfAttached,
           });
         }
 
         const result: SubmitResult = {
           success: true,
-          referenceId: responseData.referenceId,
-          pdfAttached: responseData.pdfAttached,
+          referenceId: data?.referenceId,
+          pdfAttached: data?.pdfAttached,
         };
 
         setIsSubmitting(false);
@@ -139,7 +116,9 @@ export function useSubmitIntake(options: UseSubmitIntakeOptions = {}) {
         }
 
         // Handle network errors (common on mobile)
-        if (lastAttemptError.message === "Failed to fetch" || lastAttemptError.message.includes("NetworkError")) {
+        if (lastAttemptError.message === "Failed to fetch" || 
+            lastAttemptError.message.includes("NetworkError") ||
+            lastAttemptError.message.includes("network")) {
           lastAttemptError = new Error("Network connection failed. Please check your internet connection.");
         }
 
