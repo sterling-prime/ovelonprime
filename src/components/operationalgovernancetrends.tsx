@@ -22,7 +22,7 @@ export const OperationalGovernanceTrends = () => {
 
           {/* COLUMN 1 */}
           <div>
-            <h3 className="text-lg font-semibold text-slate-900 mb-4 text-center">
+            <h3 className="text-lg font-semibold text-slate-900 mb-4 text-left">
               {t("governanceTrends.column1.title")}
             </h3>
             <ul className="space-y-3 text-slate-600 text-sm text-left">
@@ -36,7 +36,7 @@ export const OperationalGovernanceTrends = () => {
 
           {/* COLUMN 2 */}
           <div>
-            <h3 className="text-lg font-semibold text-slate-900 mb-4 text-center">
+            <h3 className="text-lg font-semibold text-slate-900 mb-4 text-left">
               {t("governanceTrends.column2.title")}
             </h3>
             <ul className="space-y-3 text-slate-600 text-sm text-left">
@@ -50,7 +50,7 @@ export const OperationalGovernanceTrends = () => {
 
           {/* COLUMN 3 */}
           <div>
-            <h3 className="text-lg font-semibold text-slate-900 mb-4 text-center">
+            <h3 className="text-lg font-semibold text-slate-900 mb-4 text-left">
               {t("governanceTrends.column3.title")}
             </h3>
             <ul className="space-y-3 text-slate-600 text-sm text-left">
