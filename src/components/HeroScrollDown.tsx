@@ -30,7 +30,7 @@ export const HeroScrollDown = () => {
   };
 
   return (
-    <div className="absolute bottom-20 sm:bottom-10 left-1/2 -translate-x-1/2 z-20 pb-safe">
+    <div className="hidden absolute bottom-20 sm:bottom-10 left-1/2 -translate-x-1/2 z-20 pb-safe">
       <button
         type="button"
         onClick={handleClick}
