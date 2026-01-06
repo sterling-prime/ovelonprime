@@ -1,11 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { createPortal } from "react-dom";
 import { useTranslation } from "react-i18next";
 import { X, ChevronRight, ChevronLeft, Building2, Wrench, AlertTriangle, Shield, FileText, ClipboardCheck, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { SubmissionSuccessModal } from "./SubmissionSuccessModal";
-
+import { useGeolocation } from "@/hooks/use-geolocation";
+import { LocationAutocomplete } from "./LocationAutocomplete";
+import { searchCountries, getCountryByCode, COUNTRIES } from "@/lib/countries";
+import { searchCities, getCitiesForCountry } from "@/lib/cities";
 interface ProjectSimulatorProps {
   isOpen: boolean;
   onClose: () => void;
@@ -430,6 +433,7 @@ export const ProjectSimulator = ({ isOpen, onClose }: ProjectSimulatorProps) => 
                   data={data}
                   onSet={setSingleValue}
                   t={t}
+                  useGeolocation={useGeolocation}
                 />
               )}
             </div>
@@ -1012,16 +1016,80 @@ const Step6 = ({
   );
 };
 
-// Step 7: Personal & Company Details
+// Step 7: Personal & Company Details with Location Autocomplete
 const Step7 = ({ 
   data, 
   onSet, 
-  t 
+  t,
+  useGeolocation: useGeo,
 }: { 
   data: SimulatorData; 
   onSet: (field: keyof SimulatorData, value: string) => void;
   t: (key: string, options?: any) => string;
+  useGeolocation: () => { location: { country: string; countryCode: string; city: string; confidence: string } | null; isLoading: boolean; error: string | null };
 }) => {
+  const { location, isLoading: geoLoading } = useGeo();
+  const [hasUserEditedCountry, setHasUserEditedCountry] = useState(false);
+  const [hasUserEditedCity, setHasUserEditedCity] = useState(false);
+  const [selectedCountryCode, setSelectedCountryCode] = useState<string>("");
+
+  // Auto-prefill from IP geolocation (only once, on first load)
+  useEffect(() => {
+    if (location && !hasUserEditedCountry && !data.country) {
+      onSet("country", location.country);
+      if (location.countryCode) {
+        setSelectedCountryCode(location.countryCode);
+      }
+    }
+  }, [location, hasUserEditedCountry, data.country, onSet]);
+
+  useEffect(() => {
+    if (location && !hasUserEditedCity && !data.city && location.city && location.confidence === "high") {
+      onSet("city", location.city);
+    }
+  }, [location, hasUserEditedCity, data.city, onSet]);
+
+  // Country suggestions
+  const countrySuggestions = useMemo(() => {
+    if (data.country.length < 2) return [];
+    return searchCountries(data.country, 8).map((c) => c.name);
+  }, [data.country]);
+
+  // City suggestions - prioritize selected country
+  const citySuggestions = useMemo(() => {
+    if (data.city.length < 2) return [];
+    return searchCities(data.city, selectedCountryCode, 10);
+  }, [data.city, selectedCountryCode]);
+
+  // Handle country selection
+  const handleCountryChange = (value: string) => {
+    setHasUserEditedCountry(true);
+    onSet("country", value);
+    
+    // Try to find country code
+    const match = COUNTRIES.find(
+      (c) => c.name.toLowerCase() === value.toLowerCase()
+    );
+    if (match) {
+      setSelectedCountryCode(match.code);
+    }
+  };
+
+  const handleCountrySelect = (value: string) => {
+    const match = COUNTRIES.find(
+      (c) => c.name.toLowerCase() === value.toLowerCase()
+    );
+    if (match) {
+      setSelectedCountryCode(match.code);
+    }
+  };
+
+  // Handle city change
+  const handleCityChange = (value: string) => {
+    setHasUserEditedCity(true);
+    onSet("city", value);
+  };
+
   return (
     <div className="space-y-6">
       <p className="text-muted-foreground">{t("simulator.step7.description")}</p>
@@ -1107,31 +1175,30 @@ const Step7 = ({
               />
             </div>
           </div>
+          
+          {/* Location Fields with Autocomplete */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="text-sm font-medium text-foreground block mb-1.5">
-                {t("simulator.step7.country")} *
-              </label>
-              <input
-                type="text"
-                value={data.country}
-                onChange={(e) => onSet("country", e.target.value)}
-                placeholder={t("simulator.step7.countryPlaceholder")}
-                className="w-full px-4 py-2.5 rounded-lg border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
-              />
-            </div>
-            <div>
-              <label className="text-sm font-medium text-foreground block mb-1.5">
-                {t("simulator.step7.city")} *
-              </label>
-              <input
-                type="text"
-                value={data.city}
-                onChange={(e) => onSet("city", e.target.value)}
-                placeholder={t("simulator.step7.cityPlaceholder")}
-                className="w-full px-4 py-2.5 rounded-lg border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
-              />
-            </div>
+            <LocationAutocomplete
+              value={data.country}
+              onChange={handleCountryChange}
+              onSelect={handleCountrySelect}
+              suggestions={countrySuggestions}
+              placeholder={t("simulator.step7.countryPlaceholder")}
+              label={t("simulator.step7.country")}
+              required
+              isPrefilled={!hasUserEditedCountry && !!location?.country}
+              isLoading={geoLoading}
+            />
+            <LocationAutocomplete
+              value={data.city}
+              onChange={handleCityChange}
+              suggestions={citySuggestions}
+              placeholder={t("simulator.step7.cityPlaceholder")}
+              label={t("simulator.step7.city")}
+              required
+              isPrefilled={!hasUserEditedCity && !!location?.city}
+              isLoading={geoLoading && !data.country}
+            />
           </div>
         </div>
       </div>
