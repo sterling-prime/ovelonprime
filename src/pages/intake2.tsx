@@ -15,7 +15,7 @@ const Intake2 = () => {
   // Set language from URL param if provided
   useEffect(() => {
     const lang = searchParams.get("lang");
-    if (lang && ["en", "de", "fr", "pl"].includes(lang)) {
+    if (lang && ["en", "de", "fr", "pl", "es", "it"].includes(lang)) {
       i18n.changeLanguage(lang);
     }
   }, [searchParams, i18n]);

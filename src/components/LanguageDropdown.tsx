@@ -10,6 +10,8 @@ const languages = [
   { code: "DE", lang: "de", label: "Deutsch", flag: "🇩🇪" },
   { code: "FR", lang: "fr", label: "Français", flag: "🇫🇷" },
   { code: "PL", lang: "pl", label: "Polski", flag: "🇵🇱" },
+  { code: "ES", lang: "es", label: "Español", flag: "🇪🇸" },
+  { code: "IT", lang: "it", label: "Italiano", flag: "🇮🇹" },
 ];
 
 export const LanguageDropdown = ({
@@ -43,6 +45,7 @@ export const LanguageDropdown = ({
           flex items-center gap-2
           text-sm font-medium tracking-wide
           transition-colors duration-200
+          touch-manipulation
 
           ${
             forceBlack
@@ -71,6 +74,7 @@ export const LanguageDropdown = ({
         className={`
           absolute right-0 mt-3 z-50 min-w-[160px]
           rounded-md shadow-xl transition-all origin-top
+          max-h-[300px] overflow-y-auto
           ${
             isOpen
               ? "opacity-100 scale-100"
@@ -91,14 +95,16 @@ export const LanguageDropdown = ({
               setIsOpen(false);
             }}
             role="option"
+            aria-selected={l.lang === i18n.language}
             className={`
               w-full px-4 py-2 flex items-center gap-3
-              text-sm transition-colors
+              text-sm transition-colors touch-manipulation
               ${
                 forceBlack
                   ? "!text-black hover:bg-gray-100"
                   : "text-white/70 hover:text-white hover:bg-white/5"
               }
+              ${l.lang === i18n.language ? (forceBlack ? "bg-gray-50" : "bg-white/10") : ""}
             `}
           >
             <span className="text-base">{l.flag}</span>
