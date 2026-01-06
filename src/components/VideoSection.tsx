@@ -1,63 +1,45 @@
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
-// Import videos - currently only one video exists
-// When language-specific videos are added, import them here:
-// import VideoEN from "@/assets/Intro-en.mp4";
-// import VideoDE from "@/assets/Intro-de.mp4";
-// etc.
-import VideoDefault from "@/assets/Intro.mp4";
-
-// Video mapping by language - extend when videos are available
-const videosByLanguage: Record<string, string> = {
-  // When language-specific videos are added:
-  // en: VideoEN,
-  // de: VideoDE,
-  // fr: VideoFR,
-  // pl: VideoPL,
-  // nl: VideoNL,
+// HeyGen video embed IDs by language
+const videoEmbedsByLanguage: Record<string, string> = {
+  en: "e1c7583b5c134516bc95cfc14e91f246", // English uses German video as default
+  de: "e1c7583b5c134516bc95cfc14e91f246",
+  fr: "7658b7d7365a432a9b8267302f9a05cf",
+  pl: "e9914d45a759415aa89e68bdcf12f631",
+  nl: "e1c7583b5c134516bc95cfc14e91f246", // NL uses German video
+  es: "fdfd9f347e2f4f2f915242cfe993e9ee",
+  it: "b7e0ce086311486eb3b7ff5bd16777dc",
 };
 
-const getVideoForLanguage = (lang: string): string => {
+const getVideoEmbedId = (lang: string): string => {
   // Check for exact language match
-  if (videosByLanguage[lang]) {
-    return videosByLanguage[lang];
+  if (videoEmbedsByLanguage[lang]) {
+    return videoEmbedsByLanguage[lang];
   }
   
   // Check for language prefix (e.g., "en-US" -> "en")
   const langPrefix = lang.split("-")[0];
-  if (videosByLanguage[langPrefix]) {
-    return videosByLanguage[langPrefix];
+  if (videoEmbedsByLanguage[langPrefix]) {
+    return videoEmbedsByLanguage[langPrefix];
   }
   
-  // Fallback to default video
-  return VideoDefault;
+  // Fallback to English (which uses German video)
+  return videoEmbedsByLanguage.en;
 };
 
 export const VideoSection = () => {
   const { t, i18n } = useTranslation();
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [videoSrc, setVideoSrc] = useState<string>(VideoDefault);
+  const [embedId, setEmbedId] = useState<string>(() => getVideoEmbedId(i18n.language));
 
-  // Update video source when language changes
+  // Update embed ID when language changes
   useEffect(() => {
-    const newVideoSrc = getVideoForLanguage(i18n.language);
-    setVideoSrc(newVideoSrc);
+    const newEmbedId = getVideoEmbedId(i18n.language);
+    setEmbedId(newEmbedId);
   }, [i18n.language]);
 
-  useEffect(() => {
-    const handler = () => {
-      videoRef.current?.play().catch(() => {
-        // Browser / iOS autoplay safety — ignore silently
-      });
-    };
-
-    window.addEventListener("play-hero-video", handler);
-    return () => {
-      window.removeEventListener("play-hero-video", handler);
-    };
-  }, []);
+  const embedUrl = `https://app.heygen.com/embedded-player/${embedId}`;
 
   return (
     <section
@@ -76,18 +58,19 @@ export const VideoSection = () => {
           </p>
         </div>
 
-        {/* Video */}
+        {/* Video Embed - HeyGen iframe */}
         <div className="w-full flex justify-center bg-black rounded-xl overflow-hidden">
-          <video
-            key={videoSrc} // Force re-render when video changes
-            ref={videoRef}
-            src={videoSrc}
-            className="max-w-full h-auto"
-            controls
-            playsInline
-            preload="metadata"
-            // No autoplay on mobile - user must interact
-          />
+          <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+            <iframe
+              key={embedId}
+              src={embedUrl}
+              title="HeyGen video player"
+              className="absolute inset-0 w-full h-full"
+              frameBorder="0"
+              allow="encrypted-media; fullscreen;"
+              allowFullScreen
+            />
+          </div>
         </div>
 
         {/* CTA */}

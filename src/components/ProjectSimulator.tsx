@@ -323,149 +323,156 @@ export const ProjectSimulator = ({ isOpen, onClose }: ProjectSimulatorProps) => 
 
       {/* Main Modal - only when isOpen */}
       {isOpen && createPortal(
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center">
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center overscroll-none">
           {/* Backdrop */}
           <div
             className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-fade-in"
             onClick={handleClose}
           />
 
-      {/* Modal */}
-      <div className="relative z-10 w-full max-w-3xl max-h-[90vh] mx-4 bg-card rounded-lg shadow-2xl overflow-hidden animate-scale-in">
-        {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-muted/30">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
-              {(() => {
-                const Icon = stepIcons[currentStep - 1];
-                return <Icon className="w-5 h-5 text-accent" />;
-              })()}
-            </div>
-            <div>
-              <h2 className="text-lg font-semibold text-foreground">
-                {t("simulator.title")}
-              </h2>
-              <p className="text-sm text-muted-foreground">
-                {t(`simulator.step${currentStep}.title`)}
-              </p>
-            </div>
-          </div>
-          <button
-            onClick={handleClose}
-            className="p-2 rounded-lg hover:bg-muted transition-colors"
-            aria-label={t("simulator.close")}
-          >
-            <X className="w-5 h-5 text-muted-foreground" />
-          </button>
-        </div>
-
-        {/* Progress */}
-        <div className="px-6 py-3 border-b border-border bg-muted/10">
-          <div className="flex items-center gap-2">
-            {Array.from({ length: totalSteps }).map((_, i) => (
-              <div key={i} className="flex items-center gap-2 flex-1">
-                <div
-                  className={cn(
-                    "w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all",
-                    i + 1 === currentStep
-                      ? "bg-accent text-accent-foreground"
-                      : i + 1 < currentStep
-                      ? "bg-accent/20 text-accent"
-                      : "bg-muted text-muted-foreground"
-                  )}
-                >
-                  {i + 1}
+          {/* Modal */}
+          <div className="relative z-10 w-full max-w-3xl mx-4 bg-card rounded-lg shadow-2xl overflow-hidden animate-scale-in flex flex-col max-h-[90vh] sm:max-h-[85vh]">
+            {/* Header */}
+            <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-border bg-muted/30 shrink-0">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-accent/10 flex items-center justify-center">
+                  {(() => {
+                    const Icon = stepIcons[currentStep - 1];
+                    return <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-accent" />;
+                  })()}
                 </div>
-                {i < totalSteps - 1 && (
-                  <div
-                    className={cn(
-                      "flex-1 h-0.5 transition-colors",
-                      i + 1 < currentStep ? "bg-accent/40" : "bg-border"
+                <div>
+                  <h2 className="text-base sm:text-lg font-semibold text-foreground">
+                    {t("simulator.title")}
+                  </h2>
+                  <p className="text-xs sm:text-sm text-muted-foreground">
+                    {t(`simulator.step${currentStep}.title`)}
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={handleClose}
+                className="p-2 rounded-lg hover:bg-muted transition-colors touch-manipulation"
+                aria-label={t("simulator.close")}
+              >
+                <X className="w-5 h-5 text-muted-foreground" />
+              </button>
+            </div>
+
+            {/* Progress */}
+            <div className="px-4 sm:px-6 py-2 sm:py-3 border-b border-border bg-muted/10 shrink-0">
+              <div className="flex items-center gap-1 sm:gap-2">
+                {Array.from({ length: totalSteps }).map((_, i) => (
+                  <div key={i} className="flex items-center gap-1 sm:gap-2 flex-1">
+                    <div
+                      className={cn(
+                        "w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-medium transition-all",
+                        i + 1 === currentStep
+                          ? "bg-accent text-accent-foreground"
+                          : i + 1 < currentStep
+                          ? "bg-accent/20 text-accent"
+                          : "bg-muted text-muted-foreground"
+                      )}
+                    >
+                      {i + 1}
+                    </div>
+                    {i < totalSteps - 1 && (
+                      <div
+                        className={cn(
+                          "flex-1 h-0.5 transition-colors",
+                          i + 1 < currentStep ? "bg-accent/40" : "bg-border"
+                        )}
+                      />
                     )}
-                  />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Content - scrollable */}
+            <div className="p-4 sm:p-6 overflow-y-auto flex-1 overscroll-contain">
+              {currentStep === 1 && (
+                <Step1
+                  data={data}
+                  onToggle={toggleArrayValue}
+                  onSet={setSingleValue}
+                  t={t}
+                />
+              )}
+              {currentStep === 2 && (
+                <Step2
+                  data={data}
+                  onToggle={toggleArrayValue}
+                  onSet={setSingleValue}
+                  t={t}
+                />
+              )}
+              {currentStep === 3 && (
+                <Step3
+                  data={data}
+                  onToggle={toggleArrayValue}
+                  onSet={setSingleValue}
+                  t={t}
+                />
+              )}
+              {currentStep === 4 && (
+                <Step4
+                  data={data}
+                  onToggle={toggleArrayValue}
+                  onSet={setSingleValue}
+                  t={t}
+                />
+              )}
+              {currentStep === 5 && <Step5 data={data} t={t} />}
+              {currentStep === 6 && <Step6 data={data} t={t} generateAnalysis={generateOperationalAnalysis} />}
+              {currentStep === 7 && (
+                <Step7
+                  data={data}
+                  onSet={setSingleValue}
+                  t={t}
+                />
+              )}
+            </div>
+
+            {/* Footer - fixed at bottom with proper mobile handling */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-t border-border bg-muted/10 shrink-0 gap-3 sm:gap-0 pb-safe">
+              <div className="text-xs sm:text-sm text-muted-foreground text-center sm:text-left">
+                {t("simulator.stepIndicator", { current: currentStep, total: totalSteps })}
+              </div>
+              <div className="flex items-center justify-center sm:justify-end gap-2 sm:gap-3">
+                {currentStep > 1 && (
+                  <Button 
+                    variant="outline" 
+                    onClick={handleBack} 
+                    className="gap-1 sm:gap-2 flex-1 sm:flex-none touch-manipulation min-h-[44px] sm:min-h-[40px]"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                    {t("simulator.back")}
+                  </Button>
+                )}
+                {currentStep < totalSteps ? (
+                  <Button 
+                    onClick={handleNext} 
+                    className="gap-1 sm:gap-2 bg-accent hover:bg-accent/90 text-accent-foreground flex-1 sm:flex-none touch-manipulation min-h-[44px] sm:min-h-[40px]"
+                  >
+                    {t("simulator.next")}
+                    <ChevronRight className="w-4 h-4" />
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={submitToServer}
+                    disabled={!isStep7Valid() || isSubmitting}
+                    className="gap-1 sm:gap-2 bg-accent hover:bg-accent/90 text-accent-foreground disabled:opacity-50 flex-1 sm:flex-none touch-manipulation min-h-[44px] sm:min-h-[40px]"
+                  >
+                    {isSubmitting ? t("simulator.submitting") : t("simulator.requestReview")}
+                  </Button>
                 )}
               </div>
-            ))}
+            </div>
           </div>
-        </div>
-
-        {/* Content */}
-        <div className="p-6 overflow-y-auto max-h-[calc(90vh-200px)]">
-          {currentStep === 1 && (
-            <Step1
-              data={data}
-              onToggle={toggleArrayValue}
-              onSet={setSingleValue}
-              t={t}
-            />
-          )}
-          {currentStep === 2 && (
-            <Step2
-              data={data}
-              onToggle={toggleArrayValue}
-              onSet={setSingleValue}
-              t={t}
-            />
-          )}
-          {currentStep === 3 && (
-            <Step3
-              data={data}
-              onToggle={toggleArrayValue}
-              onSet={setSingleValue}
-              t={t}
-            />
-          )}
-          {currentStep === 4 && (
-            <Step4
-              data={data}
-              onToggle={toggleArrayValue}
-              onSet={setSingleValue}
-              t={t}
-            />
-          )}
-          {currentStep === 5 && <Step5 data={data} t={t} />}
-          {currentStep === 6 && <Step6 data={data} t={t} generateAnalysis={generateOperationalAnalysis} />}
-          {currentStep === 7 && (
-            <Step7
-              data={data}
-              onSet={setSingleValue}
-              t={t}
-            />
-          )}
-        </div>
-
-        {/* Footer */}
-        <div className="flex items-center justify-between px-6 py-4 border-t border-border bg-muted/10">
-          <div className="text-sm text-muted-foreground">
-            {t("simulator.stepIndicator", { current: currentStep, total: totalSteps })}
-          </div>
-          <div className="flex items-center gap-3">
-            {currentStep > 1 && (
-              <Button variant="outline" onClick={handleBack} className="gap-2">
-                <ChevronLeft className="w-4 h-4" />
-                {t("simulator.back")}
-              </Button>
-            )}
-            {currentStep < totalSteps ? (
-              <Button onClick={handleNext} className="gap-2 bg-accent hover:bg-accent/90 text-accent-foreground">
-                {t("simulator.next")}
-                <ChevronRight className="w-4 h-4" />
-              </Button>
-            ) : (
-              <Button
-                onClick={submitToServer}
-                disabled={!isStep7Valid() || isSubmitting}
-                className="gap-2 bg-accent hover:bg-accent/90 text-accent-foreground disabled:opacity-50"
-              >
-                {isSubmitting ? t("simulator.submitting") : t("simulator.requestReview")}
-              </Button>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>,
-    document.body
-  )}
+        </div>,
+        document.body
+      )}
     </>
   );
 };
