@@ -1,6 +1,10 @@
 import { ChevronDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
+const isMobile = () =>
+  typeof window !== "undefined" &&
+  /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
 export const HeroScrollDown = () => {
   const { t } = useTranslation();
 
@@ -8,12 +12,20 @@ export const HeroScrollDown = () => {
     const target = document.getElementById("video-section");
     if (!target) return;
 
+    // Scroll first
     target.scrollIntoView({
       behavior: "smooth",
       block: "start",
     });
 
-    // Trigger video autoplay
+    // 🔑 MOBILE: play video with sound DIRECTLY (gesture-safe)
+    if (isMobile()) {
+      // Provided by VideoSection (mobile-safe helper)
+      (window as any).__playVideoWithSound?.();
+      return;
+    }
+
+    // 🖥 DESKTOP: keep existing behavior
     window.dispatchEvent(new Event("play-hero-video"));
   };
 
