@@ -522,7 +522,11 @@ export const translations: Record<Lang, any> = {
       back: "Back",
       next: "Continue",
       requestReview: "Request Operational Review",
+      submitting: "Submitting...",
       submitError: "Failed to submit request. Please try again or contact support.",
+      submitErrorTitle: "Submission Failed",
+      validationErrorTitle: "Required Fields Missing",
+      validationErrorDescription: "Please fill in all required fields before submitting.",
       stepIndicator: "Step {{current}} of {{total}}",
       step1: {
         title: "Operational Context",
@@ -696,7 +700,6 @@ export const translations: Record<Lang, any> = {
         cityPlaceholder: "Enter city",
         requiredNote: "All fields marked with * are required. Your information will only be used to process this review request.",
       },
-      submitting: "Submitting...",
       analysis: {
         observations: {
           industry: {
@@ -1283,7 +1286,11 @@ export const translations: Record<Lang, any> = {
       back: "Zurück",
       next: "Weiter",
       requestReview: "Operative Bewertung anfordern",
+      submitting: "Wird gesendet...",
       submitError: "Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder kontaktieren Sie den Support.",
+      submitErrorTitle: "Übermittlung fehlgeschlagen",
+      validationErrorTitle: "Pflichtfelder fehlen",
+      validationErrorDescription: "Bitte füllen Sie alle Pflichtfelder aus, bevor Sie absenden.",
       stepIndicator: "Schritt {{current}} von {{total}}",
       step1: {
         title: "Operativer Kontext",
@@ -1457,7 +1464,6 @@ export const translations: Record<Lang, any> = {
         cityPlaceholder: "Stadt eingeben",
         requiredNote: "Alle mit * markierten Felder sind Pflichtfelder. Ihre Daten werden nur zur Bearbeitung dieser Anfrage verwendet.",
       },
-      submitting: "Wird gesendet...",
       analysis: {
         observations: {
           industry: {
@@ -2044,7 +2050,11 @@ export const translations: Record<Lang, any> = {
       back: "Retour",
       next: "Continuer",
       requestReview: "Demander une revue opérationnelle",
+      submitting: "Envoi en cours...",
       submitError: "Échec de l'envoi de la demande. Veuillez réessayer ou contacter le support.",
+      submitErrorTitle: "Échec de l'envoi",
+      validationErrorTitle: "Champs obligatoires manquants",
+      validationErrorDescription: "Veuillez remplir tous les champs obligatoires avant de soumettre.",
       stepIndicator: "Étape {{current}} sur {{total}}",
       step1: {
         title: "Contexte opérationnel",
@@ -2218,7 +2228,6 @@ export const translations: Record<Lang, any> = {
         cityPlaceholder: "Entrez la ville",
         requiredNote: "Tous les champs marqués d'un * sont obligatoires. Vos informations seront utilisées uniquement pour traiter cette demande.",
       },
-      submitting: "Envoi en cours...",
       analysis: {
         observations: {
           industry: {
@@ -2805,7 +2814,11 @@ export const translations: Record<Lang, any> = {
       back: "Wstecz",
       next: "Dalej",
       requestReview: "Zamów przegląd operacyjny",
+      submitting: "Wysyłanie...",
       submitError: "Nie udało się przesłać żądania. Spróbuj ponownie lub skontaktuj się z pomocą techniczną.",
+      submitErrorTitle: "Błąd wysyłania",
+      validationErrorTitle: "Brakujące wymagane pola",
+      validationErrorDescription: "Proszę wypełnić wszystkie wymagane pola przed wysłaniem.",
       stepIndicator: "Krok {{current}} z {{total}}",
       step1: {
         title: "Kontekst operacyjny",
@@ -2979,7 +2992,6 @@ export const translations: Record<Lang, any> = {
         cityPlaceholder: "Wpisz miasto",
         requiredNote: "Wszystkie pola oznaczone * są wymagane. Twoje dane będą wykorzystane wyłącznie do przetworzenia tego wniosku.",
       },
-      submitting: "Wysyłanie...",
       analysis: {
         observations: {
           industry: {
@@ -3461,7 +3473,11 @@ export const translations: Record<Lang, any> = {
       next: "Siguiente",
       stepIndicator: "Paso {{current}} de {{total}}",
       requestReview: "Solicitar revisión operacional",
+      submitting: "Enviando...",
       submitError: "Error al enviar. Por favor intente de nuevo.",
+      submitErrorTitle: "Error de envío",
+      validationErrorTitle: "Campos obligatorios faltantes",
+      validationErrorDescription: "Complete todos los campos obligatorios antes de enviar.",
       step1: {
         title: "Contexto operacional",
         description: "Ayúdenos a entender su entorno operacional y el alcance de sus actividades.",
@@ -3634,7 +3650,6 @@ export const translations: Record<Lang, any> = {
         cityPlaceholder: "Ingrese ciudad",
         requiredNote: "Todos los campos marcados con * son obligatorios. Sus datos se usarán únicamente para procesar esta solicitud.",
       },
-      submitting: "Enviando...",
       analysis: {
         observations: {
           industry: {
