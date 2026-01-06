@@ -351,7 +351,10 @@ export const ProjectSimulator = ({ isOpen, onClose }: ProjectSimulatorProps) => 
           />
 
           {/* Modal */}
-          <div className="relative z-10 w-full max-w-3xl mx-4 bg-card rounded-lg shadow-2xl overflow-hidden animate-scale-in flex flex-col max-h-[90vh] sm:max-h-[85vh]">
+          <div 
+            className="relative z-10 w-full max-w-3xl mx-4 bg-card rounded-lg shadow-2xl overflow-hidden animate-scale-in flex flex-col"
+            style={{ maxHeight: `calc(100dvh - 32px)` }}
+          >
             {/* Header */}
             <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-border bg-muted/30 shrink-0">
               <div className="flex items-center gap-2 sm:gap-3">
@@ -456,16 +459,20 @@ export const ProjectSimulator = ({ isOpen, onClose }: ProjectSimulatorProps) => 
             </div>
 
             {/* Footer - fixed at bottom with proper mobile handling */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-t border-border bg-muted/10 shrink-0 gap-3 sm:gap-0 pb-safe">
-              <div className="text-xs sm:text-sm text-muted-foreground text-center sm:text-left">
+            <div 
+              className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-t border-border bg-muted/10 shrink-0 gap-3 sm:gap-0"
+              style={{ paddingBottom: `max(12px, env(safe-area-inset-bottom, 12px))` }}
+            >
+              <div className="text-xs sm:text-sm text-muted-foreground text-center sm:text-left order-2 sm:order-1">
                 {t("simulator.stepIndicator", { current: currentStep, total: totalSteps })}
               </div>
-              <div className="flex items-center justify-center sm:justify-end gap-2 sm:gap-3">
+              <div className="flex items-center justify-center sm:justify-end gap-2 sm:gap-3 order-1 sm:order-2">
                 {currentStep > 1 && (
                   <Button 
                     variant="outline" 
                     onClick={handleBack} 
-                    className="gap-1 sm:gap-2 flex-1 sm:flex-none touch-manipulation min-h-[44px] sm:min-h-[40px]"
+                    className="gap-1 sm:gap-2 flex-1 sm:flex-none touch-manipulation min-h-[48px] sm:min-h-[40px]"
+                    type="button"
                   >
                     <ChevronLeft className="w-4 h-4" />
                     {t("simulator.back")}
@@ -473,8 +480,9 @@ export const ProjectSimulator = ({ isOpen, onClose }: ProjectSimulatorProps) => 
                 )}
                 {currentStep < totalSteps ? (
                   <Button 
-                    onClick={handleNext} 
-                    className="gap-1 sm:gap-2 bg-accent hover:bg-accent/90 text-accent-foreground flex-1 sm:flex-none touch-manipulation min-h-[44px] sm:min-h-[40px]"
+                    onClick={handleNext}
+                    type="button"
+                    className="gap-1 sm:gap-2 bg-accent hover:bg-accent/90 text-accent-foreground flex-1 sm:flex-none touch-manipulation min-h-[48px] sm:min-h-[40px]"
                   >
                     {t("simulator.next")}
                     <ChevronRight className="w-4 h-4" />
@@ -483,7 +491,8 @@ export const ProjectSimulator = ({ isOpen, onClose }: ProjectSimulatorProps) => 
                   <Button
                     onClick={submitToServer}
                     disabled={!isStep7Valid() || isSubmitting}
-                    className="gap-1 sm:gap-2 bg-accent hover:bg-accent/90 text-accent-foreground disabled:opacity-50 flex-1 sm:flex-none touch-manipulation min-h-[44px] sm:min-h-[40px]"
+                    type="button"
+                    className="gap-1 sm:gap-2 bg-accent hover:bg-accent/90 text-accent-foreground disabled:opacity-50 flex-1 sm:flex-none touch-manipulation min-h-[48px] sm:min-h-[40px] active:scale-[0.98]"
                   >
                     {isSubmitting ? t("simulator.submitting") : t("simulator.requestReview")}
                   </Button>
