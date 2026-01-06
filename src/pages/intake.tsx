@@ -90,7 +90,7 @@ const Intake = () => {
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
               <iframe
                 src={formUrlWithLang}
-                title="Consultation Intake Form"
+                title={t("intake.title")}
                 className="w-full min-h-[900px] border-0"
               />
             </div>
