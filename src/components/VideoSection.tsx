@@ -32,6 +32,7 @@ export const VideoSection = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
 
   const isInViewRef = useRef(false);
+  const isIntentionalScrollRef = useRef(false); // Flag to prevent mute during intentional scroll
   const [showHint, setShowHint] = useState(true);
 
   const lang = resolveLang(i18n.language);
@@ -94,12 +95,15 @@ export const VideoSection = () => {
   }, []);
 
   /* -------------------------------------------------------
-     3️⃣ GLOBAL SCROLL → ALWAYS MUTE SOUND
+     3️⃣ GLOBAL SCROLL → MUTE SOUND (unless intentional scroll)
   ------------------------------------------------------- */
   useEffect(() => {
     const onScroll = () => {
       const v = videoRef.current;
       if (!v) return;
+
+      // Don't mute during intentional scroll from hero button
+      if (isIntentionalScrollRef.current) return;
 
       if (!v.muted) {
         v.muted = true;
@@ -130,10 +134,18 @@ export const VideoSection = () => {
   ------------------------------------------------------- */
   useEffect(() => {
     const handler = () => {
-      // Small delay to allow scroll to complete
+      // Set flag to prevent scroll listener from muting
+      isIntentionalScrollRef.current = true;
+      
+      // Delay to allow scroll to complete, then play with sound
       setTimeout(() => {
         enableSound();
-      }, 600);
+        
+        // Reset flag after a short delay
+        setTimeout(() => {
+          isIntentionalScrollRef.current = false;
+        }, 1000);
+      }, 800);
     };
 
     window.addEventListener("play-hero-video", handler);
@@ -146,9 +158,17 @@ export const VideoSection = () => {
   ------------------------------------------------------- */
   useEffect(() => {
     (window as any).__playVideoWithSound = () => {
+      // Set flag to prevent scroll listener from muting
+      isIntentionalScrollRef.current = true;
+      
       setTimeout(() => {
         enableSound();
-      }, 600);
+        
+        // Reset flag after a short delay
+        setTimeout(() => {
+          isIntentionalScrollRef.current = false;
+        }, 1000);
+      }, 800);
     };
     return () => {
       delete (window as any).__playVideoWithSound;
