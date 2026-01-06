@@ -750,6 +750,9 @@ export const translations: Record<Lang, any> = {
       body3: "To accelerate next steps, you may schedule a strategic consultation below.",
       scheduleBtn: "Schedule Strategic Consultation",
       closeBtn: "Close",
+      referenceLabel: "Reference ID",
+      emailSent: "Confirmation sent to",
+      pdfAttached: "PDF summary attached for your records",
     },
     governanceTrends: {
       title: "Operating in a Regulated Reality",
@@ -1508,6 +1511,9 @@ export const translations: Record<Lang, any> = {
       body3: "Um die nächsten Schritte zu beschleunigen, können Sie unten eine strategische Beratung vereinbaren.",
       scheduleBtn: "Strategische Beratung vereinbaren",
       closeBtn: "Schließen",
+      referenceLabel: "Referenz-ID",
+      emailSent: "Bestätigung gesendet an",
+      pdfAttached: "PDF-Zusammenfassung für Ihre Unterlagen beigefügt",
     },
     governanceTrends: {
       title: "Operieren in einer regulierten Realität",
@@ -2266,6 +2272,9 @@ export const translations: Record<Lang, any> = {
       body3: "Pour accélérer les prochaines étapes, vous pouvez planifier une consultation stratégique ci-dessous.",
       scheduleBtn: "Planifier une consultation stratégique",
       closeBtn: "Fermer",
+      referenceLabel: "Numéro de référence",
+      emailSent: "Confirmation envoyée à",
+      pdfAttached: "Résumé PDF joint pour vos archives",
     },
     governanceTrends: {
       title: "Opérer dans une réalité réglementée",
@@ -3024,6 +3033,9 @@ export const translations: Record<Lang, any> = {
       body3: "Aby przyspieszyć kolejne kroki, możesz umówić się na konsultację strategiczną poniżej.",
       scheduleBtn: "Umów konsultację strategiczną",
       closeBtn: "Zamknij",
+      referenceLabel: "Numer referencyjny",
+      emailSent: "Potwierdzenie wysłane na",
+      pdfAttached: "Załączono podsumowanie PDF do Twoich akt",
     },
     governanceTrends: {
       title: "Działanie w regulowanej rzeczywistości",
@@ -3676,6 +3688,9 @@ export const translations: Record<Lang, any> = {
       body3: "Para acelerar los próximos pasos, puede programar una consulta estratégica a continuación.",
       scheduleBtn: "Programar consulta estratégica",
       closeBtn: "Cerrar",
+      referenceLabel: "ID de referencia",
+      emailSent: "Confirmación enviada a",
+      pdfAttached: "Resumen PDF adjunto para sus registros",
     },
     governanceTrends: {
       title: "Operar en una realidad regulada",
@@ -4328,6 +4343,9 @@ export const translations: Record<Lang, any> = {
       body3: "Per accelerare i prossimi passi, puoi pianificare una consultazione strategica qui sotto.",
       scheduleBtn: "Pianifica consultazione strategica",
       closeBtn: "Chiudi",
+      referenceLabel: "ID di riferimento",
+      emailSent: "Conferma inviata a",
+      pdfAttached: "Riepilogo PDF allegato per i tuoi archivi",
     },
     governanceTrends: {
       title: "Operare in una realtà regolamentata",

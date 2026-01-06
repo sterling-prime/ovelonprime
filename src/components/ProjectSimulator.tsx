@@ -67,6 +67,11 @@ export const ProjectSimulator = ({ isOpen, onClose }: ProjectSimulatorProps) => 
   const [data, setData] = useState<SimulatorData>(initialData);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [submissionResult, setSubmissionResult] = useState<{
+    referenceId?: string;
+    pdfAttached?: boolean;
+    userEmail?: string;
+  }>({});
   const totalSteps = 7;
 
   // Generate operational analysis based on collected data
@@ -240,6 +245,15 @@ export const ProjectSimulator = ({ isOpen, onClose }: ProjectSimulatorProps) => 
         throw new Error(errorData.error || "Server error");
       }
 
+      const responseData = await res.json();
+      
+      // Store submission result for modal
+      setSubmissionResult({
+        referenceId: responseData.referenceId,
+        pdfAttached: responseData.pdfAttached,
+        userEmail: data.email,
+      });
+      
       handleReset();
       onClose();
       setShowSuccessModal(true);
@@ -322,6 +336,9 @@ export const ProjectSimulator = ({ isOpen, onClose }: ProjectSimulatorProps) => 
       <SubmissionSuccessModal
         isOpen={showSuccessModal}
         onClose={handleSuccessModalClose}
+        referenceId={submissionResult.referenceId}
+        pdfAttached={submissionResult.pdfAttached}
+        userEmail={submissionResult.userEmail}
       />
 
       {/* Main Modal - only when isOpen */}
