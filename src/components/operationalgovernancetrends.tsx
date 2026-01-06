@@ -18,12 +18,12 @@ export const OperationalGovernanceTrends = () => {
         {/* GRID */}
         <div className="grid md:grid-cols-3 gap-12">
 
-          {/* COLUMN 1 — WHAT MANAGERS CARE ABOUT */}
+          {/* COLUMN 1 */}
           <div>
-            <h3 className="text-lg font-semibold text-slate-900 mb-4">
+            <h3 className="text-lg font-semibold text-slate-900 mb-4 text-center">
               What Operating Leaders Prioritize
             </h3>
-            <ul className="space-y-3 text-slate-600 text-sm">
+            <ul className="space-y-3 text-slate-600 text-sm text-left">
               <li>• Clear, enforceable work instructions</li>
               <li>• Predictable execution across shifts and teams</li>
               <li>• Safety procedures that leave little room for interpretation</li>
@@ -32,12 +32,12 @@ export const OperationalGovernanceTrends = () => {
             </ul>
           </div>
 
-          {/* COLUMN 2 — STANDARDS & COMPLIANCE LOGIC */}
+          {/* COLUMN 2 */}
           <div>
-            <h3 className="text-lg font-semibold text-slate-900 mb-4">
+            <h3 className="text-lg font-semibold text-slate-900 mb-4 text-center">
               Standards, Compliance & Liability
             </h3>
-            <ul className="space-y-3 text-slate-600 text-sm">
+            <ul className="space-y-3 text-slate-600 text-sm text-left">
               <li>• Formal management systems based on recognized standards</li>
               <li>• Traceable procedures and corrective actions</li>
               <li>• Verifiable training and competency records</li>
@@ -46,12 +46,12 @@ export const OperationalGovernanceTrends = () => {
             </ul>
           </div>
 
-          {/* COLUMN 3 — SAFETY, HYGIENE & REALITY */}
+          {/* COLUMN 3 */}
           <div>
-            <h3 className="text-lg font-semibold text-slate-900 mb-4">
+            <h3 className="text-lg font-semibold text-slate-900 mb-4 text-center">
               Safety, Hygiene & Operational Reality
             </h3>
-            <ul className="space-y-3 text-slate-600 text-sm">
+            <ul className="space-y-3 text-slate-600 text-sm text-left">
               <li>• Safety rules must work under pressure, not only on paper</li>
               <li>• Hygiene procedures must be consistent across locations</li>
               <li>• Deviations must be logged, not normalized</li>
