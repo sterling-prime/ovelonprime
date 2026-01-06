@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Loader2 } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 
@@ -11,6 +11,7 @@ const Intake = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const { i18n, t } = useTranslation();
+  const [isLoading, setIsLoading] = useState(true);
 
   // Set language from URL param if provided (only on initial load)
   useEffect(() => {
@@ -37,6 +38,11 @@ const Intake = () => {
   // Map language for cal.com - reactively updates when i18n.language changes
   const calLocale = i18n.language.startsWith("en") ? "en" : i18n.language;
   const formUrlWithLang = `${FORM_URL}?locale=${calLocale}`;
+
+  // Reset loading state when language changes
+  useEffect(() => {
+    setIsLoading(true);
+  }, [calLocale]);
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -87,12 +93,18 @@ const Intake = () => {
 
           {/* FORM CARD */}
           <div className="bg-slate-100 rounded-3xl p-10">
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div className="bg-white rounded-2xl shadow-xl overflow-hidden relative">
+              {isLoading && (
+                <div className="absolute inset-0 flex items-center justify-center bg-white z-10">
+                  <Loader2 className="h-8 w-8 animate-spin text-slate-400" />
+                </div>
+              )}
               <iframe
                 key={calLocale}
                 src={formUrlWithLang}
                 title={t("intake.title")}
                 className="w-full min-h-[900px] border-0"
+                onLoad={() => setIsLoading(false)}
               />
             </div>
           </div>
