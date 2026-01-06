@@ -154,18 +154,58 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
 
   // Header with branding
   doc.setFillColor(15, 23, 42); // Dark slate
-  doc.rect(0, 0, pageWidth, 80, "F");
+  doc.rect(0, 0, pageWidth, 90, "F");
 
+  // Draw hexagonal logo icon
+  const logoX = margin;
+  const logoY = 45;
+  const logoSize = 18;
+  
+  // Hexagon vertices (pointy-top orientation)
+  const hexPoints: [number, number][] = [];
+  for (let i = 0; i < 6; i++) {
+    const angle = (Math.PI / 3) * i - Math.PI / 2;
+    hexPoints.push([
+      logoX + logoSize * Math.cos(angle),
+      logoY + logoSize * Math.sin(angle)
+    ]);
+  }
+  
+  // Draw outer hexagon frame
+  doc.setDrawColor(255, 255, 255);
+  doc.setLineWidth(1.5);
+  doc.setFillColor(15, 23, 42);
+  doc.lines(
+    hexPoints.slice(1).map((p, i) => [p[0] - hexPoints[i][0], p[1] - hexPoints[i][1]]),
+    hexPoints[0][0],
+    hexPoints[0][1],
+    [1, 1],
+    "FD",
+    true
+  );
+
+  // Draw inner node (center circle)
+  doc.setFillColor(255, 255, 255);
+  doc.circle(logoX, logoY, 3, "F");
+
+  // Draw inner lines from center to 3 alternating vertices
+  doc.setLineWidth(1);
+  for (let i = 0; i < 6; i += 2) {
+    doc.line(logoX, logoY, hexPoints[i][0], hexPoints[i][1]);
+  }
+
+  // Brand wordmark
   doc.setTextColor(255, 255, 255);
-  doc.setFontSize(24);
+  doc.setFontSize(22);
   doc.setFont("helvetica", "bold");
-  doc.text("OVELON PRIME", margin, 45);
+  doc.text("OVELON PRIME", logoX + 32, 50);
 
-  doc.setFontSize(11);
+  doc.setFontSize(10);
   doc.setFont("helvetica", "normal");
-  doc.text("Operational Review Request", margin, 62);
+  doc.setTextColor(200, 200, 200);
+  doc.text("Operational Review Request", logoX + 32, 68);
 
-  y = 110;
+  y = 115;
 
   // Reference & Date section
   doc.setFillColor(248, 250, 252);
