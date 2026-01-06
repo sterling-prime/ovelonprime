@@ -1,4 +1,3 @@
-import { ChevronDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 const isMobile = () =>
@@ -20,69 +19,144 @@ export const HeroScrollDown = () => {
 
     // 🔑 MOBILE: play video with sound DIRECTLY (gesture-safe)
     if (isMobile()) {
-      // Provided by VideoSection (mobile-safe helper)
       (window as any).__playVideoWithSound?.();
       return;
     }
 
-    // 🖥 DESKTOP: keep existing behavior
+    // 🖥 DESKTOP: dispatch event
     window.dispatchEvent(new Event("play-hero-video"));
   };
 
   return (
-    <div className="hidden absolute bottom-20 sm:bottom-10 left-1/2 -translate-x-1/2 z-20 pb-safe">
+    <div className="absolute bottom-20 sm:bottom-10 left-1/2 -translate-x-1/2 z-20 pb-safe">
       <button
         type="button"
         onClick={handleClick}
         aria-label={t("explore")}
-        className="
-          group
-          flex flex-col items-center gap-2
-          text-black
-          focus:outline-none
-        "
+        className="group flex flex-col items-center gap-3 focus:outline-none"
       >
-        {/* RING */}
-        <span
-          className="
-            relative
-            inline-flex
-            items-center
-            justify-center
-            w-10 h-10
-            sm:w-12 sm:h-12
-            rounded-full
-            border-2 border-black
-            transition-all duration-300
-            group-hover:scale-110
-          "
-        >
-          {/* CHEVRON */}
-          <ChevronDown
+        {/* Outer ring with pulse effect */}
+        <div className="relative">
+          {/* Pulse rings */}
+          <span className="absolute inset-0 rounded-full border border-slate-400/30 animate-[ping_2s_ease-out_infinite]" />
+          <span className="absolute inset-0 rounded-full border border-slate-400/20 animate-[ping_2s_ease-out_infinite_0.5s]" />
+          
+          {/* Main button container */}
+          <span
             className="
-              w-4 h-4
-              sm:w-5 sm:h-5
-              text-black
-              animate-chevron-down
+              relative
+              inline-flex
+              items-center
+              justify-center
+              w-14 h-14
+              sm:w-16 sm:h-16
+              rounded-full
+              bg-white/10
+              backdrop-blur-sm
+              border border-slate-700/50
+              shadow-lg
+              transition-all duration-500 ease-out
+              group-hover:bg-white/20
+              group-hover:border-slate-600
+              group-hover:shadow-xl
+              group-hover:scale-110
             "
-          />
-        </span>
+          >
+            {/* Inner glow */}
+            <span className="absolute inset-2 rounded-full bg-gradient-to-b from-white/10 to-transparent" />
+            
+            {/* Animated arrow container */}
+            <span className="relative flex flex-col items-center justify-center gap-0.5">
+              {/* Triple chevron animation */}
+              <svg 
+                className="w-6 h-6 sm:w-7 sm:h-7 text-slate-800"
+                viewBox="0 0 24 24" 
+                fill="none" 
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {/* First chevron */}
+                <path 
+                  d="M6 9L12 15L18 9" 
+                  stroke="currentColor" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                  className="opacity-40 animate-[scrollArrow1_1.5s_ease-in-out_infinite]"
+                />
+                {/* Second chevron */}
+                <path 
+                  d="M6 5L12 11L18 5" 
+                  stroke="currentColor" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                  className="opacity-70 animate-[scrollArrow2_1.5s_ease-in-out_infinite]"
+                />
+                {/* Third chevron (main) */}
+                <path 
+                  d="M6 1L12 7L18 1" 
+                  stroke="currentColor" 
+                  strokeWidth="2.5" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                  className="animate-[scrollArrow3_1.5s_ease-in-out_infinite]"
+                />
+              </svg>
+            </span>
+          </span>
+        </div>
 
-        {/* LABEL */}
+        {/* Label with reveal animation */}
         <span
           className="
             text-[10px]
             sm:text-xs
-            tracking-widest
+            tracking-[0.25em]
             uppercase
             font-medium
-            transition-all
-            group-hover:font-extrabold
+            text-slate-700
+            transition-all duration-300
+            group-hover:tracking-[0.35em]
+            group-hover:text-slate-900
           "
         >
           {t("explore")}
         </span>
       </button>
+
+      {/* Custom keyframes injected via style tag */}
+      <style>{`
+        @keyframes scrollArrow1 {
+          0%, 100% { 
+            opacity: 0.3; 
+            transform: translateY(0); 
+          }
+          50% { 
+            opacity: 0.6; 
+            transform: translateY(4px); 
+          }
+        }
+        @keyframes scrollArrow2 {
+          0%, 100% { 
+            opacity: 0.5; 
+            transform: translateY(0); 
+          }
+          50% { 
+            opacity: 0.8; 
+            transform: translateY(4px); 
+          }
+        }
+        @keyframes scrollArrow3 {
+          0%, 100% { 
+            opacity: 0.8; 
+            transform: translateY(0); 
+          }
+          50% { 
+            opacity: 1; 
+            transform: translateY(4px); 
+          }
+        }
+      `}</style>
     </div>
   );
 };

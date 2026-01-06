@@ -119,20 +119,39 @@ export const VideoSection = () => {
 
     v.muted = false;
     v.volume = 1;
+    v.currentTime = 0; // Restart from beginning
+    v.play().catch(() => {});
     setShowHint(false);
   };
 
   /* -------------------------------------------------------
-     5️⃣ HERO EXPLORE ARROW → SOUND ON (KEY ADDITION)
+     5️⃣ HERO EXPLORE ARROW → PLAY WITH SOUND
   ------------------------------------------------------- */
   useEffect(() => {
     const handler = () => {
-      enableSound();
+      // Small delay to allow scroll to complete
+      setTimeout(() => {
+        enableSound();
+      }, 600);
     };
 
     window.addEventListener("play-hero-video", handler);
     return () =>
       window.removeEventListener("play-hero-video", handler);
+  }, []);
+
+  /* -------------------------------------------------------
+     5️⃣b MOBILE: Expose global helper for gesture-safe play
+  ------------------------------------------------------- */
+  useEffect(() => {
+    (window as any).__playVideoWithSound = () => {
+      setTimeout(() => {
+        enableSound();
+      }, 600);
+    };
+    return () => {
+      delete (window as any).__playVideoWithSound;
+    };
   }, []);
 
   /* -------------------------------------------------------
