@@ -621,9 +621,13 @@ app.post("/api/request-review", rateLimiter, async (req, res) => {
     `;
 
     // Build internal email with PDF attachment
+    // Note: Use verified domain email or onboarding@resend.dev for testing
+    const fromEmail = process.env.FROM_EMAIL || "Ovelon Prime <onboarding@resend.dev>";
+    const internalToEmail = process.env.INTERNAL_EMAIL || "support@ovelon-prime.com";
+    
     const internalEmailOptions = {
-      from: "Ovelon Prime <noreply@ovelon-prime.com>",
-      to: ["support@ovelon-prime.com"],
+      from: fromEmail,
+      to: [internalToEmail],
       subject: `New Operational Review: ${referenceId}`,
       html: emailHtml,
     };
@@ -738,7 +742,7 @@ app.post("/api/request-review", rateLimiter, async (req, res) => {
 
     // Build user email options with PDF attachment
     const userEmailOptions = {
-      from: "Ovelon Prime <noreply@ovelon-prime.com>",
+      from: fromEmail,
       to: [contactDetails.email],
       subject: `Your Operational Review Request — ${referenceId}`,
       html: userConfirmationHtml,
