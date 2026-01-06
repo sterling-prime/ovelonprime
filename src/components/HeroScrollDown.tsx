@@ -31,13 +31,14 @@ export const HeroScrollDown = () => {
     <div 
       className="
         absolute 
-        bottom-6
-        sm:bottom-10
+        bottom-2
+        sm:bottom-4
+        md:bottom-8
         left-0
         right-0
         flex
         justify-center
-        z-20 
+        z-10
         pb-safe
         pointer-events-none
       "

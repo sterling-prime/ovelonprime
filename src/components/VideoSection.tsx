@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
-import { useMemo, useRef, useEffect, useState } from "react";
+import { useMemo, useRef, useEffect, useState, useCallback } from "react";
 
 /* ---------------- Video assets per language ---------------- */
 import introEN from "@/assets/intro-en.mp4";
@@ -13,6 +13,7 @@ import introIT from "@/assets/intro-it.mp4";
 const INTRO_VIDEOS: Record<string, string> = {
   en: introEN,
   de: introDE,
+  nl: introDE, // Dutch falls back to German
   fr: introFR,
   pl: introPL,
   es: introES,
@@ -113,7 +114,7 @@ export const VideoSection = () => {
   /* -------------------------------------------------------
      4️⃣ ENABLE SOUND (shared logic)
   ------------------------------------------------------- */
-  const enableSound = () => {
+  const enableSound = useCallback(() => {
     const v = videoRef.current;
     if (!v) return;
 
@@ -122,7 +123,7 @@ export const VideoSection = () => {
     v.currentTime = 0; // Restart from beginning
     v.play().catch(() => {});
     setShowHint(false);
-  };
+  }, []);
 
   /* -------------------------------------------------------
      5️⃣ HERO EXPLORE ARROW → PLAY WITH SOUND
@@ -138,7 +139,7 @@ export const VideoSection = () => {
     window.addEventListener("play-hero-video", handler);
     return () =>
       window.removeEventListener("play-hero-video", handler);
-  }, []);
+  }, [enableSound]);
 
   /* -------------------------------------------------------
      5️⃣b MOBILE: Expose global helper for gesture-safe play
@@ -152,7 +153,7 @@ export const VideoSection = () => {
     return () => {
       delete (window as any).__playVideoWithSound;
     };
-  }, []);
+  }, [enableSound]);
 
   /* -------------------------------------------------------
      6️⃣ Click on video → NO SOUND (play muted only)
