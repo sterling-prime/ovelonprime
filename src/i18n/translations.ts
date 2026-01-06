@@ -751,6 +751,42 @@ export const translations: Record<Lang, any> = {
       scheduleBtn: "Schedule Strategic Consultation",
       closeBtn: "Close",
     },
+    governanceTrends: {
+      title: "Operating in a Regulated Reality",
+      subtitle: "As operational environments become more regulated, interconnected, and scrutinized, leadership is increasingly defined by control, documentation, and consistency — not by speed or improvisation.",
+      column1: {
+        title: "What Operating Leaders Prioritize",
+        items: [
+          "Clear, enforceable work instructions",
+          "Predictable execution across shifts and teams",
+          "Safety procedures that leave little room for interpretation",
+          "Fewer ad-hoc decisions during incidents",
+          "Documentation that stands on its own"
+        ]
+      },
+      column2: {
+        title: "Standards, Compliance & Liability",
+        items: [
+          "Formal management systems based on recognized standards",
+          "Traceable procedures and corrective actions",
+          "Verifiable training and competency records",
+          "Data protection and access control by default",
+          "Decisions that can be reconstructed after the fact"
+        ]
+      },
+      column3: {
+        title: "Safety, Hygiene & Operational Reality",
+        items: [
+          "Safety rules must work under pressure, not only on paper",
+          "Hygiene procedures must be consistent across locations",
+          "Deviations must be logged, not normalized",
+          "Informal workarounds increase exposure",
+          "Personal accountability is moving closer to the floor"
+        ]
+      },
+      trend1: "Looking ahead, the trend is clear: operations are expected to be explainable, auditable, and repeatable — even under disruption.",
+      trend2: "Organizations that succeed will be those that embed standards, safety, hygiene, and data discipline directly into daily execution. Not as overhead, but as operational structure."
+    },
   },
   de: {
 
@@ -1472,6 +1508,42 @@ export const translations: Record<Lang, any> = {
       body3: "Um die nächsten Schritte zu beschleunigen, können Sie unten eine strategische Beratung vereinbaren.",
       scheduleBtn: "Strategische Beratung vereinbaren",
       closeBtn: "Schließen",
+    },
+    governanceTrends: {
+      title: "Operieren in einer regulierten Realität",
+      subtitle: "Da operative Umgebungen zunehmend reguliert, vernetzt und überprüft werden, wird Führung immer mehr durch Kontrolle, Dokumentation und Konsistenz definiert — nicht durch Geschwindigkeit oder Improvisation.",
+      column1: {
+        title: "Was Betriebsleiter priorisieren",
+        items: [
+          "Klare, durchsetzbare Arbeitsanweisungen",
+          "Vorhersehbare Ausführung über Schichten und Teams hinweg",
+          "Sicherheitsverfahren, die wenig Raum für Interpretation lassen",
+          "Weniger Ad-hoc-Entscheidungen bei Vorfällen",
+          "Dokumentation, die für sich selbst steht"
+        ]
+      },
+      column2: {
+        title: "Standards, Compliance & Haftung",
+        items: [
+          "Formale Managementsysteme basierend auf anerkannten Standards",
+          "Nachverfolgbare Verfahren und Korrekturmaßnahmen",
+          "Überprüfbare Schulungs- und Kompetenznachweise",
+          "Datenschutz und Zugriffskontrolle standardmäßig",
+          "Entscheidungen, die im Nachhinein rekonstruiert werden können"
+        ]
+      },
+      column3: {
+        title: "Sicherheit, Hygiene & operative Realität",
+        items: [
+          "Sicherheitsregeln müssen unter Druck funktionieren, nicht nur auf dem Papier",
+          "Hygieneverfahren müssen standortübergreifend konsistent sein",
+          "Abweichungen müssen protokolliert, nicht normalisiert werden",
+          "Informelle Workarounds erhöhen das Risiko",
+          "Persönliche Verantwortlichkeit rückt näher an die operative Ebene"
+        ]
+      },
+      trend1: "Mit Blick auf die Zukunft ist der Trend klar: Operationen müssen erklärbar, prüfbar und wiederholbar sein — auch unter Störungen.",
+      trend2: "Erfolgreiche Organisationen werden diejenigen sein, die Standards, Sicherheit, Hygiene und Datendisziplin direkt in die tägliche Ausführung einbetten. Nicht als Overhead, sondern als operative Struktur."
     },
   },
   fr: {
@@ -2195,6 +2267,42 @@ export const translations: Record<Lang, any> = {
       scheduleBtn: "Planifier une consultation stratégique",
       closeBtn: "Fermer",
     },
+    governanceTrends: {
+      title: "Opérer dans une réalité réglementée",
+      subtitle: "À mesure que les environnements opérationnels deviennent plus réglementés, interconnectés et scrutés, le leadership est de plus en plus défini par le contrôle, la documentation et la cohérence — et non par la vitesse ou l'improvisation.",
+      column1: {
+        title: "Ce que les leaders opérationnels priorisent",
+        items: [
+          "Instructions de travail claires et applicables",
+          "Exécution prévisible entre les équipes et les postes",
+          "Procédures de sécurité qui laissent peu de place à l'interprétation",
+          "Moins de décisions ad hoc lors des incidents",
+          "Documentation qui se suffit à elle-même"
+        ]
+      },
+      column2: {
+        title: "Normes, conformité et responsabilité",
+        items: [
+          "Systèmes de gestion formels basés sur des normes reconnues",
+          "Procédures et actions correctives traçables",
+          "Dossiers de formation et de compétence vérifiables",
+          "Protection des données et contrôle d'accès par défaut",
+          "Décisions qui peuvent être reconstituées après coup"
+        ]
+      },
+      column3: {
+        title: "Sécurité, hygiène et réalité opérationnelle",
+        items: [
+          "Les règles de sécurité doivent fonctionner sous pression, pas seulement sur le papier",
+          "Les procédures d'hygiène doivent être cohérentes entre les sites",
+          "Les écarts doivent être enregistrés, pas normalisés",
+          "Les solutions de contournement informelles augmentent l'exposition",
+          "La responsabilité personnelle se rapproche du terrain"
+        ]
+      },
+      trend1: "À l'avenir, la tendance est claire : les opérations doivent être explicables, auditables et reproductibles — même en cas de perturbation.",
+      trend2: "Les organisations qui réussiront seront celles qui intégreront les normes, la sécurité, l'hygiène et la discipline des données directement dans l'exécution quotidienne. Pas comme une surcharge, mais comme une structure opérationnelle."
+    },
   },
   pl: {
     
@@ -2915,7 +3023,43 @@ export const translations: Record<Lang, any> = {
       body2: "Nasz zespół dokładnie przeanalizuje Twoją prośbę i odpowiednio się z Tobą skontaktuje.",
       body3: "Aby przyspieszyć kolejne kroki, możesz umówić się na konsultację strategiczną poniżej.",
       scheduleBtn: "Umów konsultację strategiczną",
-    closeBtn: "Zamknij",
+      closeBtn: "Zamknij",
+    },
+    governanceTrends: {
+      title: "Działanie w regulowanej rzeczywistości",
+      subtitle: "W miarę jak środowiska operacyjne stają się bardziej regulowane, połączone i kontrolowane, przywództwo jest coraz bardziej definiowane przez kontrolę, dokumentację i spójność — a nie przez szybkość czy improwizację.",
+      column1: {
+        title: "Co priorytetyzują liderzy operacyjni",
+        items: [
+          "Jasne, egzekwowalne instrukcje pracy",
+          "Przewidywalne wykonanie między zmianami i zespołami",
+          "Procedury bezpieczeństwa pozostawiające mało miejsca na interpretację",
+          "Mniej doraźnych decyzji podczas incydentów",
+          "Dokumentacja, która mówi sama za siebie"
+        ]
+      },
+      column2: {
+        title: "Standardy, zgodność i odpowiedzialność",
+        items: [
+          "Formalne systemy zarządzania oparte na uznanych standardach",
+          "Śledzalne procedury i działania korygujące",
+          "Weryfikowalne rejestry szkoleń i kompetencji",
+          "Ochrona danych i kontrola dostępu domyślnie",
+          "Decyzje, które można zrekonstruować po fakcie"
+        ]
+      },
+      column3: {
+        title: "Bezpieczeństwo, higiena i rzeczywistość operacyjna",
+        items: [
+          "Zasady bezpieczeństwa muszą działać pod presją, nie tylko na papierze",
+          "Procedury higieniczne muszą być spójne we wszystkich lokalizacjach",
+          "Odchylenia muszą być rejestrowane, a nie normalizowane",
+          "Nieformalne obejścia zwiększają narażenie",
+          "Osobista odpowiedzialność zbliża się do poziomu operacyjnego"
+        ]
+      },
+      trend1: "Patrząc w przyszłość, trend jest jasny: operacje muszą być wyjaśnialne, audytowalne i powtarzalne — nawet w przypadku zakłóceń.",
+      trend2: "Sukces odniosą organizacje, które wbudują standardy, bezpieczeństwo, higienę i dyscyplinę danych bezpośrednio w codzienne wykonywanie zadań. Nie jako obciążenie, ale jako strukturę operacyjną."
     },
   },
 
@@ -3533,6 +3677,42 @@ export const translations: Record<Lang, any> = {
       scheduleBtn: "Programar consulta estratégica",
       closeBtn: "Cerrar",
     },
+    governanceTrends: {
+      title: "Operar en una realidad regulada",
+      subtitle: "A medida que los entornos operativos se vuelven más regulados, interconectados y escrutados, el liderazgo se define cada vez más por el control, la documentación y la consistencia — no por la velocidad o la improvisación.",
+      column1: {
+        title: "Lo que priorizan los líderes operativos",
+        items: [
+          "Instrucciones de trabajo claras y aplicables",
+          "Ejecución predecible entre turnos y equipos",
+          "Procedimientos de seguridad que dejan poco margen a la interpretación",
+          "Menos decisiones improvisadas durante incidentes",
+          "Documentación que habla por sí misma"
+        ]
+      },
+      column2: {
+        title: "Estándares, cumplimiento y responsabilidad",
+        items: [
+          "Sistemas de gestión formales basados en estándares reconocidos",
+          "Procedimientos y acciones correctivas trazables",
+          "Registros de capacitación y competencia verificables",
+          "Protección de datos y control de acceso por defecto",
+          "Decisiones que pueden reconstruirse después del hecho"
+        ]
+      },
+      column3: {
+        title: "Seguridad, higiene y realidad operativa",
+        items: [
+          "Las reglas de seguridad deben funcionar bajo presión, no solo en papel",
+          "Los procedimientos de higiene deben ser consistentes en todas las ubicaciones",
+          "Las desviaciones deben registrarse, no normalizarse",
+          "Las soluciones informales aumentan la exposición",
+          "La responsabilidad personal se acerca al nivel operativo"
+        ]
+      },
+      trend1: "Mirando hacia adelante, la tendencia es clara: las operaciones deben ser explicables, auditables y repetibles — incluso bajo interrupción.",
+      trend2: "Las organizaciones que tendrán éxito serán aquellas que integren estándares, seguridad, higiene y disciplina de datos directamente en la ejecución diaria. No como sobrecarga, sino como estructura operativa."
+    },
   },
 
   /* ===================== IT ===================== */
@@ -4148,6 +4328,42 @@ export const translations: Record<Lang, any> = {
       body3: "Per accelerare i prossimi passi, puoi pianificare una consultazione strategica qui sotto.",
       scheduleBtn: "Pianifica consultazione strategica",
       closeBtn: "Chiudi",
+    },
+    governanceTrends: {
+      title: "Operare in una realtà regolamentata",
+      subtitle: "Man mano che gli ambienti operativi diventano più regolamentati, interconnessi e scrutinati, la leadership è sempre più definita dal controllo, dalla documentazione e dalla coerenza — non dalla velocità o dall'improvvisazione.",
+      column1: {
+        title: "Cosa danno priorità i leader operativi",
+        items: [
+          "Istruzioni di lavoro chiare e applicabili",
+          "Esecuzione prevedibile tra turni e team",
+          "Procedure di sicurezza che lasciano poco spazio all'interpretazione",
+          "Meno decisioni improvvisate durante gli incidenti",
+          "Documentazione che parla da sola"
+        ]
+      },
+      column2: {
+        title: "Standard, conformità e responsabilità",
+        items: [
+          "Sistemi di gestione formali basati su standard riconosciuti",
+          "Procedure e azioni correttive tracciabili",
+          "Registri di formazione e competenza verificabili",
+          "Protezione dei dati e controllo degli accessi di default",
+          "Decisioni che possono essere ricostruite a posteriori"
+        ]
+      },
+      column3: {
+        title: "Sicurezza, igiene e realtà operativa",
+        items: [
+          "Le regole di sicurezza devono funzionare sotto pressione, non solo sulla carta",
+          "Le procedure igieniche devono essere coerenti in tutte le sedi",
+          "Le deviazioni devono essere registrate, non normalizzate",
+          "Le soluzioni informali aumentano l'esposizione",
+          "La responsabilità personale si avvicina al livello operativo"
+        ]
+      },
+      trend1: "Guardando al futuro, la tendenza è chiara: le operazioni devono essere spiegabili, verificabili e ripetibili — anche in caso di interruzione.",
+      trend2: "Le organizzazioni che avranno successo saranno quelle che integreranno standard, sicurezza, igiene e disciplina dei dati direttamente nell'esecuzione quotidiana. Non come sovraccarico, ma come struttura operativa."
     },
   },
 };
