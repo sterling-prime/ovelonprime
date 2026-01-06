@@ -12,7 +12,7 @@ const Intake2 = () => {
   const navigate = useNavigate();
   const { i18n, t } = useTranslation();
 
-  // Set language from URL param if provided
+  // Set language from URL param if provided (only on initial load)
   useEffect(() => {
     const lang = searchParams.get("lang");
     if (lang && ["en", "de", "fr", "pl", "es", "it"].includes(lang)) {
@@ -34,8 +34,8 @@ const Intake2 = () => {
     }
   };
 
-  // Map language for cal.com
-  const calLocale = i18n.language === "en" ? "en" : i18n.language;
+  // Map language for cal.com - reactively updates when i18n.language changes
+  const calLocale = i18n.language.startsWith("en") ? "en" : i18n.language;
   const formUrlWithLang = `${FORM_URL}?locale=${calLocale}`;
 
   return (
@@ -89,6 +89,7 @@ const Intake2 = () => {
           <div className="bg-slate-100 rounded-3xl p-10">
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
               <iframe
+                key={calLocale}
                 src={formUrlWithLang}
                 title={t("intake.title")}
                 className="w-full min-h-[900px] border-0"
