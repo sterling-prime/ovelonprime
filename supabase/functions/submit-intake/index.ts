@@ -255,10 +255,9 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
     y += lines.length * 14 + 10;
   };
 
-  // Helper: Add bullet list
+  // Helper: Add bullet list with proper text wrapping for long items
   const addBulletList = (label: string, items: string[]) => {
     if (!items || items.length === 0) return;
-    checkPageBreak(20 + items.length * 16);
     
     doc.setTextColor(100, 116, 139);
     doc.setFontSize(9);
@@ -268,12 +267,137 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
 
     doc.setTextColor(15, 23, 42);
     doc.setFontSize(10);
+    const bulletIndent = 15;
+    const bulletContentWidth = contentWidth - bulletIndent;
+    
     items.forEach((item) => {
-      checkPageBreak(16);
-      doc.text("•  " + item, margin + 10, y);
-      y += 16;
+      // Wrap text properly for long items (especially important for Polish/German)
+      const lines = doc.splitTextToSize(item, bulletContentWidth);
+      checkPageBreak(lines.length * 14 + 4);
+      
+      // Draw bullet point
+      doc.text("•", margin + 4, y);
+      
+      // Draw wrapped text
+      lines.forEach((line: string, lineIndex: number) => {
+        doc.text(line, margin + bulletIndent, y);
+        if (lineIndex < lines.length - 1) {
+          y += 14;
+        }
+      });
+      y += 18;
     });
-    y += 6;
+    y += 4;
+  };
+
+  // Helper: Add premium analysis card with executive styling
+  const addAnalysisCard = (title: string, content: string | string[], icon: string) => {
+    const isArray = Array.isArray(content);
+    const items = isArray ? content : [content];
+    if (items.length === 0 || (items.length === 1 && !items[0])) return;
+
+    // Calculate card height
+    let estimatedHeight = 50;
+    items.forEach((item) => {
+      const lines = doc.splitTextToSize(item, contentWidth - 50);
+      estimatedHeight += lines.length * 14 + 8;
+    });
+    
+    checkPageBreak(estimatedHeight);
+
+    // Card background with subtle gradient effect
+    doc.setFillColor(250, 251, 252);
+    doc.roundedRect(margin, y, contentWidth, estimatedHeight, 6, 6, "F");
+    
+    // Left accent bar
+    doc.setFillColor(14, 165, 233); // Sky blue accent
+    doc.roundedRect(margin, y, 4, estimatedHeight, 2, 2, "F");
+
+    // Card title with icon
+    y += 18;
+    doc.setTextColor(15, 23, 42);
+    doc.setFontSize(11);
+    doc.setFont("helvetica", "bold");
+    doc.text(`${icon}  ${title}`, margin + 16, y);
+    y += 16;
+
+    // Card content
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    doc.setTextColor(51, 65, 85);
+    
+    items.forEach((item) => {
+      const lines = doc.splitTextToSize(item, contentWidth - 50);
+      
+      if (isArray && items.length > 1) {
+        // Bullet for multiple items
+        doc.setFillColor(14, 165, 233);
+        doc.circle(margin + 22, y - 3, 2, "F");
+        lines.forEach((line: string, idx: number) => {
+          doc.text(line, margin + 30, y);
+          y += 14;
+        });
+      } else {
+        // No bullet for single item
+        lines.forEach((line: string) => {
+          doc.text(line, margin + 16, y);
+          y += 14;
+        });
+      }
+      y += 4;
+    });
+    
+    y += 10;
+  };
+
+  // Helper: Add readiness badge
+  const addReadinessBadge = (label: string, value: string) => {
+    checkPageBreak(60);
+    
+    // Determine color based on readiness level
+    let bgColor: [number, number, number] = [241, 245, 249]; // Default gray
+    let textColor: [number, number, number] = [71, 85, 105];
+    let accentColor: [number, number, number] = [100, 116, 139];
+    
+    const lowerValue = value.toLowerCase();
+    if (lowerValue.includes("high") || lowerValue.includes("wysok") || lowerValue.includes("hoch") || lowerValue.includes("élevé") || lowerValue.includes("alt")) {
+      bgColor = [220, 252, 231]; // Green
+      textColor = [22, 101, 52];
+      accentColor = [34, 197, 94];
+    } else if (lowerValue.includes("moderate") || lowerValue.includes("umiarkow") || lowerValue.includes("mittel") || lowerValue.includes("modér") || lowerValue.includes("moder")) {
+      bgColor = [254, 249, 195]; // Yellow
+      textColor = [133, 77, 14];
+      accentColor = [234, 179, 8];
+    } else if (lowerValue.includes("low") || lowerValue.includes("nisk") || lowerValue.includes("niedrig") || lowerValue.includes("faible") || lowerValue.includes("bass")) {
+      bgColor = [254, 226, 226]; // Red
+      textColor = [153, 27, 27];
+      accentColor = [239, 68, 68];
+    }
+
+    // Card background
+    doc.setFillColor(...bgColor);
+    doc.roundedRect(margin, y, contentWidth, 50, 6, 6, "F");
+    
+    // Accent bar
+    doc.setFillColor(...accentColor);
+    doc.roundedRect(margin, y, 4, 50, 2, 2, "F");
+
+    // Label
+    y += 18;
+    doc.setTextColor(100, 116, 139);
+    doc.setFontSize(9);
+    doc.setFont("helvetica", "normal");
+    doc.text(label, margin + 16, y);
+    
+    // Value
+    y += 16;
+    doc.setTextColor(...textColor);
+    doc.setFontSize(13);
+    doc.setFont("helvetica", "bold");
+    const valueLines = doc.splitTextToSize(value, contentWidth - 40);
+    doc.text(valueLines[0], margin + 16, y);
+    
+    y += 26;
   };
 
   // Contact Details Section
@@ -312,13 +436,38 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
   addField("Downtime Sensitivity", getLabel("downtimeSensitivity", operationalData.downtimeSensitivity));
   addField("Safety & Compliance", getLabels("safetyCompliance", operationalData.safetyCompliance));
 
-  // Analysis Section
+  // Analysis Section - Premium Executive Layout
   const { analysis } = payload;
-  addSectionTitle("Operational Analysis");
-  addBulletList("Key Observations", analysis.operationalObservations);
-  addBulletList("Risk Exposure", analysis.riskExposure);
-  addField("Execution Readiness", analysis.executionReadiness);
-  addBulletList("Advisory Direction", analysis.advisoryDirection);
+  
+  // Section header with distinct styling
+  checkPageBreak(50);
+  doc.setFillColor(15, 23, 42); // Dark header
+  doc.roundedRect(margin, y, contentWidth, 36, 4, 4, "F");
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(13);
+  doc.setFont("helvetica", "bold");
+  doc.text("EXECUTIVE ANALYSIS", margin + 16, y + 23);
+  y += 50;
+
+  // Key Observations Card
+  if (analysis.operationalObservations && analysis.operationalObservations.length > 0) {
+    addAnalysisCard("Key Observations", analysis.operationalObservations, "◉");
+  }
+
+  // Risk Exposure Card
+  if (analysis.riskExposure && analysis.riskExposure.length > 0) {
+    addAnalysisCard("Risk Exposure", analysis.riskExposure, "⚠");
+  }
+
+  // Execution Readiness Badge
+  if (analysis.executionReadiness) {
+    addReadinessBadge("Execution Readiness Assessment", analysis.executionReadiness);
+  }
+
+  // Advisory Direction Card
+  if (analysis.advisoryDirection && analysis.advisoryDirection.length > 0) {
+    addAnalysisCard("Strategic Advisory Direction", analysis.advisoryDirection, "→");
+  }
 
   // Footer
   const footerY = pageHeight - 40;
