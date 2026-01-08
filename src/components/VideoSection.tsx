@@ -9,15 +9,18 @@ import introFR from "@/assets/intro-fr.mp4";
 import introPL from "@/assets/intro-pl.mp4";
 import introES from "@/assets/intro-es.mp4";
 import introIT from "@/assets/intro-it.mp4";
+import introPT from "@/assets/intro-pt.mp4";
 
+/* ---------------- Language → Video map ---------------- */
 const INTRO_VIDEOS: Record<string, string> = {
   en: introEN,
   de: introDE,
-  nl: introDE, // Dutch falls back to German
+  nl: introDE, // NL fallback → DE
   fr: introFR,
   pl: introPL,
   es: introES,
   it: introIT,
+  pt: introPT
 };
 
 const resolveLang = (lng: string) => {
@@ -32,7 +35,7 @@ export const VideoSection = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
 
   const isInViewRef = useRef(false);
-  const isIntentionalScrollRef = useRef(false); // Flag to prevent mute during intentional scroll
+  const isIntentionalScrollRef = useRef(false);
   const [showHint, setShowHint] = useState(true);
 
   const lang = resolveLang(i18n.language);
@@ -50,7 +53,7 @@ export const VideoSection = () => {
   };
 
   /* -------------------------------------------------------
-     1️⃣ Language change → reset + autoplay if visible
+     1️⃣ Language change → reset + autoplay muted
   ------------------------------------------------------- */
   useEffect(() => {
     const v = videoRef.current;
@@ -67,7 +70,7 @@ export const VideoSection = () => {
   }, [videoSrc]);
 
   /* -------------------------------------------------------
-     2️⃣ IntersectionObserver → autoplay / pause ONLY
+     2️⃣ IntersectionObserver → play / pause
   ------------------------------------------------------- */
   useEffect(() => {
     const section = sectionRef.current;
@@ -95,14 +98,13 @@ export const VideoSection = () => {
   }, []);
 
   /* -------------------------------------------------------
-     3️⃣ GLOBAL SCROLL → MUTE SOUND (unless intentional scroll)
+     3️⃣ Global scroll → mute unless intentional
   ------------------------------------------------------- */
   useEffect(() => {
     const onScroll = () => {
       const v = videoRef.current;
       if (!v) return;
 
-      // Don't mute during intentional scroll from hero button
       if (isIntentionalScrollRef.current) return;
 
       if (!v.muted) {
@@ -116,7 +118,7 @@ export const VideoSection = () => {
   }, []);
 
   /* -------------------------------------------------------
-     4️⃣ ENABLE SOUND (shared logic)
+     4️⃣ Enable sound (shared)
   ------------------------------------------------------- */
   const enableSound = useCallback(() => {
     const v = videoRef.current;
@@ -124,24 +126,20 @@ export const VideoSection = () => {
 
     v.muted = false;
     v.volume = 1;
-    v.currentTime = 0; // Restart from beginning
+    v.currentTime = 0;
     v.play().catch(() => {});
     setShowHint(false);
   }, []);
 
   /* -------------------------------------------------------
-     5️⃣ HERO EXPLORE ARROW → PLAY WITH SOUND
+     5️⃣ Hero arrow → play with sound
   ------------------------------------------------------- */
   useEffect(() => {
     const handler = () => {
-      // Set flag to prevent scroll listener from muting
       isIntentionalScrollRef.current = true;
-      
-      // Delay to allow scroll to complete, then play with sound
+
       setTimeout(() => {
         enableSound();
-        
-        // Reset flag after a short delay
         setTimeout(() => {
           isIntentionalScrollRef.current = false;
         }, 1000);
@@ -154,29 +152,27 @@ export const VideoSection = () => {
   }, [enableSound]);
 
   /* -------------------------------------------------------
-     5️⃣b MOBILE: Expose global helper for gesture-safe play
+     5️⃣b Mobile helper
   ------------------------------------------------------- */
   useEffect(() => {
     (window as any).__playVideoWithSound = () => {
-      // Set flag to prevent scroll listener from muting
       isIntentionalScrollRef.current = true;
-      
+
       setTimeout(() => {
         enableSound();
-        
-        // Reset flag after a short delay
         setTimeout(() => {
           isIntentionalScrollRef.current = false;
         }, 1000);
       }, 800);
     };
+
     return () => {
       delete (window as any).__playVideoWithSound;
     };
   }, [enableSound]);
 
   /* -------------------------------------------------------
-     6️⃣ Click on video → NO SOUND (play muted only)
+     6️⃣ Click on video → muted replay
   ------------------------------------------------------- */
   const handleVideoClick = () => {
     const v = videoRef.current;
@@ -221,11 +217,12 @@ export const VideoSection = () => {
               onClick={handleVideoClick}
             />
 
-            {/* 🔊 TURN ON SOUND */}
+            {/* 🔊 Enable sound */}
             {showHint && (
               <div className="absolute inset-0 flex items-center justify-center">
                 <button
                   type="button"
+                  aria-label={t("video.enableSound")}
                   onClick={enableSound}
                   className="
                     px-4 py-2
@@ -239,7 +236,7 @@ export const VideoSection = () => {
                     hover:bg-black/80
                   "
                 >
-                  🔊 Turn on sound
+                  🔊 {t("video.enableSound")}
                 </button>
               </div>
             )}
