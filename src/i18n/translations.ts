@@ -1,4 +1,4 @@
-export type Lang = "en" | "de" | "fr" | "pl" | "es" | "it";
+export type Lang = "en" | "de" | "fr" | "pl" | "es" | "it" | "pt";
 
 type ServiceItem = {
   title: string;
@@ -217,6 +217,24 @@ export const translations: Record<Lang, any> = {
       guaranteeHighlight: "Engagements continue only when operational value is demonstrated",
       guaranteeSuffix: " on qualifying engagements.",
       enterpriseLabel: "Enterprise inquiries: ",
+    },
+    contactForm: {
+      firstName: "First Name",
+      firstNamePlaceholder: "John",
+      lastName: "Last Name",
+      lastNamePlaceholder: "Doe",
+      businessName: "Business Name",
+      businessNamePlaceholder: "Acme Industries",
+      businessEmail: "Business Email",
+      businessEmailPlaceholder: "john@acme.com",
+      requestDetails: "Request Details",
+      requestDetailsPlaceholder: "Tell us about your operational challenges and what you're looking to achieve...",
+      submit: "Submit Request",
+      submitting: "Submitting...",
+      validationError: "Please fill in all required fields correctly.",
+      successTitle: "Submitted Successfully",
+      successMessage: "We will review your request carefully.",
+      successCta: "Book a Strategic Consultation",
     },
     faq: {
       title: "FAQs",
@@ -982,6 +1000,24 @@ export const translations: Record<Lang, any> = {
       guaranteeSuffix: " bei qualifizierenden Engagements.",
       enterpriseLabel: "Enterprise-Anfragen: ",
     },
+    contactForm: {
+      firstName: "Vorname",
+      firstNamePlaceholder: "Max",
+      lastName: "Nachname",
+      lastNamePlaceholder: "Mustermann",
+      businessName: "Firmenname",
+      businessNamePlaceholder: "Muster GmbH",
+      businessEmail: "Geschäftliche E-Mail",
+      businessEmailPlaceholder: "max@musterfirma.de",
+      requestDetails: "Anfrage-Details",
+      requestDetailsPlaceholder: "Beschreiben Sie Ihre operativen Herausforderungen und Ziele...",
+      submit: "Anfrage absenden",
+      submitting: "Wird gesendet...",
+      validationError: "Bitte füllen Sie alle Pflichtfelder korrekt aus.",
+      successTitle: "Erfolgreich gesendet",
+      successMessage: "Wir werden Ihre Anfrage sorgfältig prüfen.",
+      successCta: "Strategische Beratung buchen",
+    },
     faq: {
       title: "Häufig gestellte Fragen",
       category: "Engagement & Lieferung",
@@ -1746,6 +1782,24 @@ export const translations: Record<Lang, any> = {
       guaranteeSuffix: " sur les engagements qualifiants.",
       enterpriseLabel: "Demandes Enterprise : ",
     },
+    contactForm: {
+      firstName: "Prénom",
+      firstNamePlaceholder: "Jean",
+      lastName: "Nom",
+      lastNamePlaceholder: "Dupont",
+      businessName: "Nom de l'entreprise",
+      businessNamePlaceholder: "Acme Industries",
+      businessEmail: "Email professionnel",
+      businessEmailPlaceholder: "jean@entreprise.fr",
+      requestDetails: "Détails de la demande",
+      requestDetailsPlaceholder: "Décrivez vos défis opérationnels et ce que vous souhaitez atteindre...",
+      submit: "Envoyer la demande",
+      submitting: "Envoi en cours...",
+      validationError: "Veuillez remplir correctement tous les champs obligatoires.",
+      successTitle: "Envoyé avec succès",
+      successMessage: "Nous examinerons votre demande attentivement.",
+      successCta: "Réserver une consultation stratégique",
+    },
     faq: {
       title: "Questions fréquentes",
       category: "Engagement et livraison",
@@ -2509,6 +2563,24 @@ export const translations: Record<Lang, any> = {
       guaranteeHighlight: "Zaangażowania kontynuują się tylko wtedy, gdy wartość operacyjna jest wykazana",
       guaranteeSuffix: " w kwalifikujących się zaangażowaniach.",
       enterpriseLabel: "Zapytania Enterprise: ",
+    },
+    contactForm: {
+      firstName: "Imię",
+      firstNamePlaceholder: "Jan",
+      lastName: "Nazwisko",
+      lastNamePlaceholder: "Kowalski",
+      businessName: "Nazwa firmy",
+      businessNamePlaceholder: "Firma Sp. z o.o.",
+      businessEmail: "Email służbowy",
+      businessEmailPlaceholder: "jan@firma.pl",
+      requestDetails: "Szczegóły zapytania",
+      requestDetailsPlaceholder: "Opisz swoje wyzwania operacyjne i cele, które chcesz osiągnąć...",
+      submit: "Wyślij zapytanie",
+      submitting: "Wysyłanie...",
+      validationError: "Proszę poprawnie wypełnić wszystkie wymagane pola.",
+      successTitle: "Wysłano pomyślnie",
+      successMessage: "Dokładnie przeanalizujemy Twoje zapytanie.",
+      successCta: "Zarezerwuj konsultację strategiczną",
     },
     faq: {
       title: "Często zadawane pytania",
@@ -3275,6 +3347,24 @@ export const translations: Record<Lang, any> = {
       guaranteeSuffix: " en compromisos calificados.",
       enterpriseLabel: "Consultas empresariales: ",
     },
+    contactForm: {
+      firstName: "Nombre",
+      firstNamePlaceholder: "Juan",
+      lastName: "Apellido",
+      lastNamePlaceholder: "García",
+      businessName: "Nombre de la empresa",
+      businessNamePlaceholder: "Industrias Acme",
+      businessEmail: "Correo electrónico empresarial",
+      businessEmailPlaceholder: "juan@empresa.es",
+      requestDetails: "Detalles de la solicitud",
+      requestDetailsPlaceholder: "Cuéntenos sobre sus desafíos operacionales y lo que desea lograr...",
+      submit: "Enviar solicitud",
+      submitting: "Enviando...",
+      validationError: "Por favor complete todos los campos obligatorios correctamente.",
+      successTitle: "Enviado con éxito",
+      successMessage: "Revisaremos su solicitud cuidadosamente.",
+      successCta: "Reservar una consulta estratégica",
+    },
     faq: {
       title: "Preguntas frecuentes",
       category: "Compromiso y entrega",
@@ -3933,6 +4023,24 @@ export const translations: Record<Lang, any> = {
       guaranteeSuffix: " sugli impegni qualificanti.",
       enterpriseLabel: "Richieste Enterprise: ",
     },
+    contactForm: {
+      firstName: "Nome",
+      firstNamePlaceholder: "Marco",
+      lastName: "Cognome",
+      lastNamePlaceholder: "Rossi",
+      businessName: "Nome azienda",
+      businessNamePlaceholder: "Acme Industrie",
+      businessEmail: "Email aziendale",
+      businessEmailPlaceholder: "marco@azienda.it",
+      requestDetails: "Dettagli della richiesta",
+      requestDetailsPlaceholder: "Descriva le sue sfide operative e cosa desidera ottenere...",
+      submit: "Invia richiesta",
+      submitting: "Invio in corso...",
+      validationError: "Compilare correttamente tutti i campi obbligatori.",
+      successTitle: "Inviato con successo",
+      successMessage: "Esamineremo attentamente la sua richiesta.",
+      successCta: "Prenota una consulenza strategica",
+    },
     faq: {
       title: "Domande frequenti",
       category: "Impegno e consegna",
@@ -4397,6 +4505,670 @@ export const translations: Record<Lang, any> = {
       },
       trend1: "Guardando al futuro, la tendenza è chiara: le operazioni devono essere spiegabili, verificabili e ripetibili — anche in caso di interruzione.",
       trend2: "Le organizzazioni che avranno successo saranno quelle che integreranno standard, sicurezza, igiene e disciplina dei dati direttamente nell'esecuzione quotidiana. Non come sovraccarico, ma come struttura operativa."
+    },
+  },
+
+  /* ===================== PT ===================== */
+  
+  pt: {
+    backToTop: "Voltar ao topo",
+    explore: "Explorar",
+
+    common: {
+      back: "Voltar",
+    },
+
+    nav: {
+      services: "Serviços",
+      pricing: "Preços",
+      about: "Sobre",
+      contact: "Contacto",
+      cta: "Falar com Especialista",
+      viewDemo: "Ver Demonstração",
+    },
+    hero: {
+      badge: "Indústrias Críticas Orientadas a Resultados",
+      title: "A complexidade operacional corrói",
+      titleHighlight: "a fiabilidade e quebra a disciplina de execução",
+      subtitle:
+        "Quando a coordenação se torna manual, a manutenção reativa e as operações dependem de soluções improvisadas, o controlo já está perdido.",
+      subtitle2:
+        "Restauramos a execução previsível e disciplinada em operações ativas — sem substituir sistemas centrais ou interromper fluxos de trabalho diários.",
+      subtitleMobile: "Quando a coordenação se torna manual, o controlo já está perdido.",
+      cta: "Recuperar o Controlo das Operações",
+      simulatorCta: "Diagnóstico de Procura e Execução",
+    },
+    video: {
+      title: "Concebido para operações ininterruptas",
+      subtitle: "Veja como a Ovelon Prime apoia ambientes de missão crítica sem interromper sistemas ativos.",
+      cta: "Sessão de Adequação Operacional",
+    },
+    services: {
+      label: "O QUE ESTABILIZAMOS",
+      title: "Fiabilidade operacional em ambientes",
+      titleHighlight: "que não podem dar-se ao luxo de errar",
+      subtitle:
+        "Eliminamos falhas operacionais causadas por coordenação manual, execução pouco clara e gestão reativa de incidentes — restaurando controlo, responsabilidade e resultados previsíveis em operações ativas.",
+      items: [
+        {
+          title: "Gestão de Pedidos e Procura",
+          description:
+            "Os pedidos recebidos são capturados, validados e encaminhados de forma consistente — sem depender de acompanhamento ad-hoc ou julgamento individual.",
+          tags: ["Controlo de admissão inteligente", "Regras de qualificação", "Encaminhamento de sistema"],
+        },
+        {
+          title: "Normas de Segurança e Execução",
+          description:
+            "Instruções visuais padronizadas utilizadas para alinhar operadores, empreiteiros e equipas em procedimentos críticos de segurança — reduzindo erros de interpretação, desvios e risco de execução.",
+          tags: [
+            "Procedimentos HSE",
+            "Alinhamento ISO / VCA / OSHA",
+            "Integração de operadores e empreiteiros",
+          ],
+        },
+        {
+          title: "Gestão de Incidentes e Escalamento",
+          description:
+            "Os problemas são registados, classificados e escalados de forma controlada — garantindo responsabilidade, clareza de resposta e caminhos de resolução previsíveis.",
+          tags: ["Classificação de problemas", "Caminhos de escalamento", "Propriedade da resposta"],
+        },
+      ],
+    },
+    sectors: {
+      label: "Sectores",
+      title: "Fiabilidade Operacional Para",
+      titleHighlight: "Indústrias de Missão Crítica",
+      subtitle: "Apoiamos ambientes operacionais onde tempo de inatividade, desalinhamento ou resposta atrasada impactam diretamente a segurança, continuidade ou produção.",
+      items: [
+        {
+          name: "Gestão de Instalações",
+          description: "Gestão de ativos distribuídos e pedidos de serviço em instalações complexas — com tolerância limitada para atrasos ou má coordenação.",
+        },
+        {
+          name: "Manutenção e Reparação",
+          description: "Operação sob pressão constante para prevenir tempo de inatividade na manutenção reativa e preventiva — frequentemente com informação incompleta e janelas de resposta apertadas.",
+        },
+        {
+          name: "Logística e Armazenagem",
+          description: "Coordenação de força de trabalho, equipamento e fluxos de trabalho sob prazos rigorosos e pressão operacional contínua.",
+        },
+      ],
+    },
+    testimonials: {
+      title: "Testemunhos de Clientes",
+      items: [
+        {
+          quote: "Antes da Ovelon Prime, a coordenação de turnos dependia do acompanhamento individual. Hoje, manutenção e planeamento executam previsivelmente em todos os turnos — sem intervenção manual.",
+          name: "Martin Keller",
+          title: "Líder de Operações Logísticas",
+        },
+        {
+          quote: "No nosso ambiente, atrasos afetam diretamente a segurança e a produção. A Ovelon Prime ajudou-nos a padronizar a execução entre equipas, reduzindo o tempo de resposta em 45% sem aumentar o risco operacional.",
+          name: "Alicia Zhang",
+          title: "Diretora de Operações",
+        },
+        {
+          quote: "Operamos sob pressão contínua. Desde a implementação do sistema, o encaminhamento e escalamento seguem regras fixas — não suposições. O tempo de inatividade causado por erros de coordenação já não é um fator.",
+          name: "Daniel Hoffman",
+          title: "Gestor de Fábrica",
+        },
+      ],
+    },
+    operationalTrust: {
+      heading: "Concebido para ambientes regulados e de segurança crítica",
+      items: [
+        { text: "Princípios de segurança alinhados com ISO 27001" },
+        { text: "Controlo de processos estilo ISO 9001" },
+        { text: "Design operacional consciente de HSE" },
+        { text: "Documentação e controlos prontos para auditoria" },
+        { text: "Propriedade total do cliente — sem sistemas de caixa preta" },
+      ],
+      footer: "Concebido para ambientes revisados por CISO com governança de segurança interna, políticas de controlo de acesso e procedimentos de gestão de mudanças.",
+    },
+    about: {
+      label: "Sobre Nós",
+      title: "Construído sobre expertise operacional,",
+      titleHighlight: "impulsionado pela precisão",
+      description1:
+        "A Ovelon Prime trabalha com organizações que operam sob pressão constante — onde tempo de inatividade, atrasos e processos manuais impactam diretamente custo, segurança e fiabilidade.",
+      description2:
+        "Combinamos profunda expertise de domínio operacional com camadas de controlo operacional para conceber sistemas que se integram perfeitamente em fluxos de trabalho existentes, sem interromper operações críticas.",
+      quote:
+        '"A precisão não é opcional. Em ambientes onde a fiabilidade determina resultados, os sistemas devem ser engenhados para funcionar sob pressão."',
+      quoteAuthor: "Equipa de Liderança · Ovelon Prime",
+      stats: {
+        uptime: "Tempo de Atividade do Sistema",
+        deployments: "Implementações de Automação",
+        industries: "Indústrias Críticas Servidas",
+      },
+    },
+    pricing: {
+      label: "Preços",
+      title: "Preços baseados em compromisso, com resultados claramente definidos",
+      subtitle:
+        "Compromissos claramente definidos focados em melhorar a fiabilidade, reduzir fricção operacional e entregar impacto mensurável.",
+      focused: {
+        name: "Compromisso Operacional Focado",
+        description:
+          "Um compromisso de âmbito fixo concebido para resolver um estrangulamento operacional claramente definido com impacto mensurável.",
+        priceLabel: "A partir de",
+        period: "taxa única",
+        cta: "Solicitar Avaliação de Compromisso",
+        features: [
+          "Melhoria operacional única e claramente definida",
+          "Mapeamento de processos e responsabilidades",
+          "Implementação e lançamento controlados",
+          "Documentação e transferência operacional",
+          "Validação pós-implementação",
+        ],
+      },
+      enterprise: {
+        name: "Programa Operacional Empresarial",
+        description:
+          "Sistemas operacionais personalizados para organizações complexas com requisitos rigorosos de governança, conformidade e continuidade.",
+        priceLabel: "Preços personalizados",
+        price: "Serviço Personalizado",
+        period: "taxa única",
+        cta: "Solicitar Avaliação Inicial",
+        badge: "Enterprise",
+        features: [
+          "Arquitetura operacional multi-sistema",
+          "Integrações personalizadas em sistemas existentes",
+          "Suporte dedicado de implementação e transição",
+          "Design operacional consciente de conformidade",
+          "SLA personalizado e framework de governança",
+        ],
+      },
+      securityNote:
+        "Cada compromisso é construído com segurança de nível empresarial, proteção de dados e conformidade operacional.",
+      talkToExpert: "Falar com Especialista",
+      intakeNote:
+        "Admissão estruturada · Sem pressão de vendas · Diretamente com um especialista experiente",
+      reviewNote: "Todos os pedidos são revisados antes do agendamento.",
+    },
+    contact: {
+      label: "COMPROMISSO",
+      title: "Pronto para recuperar o controlo das",
+      titleHighlight: " suas operações?",
+      subtitle: "Todos os compromissos são definidos antecipadamente e sujeitos a uma revisão formal antes de continuação.",
+      cta: "Agendar Consulta",
+      guarantee: "Sem compromissos de longo prazo.",
+      guaranteeHighlight: "Os compromissos continuam apenas quando o valor operacional é demonstrado",
+      guaranteeSuffix: " em compromissos qualificados.",
+      enterpriseLabel: "Consultas empresariais: ",
+    },
+    contactForm: {
+      firstName: "Nome",
+      firstNamePlaceholder: "João",
+      lastName: "Apelido",
+      lastNamePlaceholder: "Silva",
+      businessName: "Nome da empresa",
+      businessNamePlaceholder: "Indústrias Acme",
+      businessEmail: "Email empresarial",
+      businessEmailPlaceholder: "joao@empresa.pt",
+      requestDetails: "Detalhes do pedido",
+      requestDetailsPlaceholder: "Descreva os seus desafios operacionais e o que pretende alcançar...",
+      submit: "Enviar pedido",
+      submitting: "A enviar...",
+      validationError: "Por favor preencha corretamente todos os campos obrigatórios.",
+      successTitle: "Enviado com sucesso",
+      successMessage: "Analisaremos o seu pedido cuidadosamente.",
+      successCta: "Marcar uma consulta estratégica",
+    },
+    faq: {
+      title: "Perguntas Frequentes",
+      category: "Compromisso e Entrega",
+      items: [
+        {
+          question: "Como funciona a Ovelon Prime?",
+          answer:
+            "Começamos com uma admissão estruturada para compreender a restrição operacional. Concebemos e validamos uma solução de âmbito fixo contra fluxos de trabalho reais. Implementamos, testamos sob carga e entregamos com documentação completa.",
+        },
+        {
+          question: "Em que indústrias se especializam?",
+          answer:
+            "Trabalhamos com organizações que operam em ambientes de missão crítica, incluindo manufatura, logística e gestão de instalações. Se atrasos, erros ou tempo de inatividade impactam diretamente a segurança, produção ou continuidade, estamos no âmbito.",
+        },
+        {
+          question: "Isto é uma subscrição ou serviço contínuo?",
+          answer:
+            "Não. Os compromissos são de âmbito fixo e orientados a resultados. Não há subscrição obrigatória, dependência de licença ou taxa contínua. Após a entrega, o sistema é seu.",
+        },
+        {
+          question: "Quanto tempo demora uma implementação típica?",
+          answer:
+            "A maioria dos compromissos focados são entregues em 12-16 dias, dependendo do âmbito e acesso ao sistema. Programas empresariais seguem um lançamento faseado alinhado com prioridades operacionais.",
+        },
+        {
+          question: "Isto integra-se com os nossos sistemas existentes?",
+          answer:
+            "Sim. As soluções são concebidas para integrar com sistemas existentes sem substituir plataformas centrais. Trabalhamos dentro das suas ferramentas atuais e limites de dados.",
+        },
+        {
+          question: "Precisamos de mudar os nossos fluxos de trabalho atuais?",
+          answer:
+            "Não. Concebemos em torno dos seus fluxos de trabalho existentes. Onde mudanças são necessárias, são mínimas, documentadas e validadas com as suas equipas operacionais antes da implementação.",
+        },
+        {
+          question: "Quem é o proprietário da otimização após a entrega?",
+          answer:
+            "Vocês. Todos os sistemas, configurações e documentação são entregues após a conclusão. Não há dependência de fornecedor. Mantêm total propriedade operacional e técnica.",
+        },
+        {
+          question: "Como lidam com segurança e conformidade?",
+          answer:
+            "Segurança e conformidade são tratadas como restrições de design, não como considerações tardias. Cada compromisso é definido em torno das suas políticas de segurança existentes, controlos de acesso e requisitos de conformidade. Trabalhamos dentro da sua infraestrutura aprovada, limites de dados e frameworks de governança. Nenhum dado é extraído ou reutilizado além do âmbito acordado, e todos os sistemas são entregues com documentação completa para suportar auditorias internas, revisões de risco e transferências.",
+        },
+        {
+          question: "Que nível de envolvimento interno é necessário?",
+          answer:
+            "Envolvimento mínimo e estruturado. Requeremos contributos limitados durante a admissão para compreender restrições operacionais e validar suposições. A implementação é tratada de forma independente, com pontos de verificação claros para revisão e aprovação. As equipas operacionais não são interrompidas e não são necessários recursos internos contínuos após a entrega.",
+        },
+        {
+          question: "A Ovelon Prime é adequada para grandes ambientes empresariais?",
+          answer:
+            "Sim. Somos concebidos para ambientes complexos com múltiplos stakeholders e requisitos rigorosos de governança, conformidade e operacionais. Os compromissos são estruturados para alinhar com gestão de mudanças empresariais, revisões de segurança e lançamentos faseados — sem forçar substituições de plataformas ou interromper sistemas críticos.",
+        },
+      ],
+    },
+    footer: {
+      privacy: "Privacidade",
+      terms: "Termos",
+      copyright: "Ovelon Prime. Todos os direitos reservados.",
+      tagline: "Sistemas operacionais empresariais construídos para clareza, controlo e escala.",
+    },
+    industrialTrust: {
+      heading: "Confiado por operadores em ambientes de missão crítica",
+      disclaimer: "Operadores representativos dos sectores industrial, logístico, manufatureiro e de infraestruturas. Os compromissos variam por âmbito e ambiente.",
+    },
+    intake: {
+      title: "Qualificação de Consulta",
+      subtitle: "Por favor complete o breve diagnóstico abaixo. Todas as submissões são revistas antes do agendamento.",
+    },
+    cookie: {
+      message: "Utilizamos cookies para melhorar a sua experiência. Ao continuar a visitar este site, concorda com o nosso uso de cookies.",
+      accept: "Aceitar",
+      decline: "Recusar",
+      learnMore: "Saber mais",
+    },
+    privacy: {
+      title: "Política de Privacidade",
+      lastUpdated: "Última Atualização: 01.12.2025",
+      sections: {
+        introduction: {
+          title: "1. Introdução",
+          p1: "Na Ovelon Prime, levamos a proteção de dados e confidencialidade a sério. Esta Política de Privacidade explica como recolhemos, utilizamos e protegemos informações pessoais e empresariais quando interage com o nosso website, formulários de admissão e serviços.",
+          p2: "Processamos dados de forma responsável e apenas na medida necessária para prestar os nossos serviços, garantir integridade operacional e cumprir obrigações legais.",
+        },
+        informationCollected: {
+          title: "2. Informação que Recolhemos",
+          personal: "Informação Pessoal:",
+          personalDesc: "Nome, endereço de email empresarial, número de telefone e informação submetida através de formulários ou correspondência direta.",
+          business: "Informação Empresarial e Operacional:",
+          businessDesc: "Nome da empresa, endereço ou jurisdição empresarial, classificação da indústria, contexto operacional e informação relacionada com conformidade voluntariamente fornecida durante a admissão.",
+          technical: "Informação Técnica:",
+          technicalDesc: "Endereço IP, metadados do navegador e dispositivo, cookies e análises básicas de utilização.",
+          note: "Não recolhemos intencionalmente dados pessoais sensíveis a menos que explicitamente necessário para conformidade ou prestação de serviços.",
+        },
+        howWeUse: {
+          title: "3. Como Utilizamos a Sua Informação",
+          items: [
+            "Avaliar e qualificar pedidos de consulta",
+            "Prestar e apoiar serviços de automação operacional",
+            "Comunicar relativamente a compromissos, atualizações ou esclarecimentos",
+            "Manter fiabilidade, segurança e desempenho da plataforma",
+            "Cumprir obrigações legais, regulatórias ou contratuais",
+          ],
+          note: "Não utilizamos os seus dados para marketing não solicitado, perfis ou publicidade de terceiros.",
+        },
+        dataSharing: {
+          title: "4. Partilha e Divulgação de Dados",
+          p1: "A Ovelon Prime não vende, aluga ou comercializa dados pessoais ou empresariais.",
+          p2: "A informação só pode ser partilhada quando estritamente necessário:",
+          items: [
+            "Com prestadores de serviços verificados necessários para a prestação de serviços",
+            "Para cumprir obrigações legais ou regulatórias",
+            "Para proteger a segurança, integridade ou direitos dos nossos sistemas e clientes",
+          ],
+          note: "Os dados nunca são partilhados para marketing ou propósitos promocionais de terceiros.",
+        },
+        dataSecurity: {
+          title: "5. Segurança de Dados",
+          p1: "Aplicamos salvaguardas técnicas e organizacionais padrão da indústria, incluindo encriptação, controlos de acesso e práticas de infraestrutura segura.",
+          p2: "Embora nenhum sistema possa garantir segurança absoluta, operamos sob protocolos internos rigorosos concebidos para minimizar risco e proteger confidencialidade em todos os momentos.",
+        },
+        dataRetention: {
+          title: "6. Retenção de Dados e os Seus Direitos",
+          p1: "Retemos dados apenas pelo tempo necessário para cumprir os propósitos descritos nesta política ou para cumprir requisitos legais.",
+          p2: "Tem o direito de solicitar acesso, correção ou eliminação dos seus dados, quando aplicável.",
+        },
+        contact: {
+          title: "7. Contacto",
+          p1: "Para questões sobre esta Política de Privacidade ou práticas de tratamento de dados, por favor contacte:",
+        },
+      },
+    },
+    terms: {
+      title: "Termos e Condições",
+      lastUpdated: "Última Atualização: 01 Dezembro 2025",
+      sections: {
+        introduction: {
+          title: "1. Introdução",
+          p1: "Estes Termos e Condições (\"Termos\") regem o seu acesso e utilização do website Ovelon Prime, processos de consulta e serviços profissionais de automação. Ao aceder ao website ou contratar os nossos serviços, concorda em ficar vinculado a estes Termos.",
+          p2: "Se não concordar com estes Termos, deve descontinuar a utilização do website e serviços imediatamente.",
+        },
+        services: {
+          title: "2. Serviços Prestados",
+          p1: "A Ovelon Prime fornece serviços profissionais de automação, design de sistemas e implementação para ambientes industriais, logísticos, de gestão de instalações, infraestruturas e outros ambientes operacionalmente críticos.",
+          p2: "Os serviços são prestados numa base de projeto, com âmbito, entregas e cronogramas definidos antes do compromisso. Cada compromisso está sujeito a acordo comercial separado.",
+        },
+        confidentiality: {
+          title: "3. Confidencialidade",
+          p1: "Toda a informação empresarial e operacional partilhada durante compromissos é tratada como confidencial. Não divulgamos, vendemos ou redistribuímos qualquer informação do cliente a terceiros, exceto quando necessário para prestação de serviços ou quando legalmente requerido.",
+        },
+        ip: {
+          title: "4. Propriedade Intelectual",
+          p1: "Os clientes mantêm total propriedade sobre todos os sistemas, configurações e entregas produzidas durante os compromissos, salvo acordo em contrário.",
+          p2: "Todo o conteúdo, marcas e materiais proprietários neste website permanecem propriedade da Ovelon Prime.",
+        },
+        liability: {
+          title: "5. Limitação de Responsabilidade",
+          p1: "A Ovelon Prime não é responsável por quaisquer danos indiretos, incidentais, especiais, consequenciais ou punitivos resultantes da utilização dos nossos serviços.",
+          p2: "Em nenhum caso a nossa responsabilidade excederá o montante total pago pelo cliente pelos serviços prestados.",
+        },
+        changes: {
+          title: "6. Alterações",
+          p1: "A Ovelon Prime reserva-se o direito de atualizar estes Termos a qualquer momento. Alterações entram em vigor imediatamente após publicação nesta página.",
+        },
+        contact: {
+          title: "7. Contacto",
+          p1: "Para questões sobre estes Termos, por favor contacte:",
+        },
+      },
+    },
+    simulator: {
+      title: "Diagnóstico de Procura e Execução",
+      close: "Fechar",
+      next: "Seguinte",
+      back: "Voltar",
+      submit: "Submeter Revisão",
+      submitting: "A submeter...",
+      submitError: "Falha ao submeter. Por favor tente novamente.",
+      submitErrorTitle: "Erro de Submissão",
+      validationErrorTitle: "Validação necessária",
+      validationErrorDescription: "Por favor preencha todos os campos obrigatórios antes de submeter.",
+      stepIndicator: "Passo {{current}} de {{total}}",
+      step1: {
+        title: "Contexto Operacional",
+        description: "Ajude-nos a compreender o seu ambiente operacional e escala.",
+        industryLabel: "Indústria",
+        industryPlaceholder: "Selecione a sua indústria",
+        operationTypeLabel: "Tipos de Operação",
+        operationTypePlaceholder: "Selecione todos os aplicáveis",
+        scaleLabel: "Escala Operacional",
+        scalePlaceholder: "Selecione a sua escala",
+      },
+      step2: {
+        title: "Modelo Operacional Atual",
+        description: "Descreva como o trabalho é atualmente gerido e coordenado.",
+        requestHandlingLabel: "Gestão de Pedidos",
+        requestHandlingPlaceholder: "Como são tratados os pedidos recebidos?",
+        structureLabel: "Nível de Estrutura",
+        structurePlaceholder: "Quão estruturados são os seus processos?",
+        toolsLabel: "Ferramentas em Uso",
+        toolsPlaceholder: "Que ferramentas estão atualmente em uso?",
+      },
+      step3: {
+        title: "Pontos de Fricção",
+        description: "Identifique onde ocorrem falhas ou fricção no seu ambiente.",
+        frictionPointsLabel: "Principais Pontos de Fricção",
+        frictionPointsPlaceholder: "Selecione todos os aplicáveis",
+        frictionNotesLabel: "Notas Adicionais",
+        frictionNotesPlaceholder: "Descreva quaisquer desafios específicos...",
+      },
+      step4: {
+        title: "Restrições e Conformidade",
+        description: "Compreenda as suas restrições operacionais e requisitos de conformidade.",
+        downtimeLabel: "Sensibilidade a Tempo de Inatividade",
+        downtimePlaceholder: "Quão crítico é o tempo de inatividade?",
+        complianceLabel: "Requisitos de Segurança e Conformidade",
+        compliancePlaceholder: "Selecione todos os aplicáveis",
+        coordinationLabel: "Complexidade de Coordenação",
+        coordinationPlaceholder: "Quão complexa é a coordenação de stakeholders?",
+      },
+      step5: {
+        title: "Resumo",
+        description: "Reveja a informação que forneceu antes de continuar para a análise.",
+        sectionOperational: "Contexto Operacional",
+        sectionModel: "Modelo Operacional",
+        sectionFriction: "Pontos de Fricção",
+        sectionConstraints: "Restrições",
+        industry: "Indústria",
+        operationType: "Tipos de Operação",
+        scale: "Escala",
+        requestHandling: "Gestão de Pedidos",
+        structureLevel: "Nível de Estrutura",
+        toolsInUse: "Ferramentas em Uso",
+        frictionPoints: "Pontos de Fricção",
+        frictionNotes: "Notas de Fricção",
+        downtimeSensitivity: "Sensibilidade a Tempo de Inatividade",
+        safetyCompliance: "Segurança e Conformidade",
+        coordinationComplexity: "Complexidade de Coordenação",
+        notSpecified: "Não especificado",
+      },
+      industries: {
+        manufacturing: "Manufatura",
+        logistics: "Logística e Armazenagem",
+        facility: "Gestão de Instalações",
+        infrastructure: "Infraestrutura",
+        energy: "Energia e Utilities",
+        other: "Outra Indústria",
+      },
+      operationTypes: {
+        facility: "Operações de Instalações",
+        logistics: "Logística e Distribuição",
+        maintenance: "Manutenção e Reparação",
+        production: "Produção e Manufatura",
+        fieldService: "Serviço de Campo",
+      },
+      scales: {
+        single: "Local Único",
+        multi: "Multi-local",
+        distributed: "Distribuído/Regional",
+      },
+      handlingMethods: {
+        email: "Email",
+        phone: "Telefone",
+        tickets: "Sistema de Tickets",
+        verbal: "Transferência Verbal",
+        spreadsheets: "Folhas de Cálculo",
+        erp: "Sistema ERP/CMMS",
+      },
+      structureLevels: {
+        adhoc: {
+          title: "Maioritariamente Ad-hoc",
+          desc: "O trabalho é tratado à medida que surge, padronização mínima",
+        },
+        semiStructured: {
+          title: "Semi-estruturado",
+          desc: "Alguns processos são definidos mas a execução varia",
+        },
+        fullyStructured: {
+          title: "Totalmente Estruturado",
+          desc: "Processos claros com execução consistente",
+        },
+      },
+      toolTypes: {
+        manual: "Maioritariamente Manual",
+        semiAutomated: "Semi-automatizado",
+        fragmented: "Sistemas Fragmentados",
+        integrated: "Plataforma Integrada",
+      },
+      frictionPoints: {
+        slowResponse: "Tempos de Resposta Lentos",
+        unclearOwnership: "Propriedade de Tarefas Pouco Clara",
+        manualCoordination: "Sobrecarga de Coordenação Manual",
+        inconsistentExecution: "Execução Inconsistente",
+        lackVisibility: "Falta de Visibilidade em Tempo Real",
+        escalationDelays: "Atrasos de Escalamento",
+        documentationGaps: "Lacunas de Documentação",
+        communicationBreakdown: "Falha de Comunicação",
+      },
+      downtimeLevels: {
+        critical: {
+          title: "Crítico",
+          desc: "Cada minuto de inatividade custa significativamente",
+        },
+        high: {
+          title: "Alto",
+          desc: "Tempo de inatividade impacta severamente as operações",
+        },
+        moderate: {
+          title: "Moderado",
+          desc: "Alguma tolerância mas afeta o desempenho",
+        },
+        low: {
+          title: "Baixo",
+          desc: "Pode gerir interrupções de curto prazo",
+        },
+      },
+      complianceOptions: {
+        iso: "ISO 9001/27001",
+        hse: "HSE/SST",
+        osha: "OSHA",
+        vca: "VCA/SCC",
+        gdpr: "RGPD/Proteção de Dados",
+        sectorSpecific: "Regulamentos Sectoriais",
+      },
+      complexityLevels: {
+        simple: "Simples",
+        moderate: "Moderada",
+        complex: "Complexa",
+        veryComplex: "Muito Complexa",
+      },
+      step6: {
+        title: "Análise Operacional",
+        description: "Com base nas informações fornecidas, aqui está uma análise operacional de nível executivo do seu estado atual.",
+        noData: "Dados insuficientes para gerar análise. Por favor complete os passos anteriores.",
+        observationsTitle: "Observações Operacionais",
+        risksTitle: "Áreas de Risco e Exposição",
+        readinessTitle: "Avaliação de Prontidão de Execução",
+        advisoryTitle: "Direção Consultiva (Alto Nível)",
+        disclaimer: "Esta análise é indicativa e baseada em informação auto-reportada. Não substitui uma avaliação profissional. Todos os resultados estão sujeitos a revisão formal.",
+      },
+      step7: {
+        title: "Dados de Contacto",
+        description: "Estes dados são necessários para anexar a análise operacional a um pedido formal de revisão.",
+        personalTitle: "Dados Pessoais",
+        companyTitle: "Dados da Empresa",
+        fullName: "Nome Completo",
+        fullNamePlaceholder: "Introduza o seu nome completo",
+        email: "Endereço de Email",
+        emailPlaceholder: "Introduza email empresarial",
+        phone: "Número de Telefone",
+        phonePlaceholder: "Introduza número de telefone",
+        companyName: "Nome da Empresa",
+        companyNamePlaceholder: "Introduza nome da empresa",
+        role: "Cargo / Função",
+        rolePlaceholder: "ex: Gestor de Operações",
+        country: "País",
+        countryPlaceholder: "Introduza país",
+        city: "Cidade",
+        cityPlaceholder: "Introduza cidade",
+        requiredNote: "Todos os campos marcados com * são obrigatórios. As suas informações serão utilizadas apenas para processar este pedido de revisão.",
+      },
+      analysis: {
+        observations: {
+          industry: {
+            manufacturing: "Operar num ambiente de manufatura tipicamente envolve planeamento de produção complexo, ciclos de manutenção de equipamentos e requisitos de controlo de qualidade.",
+            logistics: "Operações logísticas requerem coordenação apertada entre múltiplos stakeholders, entregas time-critical e visibilidade em tempo real através das cadeias de fornecimento.",
+            facility: "Operações de gestão de instalações abrangem múltiplas categorias de serviço e requerem coordenação entre equipas internas e empreiteiros externos.",
+            infrastructure: "Operações de infraestrutura frequentemente envolvem ativos geograficamente distribuídos com requisitos de manutenção variáveis e supervisão regulatória.",
+            energy: "Operações do sector energético requerem aderência rigorosa a protocolos de segurança, conformidade regulatória e monitorização contínua de sistemas críticos.",
+            other: "As operações abrangem múltiplos domínios com requisitos variáveis de coordenação, conformidade e controlo de execução.",
+          },
+          scale: {
+            single: "Operações de local único permitem controlo centralizado mas podem ainda enfrentar desafios de coordenação entre turnos e departamentos.",
+            multi: "Operações multi-local introduzem complexidade na padronização, comunicação e na garantia de execução consistente entre localizações.",
+            distributed: "Operações distribuídas ou regionais requerem mecanismos de coordenação robustos para manter visibilidade e controlo através de equipas dispersas.",
+          },
+          structure: {
+            adhoc: "Estrutura operacional ad-hoc sugere alta dependência de julgamento individual e potencial inconsistência na execução.",
+            semiStructured: "Processos semi-estruturados indicam padronização parcial com espaço para variação, o que pode levar a resultados inconsistentes.",
+            fullyStructured: "Operações totalmente estruturadas fornecem uma base para execução previsível, embora a eficácia dependa da aderência e aplicação.",
+          },
+          tools: {
+            fragmented: "Panorama de ferramentas fragmentado tipicamente leva a silos de informação, reconciliação manual de dados e sobrecarga de coordenação.",
+            manual: "Forte dependência de processos manuais aumenta o risco de erro e limita a escalabilidade das operações.",
+          },
+        },
+        risks: {
+          predictability: "Risco de previsibilidade: Execução inconsistente e padrões de propriedade pouco claros podem levar a resultados operacionais imprevisíveis.",
+          coordination: "Risco de coordenação: Coordenação manual e lacunas de comunicação podem resultar em atrasos, erros e falhas de escalamento.",
+          downtime: "Exposição a tempo de inatividade: Alta sensibilidade a tempo de inatividade combinada com padrões operacionais atuais sugere risco elevado de interrupções custosas.",
+          compliance: "Exposição a conformidade: Lacuna entre requisitos de conformidade e nível de estrutura atual pode criar riscos de auditoria e regulatórios.",
+          escalation: "Risco de escalamento: Atrasos na resolução de problemas e visibilidade limitada podem permitir que problemas menores escalem para problemas operacionais significativos.",
+        },
+        readiness: {
+          high: "A organização parece razoavelmente preparada para mudança operacional, com estrutura e ferramentas existentes fornecendo uma base para iniciativas de melhoria.",
+          moderate: "A organização mostra indicadores de prontidão mistos. Alguns elementos fundamentais existem, mas lacunas em estrutura ou ferramentas podem requerer atenção antes de escalar mudanças.",
+          low: "Os padrões operacionais atuais sugerem prontidão limitada para escala ou mudança significativa sem primeiro abordar lacunas fundamentais de coordenação e estrutura.",
+        },
+        advisory: {
+          ownership: "Considere estabelecer estruturas de propriedade mais claras e frameworks de responsabilidade para reduzir sobrecarga de coordenação e melhorar previsibilidade de resposta.",
+          standardization: "Foque na padronização de processos operacionais centrais para reduzir variação e estabelecer padrões de execução consistentes entre equipas.",
+          escalation: "Implemente caminhos de escalamento estruturados com janelas de resposta definidas e propriedade clara em cada nível.",
+          compliance: "Alinhe estrutura operacional com requisitos de conformidade para reduzir exposição a auditoria e garantir aderência consistente a normas regulatórias.",
+          scale: "Para operações multi-local ou distribuídas, priorize mecanismos que garantam consistência e visibilidade entre localizações.",
+        },
+      },
+    },
+    submission: {
+      title: "Submissão Recebida",
+      body1: "A sua revisão operacional foi submetida com sucesso.",
+      body2: "A nossa equipa analisará cuidadosamente o seu pedido e fará o seguimento adequado.",
+      body3: "Para acelerar os próximos passos, pode agendar uma consulta estratégica abaixo.",
+      scheduleBtn: "Agendar Consulta Estratégica",
+      closeBtn: "Fechar",
+      referenceLabel: "ID de Referência",
+      emailSent: "Confirmação enviada para",
+      pdfAttached: "Resumo PDF anexado para os seus registos",
+    },
+    governanceTrends: {
+      title: "Operar numa Realidade Regulada",
+      subtitle: "À medida que os ambientes operacionais se tornam mais regulados, interconectados e escrutinados, a liderança é cada vez mais definida pelo controlo, documentação e consistência — não pela velocidade ou improvisação.",
+      column1: {
+        title: "O Que os Líderes Operacionais Priorizam",
+        items: [
+          "Instruções de trabalho claras e aplicáveis",
+          "Execução previsível entre turnos e equipas",
+          "Procedimentos de segurança que deixam pouco espaço para interpretação",
+          "Menos decisões ad-hoc durante incidentes",
+          "Documentação que fala por si"
+        ]
+      },
+      column2: {
+        title: "Normas, Conformidade e Responsabilidade",
+        items: [
+          "Sistemas de gestão formais baseados em normas reconhecidas",
+          "Procedimentos e ações corretivas rastreáveis",
+          "Registos de formação e competência verificáveis",
+          "Proteção de dados e controlo de acesso por defeito",
+          "Decisões que podem ser reconstruídas posteriormente"
+        ]
+      },
+      column3: {
+        title: "Segurança, Higiene e Realidade Operacional",
+        items: [
+          "As regras de segurança devem funcionar sob pressão, não apenas no papel",
+          "Os procedimentos de higiene devem ser consistentes entre localizações",
+          "Os desvios devem ser registados, não normalizados",
+          "Soluções informais aumentam a exposição",
+          "A responsabilidade pessoal está a aproximar-se do nível operacional"
+        ]
+      },
+      trend1: "Olhando para o futuro, a tendência é clara: espera-se que as operações sejam explicáveis, auditáveis e repetíveis — mesmo sob interrupção.",
+      trend2: "As organizações que terão sucesso serão aquelas que incorporam normas, segurança, higiene e disciplina de dados diretamente na execução diária. Não como sobrecarga, mas como estrutura operacional."
     },
   },
 };

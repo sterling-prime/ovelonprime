@@ -12,6 +12,7 @@ const languages = [
   { code: "PL", lang: "pl", label: "Polski", flag: "🇵🇱" },
   { code: "ES", lang: "es", label: "Español", flag: "🇪🇸" },
   { code: "IT", lang: "it", label: "Italiano", flag: "🇮🇹" },
+  { code: "PT", lang: "pt", label: "Português", flag: "🇵🇹" },
 ];
 
 export const LanguageDropdown = ({
