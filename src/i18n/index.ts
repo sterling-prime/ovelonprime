@@ -11,7 +11,6 @@ i18n
       en: { translation: translations.en },
       de: { translation: translations.de },
       fr: { translation: translations.fr },
-      pl: { translation: translations.pl },
       es: { translation: translations.es },
       it: { translation: translations.it },
       pt: { translation: translations.pt },
