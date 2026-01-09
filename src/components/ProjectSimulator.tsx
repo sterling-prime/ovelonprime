@@ -5,6 +5,7 @@ import { X, ChevronRight, ChevronLeft, Building2, Wrench, AlertTriangle, Shield,
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { SubmissionSuccessModal } from "./SubmissionSuccessModal";
+import { SubmissionVideoModal } from "./SubmissionVideoModal";
 import { useGeolocation } from "@/hooks/use-geolocation";
 import { LocationAutocomplete } from "./LocationAutocomplete";
 import { searchCountries, getCountryByCode, COUNTRIES } from "@/lib/countries";
@@ -69,6 +70,7 @@ export const ProjectSimulator = ({ isOpen, onClose }: ProjectSimulatorProps) => 
   const [currentStep, setCurrentStep] = useState(1);
   const [data, setData] = useState<SimulatorData>(initialData);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showVideoModal, setShowVideoModal] = useState(false);
   const [submissionResult, setSubmissionResult] = useState<{
     referenceId?: string;
     pdfAttached?: boolean;
@@ -309,6 +311,11 @@ export const ProjectSimulator = ({ isOpen, onClose }: ProjectSimulatorProps) => 
 
   const handleSuccessModalClose = () => {
     setShowSuccessModal(false);
+    setShowVideoModal(true);
+  };
+
+  const handleVideoModalClose = () => {
+    setShowVideoModal(false);
   };
 
   useEffect(() => {
@@ -368,6 +375,12 @@ export const ProjectSimulator = ({ isOpen, onClose }: ProjectSimulatorProps) => 
         referenceId={submissionResult.referenceId}
         pdfAttached={submissionResult.pdfAttached}
         userEmail={submissionResult.userEmail}
+      />
+
+      {/* Video Modal - shows after success modal is closed */}
+      <SubmissionVideoModal
+        isOpen={showVideoModal}
+        onClose={handleVideoModalClose}
       />
 
       {/* Main Modal - only when isOpen */}
