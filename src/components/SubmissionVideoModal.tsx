@@ -4,12 +4,12 @@ import { X } from "lucide-react";
 import { useMemo } from "react";
 
 /* Video assets per language */
-import introEN from "@/assets/intro-en.mp4";
-import introDE from "@/assets/intro-de.mp4";
-import introFR from "@/assets/intro-fr.mp4";
-import introES from "@/assets/intro-es.mp4";
-import introIT from "@/assets/intro-it.mp4";
-import introPT from "@/assets/intro-pt.mp4";
+import introEN from "@/assets/thankyou-en.mp4";
+import introDE from "@/assets/thankyou-en.mp4";
+import introFR from "@/assets/thankyou-en.mp4";
+import introES from "@/assets/thankyou-en.mp4";
+import introIT from "@/assets/thankyou-en.mp4";
+import introPT from "@/assets/thankyou-en.mp4";
 
 const INTRO_VIDEOS: Record<string, string> = {
   en: introEN,
