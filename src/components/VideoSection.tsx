@@ -6,7 +6,6 @@ import { useMemo, useRef, useEffect, useState, useCallback } from "react";
 import introEN from "@/assets/intro-en.mp4";
 import introDE from "@/assets/intro-de.mp4";
 import introFR from "@/assets/intro-fr.mp4";
-import introPL from "@/assets/intro-pl.mp4";
 import introES from "@/assets/intro-es.mp4";
 import introIT from "@/assets/intro-it.mp4";
 import introPT from "@/assets/intro-pt.mp4";
@@ -17,7 +16,6 @@ const INTRO_VIDEOS: Record<string, string> = {
   de: introDE,
   nl: introDE, // NL fallback → DE
   fr: introFR,
-  pl: introPL,
   es: introES,
   it: introIT,
   pt: introPT
