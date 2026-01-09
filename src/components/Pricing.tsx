@@ -42,12 +42,16 @@ export const Pricing = () => {
     window.addEventListener("close-booking-modal", restoreScroll);
   };
 
+  // Show USD for English, EUR for all other languages
+  const isEnglish = i18n.language === "en";
+  const focusedPrice = isEnglish ? "$4,999" : "€4.999";
+
   const plans = [
     {
       key: "focused",
       name: t("pricing.focused.name"),
       description: t("pricing.focused.description"),
-      price: "$4,999",
+      price: focusedPrice,
       priceLabel: t("pricing.focused.priceLabel"),
       period: t("pricing.focused.period"),
       features: t("pricing.focused.features", {
