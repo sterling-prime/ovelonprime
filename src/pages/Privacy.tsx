@@ -178,7 +178,7 @@ const Privacy = () => {
               </h2>
               <p>{t("privacy.sections.contact.p1")}</p>
               <p className="mt-2 font-medium text-slate-900">
-                support@ovelon-prime.com
+                info@ovelon-prime.com
               </p>
             </section>
 

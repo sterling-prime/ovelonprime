@@ -185,7 +185,7 @@ const Terms = () => {
               </h2>
               <p>{t("terms.sections.contactInfo.p1")}</p>
               <p className="mt-2 font-medium text-slate-900">
-                support@ovelon-prime.com
+                info@ovelon-prime.com
               </p>
             </section>
 

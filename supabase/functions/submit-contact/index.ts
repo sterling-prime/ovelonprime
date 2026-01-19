@@ -104,7 +104,7 @@ serve(async (req: Request): Promise<Response> => {
 
     // Email configuration
     const fromEmail = Deno.env.get("FROM_EMAIL") || "Ovelon Prime <noreply@ovelon-prime.com>";
-    const internalEmail = Deno.env.get("INTERNAL_EMAIL") || "support@ovelon-prime.com";
+    const internalEmail = Deno.env.get("INTERNAL_EMAIL") || "info@ovelon-prime.com";
 
     // Build HTML email for user confirmation
     const userEmailHtml = `
