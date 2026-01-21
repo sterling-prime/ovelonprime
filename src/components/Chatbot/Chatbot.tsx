@@ -15,7 +15,7 @@ type Message = {
   timestamp: Date;
 };
 
-type ConversationPath = "initial" | "product" | "support" | "demo" | "intake" | "pricing" | "contact" | "fallback";
+type ConversationPath = "initial" | "product" | "support" | "demo" | "intake" | "pricing" | "contact" | "simulation" | "fallback";
 
 export const Chatbot = () => {
   const { t, i18n } = useTranslation();
@@ -39,19 +39,39 @@ export const Chatbot = () => {
     scrollToBottom();
   }, [messages]);
 
-  // Auto-greet when chat opens (uses current i18n language which is IP-detected)
+  // Auto-greet when chat opens (uses current i18n language from header dropdown)
   useEffect(() => {
     if (isOpen && !hasGreeted) {
       const greeting: Message = {
         id: crypto.randomUUID(),
-        text: t("chatbot.greeting", "Hi! I'm Dean. How can I help you today?\n\nI can assist with Product Info, Operational Support, Schedule a Demo, run our Diagnostic Intake, or answer questions about Pricing."),
+        text: t("chatbot.greeting", "Hi! I'm Dean. How can I help you today?\n\nI can assist with Product Info, Operational Support, Schedule a Demo, run our Diagnostic Intake, try our Simulator, or answer questions about Pricing."),
         isBot: true,
         timestamp: new Date(),
       };
       setMessages([greeting]);
       setHasGreeted(true);
+      setCurrentPath("initial");
     }
   }, [isOpen, hasGreeted, t]);
+
+  // Reset greeting when language changes so Dean speaks in new language
+  useEffect(() => {
+    if (hasGreeted && isOpen) {
+      // Update the greeting message when language changes
+      setMessages((prev) => {
+        if (prev.length > 0 && prev[0].isBot) {
+          return [
+            {
+              ...prev[0],
+              text: t("chatbot.greeting", "Hi! I'm Dean. How can I help you today?\n\nI can assist with Product Info, Operational Support, Schedule a Demo, run our Diagnostic Intake, try our Simulator, or answer questions about Pricing."),
+            },
+            ...prev.slice(1),
+          ];
+        }
+        return prev;
+      });
+    }
+  }, [i18n.language]);
 
   const addBotMessage = (text: string) => {
     const message: Message = {
@@ -133,6 +153,24 @@ export const Chatbot = () => {
     }, 500);
   };
 
+  const handleSimulation = () => {
+    addUserMessage(t("chatbot.buttons.simulation", "Project Simulator"));
+    setTimeout(() => {
+      addBotMessage(
+        t("chatbot.responses.simulation", "Our Project Simulator helps you visualize potential improvements in your operations. Try it out!")
+      );
+      setCurrentPath("simulation");
+    }, 500);
+  };
+
+  const handleOpenSimulator = () => {
+    window.dispatchEvent(new CustomEvent("open-simulator"));
+    addUserMessage(t("chatbot.buttons.openSimulator", "Open Simulator"));
+    setTimeout(() => {
+      addBotMessage(t("chatbot.responses.simulatorOpened", "I've opened the Project Simulator for you. Follow the steps to see your potential improvements!"));
+    }, 500);
+  };
+
   const handleConnectSupport = () => {
     addUserMessage(t("chatbot.buttons.connectSupport", "Connect to Support Team"));
     setTimeout(() => {
@@ -185,6 +223,9 @@ export const Chatbot = () => {
       } else if (userText.includes("intake") || userText.includes("diagnostic") || userText.includes("analysis")) {
         addBotMessage(t("chatbot.responses.intake", "Our 7-step Demand & Execution Intake helps diagnose your operational challenges. Ready to start?"));
         setCurrentPath("intake");
+      } else if (userText.includes("simulat") || userText.includes("project") || userText.includes("try")) {
+        addBotMessage(t("chatbot.responses.simulation", "Our Project Simulator helps you visualize potential improvements. Want to try it?"));
+        setCurrentPath("simulation");
       } else if (userText.includes("price") || userText.includes("cost") || userText.includes("pricing")) {
         addBotMessage(t("chatbot.responses.pricing", `Our platform starts at ${priceDisplay}/month. Want to see details or schedule a call?`));
         setCurrentPath("pricing");
@@ -224,6 +265,10 @@ export const Chatbot = () => {
             <QuickReply
               label={t("chatbot.buttons.intake", "Diagnostic Intake")}
               onClick={handleIntake}
+            />
+            <QuickReply
+              label={t("chatbot.buttons.simulation", "Simulator")}
+              onClick={handleSimulation}
             />
             <QuickReply
               label={t("chatbot.buttons.pricing", "Pricing")}
@@ -314,6 +359,19 @@ export const Chatbot = () => {
             <QuickReply
               label={t("chatbot.buttons.goToForm", "Go to Contact Form")}
               onClick={() => handleGoToSection("contact", "Contact Form")}
+            />
+            <QuickReply
+              label={t("chatbot.buttons.backToMain", "← Back")}
+              onClick={handleBackToMain}
+            />
+          </div>
+        );
+      case "simulation":
+        return (
+          <div className="flex flex-wrap gap-2 p-3 border-t border-border/50">
+            <QuickReply
+              label={t("chatbot.buttons.openSimulator", "Open Simulator →")}
+              onClick={handleOpenSimulator}
             />
             <QuickReply
               label={t("chatbot.buttons.backToMain", "← Back")}

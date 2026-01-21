@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ArrowRight, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
@@ -9,6 +9,13 @@ import { HeroScrollDown } from "./HeroScrollDown";
 export const Hero = () => {
   const { t } = useTranslation();
   const [simulatorOpen, setSimulatorOpen] = useState(false);
+
+  // Listen for global event to open simulator (from chatbot)
+  useEffect(() => {
+    const handleOpenSimulator = () => setSimulatorOpen(true);
+    window.addEventListener("open-simulator", handleOpenSimulator);
+    return () => window.removeEventListener("open-simulator", handleOpenSimulator);
+  }, []);
 
   return (
     <>
