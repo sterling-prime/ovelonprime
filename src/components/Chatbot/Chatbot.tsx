@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from "react";
-import { MessageCircle, X, Send, ArrowLeft } from "lucide-react";
+import { MessageCircle, X, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ChatMessage } from "./ChatMessage";
 import { QuickReply } from "./QuickReply";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 type Message = {
@@ -14,16 +15,21 @@ type Message = {
   timestamp: Date;
 };
 
-type ConversationPath = "initial" | "product" | "support" | "demo" | "fallback";
+type ConversationPath = "initial" | "product" | "support" | "demo" | "intake" | "pricing" | "contact" | "fallback";
 
 export const Chatbot = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [currentPath, setCurrentPath] = useState<ConversationPath>("initial");
   const [hasGreeted, setHasGreeted] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Get currency based on language
+  const isEnglish = i18n.language === "en";
+  const priceDisplay = isEnglish ? "$4,999" : "€4.999";
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -33,12 +39,12 @@ export const Chatbot = () => {
     scrollToBottom();
   }, [messages]);
 
-  // Auto-greet when chat opens
+  // Auto-greet when chat opens (uses current i18n language which is IP-detected)
   useEffect(() => {
     if (isOpen && !hasGreeted) {
       const greeting: Message = {
         id: crypto.randomUUID(),
-        text: t("chatbot.greeting", "Hi! I'm Dean. How can I help you today? Are you looking for Product Info, Operational Support, or a Demo?"),
+        text: t("chatbot.greeting", "Hi! I'm Dean. How can I help you today?\n\nI can assist with Product Info, Operational Support, Schedule a Demo, run our Diagnostic Intake, or answer questions about Pricing."),
         isBot: true,
         timestamp: new Date(),
       };
@@ -97,6 +103,36 @@ export const Chatbot = () => {
     }, 500);
   };
 
+  const handleIntake = () => {
+    addUserMessage(t("chatbot.buttons.intake", "Diagnostic Intake"));
+    setTimeout(() => {
+      addBotMessage(
+        t("chatbot.responses.intake", "Our 7-step Demand & Execution Intake helps diagnose your operational challenges:\n\n1️⃣ Operational Context\n2️⃣ Current Challenges\n3️⃣ Process Analysis\n4️⃣ Technology Stack\n5️⃣ Goals & Priorities\n6️⃣ Executive Analysis\n7️⃣ Contact Details\n\nYou'll receive a branded PDF summary. Ready to start?")
+      );
+      setCurrentPath("intake");
+    }, 500);
+  };
+
+  const handlePricing = () => {
+    addUserMessage(t("chatbot.buttons.pricing", "Pricing"));
+    setTimeout(() => {
+      addBotMessage(
+        t("chatbot.responses.pricing", `Our platform starts at ${priceDisplay}/month and includes the full suite of warehouse and workflow solutions.\n\nWant to see the detailed pricing section or schedule a call to discuss your needs?`)
+      );
+      setCurrentPath("pricing");
+    }, 500);
+  };
+
+  const handleContact = () => {
+    addUserMessage(t("chatbot.buttons.contact", "Contact Us"));
+    setTimeout(() => {
+      addBotMessage(
+        t("chatbot.responses.contact", "You can reach us at info@ovelon-prime.com or use our contact form below. Would you like me to take you there?")
+      );
+      setCurrentPath("contact");
+    }, 500);
+  };
+
   const handleConnectSupport = () => {
     addUserMessage(t("chatbot.buttons.connectSupport", "Connect to Support Team"));
     setTimeout(() => {
@@ -107,12 +143,17 @@ export const Chatbot = () => {
   };
 
   const handleBookDemo = () => {
-    // Trigger the booking modal
     window.dispatchEvent(new CustomEvent("open-booking-modal"));
     addUserMessage(t("chatbot.buttons.bookDemo", "Book with us"));
     setTimeout(() => {
       addBotMessage(t("chatbot.responses.bookingOpened", "I've opened our booking calendar for you. Pick a time that works best!"));
     }, 500);
+  };
+
+  const handleStartIntake = () => {
+    addUserMessage(t("chatbot.buttons.startIntake", "Start Intake"));
+    setIsOpen(false);
+    navigate(`/intake?lang=${i18n.language}`);
   };
 
   const handleGoToSection = (sectionId: string, label: string) => {
@@ -139,19 +180,25 @@ export const Chatbot = () => {
     setTimeout(() => {
       // Simple keyword matching
       if (userText.includes("demo") || userText.includes("book") || userText.includes("schedule")) {
-        handleScheduleDemo();
+        addBotMessage(t("chatbot.responses.scheduleDemo", "I can schedule a demo for you. Click the button below to pick a time that works for you!"));
+        setCurrentPath("demo");
+      } else if (userText.includes("intake") || userText.includes("diagnostic") || userText.includes("analysis")) {
+        addBotMessage(t("chatbot.responses.intake", "Our 7-step Demand & Execution Intake helps diagnose your operational challenges. Ready to start?"));
+        setCurrentPath("intake");
+      } else if (userText.includes("price") || userText.includes("cost") || userText.includes("pricing")) {
+        addBotMessage(t("chatbot.responses.pricing", `Our platform starts at ${priceDisplay}/month. Want to see details or schedule a call?`));
+        setCurrentPath("pricing");
+      } else if (userText.includes("contact") || userText.includes("email") || userText.includes("reach") || userText.includes("form")) {
+        addBotMessage(t("chatbot.responses.contact", "You can reach us at info@ovelon-prime.com or use our contact form. Want me to take you there?"));
+        setCurrentPath("contact");
       } else if (userText.includes("support") || userText.includes("help") || userText.includes("issue") || userText.includes("problem")) {
         addBotMessage(t("chatbot.responses.operationalSupport", "Can you tell me the issue type? I can guide you or connect you with a human expert."));
         setCurrentPath("support");
       } else if (userText.includes("product") || userText.includes("warehouse") || userText.includes("workflow") || userText.includes("solution")) {
-        addBotMessage(t("chatbot.responses.productInfo", "We offer warehouse and workflow solutions tailored to your operations.\n\nQuick links:\n• Warehouse Solutions\n• Workflow Solutions\n\nAnything specific you want to know?"));
+        addBotMessage(t("chatbot.responses.productInfo", "We offer warehouse and workflow solutions tailored to your operations.\n\nQuick links:\n• Warehouse Solutions\n• Workflow Solutions"));
         setCurrentPath("product");
-      } else if (userText.includes("price") || userText.includes("cost") || userText.includes("pricing")) {
-        addBotMessage(t("chatbot.responses.pricing", "Our pricing starts at €4.999/month for the complete platform. Would you like to schedule a demo to discuss your specific needs?"));
-      } else if (userText.includes("contact") || userText.includes("email") || userText.includes("reach")) {
-        addBotMessage(t("chatbot.responses.contact", "You can reach us at info@ovelon-prime.com. Would you like me to connect you with our team?"));
       } else {
-        addBotMessage(t("chatbot.responses.fallback", "I don't have that info, but the team can follow up with you shortly. Would you like to leave your contact details?"));
+        addBotMessage(t("chatbot.responses.fallback", "I don't have that info, but the team can follow up with you shortly. Would you like to leave your contact details or try the contact form?"));
         setCurrentPath("fallback");
       }
     }, 500);
@@ -167,12 +214,24 @@ export const Chatbot = () => {
               onClick={handleProductInfo}
             />
             <QuickReply
-              label={t("chatbot.buttons.operationalSupport", "Operational Support")}
+              label={t("chatbot.buttons.operationalSupport", "Support")}
               onClick={handleOperationalSupport}
             />
             <QuickReply
-              label={t("chatbot.buttons.scheduleDemo", "Schedule a Demo")}
+              label={t("chatbot.buttons.scheduleDemo", "Schedule Demo")}
               onClick={handleScheduleDemo}
+            />
+            <QuickReply
+              label={t("chatbot.buttons.intake", "Diagnostic Intake")}
+              onClick={handleIntake}
+            />
+            <QuickReply
+              label={t("chatbot.buttons.pricing", "Pricing")}
+              onClick={handlePricing}
+            />
+            <QuickReply
+              label={t("chatbot.buttons.contact", "Contact")}
+              onClick={handleContact}
             />
           </div>
         );
@@ -197,7 +256,7 @@ export const Chatbot = () => {
         return (
           <div className="flex flex-wrap gap-2 p-3 border-t border-border/50">
             <QuickReply
-              label={t("chatbot.buttons.connectSupport", "Connect to Support Team")}
+              label={t("chatbot.buttons.connectSupport", "Connect to Support")}
               onClick={handleConnectSupport}
             />
             <QuickReply
@@ -219,12 +278,59 @@ export const Chatbot = () => {
             />
           </div>
         );
+      case "intake":
+        return (
+          <div className="flex flex-wrap gap-2 p-3 border-t border-border/50">
+            <QuickReply
+              label={t("chatbot.buttons.startIntake", "Start Intake →")}
+              onClick={handleStartIntake}
+            />
+            <QuickReply
+              label={t("chatbot.buttons.backToMain", "← Back")}
+              onClick={handleBackToMain}
+            />
+          </div>
+        );
+      case "pricing":
+        return (
+          <div className="flex flex-wrap gap-2 p-3 border-t border-border/50">
+            <QuickReply
+              label={t("chatbot.buttons.viewPricing", "View Pricing")}
+              onClick={() => handleGoToSection("pricing", "View Pricing")}
+            />
+            <QuickReply
+              label={t("chatbot.buttons.scheduleDemo", "Schedule Demo")}
+              onClick={handleScheduleDemo}
+            />
+            <QuickReply
+              label={t("chatbot.buttons.backToMain", "← Back")}
+              onClick={handleBackToMain}
+            />
+          </div>
+        );
+      case "contact":
+        return (
+          <div className="flex flex-wrap gap-2 p-3 border-t border-border/50">
+            <QuickReply
+              label={t("chatbot.buttons.goToForm", "Go to Contact Form")}
+              onClick={() => handleGoToSection("contact", "Contact Form")}
+            />
+            <QuickReply
+              label={t("chatbot.buttons.backToMain", "← Back")}
+              onClick={handleBackToMain}
+            />
+          </div>
+        );
       case "fallback":
         return (
           <div className="flex flex-wrap gap-2 p-3 border-t border-border/50">
             <QuickReply
-              label={t("chatbot.buttons.contactUs", "Contact Us")}
-              onClick={() => handleGoToSection("contact", "Contact Us")}
+              label={t("chatbot.buttons.goToForm", "Contact Form")}
+              onClick={() => handleGoToSection("contact", "Contact Form")}
+            />
+            <QuickReply
+              label={t("chatbot.buttons.intake", "Try Intake")}
+              onClick={handleIntake}
             />
             <QuickReply
               label={t("chatbot.buttons.backToMain", "← Back")}
