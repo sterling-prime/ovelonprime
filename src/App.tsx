@@ -14,6 +14,7 @@ import NotFound from "./pages/NotFound";
 import { CalInit } from "@/components/CalInit";
 import { CookieConsent } from "@/components/CookieConsent";
 import { DemoSurface } from "@/components/demosurface";
+import { Chatbot } from "@/components/Chatbot";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,9 @@ const App = () => (
 
         {/* GLOBAL OVERLAYS — ALWAYS MOUNTED */}
         <DemoSurface />
+
+        {/* CHATBOT */}
+        <Chatbot />
 
         {/* COOKIE CONSENT */}
         <CookieConsent />
