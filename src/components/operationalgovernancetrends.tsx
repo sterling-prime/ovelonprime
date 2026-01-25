@@ -22,10 +22,10 @@ export const OperationalGovernanceTrends = () => {
 
           {/* COLUMN 1 */}
           <div>
-            <h3 className="text-lg font-semibold text-slate-900 mb-4 text-left">
+            <h3 className="text-lg font-semibold text-slate-900 mb-4 text-center md:text-left">
               {t("governanceTrends.column1.title")}
             </h3>
-            <ul className="space-y-3 text-slate-600 text-sm text-left">
+            <ul className="space-y-3 text-slate-600 text-sm text-center md:text-left">
               <li>• {t("governanceTrends.column1.items.0")}</li>
               <li>• {t("governanceTrends.column1.items.1")}</li>
               <li>• {t("governanceTrends.column1.items.2")}</li>
@@ -36,10 +36,10 @@ export const OperationalGovernanceTrends = () => {
 
           {/* COLUMN 2 */}
           <div>
-            <h3 className="text-lg font-semibold text-slate-900 mb-4 text-left">
+            <h3 className="text-lg font-semibold text-slate-900 mb-4 text-center md:text-left">
               {t("governanceTrends.column2.title")}
             </h3>
-            <ul className="space-y-3 text-slate-600 text-sm text-left">
+            <ul className="space-y-3 text-slate-600 text-sm text-center md:text-left">
               <li>• {t("governanceTrends.column2.items.0")}</li>
               <li>• {t("governanceTrends.column2.items.1")}</li>
               <li>• {t("governanceTrends.column2.items.2")}</li>
@@ -50,10 +50,10 @@ export const OperationalGovernanceTrends = () => {
 
           {/* COLUMN 3 */}
           <div>
-            <h3 className="text-lg font-semibold text-slate-900 mb-4 text-left">
+            <h3 className="text-lg font-semibold text-slate-900 mb-4 text-center md:text-left">
               {t("governanceTrends.column3.title")}
             </h3>
-            <ul className="space-y-3 text-slate-600 text-sm text-left">
+            <ul className="space-y-3 text-slate-600 text-sm text-center md:text-left">
               <li>• {t("governanceTrends.column3.items.0")}</li>
               <li>• {t("governanceTrends.column3.items.1")}</li>
               <li>• {t("governanceTrends.column3.items.2")}</li>

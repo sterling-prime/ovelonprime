@@ -135,17 +135,17 @@ export const Contact = () => {
             </p>
 
             {/* Form */}
-            <form onSubmit={handleSubmit} className="max-w-xl mx-auto text-left space-y-6">
+            <form onSubmit={handleSubmit} className="max-w-xl mx-auto space-y-6">
               {/* Error message */}
               {formError && (
                 <div className="p-4 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50">
-                  <p className="text-sm text-red-600 dark:text-red-400">{formError}</p>
+                  <p className="text-sm text-red-600 dark:text-red-400 text-center sm:text-left">{formError}</p>
                 </div>
               )}
               
               {/* Name row */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-2">
+                <div className="space-y-2 text-center sm:text-left">
                   <Label 
                     htmlFor="firstName" 
                     className={`text-foreground/80 ${errors.firstName ? "text-red-500" : ""}`}
@@ -167,7 +167,7 @@ export const Contact = () => {
                     disabled={isSubmitting}
                   />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-2 text-center sm:text-left">
                   <Label 
                     htmlFor="lastName" 
                     className={`text-foreground/80 ${errors.lastName ? "text-red-500" : ""}`}
@@ -192,7 +192,7 @@ export const Contact = () => {
               </div>
 
               {/* Business Name */}
-              <div className="space-y-2">
+              <div className="space-y-2 text-center sm:text-left">
                 <Label 
                   htmlFor="businessName" 
                   className={`text-foreground/80 ${errors.businessName ? "text-red-500" : ""}`}
@@ -216,7 +216,7 @@ export const Contact = () => {
               </div>
 
               {/* Business Email */}
-              <div className="space-y-2">
+              <div className="space-y-2 text-center sm:text-left">
                 <Label 
                   htmlFor="businessEmail" 
                   className={`text-foreground/80 ${errors.businessEmail ? "text-red-500" : ""}`}
@@ -240,7 +240,7 @@ export const Contact = () => {
               </div>
 
               {/* Request Details */}
-              <div className="space-y-2">
+              <div className="space-y-2 text-center sm:text-left">
                 <Label 
                   htmlFor="requestDetails" 
                   className={`text-foreground/80 ${errors.requestDetails ? "text-red-500" : ""}`}
