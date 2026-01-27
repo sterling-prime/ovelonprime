@@ -71,6 +71,7 @@ export const LanguageDropdown = ({
       {/* DROPDOWN */}
       <div
         role="listbox"
+        aria-label="Select language"
         className={`
           absolute right-0 mt-3 z-50 min-w-[160px]
           rounded-md shadow-xl transition-all origin-top
