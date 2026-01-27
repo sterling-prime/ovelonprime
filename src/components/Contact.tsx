@@ -86,13 +86,14 @@ export const Contact = () => {
         className="relative py-28 sm:py-32 overflow-hidden"
       >
         {/* ===== Background ===== */}
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `url(${contactBg})`,
-            filter: "contrast(1.08) saturate(1.05)",
-          }}
-        >
+        <div className="absolute inset-0">
+          <img
+            src={contactBg}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover contrast-[1.08] saturate-[1.05]"
+          />
           {/* Lighter readability overlay (less heavy than hero) */}
           <div className="absolute inset-0 bg-background/35" />
 
