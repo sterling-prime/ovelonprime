@@ -17,7 +17,7 @@ i18n
     },
     fallbackLng: "en",
     interpolation: {
-      escapeValue: false,
+      escapeValue: true, // Enable HTML escaping for XSS protection
     },
     detection: {
       order: ["localStorage", "navigator"],
