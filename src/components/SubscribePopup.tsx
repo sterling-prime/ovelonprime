@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 const STORAGE_KEY = "ovelon_subscribe_shown";
 
@@ -11,6 +12,7 @@ export const SubscribePopup = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "" });
   const { toast } = useToast();
+  const { t } = useTranslation();
 
   useEffect(() => {
     // Check if popup was already shown
@@ -36,8 +38,8 @@ export const SubscribePopup = () => {
     
     if (!formData.name.trim() || !formData.email.trim()) {
       toast({
-        title: "Missing information",
-        description: "Please fill in both name and email.",
+        title: t("subscribe.missingInfo"),
+        description: t("subscribe.missingInfoDesc"),
         variant: "destructive",
       });
       return;
@@ -67,7 +69,7 @@ export const SubscribePopup = () => {
     } catch (err) {
       console.error("[Subscribe] Error:", err);
       toast({
-        title: "Subscription failed",
+        title: t("subscribe.failedTitle"),
         description: err instanceof Error ? err.message : "Please try again later.",
         variant: "destructive",
       });
@@ -131,26 +133,26 @@ export const SubscribePopup = () => {
               <>
                 <div className="mb-10">
                   <h2 className="font-['Outfit'] text-[28px] max-md:text-2xl font-light text-[#000033] mb-3 tracking-wide">
-                    Stay Ahead of the Curve
+                    {t("subscribe.title")}
                   </h2>
                   <p className="text-[15px] text-gray-600 leading-relaxed tracking-wide">
-                    Get exclusive insights on workflow optimization, operations management, and industry trends delivered to your inbox.
+                    {t("subscribe.subtitle")}
                   </p>
                   <p className="mt-4 text-sm font-semibold text-[#000033] bg-amber-50 border border-amber-200 rounded-lg px-4 py-2.5 inline-block">
-                    🎁 Free Operations E-Book if you subscribe today!
+                    {t("subscribe.promo")}
                   </p>
                 </div>
 
                 <form onSubmit={handleSubmit}>
                   <div className="mb-6">
                     <label className="block text-xs font-medium text-[#000033] mb-2 tracking-wide uppercase">
-                      Full Name
+                      {t("subscribe.fullName")}
                     </label>
                     <input
                       type="text"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="Enter your full name"
+                      placeholder={t("subscribe.fullNamePlaceholder")}
                       required
                       className="w-full px-4 py-3.5 border-[1.5px] border-gray-200 rounded-md font-['Inter'] text-[15px] text-[#000033] bg-gray-50 transition-all duration-300 focus:outline-none focus:border-[#000033] focus:bg-white focus:shadow-[0_0_0_3px_rgba(0,0,51,0.05)]"
                     />
@@ -158,13 +160,13 @@ export const SubscribePopup = () => {
 
                   <div className="mb-6">
                     <label className="block text-xs font-medium text-[#000033] mb-2 tracking-wide uppercase">
-                      Email Address
+                      {t("subscribe.email")}
                     </label>
                     <input
                       type="email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="name@email.com"
+                      placeholder={t("subscribe.emailPlaceholder")}
                       required
                       className="w-full px-4 py-3.5 border-[1.5px] border-gray-200 rounded-md font-['Inter'] text-[15px] text-[#000033] bg-gray-50 transition-all duration-300 focus:outline-none focus:border-[#000033] focus:bg-white focus:shadow-[0_0_0_3px_rgba(0,0,51,0.05)]"
                     />
@@ -175,17 +177,17 @@ export const SubscribePopup = () => {
                     disabled={isSubmitting}
                     className="w-full py-4 bg-[#000033] text-white border-none rounded-md font-['Inter'] text-sm font-semibold tracking-wide uppercase cursor-pointer transition-all duration-300 mt-2.5 shadow-[0_4px_12px_rgba(0,0,51,0.2)] hover:bg-[#001a33] hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgba(0,0,51,0.3)] disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {isSubmitting ? "Subscribing..." : "Subscribe Now"}
+                    {isSubmitting ? t("subscribe.submitting") : t("subscribe.submit")}
                   </button>
 
                   <p className="mt-5 text-[11px] text-gray-400 leading-relaxed">
-                    By subscribing, you agree to our{" "}
+                    {t("subscribe.privacyText")}{" "}
                     <a href="/privacy" className="text-[#000033] no-underline hover:underline">
-                      Privacy Policy
+                      {t("subscribe.privacyLink")}
                     </a>{" "}
-                    and{" "}
+                    {t("subscribe.andText")}{" "}
                     <a href="/terms" className="text-[#000033] no-underline hover:underline">
-                      Terms & Conditions
+                      {t("subscribe.termsLink")}
                     </a>.
                   </p>
                 </form>
@@ -208,10 +210,10 @@ export const SubscribePopup = () => {
                   />
                 </svg>
                 <h3 className="font-['Outfit'] text-2xl font-normal text-[#000033] mb-3">
-                  Welcome Aboard!
+                  {t("subscribe.successTitle")}
                 </h3>
                 <p className="text-[15px] text-gray-600">
-                  Thank you for subscribing. You'll receive our latest insights soon.
+                  {t("subscribe.successMessage")}
                 </p>
               </div>
             )}
