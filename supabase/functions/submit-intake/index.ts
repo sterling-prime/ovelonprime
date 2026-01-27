@@ -9,6 +9,75 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
+// Rate limiting configuration
+const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
+const RATE_LIMIT_MAX_REQUESTS = 5; // max requests per window per IP
+
+// In-memory rate limit store (resets on cold start, but provides protection within instance lifetime)
+const rateLimitStore = new Map<string, { count: number; windowStart: number }>();
+
+function checkRateLimit(ip: string): { allowed: boolean; remaining: number; resetAt: number } {
+  const now = Date.now();
+  
+  // Clean up expired entries
+  for (const [key, data] of rateLimitStore.entries()) {
+    if (now - data.windowStart > RATE_LIMIT_WINDOW_MS) {
+      rateLimitStore.delete(key);
+    }
+  }
+  
+  const record = rateLimitStore.get(ip);
+  
+  if (!record) {
+    rateLimitStore.set(ip, { count: 1, windowStart: now });
+    return { allowed: true, remaining: RATE_LIMIT_MAX_REQUESTS - 1, resetAt: now + RATE_LIMIT_WINDOW_MS };
+  }
+  
+  // Check if window has expired
+  if (now - record.windowStart > RATE_LIMIT_WINDOW_MS) {
+    rateLimitStore.set(ip, { count: 1, windowStart: now });
+    return { allowed: true, remaining: RATE_LIMIT_MAX_REQUESTS - 1, resetAt: now + RATE_LIMIT_WINDOW_MS };
+  }
+  
+  // Check if limit exceeded
+  if (record.count >= RATE_LIMIT_MAX_REQUESTS) {
+    return { 
+      allowed: false, 
+      remaining: 0, 
+      resetAt: record.windowStart + RATE_LIMIT_WINDOW_MS 
+    };
+  }
+  
+  // Increment count
+  record.count++;
+  return { 
+    allowed: true, 
+    remaining: RATE_LIMIT_MAX_REQUESTS - record.count, 
+    resetAt: record.windowStart + RATE_LIMIT_WINDOW_MS 
+  };
+}
+
+function getClientIp(req: Request): string {
+  // Check common headers for client IP (in order of preference)
+  const forwardedFor = req.headers.get("x-forwarded-for");
+  if (forwardedFor) {
+    // x-forwarded-for can contain multiple IPs, the first one is the client
+    return forwardedFor.split(",")[0].trim();
+  }
+  
+  const realIp = req.headers.get("x-real-ip");
+  if (realIp) {
+    return realIp.trim();
+  }
+  
+  const cfConnectingIp = req.headers.get("cf-connecting-ip");
+  if (cfConnectingIp) {
+    return cfConnectingIp.trim();
+  }
+  
+  return "unknown";
+}
+
 // Label mappings for human-readable output
 const LABELS: Record<string, Record<string, string>> = {
   industry: {
@@ -497,6 +566,33 @@ serve(async (req: Request): Promise<Response> => {
   // Handle CORS preflight
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
+  }
+
+  // Rate limiting check
+  const clientIp = getClientIp(req);
+  const rateLimit = checkRateLimit(clientIp);
+  
+  console.log(`[submit-intake] Request from IP: ${clientIp}, remaining: ${rateLimit.remaining}`);
+  
+  if (!rateLimit.allowed) {
+    console.log(`[submit-intake] Rate limit exceeded for IP: ${clientIp}`);
+    return new Response(
+      JSON.stringify({
+        success: false,
+        error: "Too many requests. Please try again later.",
+        errorCode: "RATE_LIMIT_EXCEEDED",
+        resetAt: new Date(rateLimit.resetAt).toISOString(),
+      }),
+      { 
+        status: 429, 
+        headers: { 
+          ...corsHeaders, 
+          "Content-Type": "application/json",
+          "X-RateLimit-Remaining": "0",
+          "X-RateLimit-Reset": rateLimit.resetAt.toString(),
+        } 
+      }
+    );
   }
 
   try {
