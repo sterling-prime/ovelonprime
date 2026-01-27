@@ -3,10 +3,28 @@ import { Resend } from "https://esm.sh/resend@2.0.0";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-};
+// Allowed origins for CORS - restricts which domains can call this function
+const allowedOrigins = [
+  "https://ovelon-prime.com",
+  "https://www.ovelon-prime.com",
+  "https://ovelon-prime-vision.lovable.app",
+  "https://id-preview--f0dc01e6-c277-45f8-8b58-90bb0d24365e.lovable.app",
+  "http://localhost:5173", // local development
+  "http://localhost:8080",
+];
+
+function getCorsHeaders(origin: string | null): Record<string, string> {
+  const isAllowed = origin && allowedOrigins.some(allowed => 
+    origin === allowed || origin.endsWith('.lovable.app')
+  );
+  
+  return {
+    "Access-Control-Allow-Origin": isAllowed ? origin : allowedOrigins[0],
+    "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Vary": "Origin",
+  };
+}
 
 // Rate limiting configuration
 const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
@@ -107,6 +125,10 @@ function validateEmail(email: string): boolean {
 }
 
 serve(async (req: Request): Promise<Response> => {
+  // Get origin for CORS
+  const origin = req.headers.get("origin");
+  const corsHeaders = getCorsHeaders(origin);
+
   // Handle CORS preflight
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -117,7 +139,7 @@ serve(async (req: Request): Promise<Response> => {
     const clientIp = getClientIp(req);
     const rateLimit = checkRateLimit(clientIp);
     
-    console.log(`[submit-contact] Request from IP: ${clientIp}, remaining: ${rateLimit.remaining}`);
+    console.log(`[submit-contact] Request from IP: ${clientIp}, origin: ${origin}, remaining: ${rateLimit.remaining}`);
     
     if (!rateLimit.allowed) {
       console.log(`[submit-contact] Rate limit exceeded for IP: ${clientIp}`);
