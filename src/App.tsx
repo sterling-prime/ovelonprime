@@ -19,6 +19,7 @@ const CalInit = lazy(() => import("@/components/CalInit").then(m => ({ default: 
 const CookieConsent = lazy(() => import("@/components/CookieConsent").then(m => ({ default: m.CookieConsent })));
 const DemoSurface = lazy(() => import("@/components/demosurface").then(m => ({ default: m.DemoSurface })));
 const Chatbot = lazy(() => import("@/components/Chatbot").then(m => ({ default: m.Chatbot })));
+const SubscribePopup = lazy(() => import("@/components/SubscribePopup").then(m => ({ default: m.SubscribePopup })));
 
 const queryClient = new QueryClient();
 
@@ -75,6 +76,11 @@ const App = () => {
               {/* COOKIE CONSENT */}
               <Suspense fallback={null}>
                 <CookieConsent />
+              </Suspense>
+
+              {/* SUBSCRIBE POPUP */}
+              <Suspense fallback={null}>
+                <SubscribePopup />
               </Suspense>
             </>
           )}
