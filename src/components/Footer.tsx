@@ -48,6 +48,9 @@ export const Footer = () => {
                   tracking-wide
                   text-muted-foreground
                   hover:text-foreground
+                  min-h-6
+                  py-0.5
+                  inline-flex items-center
                 "
               >
                 {link.label}
@@ -61,6 +64,8 @@ export const Footer = () => {
                   tracking-wide
                   text-muted-foreground
                   hover:text-foreground
+                  min-h-6
+                  py-0.5
                 "
               >
                 {link.label}

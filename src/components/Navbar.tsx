@@ -97,6 +97,8 @@ export const Navbar = () => {
                     text-gray-700
                     hover:text-gray-900
                     transition-colors
+                    min-h-6
+                    py-0.5
                   "
                 >
                   {link.label}
@@ -115,6 +117,7 @@ export const Navbar = () => {
                 }
                 className="
                   px-4 py-2
+                  min-h-6
                   rounded-md
                   border border-gray-300
                   bg-gray-100
@@ -137,6 +140,7 @@ export const Navbar = () => {
                   text-white
                   font-medium
                   px-4 py-2
+                  min-h-6
                   rounded-md
                   transition-colors
                   hover:bg-[#3A8F94]
