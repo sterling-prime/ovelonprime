@@ -38,7 +38,15 @@ export const About = () => {
 
           <div className="relative">
             <div className="aspect-square rounded-2xl overflow-hidden">
-              <img src={aboutImage} alt="Operations leadership" className="w-full h-full object-cover" />
+              <img 
+                src={aboutImage} 
+                alt="Operations leadership" 
+                width={600}
+                height={600}
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full object-cover" 
+              />
             </div>
           </div>
         </div>

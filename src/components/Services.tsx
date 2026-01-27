@@ -36,6 +36,10 @@ export const Services = () => {
                 <img 
                   src={images[index]} 
                   alt={service.title}
+                  width={96}
+                  height={96}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
               </div>

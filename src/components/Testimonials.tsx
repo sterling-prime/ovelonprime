@@ -45,6 +45,10 @@ export const Testimonials = () => {
                 <img
                   src={images[index]}
                   alt={testimonial.name}
+                  width={56}
+                  height={56}
+                  loading="lazy"
+                  decoding="async"
                   className="w-14 h-14 rounded-full object-cover"
                 />
                 <div className="text-center">

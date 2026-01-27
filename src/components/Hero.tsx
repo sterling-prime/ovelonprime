@@ -26,6 +26,10 @@ export const Hero = () => {
           <img
             src={heroBg}
             alt=""
+            width={1920}
+            height={1080}
+            fetchPriority="high"
+            decoding="async"
             className="
               w-full
               h-full
