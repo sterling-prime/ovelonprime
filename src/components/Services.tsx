@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
-import serviceLeadImg from "@/assets/service-lead.png";
-import serviceSchedulingImg from "@/assets/service-scheduling.png";
-import serviceSupportImg from "@/assets/service-support.png";
+import serviceLeadImg from "@/assets/service-lead.png?format=webp&quality=80";
+import serviceSchedulingImg from "@/assets/service-scheduling.png?format=webp&quality=80";
+import serviceSupportImg from "@/assets/service-support.png?format=webp&quality=80";
 
 const images = [serviceLeadImg, serviceSchedulingImg, serviceSupportImg];
 
