@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const STORAGE_KEY = "ovelon_subscribe_shown";
 
 export const SubscribePopup = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "" });
+  const { toast } = useToast();
 
   useEffect(() => {
     // Check if popup was already shown
@@ -27,15 +31,49 @@ export const SubscribePopup = () => {
     return () => window.removeEventListener("open-subscribe-popup", handler);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you could add actual submission logic
-    setIsSuccess(true);
-    setTimeout(() => {
-      setIsOpen(false);
-      setIsSuccess(false);
-      setFormData({ name: "", email: "" });
-    }, 3000);
+    
+    if (!formData.name.trim() || !formData.email.trim()) {
+      toast({
+        title: "Missing information",
+        description: "Please fill in both name and email.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke("submit-subscribe", {
+        body: { name: formData.name, email: formData.email },
+      });
+
+      if (error) {
+        throw new Error(error.message || "Subscription failed");
+      }
+
+      if (!data?.success) {
+        throw new Error(data?.error || "Subscription failed");
+      }
+
+      setIsSuccess(true);
+      setTimeout(() => {
+        setIsOpen(false);
+        setIsSuccess(false);
+        setFormData({ name: "", email: "" });
+      }, 3000);
+    } catch (err) {
+      console.error("[Subscribe] Error:", err);
+      toast({
+        title: "Subscription failed",
+        description: err instanceof Error ? err.message : "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleClose = () => {
@@ -131,9 +169,10 @@ export const SubscribePopup = () => {
 
                   <button
                     type="submit"
-                    className="w-full py-4 bg-[#000033] text-white border-none rounded-md font-['Inter'] text-sm font-semibold tracking-wide uppercase cursor-pointer transition-all duration-300 mt-2.5 shadow-[0_4px_12px_rgba(0,0,51,0.2)] hover:bg-[#001a33] hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgba(0,0,51,0.3)]"
+                    disabled={isSubmitting}
+                    className="w-full py-4 bg-[#000033] text-white border-none rounded-md font-['Inter'] text-sm font-semibold tracking-wide uppercase cursor-pointer transition-all duration-300 mt-2.5 shadow-[0_4px_12px_rgba(0,0,51,0.2)] hover:bg-[#001a33] hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgba(0,0,51,0.3)] disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Subscribe Now
+                    {isSubmitting ? "Subscribing..." : "Subscribe Now"}
                   </button>
 
                   <p className="mt-5 text-[11px] text-gray-400 leading-relaxed">
