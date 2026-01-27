@@ -310,7 +310,7 @@ export const translations: Record<Lang, any> = {
       message: "We use cookies to enhance your experience. By continuing to visit this site, you agree to our use of cookies.",
       accept: "Accept",
       decline: "Decline",
-      learnMore: "Learn more",
+      learnMore: "Learn more about our Privacy Policy",
     },
     privacy: {
       title: "Privacy Policy",
@@ -1129,7 +1129,7 @@ export const translations: Record<Lang, any> = {
       message: "Wir verwenden Cookies, um Ihre Erfahrung zu verbessern. Durch die weitere Nutzung dieser Website stimmen Sie der Verwendung von Cookies zu.",
       accept: "Akzeptieren",
       decline: "Ablehnen",
-      learnMore: "Mehr erfahren",
+      learnMore: "Mehr über unsere Datenschutzrichtlinie erfahren",
     },
     privacy: {
       title: "Datenschutzerklärung",
@@ -1948,7 +1948,7 @@ export const translations: Record<Lang, any> = {
       message: "Nous utilisons des cookies pour améliorer votre expérience. En continuant à visiter ce site, vous acceptez notre utilisation des cookies.",
       accept: "Accepter",
       decline: "Refuser",
-      learnMore: "En savoir plus",
+      learnMore: "En savoir plus sur notre politique de confidentialité",
     },
     privacy: {
       title: "Politique de confidentialité",
@@ -2767,7 +2767,7 @@ export const translations: Record<Lang, any> = {
       message: "Usamos cookies para mejorar su experiencia. Al continuar visitando este sitio, acepta nuestro uso de cookies.",
       accept: "Aceptar",
       decline: "Rechazar",
-      learnMore: "Más información",
+      learnMore: "Más información sobre nuestra política de privacidad",
     },
     privacy: {
       title: "Política de privacidad",
@@ -3480,7 +3480,7 @@ export const translations: Record<Lang, any> = {
       message: "Utilizziamo i cookie per migliorare la tua esperienza. Continuando a visitare questo sito, accetti il nostro utilizzo dei cookie.",
       accept: "Accetta",
       decline: "Rifiuta",
-      learnMore: "Maggiori informazioni",
+      learnMore: "Maggiori informazioni sulla nostra politica sulla privacy",
     },
     privacy: {
       title: "Informativa sulla privacy",
@@ -4191,7 +4191,7 @@ export const translations: Record<Lang, any> = {
       message: "Utilizamos cookies para melhorar a sua experiência. Ao continuar a visitar este site, concorda com o nosso uso de cookies.",
       accept: "Aceitar",
       decline: "Recusar",
-      learnMore: "Saber mais",
+      learnMore: "Saiba mais sobre a nossa política de privacidade",
     },
     privacy: {
       title: "Política de Privacidade",
