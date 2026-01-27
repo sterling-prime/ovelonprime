@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { ArrowRight, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
-import heroBg from "@/assets/u3714841198_Sleek_minimalistic_abstract_visual_inspired_by_he_53bffa3d-7c36-4acb-858b-afa6bbf35d2a_0.png";
+import heroBg from "@/assets/u3714841198_Sleek_minimalistic_abstract_visual_inspired_by_he_53bffa3d-7c36-4acb-858b-afa6bbf35d2a_0.png?format=webp&quality=80";
 import { ProjectSimulator } from "./ProjectSimulator";
 import { HeroScrollDown } from "./HeroScrollDown";
 

@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
-import sector1 from "@/assets/facility.png";
-import sector2 from "@/assets/mainte.png";
-import sector3 from "@/assets/logistic.png";
+import sector1 from "@/assets/facility.png?format=webp&quality=80";
+import sector2 from "@/assets/mainte.png?format=webp&quality=80";
+import sector3 from "@/assets/logistic.png?format=webp&quality=80";
 
 const images = [sector1, sector2, sector3];
 
