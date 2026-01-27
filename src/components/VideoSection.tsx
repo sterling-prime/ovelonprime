@@ -224,6 +224,7 @@ export const VideoSection = () => {
                   onClick={enableSound}
                   className="
                     px-4 py-2
+                    min-h-6
                     text-xs
                     tracking-widest
                     uppercase
