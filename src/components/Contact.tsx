@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { useSubmitContact } from "@/hooks/use-submit-contact";
 import { ContactSuccessModal } from "@/components/ContactSuccessModal";
 import { Loader2 } from "lucide-react";
-import contactBg from "@/assets/u3714841198_Minimalistic_abstract_background_designed_for_a_c_e56f8162-43f3-47ed-8b5e-63ec90910a05_0.png";
+import contactBg from "@/assets/u3714841198_Minimalistic_abstract_background_designed_for_a_c_e56f8162-43f3-47ed-8b5e-63ec90910a05_0.png?format=webp&quality=80";
 
 export const Contact = () => {
   const { t } = useTranslation();
