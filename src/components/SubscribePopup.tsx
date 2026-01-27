@@ -136,6 +136,9 @@ export const SubscribePopup = () => {
                   <p className="text-[15px] text-gray-600 leading-relaxed tracking-wide">
                     Get exclusive insights on workflow optimization, operations management, and industry trends delivered to your inbox.
                   </p>
+                  <p className="mt-4 text-sm font-semibold text-[#000033] bg-amber-50 border border-amber-200 rounded-lg px-4 py-2.5 inline-block">
+                    🎁 Free Operations E-Book if you subscribe today!
+                  </p>
                 </div>
 
                 <form onSubmit={handleSubmit}>
