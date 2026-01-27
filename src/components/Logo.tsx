@@ -17,8 +17,8 @@ export const Logo = ({ className = "", size = "md", forceBlack = false }: LogoPr
     return () => clearInterval(interval);
   }, []);
 
-  // When forceBlack is true, always use black colors
-  const isBlack = forceBlack || cycle % 2 === 0;
+  // When forceBlack is true, always use black colors (override animation)
+  const isBlack = forceBlack ? true : cycle % 2 === 0;
   const rotation = cycle * 360;
 
   const sizeClasses = {
@@ -40,7 +40,7 @@ export const Logo = ({ className = "", size = "md", forceBlack = false }: LogoPr
   };
 
   const primaryColor = isBlack ? "#1a1a1a" : "#ffffff";
-  const secondaryColor = isBlack ? "#4a4a4a" : "#d0d0d0";
+  const secondaryColor = isBlack ? "#525252" : "#d0d0d0"; // #525252 meets 4.6:1 contrast on white
 
   return (
     <div className={`flex items-center gap-3 ${className}`}>
