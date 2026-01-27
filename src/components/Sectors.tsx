@@ -54,6 +54,10 @@ export const Sectors = () => {
                 <img
                   src={images[index]}
                   alt={sec.name}
+                  width={80}
+                  height={80}
+                  loading="lazy"
+                  decoding="async"
                   className="
                     h-20 w-20 rounded-full object-cover shadow-md mb-6
                     transition-all duration-300 group-hover:scale-110
