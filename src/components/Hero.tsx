@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { ArrowRight, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import heroBg from "@/assets/u3714841198_Sleek_minimalistic_abstract_visual_inspired_by_he_53bffa3d-7c36-4acb-858b-afa6bbf35d2a_0.png?format=webp&quality=80";
-import { ProjectSimulator } from "./ProjectSimulator";
 import { HeroScrollDown } from "./HeroScrollDown";
+
+// Lazy load the heavy ProjectSimulator modal (only loaded when opened)
+const ProjectSimulator = lazy(() => import("./ProjectSimulator"));
 
 export const Hero = () => {
   const { t } = useTranslation();
@@ -135,11 +137,15 @@ export const Hero = () => {
         <HeroScrollDown />
       </section>
 
-      {/* Project Simulator Modal */}
-      <ProjectSimulator
-        isOpen={simulatorOpen}
-        onClose={() => setSimulatorOpen(false)}
-      />
+      {/* Project Simulator Modal - lazy loaded */}
+      {simulatorOpen && (
+        <Suspense fallback={null}>
+          <ProjectSimulator
+            isOpen={simulatorOpen}
+            onClose={() => setSimulatorOpen(false)}
+          />
+        </Suspense>
+      )}
     </>
   );
 };
