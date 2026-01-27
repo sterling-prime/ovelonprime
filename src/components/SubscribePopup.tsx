@@ -1,14 +1,27 @@
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
-import { useTranslation } from "react-i18next";
+
+const STORAGE_KEY = "ovelon_subscribe_shown";
 
 export const SubscribePopup = () => {
-  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "" });
 
   useEffect(() => {
+    // Check if popup was already shown
+    const wasShown = localStorage.getItem(STORAGE_KEY);
+    
+    if (!wasShown) {
+      // Show popup after 3 seconds on first visit
+      const timer = setTimeout(() => {
+        setIsOpen(true);
+        localStorage.setItem(STORAGE_KEY, "true");
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+
+    // Also allow manual trigger
     const handler = () => setIsOpen(true);
     window.addEventListener("open-subscribe-popup", handler);
     return () => window.removeEventListener("open-subscribe-popup", handler);
