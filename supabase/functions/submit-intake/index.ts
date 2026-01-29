@@ -836,7 +836,7 @@ serve(async (req: Request): Promise<Response> => {
     `;
 
     // Send email to internal team
-    const fromEmail = Deno.env.get("FROM_EMAIL") || "Ovelon Prime <onboarding@resend.dev>";
+    const fromEmail = "Ovelon Prime <info@ovelon-prime.com>";
     const internalEmail = Deno.env.get("INTERNAL_EMAIL") || "info@ovelon-prime.com";
 
     try {

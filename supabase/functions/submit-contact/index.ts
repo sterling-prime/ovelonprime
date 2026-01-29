@@ -221,7 +221,7 @@ serve(async (req: Request): Promise<Response> => {
     console.log(`[submit-contact] Contact: ${payload.businessEmail}`);
 
     // Email configuration
-    const fromEmail = Deno.env.get("FROM_EMAIL") || "Ovelon Prime <noreply@ovelon-prime.com>";
+    const fromEmail = "Ovelon Prime <info@ovelon-prime.com>";
     const internalEmail = Deno.env.get("INTERNAL_EMAIL") || "info@ovelon-prime.com";
 
     // Build HTML email for user confirmation
