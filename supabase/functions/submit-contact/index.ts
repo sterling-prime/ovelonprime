@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "https://esm.sh/resend@2.0.0";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
@@ -14,15 +15,13 @@ const allowedOrigins = [
 ];
 
 function getCorsHeaders(origin: string | null): Record<string, string> {
-  const isAllowed = origin && allowedOrigins.some(allowed => 
-    origin === allowed || origin.endsWith('.lovable.app')
-  );
-  
+  const isAllowed = origin && allowedOrigins.some((allowed) => origin === allowed || origin.endsWith(".lovable.app"));
+
   return {
     "Access-Control-Allow-Origin": isAllowed ? origin : allowedOrigins[0],
     "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
     "Access-Control-Allow-Methods": "POST, OPTIONS",
-    "Vary": "Origin",
+    Vary: "Origin",
   };
 }
 
@@ -35,42 +34,42 @@ const rateLimitStore = new Map<string, { count: number; windowStart: number }>()
 
 function checkRateLimit(ip: string): { allowed: boolean; remaining: number; resetAt: number } {
   const now = Date.now();
-  
+
   // Clean up expired entries
   for (const [key, data] of rateLimitStore.entries()) {
     if (now - data.windowStart > RATE_LIMIT_WINDOW_MS) {
       rateLimitStore.delete(key);
     }
   }
-  
+
   const record = rateLimitStore.get(ip);
-  
+
   if (!record) {
     rateLimitStore.set(ip, { count: 1, windowStart: now });
     return { allowed: true, remaining: RATE_LIMIT_MAX_REQUESTS - 1, resetAt: now + RATE_LIMIT_WINDOW_MS };
   }
-  
+
   // Check if window has expired
   if (now - record.windowStart > RATE_LIMIT_WINDOW_MS) {
     rateLimitStore.set(ip, { count: 1, windowStart: now });
     return { allowed: true, remaining: RATE_LIMIT_MAX_REQUESTS - 1, resetAt: now + RATE_LIMIT_WINDOW_MS };
   }
-  
+
   // Check if limit exceeded
   if (record.count >= RATE_LIMIT_MAX_REQUESTS) {
-    return { 
-      allowed: false, 
-      remaining: 0, 
-      resetAt: record.windowStart + RATE_LIMIT_WINDOW_MS 
+    return {
+      allowed: false,
+      remaining: 0,
+      resetAt: record.windowStart + RATE_LIMIT_WINDOW_MS,
     };
   }
-  
+
   // Increment count
   record.count++;
-  return { 
-    allowed: true, 
-    remaining: RATE_LIMIT_MAX_REQUESTS - record.count, 
-    resetAt: record.windowStart + RATE_LIMIT_WINDOW_MS 
+  return {
+    allowed: true,
+    remaining: RATE_LIMIT_MAX_REQUESTS - record.count,
+    resetAt: record.windowStart + RATE_LIMIT_WINDOW_MS,
   };
 }
 
@@ -81,17 +80,17 @@ function getClientIp(req: Request): string {
     // x-forwarded-for can contain multiple IPs, the first one is the client
     return forwardedFor.split(",")[0].trim();
   }
-  
+
   const realIp = req.headers.get("x-real-ip");
   if (realIp) {
     return realIp.trim();
   }
-  
+
   const cfConnectingIp = req.headers.get("cf-connecting-ip");
   if (cfConnectingIp) {
     return cfConnectingIp.trim();
   }
-  
+
   return "unknown";
 }
 
@@ -138,9 +137,9 @@ serve(async (req: Request): Promise<Response> => {
     // Rate limiting check
     const clientIp = getClientIp(req);
     const rateLimit = checkRateLimit(clientIp);
-    
+
     console.log(`[submit-contact] Request from IP: ${clientIp}, origin: ${origin}, remaining: ${rateLimit.remaining}`);
-    
+
     if (!rateLimit.allowed) {
       console.log(`[submit-contact] Rate limit exceeded for IP: ${clientIp}`);
       return new Response(
@@ -150,56 +149,56 @@ serve(async (req: Request): Promise<Response> => {
           errorCode: "RATE_LIMIT_EXCEEDED",
           resetAt: new Date(rateLimit.resetAt).toISOString(),
         }),
-        { 
-          status: 429, 
-          headers: { 
-            ...corsHeaders, 
+        {
+          status: 429,
+          headers: {
+            ...corsHeaders,
             "Content-Type": "application/json",
             "X-RateLimit-Remaining": "0",
             "X-RateLimit-Reset": rateLimit.resetAt.toString(),
-          } 
-        }
+          },
+        },
       );
     }
 
     console.log("[submit-contact] Request received");
 
     // Parse request body
-    const payload = await req.json() as ContactPayload;
+    const payload = (await req.json()) as ContactPayload;
 
     // Validate required fields
     if (!payload.firstName?.trim()) {
       return new Response(
         JSON.stringify({ success: false, error: "First name is required", errorCode: "VALIDATION_ERROR" }),
-        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
       );
     }
 
     if (!payload.lastName?.trim()) {
       return new Response(
         JSON.stringify({ success: false, error: "Last name is required", errorCode: "VALIDATION_ERROR" }),
-        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
       );
     }
 
     if (!payload.businessName?.trim()) {
       return new Response(
         JSON.stringify({ success: false, error: "Business name is required", errorCode: "VALIDATION_ERROR" }),
-        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
       );
     }
 
     if (!payload.businessEmail?.trim() || !validateEmail(payload.businessEmail)) {
       return new Response(
         JSON.stringify({ success: false, error: "Valid business email is required", errorCode: "VALIDATION_ERROR" }),
-        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
       );
     }
 
     if (!payload.requestDetails?.trim()) {
       return new Response(
         JSON.stringify({ success: false, error: "Request details are required", errorCode: "VALIDATION_ERROR" }),
-        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
       );
     }
 
@@ -219,6 +218,36 @@ serve(async (req: Request): Promise<Response> => {
 
     console.log(`[submit-contact] Processing submission: ${referenceId}`);
     console.log(`[submit-contact] Contact: ${payload.businessEmail}`);
+
+    // Initialize Supabase client
+    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
+    // Store in database
+    try {
+      const { error: dbError } = await supabase.from("contact_form").insert({
+        reference_id: referenceId,
+        first_name: payload.firstName.trim(),
+        last_name: payload.lastName.trim(),
+        business_name: payload.businessName.trim(),
+        business_email: payload.businessEmail.trim(),
+        request_details: payload.requestDetails.trim(),
+        client_ip: clientIp,
+        origin: origin || "unknown",
+        status: "pending",
+      });
+
+      if (dbError) {
+        console.error("[submit-contact] Database insert error:", dbError);
+        // Continue even if DB insert fails - at least emails will be sent
+      } else {
+        console.log(`[submit-contact] Stored in database: ${referenceId}`);
+      }
+    } catch (dbError) {
+      console.error("[submit-contact] Database operation failed:", dbError);
+      // Continue - don't fail the whole request
+    }
 
     // Email configuration
     const fromEmail = "Ovelon Prime <info@ovelon-prime.com>";
@@ -383,10 +412,10 @@ serve(async (req: Request): Promise<Response> => {
       const internalEmailResult = await resend.emails.send({
         from: fromEmail,
         to: [internalEmail],
-      subject: `New Contact Request — ${escapeHtml(payload.businessName)} — Ovelon Prime`,
-      html: internalEmailHtml,
-      reply_to: payload.businessEmail,
-    });
+        subject: `New Contact Request — ${escapeHtml(payload.businessName)} — Ovelon Prime`,
+        html: internalEmailHtml,
+        reply_to: payload.businessEmail,
+      });
       console.log(`[submit-contact] Internal email sent:`, internalEmailResult);
     } catch (emailError) {
       console.error("[submit-contact] Failed to send internal email:", emailError);
@@ -401,9 +430,8 @@ serve(async (req: Request): Promise<Response> => {
         referenceId,
         submittedAt,
       }),
-      { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } },
     );
-
   } catch (error) {
     console.error("[submit-contact] Error:", error);
     return new Response(
@@ -412,7 +440,7 @@ serve(async (req: Request): Promise<Response> => {
         error: "An unexpected error occurred. Please try again.",
         errorCode: "SERVER_ERROR",
       }),
-      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } },
     );
   }
 });
