@@ -89,7 +89,7 @@ serve(async (req: Request): Promise<Response> => {
 
     // Send welcome email via Resend
     const resendApiKey = Deno.env.get("RESEND_API_KEY");
-    const fromEmail = Deno.env.get("FROM_EMAIL") || "noreply@ovelon-prime.com";
+    const fromEmail = "info@ovelon-prime.com";
 
     if (resendApiKey) {
       try {
