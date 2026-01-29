@@ -92,17 +92,31 @@ export const SubscribePopup = () => {
       <div
         className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[9998] animate-in fade-in duration-300"
         onClick={handleClose}
+        role="button"
+        aria-label="Close popup"
+        tabIndex={0}
+        onKeyDown={(e) => e.key === "Escape" && handleClose()}
       />
 
       {/* Popup Container */}
-      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[900px] w-[calc(100%-40px)] bg-white rounded-2xl overflow-hidden shadow-2xl z-[9999] animate-in zoom-in-95 fade-in duration-400">
-        {/* Close Button */}
+      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[900px] w-[calc(100%-32px)] sm:w-[calc(100%-40px)] bg-white rounded-2xl overflow-hidden shadow-2xl z-[9999] animate-in zoom-in-95 fade-in duration-400">
+        {/* Close Button - Enhanced for mobile with larger touch target */}
         <button
-          onClick={handleClose}
-          className="absolute top-5 right-5 w-9 h-9 bg-white/90 hover:bg-white rounded-full flex items-center justify-center z-10 transition-all duration-300 hover:rotate-90 shadow-md"
-          aria-label="Close"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            handleClose();
+          }}
+          onTouchEnd={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            handleClose();
+          }}
+          className="absolute top-3 right-3 sm:top-5 sm:right-5 min-w-[44px] min-h-[44px] w-11 h-11 sm:w-10 sm:h-10 bg-white hover:bg-gray-100 active:bg-gray-200 rounded-full flex items-center justify-center z-50 transition-colors duration-200 shadow-lg border border-gray-200 touch-manipulation"
+          aria-label="Close popup"
+          type="button"
         >
-          <X className="w-4 h-4 text-[#000033]" />
+          <X className="w-5 h-5 sm:w-4 sm:h-4 text-[#000033]" />
         </button>
 
         <div className="flex min-h-[500px] max-md:flex-col max-md:min-h-auto">
