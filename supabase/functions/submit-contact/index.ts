@@ -1,6 +1,5 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "https://esm.sh/resend@2.0.0";
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
@@ -218,42 +217,6 @@ serve(async (req: Request): Promise<Response> => {
 
     console.log(`[submit-contact] Processing submission: ${referenceId}`);
     console.log(`[submit-contact] Contact: ${payload.businessEmail}`);
-
-    // Initialize Supabase client
-    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
-
-    // Store in database with detailed logging
-    console.log("[submit-contact] Attempting database insert...");
-    console.log("[submit-contact] Supabase URL:", supabaseUrl ? "Set" : "Not set");
-    console.log("[submit-contact] Service key:", supabaseServiceKey ? "Set" : "Not set");
-
-    try {
-      const { data, error: dbError } = await supabase
-        .from("contact_form")
-        .insert({
-          reference_id: referenceId,
-          first_name: payload.firstName.trim(),
-          last_name: payload.lastName.trim(),
-          business_name: payload.businessName.trim(),
-          business_email: payload.businessEmail.trim(),
-          request_details: payload.requestDetails.trim(),
-          client_ip: clientIp,
-          origin: origin || "unknown",
-          status: "pending",
-        })
-        .select();
-
-      if (dbError) {
-        console.error("[submit-contact] Database insert error:", JSON.stringify(dbError, null, 2));
-      } else {
-        console.log(`[submit-contact] Successfully stored in database: ${referenceId}`);
-        console.log("[submit-contact] Inserted data:", JSON.stringify(data, null, 2));
-      }
-    } catch (dbError) {
-      console.error("[submit-contact] Database operation exception:", dbError);
-    }
 
     // Email configuration
     const fromEmail = "Ovelon Prime <info@ovelon-prime.com>";
