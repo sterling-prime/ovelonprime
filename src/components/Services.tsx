@@ -2,9 +2,14 @@ import { useTranslation } from "react-i18next";
 import serviceLeadImg from "@/assets/service-lead.png?format=webp&quality=80";
 import serviceSchedulingImg from "@/assets/service-scheduling.png?format=webp&quality=80";
 import serviceSupportImg from "@/assets/service-support.png?format=webp&quality=80";
-import serviceVoiceImg from "@/assets/service-voice.png?format=webp&quality=80";
+import serviceVoiceImg from "@/assets/service-phone.png?format=webp&quality=80";
 
-const images = [serviceLeadImg, serviceSchedulingImg, serviceSupportImg, serviceVoiceImg];
+const images = [
+  serviceLeadImg,          // Lead Generation
+  serviceSchedulingImg,    // Appointment & Scheduling
+  serviceSupportImg,       // Client Support
+  serviceVoiceImg          // Voice & Call Services (Extra Service)
+];
 
 export const Services = () => {
   const { t } = useTranslation();
@@ -17,6 +22,7 @@ export const Services = () => {
   return (
     <section id="services" className="py-24 bg-muted/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <p className="section-label mb-4">{t("services.label")}</p>
           <h2 className="section-title mb-6">
@@ -26,7 +32,8 @@ export const Services = () => {
           <p className="section-subtitle mx-auto">{t("services.subtitle")}</p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* 2x2 Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
           {items.map((service, index) => (
             <div
               key={index}
@@ -34,8 +41,8 @@ export const Services = () => {
               style={{ animationDelay: `${index * 120}ms` }}
             >
               <div className="w-24 h-24 rounded-2xl overflow-hidden mb-6 shadow-lg">
-                <img 
-                  src={images[index]} 
+                <img
+                  src={images[index]}
                   alt={service.title}
                   width={96}
                   height={96}
@@ -48,7 +55,10 @@ export const Services = () => {
               <p className="text-muted-foreground text-sm mb-6 leading-relaxed">{service.description}</p>
               <div className="flex flex-wrap gap-2 justify-center">
                 {service.tags.map((tag) => (
-                  <span key={tag} className="text-xs px-3 py-1 rounded-md bg-secondary text-secondary-foreground">
+                  <span
+                    key={tag}
+                    className="text-xs px-3 py-1 rounded-md bg-secondary text-secondary-foreground"
+                  >
                     {tag}
                   </span>
                 ))}

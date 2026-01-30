@@ -94,10 +94,10 @@ export const translations: Record<Lang, any> = {
           tags: ["Issue classification", "Escalation paths", "Response ownership"],
         },
         {
-          title: "Appointment & Scheduling Automation",
+          title: "Appointment Setting Efficiency",
           description:
-            "Automated voice-based scheduling that handles appointment booking, confirmations, and rescheduling — reducing administrative load and eliminating missed connections.",
-          tags: ["Voice scheduling", "24/7 availability", "Callback automation"],
+            "Seamless voice-powered scheduling that handles bookings, confirmations, and rescheduling with precision — freeing your team, keeping every connection on track, and delivering a flawless client experience.",
+          tags: ["Voice scheduling", "24/7 availability", "Callback auto-reply"],
         },
       ] as ServiceItem[],
     },
@@ -939,10 +939,10 @@ export const translations: Record<Lang, any> = {
           tags: ["Problemklassifizierung", "Eskalationspfade", "Reaktionsverantwortung"],
         },
         {
-          title: "Automatisierte Terminplanung",
+          title: "Effizienz bei der Terminvereinbarung",
           description:
-            "Sprachgesteuerte Terminplanung, die Buchungen, Bestätigungen und Umterminierungen automatisiert — reduziert Verwaltungsaufwand und verhindert verpasste Kontakte.",
-          tags: ["Sprachplanung", "24/7 Verfügbarkeit", "Rückrufautomatisierung"],
+            "Nahtlose sprachgesteuerte Terminplanung, die Buchungen, Bestätigungen und Terminänderungen präzise abwickelt - entlastet Ihr Team, hält alle Verbindungen auf Kurs und sorgt für ein makelloses Kundenerlebnis.",
+          tags: ["Sprachplanung", "24/7 Verfügbarkeit", "Automatische Rückrufantwort"],
         },
       ] as ServiceItem[],
     },
@@ -1784,10 +1784,10 @@ export const translations: Record<Lang, any> = {
           tags: ["Classification des problèmes", "Chemins d'escalade", "Propriété de la réponse"],
         },
         {
-          title: "Automatisation de la prise de rendez-vous",
+          title: "Efficacité dans la prise de rendez-vous",
           description:
-            "Planification vocale automatisée qui gère les réservations, confirmations et reprogrammations — réduisant la charge administrative et éliminant les connexions manquées.",
-          tags: ["Planification vocale", "Disponibilité 24/7", "Automatisation des rappels"],
+            "Une planification vocale fluide qui gère les réservations, les confirmations et les changements d'horaire avec précision, libérant ainsi votre équipe, assurant le bon déroulement de chaque connexion et offrant une expérience client irréprochable.",
+          tags: ["Planification vocale", "Disponibilité 24/7", "réponse automatique de rappel"],
         },
       ] as ServiceItem[],
     },
@@ -2629,10 +2629,10 @@ export const translations: Record<Lang, any> = {
           tags: ["Clasificación de problemas", "Rutas de escalamiento", "Propiedad de la respuesta"],
         },
         {
-          title: "Automatización de citas y programación",
+          title: "Eficiencia en la concertación de citas",
           description:
-            "Programación automatizada por voz que gestiona reservas, confirmaciones y reprogramaciones — reduciendo la carga administrativa y eliminando conexiones perdidas.",
-          tags: ["Programación por voz", "Disponibilidad 24/7", "Automatización de devoluciones de llamada"],
+            "Programación fluida mediante voz que gestiona reservas, confirmaciones y cambios de horario con precisión, liberando a tu equipo, manteniendo todas las conexiones al día y ofreciendo una experiencia impecable al cliente.",
+          tags: ["Programación de voz", "Disponibilidad 24/7", "respuesta automática de devolución de llamada"],
         },
       ],
     },
@@ -3457,12 +3457,12 @@ export const translations: Record<Lang, any> = {
           tags: ["Classificazione dei problemi", "Percorsi di escalation", "Proprietà della risposta"],
         },
         {
-          title: "Automazione appuntamenti e programmazione",
+          title: "Efficienza nella fissazione degli appuntamenti",
           description:
-            "Programmazione vocale automatizzata che gestisce prenotazioni, conferme e riprogrammazioni — riducendo il carico amministrativo ed eliminando i contatti mancati.",
-          tags: ["Programmazione vocale", "Disponibilità 24/7", "Automazione richiamate"],
+            "Pianificazione vocale senza interruzioni che gestisce prenotazioni, conferme e riprogrammazioni con precisione, liberando il tuo team, mantenendo ogni connessione in carreggiata e offrendo un'esperienza cliente impeccabile.",
+          tags: ["Pianificazione vocale", "Disponibilità 24/7", "Risposta automatica di richiamata"],
         },
-      ],
+      ],  
     },
     sectors: {
       label: "Settori",
@@ -4283,10 +4283,10 @@ export const translations: Record<Lang, any> = {
           tags: ["Classificação de problemas", "Caminhos de escalamento", "Propriedade da resposta"],
         },
         {
-          title: "Automação de Agendamento e Marcações",
+          title: "Eficiência na marcação de consultas",
           description:
-            "Agendamento automatizado por voz que trata reservas, confirmações e remarcações — reduzindo a carga administrativa e eliminando contactos perdidos.",
-          tags: ["Agendamento por voz", "Disponibilidade 24/7", "Automação de retorno de chamada"],
+            "Agendamento por voz integrado que lida com reservas, confirmações e remarcações com precisão — liberando sua equipe, mantendo todas as conexões em dia e proporcionando uma experiência impecável ao cliente.",
+          tags: ["Agendamento de chamadas", "Disponibilidade 24/7", "Resposta automática de retorno de chamada"],
         },
       ],
     },
