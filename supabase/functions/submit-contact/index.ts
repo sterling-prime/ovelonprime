@@ -1,7 +1,13 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "https://esm.sh/resend@2.0.0";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.49.1";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
+
+// Create Supabase client with service role for database operations
+const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+const supabaseServiceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+const supabaseAdmin = createClient(supabaseUrl, supabaseServiceRoleKey);
 
 // Allowed origins for CORS - restricts which domains can call this function
 const allowedOrigins = [
@@ -389,6 +395,32 @@ serve(async (req: Request): Promise<Response> => {
     } catch (emailError) {
       console.error("[submit-contact] Failed to send internal email:", emailError);
       // Continue - don't fail the whole request if internal email fails
+    }
+
+    // Save to database
+    try {
+      const { error: dbError } = await supabaseAdmin
+        .from("contact_submissions")
+        .insert({
+          reference_id: referenceId,
+          first_name: payload.firstName.trim(),
+          last_name: payload.lastName.trim(),
+          business_name: payload.businessName.trim(),
+          business_email: payload.businessEmail.trim(),
+          request_details: payload.requestDetails.trim(),
+          ip_address: clientIp,
+          user_agent: req.headers.get("user-agent"),
+        });
+
+      if (dbError) {
+        console.error("[submit-contact] Database insert failed:", dbError);
+        // Continue anyway - email is still valuable
+      } else {
+        console.log("[submit-contact] Database record created successfully");
+      }
+    } catch (dbErr) {
+      console.error("[submit-contact] Database error:", dbErr);
+      // Continue with response
     }
 
     console.log(`[submit-contact] Submission complete: ${referenceId}`);

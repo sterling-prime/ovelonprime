@@ -1,8 +1,14 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "https://esm.sh/resend@2.0.0";
 import { jsPDF } from "https://esm.sh/jspdf@2.5.2";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.49.1";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
+
+// Create Supabase client with service role for database operations
+const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+const supabaseServiceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+const supabaseAdmin = createClient(supabaseUrl, supabaseServiceRoleKey);
 
 // Allowed origins for CORS - restricts which domains can call this function
 const allowedOrigins = [
@@ -670,8 +676,61 @@ serve(async (req: Request): Promise<Response> => {
       );
     }
 
-    // Prepare email content
+    // Extract data from payload
     const { contactDetails, operationalData, analysis } = payload;
+
+    // Save to database
+    try {
+      // Parse the full name into first/last name
+      const nameParts = contactDetails.fullName?.trim().split(/\s+/) || [];
+      const firstName = nameParts[0] || "";
+      const lastName = nameParts.slice(1).join(" ") || "";
+
+      const { error: dbError } = await supabaseAdmin
+        .from("intake_submissions")
+        .insert({
+          reference_id: referenceId,
+          first_name: firstName,
+          last_name: lastName,
+          job_title: contactDetails.role,
+          company: contactDetails.companyName,
+          email: contactDetails.email,
+          phone: contactDetails.phone,
+          country: contactDetails.country,
+          city: contactDetails.city,
+          industry: operationalData.industry,
+          company_size: operationalData.scale,
+          focus_areas: operationalData.operationType,
+          priority_cost_reduction: null, // Not in current form
+          priority_quality: null,
+          priority_delivery: null,
+          priority_flexibility: null,
+          priority_sustainability: null,
+          challenges: operationalData.frictionPoints,
+          timeline: null, // Not in current form
+          budget: null,
+          ai_analysis: {
+            operationalObservations: analysis.operationalObservations,
+            riskExposure: analysis.riskExposure,
+            executionReadiness: analysis.executionReadiness,
+            advisoryDirection: analysis.advisoryDirection,
+          },
+          language: "en", // Could be passed from frontend
+          user_agent: req.headers.get("user-agent"),
+          ip_address: clientIp,
+          pdf_attached: true,
+        });
+
+      if (dbError) {
+        console.error("[submit-intake] Database insert failed:", dbError);
+        // Continue anyway - email is still valuable
+      } else {
+        console.log("[submit-intake] Database record created successfully");
+      }
+    } catch (dbErr) {
+      console.error("[submit-intake] Database error:", dbErr);
+      // Continue with email sending
+    }
     
     // Build HTML email for user
     const userEmailHtml = `
