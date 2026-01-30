@@ -14,6 +14,135 @@ export type Database = {
   }
   public: {
     Tables: {
+      contact_submissions: {
+        Row: {
+          business_email: string
+          business_name: string
+          created_at: string
+          first_name: string
+          id: string
+          ip_address: string | null
+          last_name: string
+          reference_id: string
+          request_details: string
+          user_agent: string | null
+        }
+        Insert: {
+          business_email: string
+          business_name: string
+          created_at?: string
+          first_name: string
+          id?: string
+          ip_address?: string | null
+          last_name: string
+          reference_id: string
+          request_details: string
+          user_agent?: string | null
+        }
+        Update: {
+          business_email?: string
+          business_name?: string
+          created_at?: string
+          first_name?: string
+          id?: string
+          ip_address?: string | null
+          last_name?: string
+          reference_id?: string
+          request_details?: string
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
+      intake_submissions: {
+        Row: {
+          ai_analysis: Json | null
+          budget: string | null
+          challenges: string[] | null
+          city: string | null
+          company: string | null
+          company_size: string | null
+          country: string | null
+          created_at: string
+          email: string
+          first_name: string | null
+          focus_areas: string[] | null
+          id: string
+          industry: string | null
+          ip_address: string | null
+          job_title: string | null
+          language: string | null
+          last_name: string | null
+          pdf_attached: boolean | null
+          phone: string | null
+          priority_cost_reduction: number | null
+          priority_delivery: number | null
+          priority_flexibility: number | null
+          priority_quality: number | null
+          priority_sustainability: number | null
+          reference_id: string
+          timeline: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          ai_analysis?: Json | null
+          budget?: string | null
+          challenges?: string[] | null
+          city?: string | null
+          company?: string | null
+          company_size?: string | null
+          country?: string | null
+          created_at?: string
+          email: string
+          first_name?: string | null
+          focus_areas?: string[] | null
+          id?: string
+          industry?: string | null
+          ip_address?: string | null
+          job_title?: string | null
+          language?: string | null
+          last_name?: string | null
+          pdf_attached?: boolean | null
+          phone?: string | null
+          priority_cost_reduction?: number | null
+          priority_delivery?: number | null
+          priority_flexibility?: number | null
+          priority_quality?: number | null
+          priority_sustainability?: number | null
+          reference_id: string
+          timeline?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          ai_analysis?: Json | null
+          budget?: string | null
+          challenges?: string[] | null
+          city?: string | null
+          company?: string | null
+          company_size?: string | null
+          country?: string | null
+          created_at?: string
+          email?: string
+          first_name?: string | null
+          focus_areas?: string[] | null
+          id?: string
+          industry?: string | null
+          ip_address?: string | null
+          job_title?: string | null
+          language?: string | null
+          last_name?: string | null
+          pdf_attached?: boolean | null
+          phone?: string | null
+          priority_cost_reduction?: number | null
+          priority_delivery?: number | null
+          priority_flexibility?: number | null
+          priority_quality?: number | null
+          priority_sustainability?: number | null
+          reference_id?: string
+          timeline?: string | null
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
       subscribers: {
         Row: {
           email: string
