@@ -93,6 +93,12 @@ export const translations: Record<Lang, any> = {
             "Issues are logged, classified, and escalated in a controlled manner — ensuring accountability, response clarity, and predictable resolution paths",
           tags: ["Issue classification", "Escalation paths", "Response ownership"],
         },
+        {
+          title: "Appointment & Scheduling Automation",
+          description:
+            "Automated voice-based scheduling that handles appointment booking, confirmations, and rescheduling — reducing administrative load and eliminating missed connections.",
+          tags: ["Voice scheduling", "24/7 availability", "Callback automation"],
+        },
       ] as ServiceItem[],
     },
     sectors: {
@@ -931,6 +937,12 @@ export const translations: Record<Lang, any> = {
           description:
             "Probleme werden kontrolliert protokolliert, klassifiziert und eskaliert — um Verantwortlichkeit, Reaktionsklarheit und vorhersehbare Lösungswege zu gewährleisten.",
           tags: ["Problemklassifizierung", "Eskalationspfade", "Reaktionsverantwortung"],
+        },
+        {
+          title: "Automatisierte Terminplanung",
+          description:
+            "Sprachgesteuerte Terminplanung, die Buchungen, Bestätigungen und Umterminierungen automatisiert — reduziert Verwaltungsaufwand und verhindert verpasste Kontakte.",
+          tags: ["Sprachplanung", "24/7 Verfügbarkeit", "Rückrufautomatisierung"],
         },
       ] as ServiceItem[],
     },
@@ -1771,6 +1783,12 @@ export const translations: Record<Lang, any> = {
             "Les problèmes sont enregistrés, classifiés et escaladés de manière contrôlée — assurant la responsabilité, la clarté de la réponse et des chemins de résolution prévisibles.",
           tags: ["Classification des problèmes", "Chemins d'escalade", "Propriété de la réponse"],
         },
+        {
+          title: "Automatisation de la prise de rendez-vous",
+          description:
+            "Planification vocale automatisée qui gère les réservations, confirmations et reprogrammations — réduisant la charge administrative et éliminant les connexions manquées.",
+          tags: ["Planification vocale", "Disponibilité 24/7", "Automatisation des rappels"],
+        },
       ] as ServiceItem[],
     },
     sectors: {
@@ -2610,6 +2628,12 @@ export const translations: Record<Lang, any> = {
             "Los problemas se registran, clasifican y escalan de manera controlada — asegurando responsabilidad, claridad de respuesta y rutas de resolución predecibles.",
           tags: ["Clasificación de problemas", "Rutas de escalamiento", "Propiedad de la respuesta"],
         },
+        {
+          title: "Automatización de citas y programación",
+          description:
+            "Programación automatizada por voz que gestiona reservas, confirmaciones y reprogramaciones — reduciendo la carga administrativa y eliminando conexiones perdidas.",
+          tags: ["Programación por voz", "Disponibilidad 24/7", "Automatización de devoluciones de llamada"],
+        },
       ],
     },
     sectors: {
@@ -3432,6 +3456,12 @@ export const translations: Record<Lang, any> = {
             "I problemi vengono registrati, classificati e escalati in modo controllato — garantendo responsabilità, chiarezza nella risposta e percorsi di risoluzione prevedibili.",
           tags: ["Classificazione dei problemi", "Percorsi di escalation", "Proprietà della risposta"],
         },
+        {
+          title: "Automazione appuntamenti e programmazione",
+          description:
+            "Programmazione vocale automatizzata che gestisce prenotazioni, conferme e riprogrammazioni — riducendo il carico amministrativo ed eliminando i contatti mancati.",
+          tags: ["Programmazione vocale", "Disponibilità 24/7", "Automazione richiamate"],
+        },
       ],
     },
     sectors: {
@@ -4251,6 +4281,12 @@ export const translations: Record<Lang, any> = {
           description:
             "Os problemas são registados, classificados e escalados de forma controlada — garantindo responsabilidade, clareza de resposta e caminhos de resolução previsíveis.",
           tags: ["Classificação de problemas", "Caminhos de escalamento", "Propriedade da resposta"],
+        },
+        {
+          title: "Automação de Agendamento e Marcações",
+          description:
+            "Agendamento automatizado por voz que trata reservas, confirmações e remarcações — reduzindo a carga administrativa e eliminando contactos perdidos.",
+          tags: ["Agendamento por voz", "Disponibilidade 24/7", "Automação de retorno de chamada"],
         },
       ],
     },

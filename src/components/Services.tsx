@@ -2,8 +2,9 @@ import { useTranslation } from "react-i18next";
 import serviceLeadImg from "@/assets/service-lead.png?format=webp&quality=80";
 import serviceSchedulingImg from "@/assets/service-scheduling.png?format=webp&quality=80";
 import serviceSupportImg from "@/assets/service-support.png?format=webp&quality=80";
+import serviceVoiceImg from "@/assets/service-voice.png?format=webp&quality=80";
 
-const images = [serviceLeadImg, serviceSchedulingImg, serviceSupportImg];
+const images = [serviceLeadImg, serviceSchedulingImg, serviceSupportImg, serviceVoiceImg];
 
 export const Services = () => {
   const { t } = useTranslation();
@@ -25,7 +26,7 @@ export const Services = () => {
           <p className="section-subtitle mx-auto">{t("services.subtitle")}</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {items.map((service, index) => (
             <div
               key={index}
