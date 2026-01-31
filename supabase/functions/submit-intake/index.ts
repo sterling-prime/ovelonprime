@@ -22,7 +22,9 @@ const allowedOrigins = [
 
 function getCorsHeaders(origin: string | null): Record<string, string> {
   const isAllowed = origin && allowedOrigins.some(allowed => 
-    origin === allowed || origin.endsWith('.lovable.app')
+    origin === allowed || 
+    origin.endsWith('.lovable.app') || 
+    origin.endsWith('.lovableproject.com')
   );
   
   return {
@@ -863,28 +865,28 @@ serve(async (req: Request): Promise<Response> => {
 
           <h2>Friction Points</h2>
           <ul>
-            ${operationalData.frictionPoints.map(fp => `<li>${escapeHtml(getLabel("frictionPoints", fp))}</li>`).join("")}
+            ${(operationalData.frictionPoints || []).map(fp => `<li>${escapeHtml(getLabel("frictionPoints", fp))}</li>`).join("") || "<li>None specified</li>"}
           </ul>
           ${operationalData.frictionNotes ? `<div class="notes">"${escapeHtml(operationalData.frictionNotes)}"</div>` : ""}
 
           <h2>Compliance Requirements</h2>
           <ul>
-            ${operationalData.safetyCompliance.map(sc => `<li>${escapeHtml(getLabel("safetyCompliance", sc))}</li>`).join("") || "<li>None specified</li>"}
+            ${(operationalData.safetyCompliance || []).map(sc => `<li>${escapeHtml(getLabel("safetyCompliance", sc))}</li>`).join("") || "<li>None specified</li>"}
           </ul>
 
           <h2>System Analysis</h2>
           <p><strong>Observations:</strong></p>
           <ul>
-            ${analysis.operationalObservations.map(obs => `<li>${escapeHtml(obs)}</li>`).join("") || "<li>None</li>"}
+            ${(analysis.operationalObservations || []).map(obs => `<li>${escapeHtml(obs)}</li>`).join("") || "<li>None</li>"}
           </ul>
           <p><strong>Risk Exposure:</strong></p>
           <ul>
-            ${analysis.riskExposure.map(risk => `<li>${escapeHtml(risk)}</li>`).join("") || "<li>None identified</li>"}
+            ${(analysis.riskExposure || []).map(risk => `<li>${escapeHtml(risk)}</li>`).join("") || "<li>None identified</li>"}
           </ul>
-          <p><strong>Execution Readiness:</strong> ${escapeHtml(analysis.executionReadiness)}</p>
+          <p><strong>Execution Readiness:</strong> ${escapeHtml(analysis.executionReadiness || "Not assessed")}</p>
           <p><strong>Advisory Direction:</strong></p>
           <ul>
-            ${analysis.advisoryDirection.map(dir => `<li>${escapeHtml(dir)}</li>`).join("") || "<li>None</li>"}
+            ${(analysis.advisoryDirection || []).map(dir => `<li>${escapeHtml(dir)}</li>`).join("") || "<li>None</li>"}
           </ul>
 
           <hr style="margin: 32px 0; border: none; border-top: 1px solid #e2e8f0;">
