@@ -137,15 +137,13 @@ export const Hero = () => {
         <HeroScrollDown />
       </section>
 
-      {/* Project Simulator Modal - lazy loaded */}
-      {simulatorOpen && (
-        <Suspense fallback={null}>
-          <ProjectSimulator
-            isOpen={simulatorOpen}
-            onClose={() => setSimulatorOpen(false)}
-          />
-        </Suspense>
-      )}
+      {/* Project Simulator Modal - lazy loaded, always mounted once opened to preserve modal state */}
+      <Suspense fallback={null}>
+        <ProjectSimulator
+          isOpen={simulatorOpen}
+          onClose={() => setSimulatorOpen(false)}
+        />
+      </Suspense>
     </>
   );
 };
