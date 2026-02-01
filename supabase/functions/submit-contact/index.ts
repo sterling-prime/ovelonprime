@@ -20,7 +20,11 @@ const allowedOrigins = [
 ];
 
 function getCorsHeaders(origin: string | null): Record<string, string> {
-  const isAllowed = origin && allowedOrigins.some((allowed) => origin === allowed || origin.endsWith(".lovable.app"));
+  const isAllowed = origin && allowedOrigins.some((allowed) => 
+    origin === allowed || 
+    origin.endsWith(".lovable.app") ||
+    origin.endsWith(".lovableproject.com")
+  );
 
   return {
     "Access-Control-Allow-Origin": isAllowed ? origin : allowedOrigins[0],
@@ -126,6 +130,66 @@ function escapeHtml(text: string): string {
 function validateEmail(email: string): boolean {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
+}
+
+// Reusable email header with logo SVG
+function getEmailHeader(subtitle: string): string {
+  return `
+    <!-- Premium Header with Logo -->
+    <tr>
+      <td style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 40px 40px 35px;">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>
+              <!-- Hexagonal Logo SVG -->
+              <table role="presentation" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td style="vertical-align: middle; padding-right: 14px;">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwb2x5Z29uIHBvaW50cz0iMjAsMiAzNiwxMSAzNiwyOSAyMCwzOCA0LDI5IDQsMTEiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+CiAgICA8bGluZSB4MT0iMjAiIHkxPSIyMCIgeDI9IjIwIiB5Mj0iMiIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgPGxpbmUgeDE9IjIwIiB5MT0iMjAiIHgyPSIzNiIgeTI9IjI5IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICA8bGluZSB4MT0iMjAiIHkxPSIyMCIgeDI9IjQiIHkyPSIyOSIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iNCIgZmlsbD0iI2ZmZmZmZiIvPgo8L3N2Zz4=" alt="Ovelon Prime" width="40" height="40" style="display: block;" />
+                  </td>
+                  <td style="vertical-align: middle;">
+                    <h1 style="margin: 0; color: #ffffff; font-size: 24px; font-weight: 300; letter-spacing: 4px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">OVELON PRIME</h1>
+                    <p style="margin: 4px 0 0; color: rgba(255,255,255,0.7); font-size: 12px; letter-spacing: 1px;">${subtitle}</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  `;
+}
+
+// Reusable email footer with terms, privacy, and unsubscribe
+function getEmailFooter(email: string): string {
+  const unsubscribeUrl = `https://ovelon-prime.com/unsubscribe?email=${encodeURIComponent(email)}`;
+  return `
+    <!-- Footer -->
+    <tr>
+      <td style="background-color: #f8fafc; padding: 30px 40px; border-top: 1px solid #e2e8f0;">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td style="text-align: center;">
+              <p style="margin: 0 0 12px; color: #64748b; font-size: 12px; line-height: 1.6;">
+                © ${new Date().getFullYear()} Ovelon Prime. All rights reserved.
+              </p>
+              <p style="margin: 0 0 12px; color: #94a3b8; font-size: 11px;">
+                <a href="https://ovelon-prime.com/terms" style="color: #64748b; text-decoration: none;">Terms of Service</a>
+                <span style="margin: 0 8px; color: #cbd5e1;">•</span>
+                <a href="https://ovelon-prime.com/privacy" style="color: #64748b; text-decoration: none;">Privacy Policy</a>
+                <span style="margin: 0 8px; color: #cbd5e1;">•</span>
+                <a href="${unsubscribeUrl}" style="color: #64748b; text-decoration: none;">Unsubscribe</a>
+              </p>
+              <p style="margin: 0; color: #94a3b8; font-size: 11px;">
+                Enterprise Operational Systems
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  `;
 }
 
 serve(async (req: Request): Promise<Response> => {
@@ -235,71 +299,76 @@ serve(async (req: Request): Promise<Response> => {
       <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-          body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #1e293b; margin: 0; padding: 0; background: #f8fafc; }
-          .container { max-width: 600px; margin: 0 auto; background: white; }
-          .header { background: #0f172a; color: white; padding: 32px; text-align: center; }
-          .header h1 { margin: 0; font-size: 24px; font-weight: 600; }
-          .header p { margin: 8px 0 0; opacity: 0.8; font-size: 14px; }
-          .content { padding: 32px; }
-          .reference-box { background: #f1f5f9; border-radius: 8px; padding: 16px; margin-bottom: 24px; }
-          .reference-box p { margin: 0; font-size: 13px; color: #64748b; }
-          .reference-box strong { display: block; font-size: 18px; color: #0f172a; font-family: monospace; margin-top: 4px; }
-          h2 { font-size: 18px; color: #0f172a; margin: 24px 0 12px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; }
-          .info-row { margin-bottom: 12px; }
-          .info-label { color: #64748b; font-size: 13px; display: block; margin-bottom: 2px; }
-          .info-value { color: #1e293b; font-size: 14px; }
-          .cta { text-align: center; margin: 32px 0; }
-          .cta a { display: inline-block; background: #0f172a; color: white; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; }
-          .cta a:hover { background: #1e293b; }
-          .footer { background: #f8fafc; padding: 24px; text-align: center; font-size: 12px; color: #64748b; border-top: 1px solid #e2e8f0; }
-          .footer p { margin: 4px 0; }
-        </style>
       </head>
-      <body>
-        <div class="container">
-          <div class="header">
-            <h1>OVELON PRIME</h1>
-            <p>Contact Request Received</p>
-          </div>
-          <div class="content">
-            <p>Dear ${escapeHtml(fullName)},</p>
-            <p>Thank you for reaching out. We have received your request and our team will review it carefully.</p>
-            
-            <div class="reference-box">
-              <p>Your Reference ID</p>
-              <strong>${referenceId}</strong>
-            </div>
+      <body style="margin: 0; padding: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f8fafc;">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #f8fafc;">
+          <tr>
+            <td align="center" style="padding: 40px 20px;">
+              <table role="presentation" width="600" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08);">
+                
+                ${getEmailHeader("Contact Request Received")}
 
-            <h2>Your Submission</h2>
-            <div class="info-row">
-              <span class="info-label">Name</span>
-              <span class="info-value">${escapeHtml(fullName)}</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">Business</span>
-              <span class="info-value">${escapeHtml(payload.businessName)}</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">Request Details</span>
-              <span class="info-value">${escapeHtml(payload.requestDetails)}</span>
-            </div>
+                <!-- Content -->
+                <tr>
+                  <td style="padding: 40px;">
+                    <p style="margin: 0 0 20px; color: #1e293b; font-size: 16px; line-height: 1.7;">Dear ${escapeHtml(fullName)},</p>
+                    <p style="margin: 0 0 24px; color: #475569; font-size: 15px; line-height: 1.7;">Thank you for reaching out. We have received your request and our team will review it carefully.</p>
+                    
+                    <!-- Reference Box -->
+                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-bottom: 24px;">
+                      <tr>
+                        <td style="background: #f1f5f9; border-radius: 8px; padding: 16px;">
+                          <p style="margin: 0; font-size: 13px; color: #64748b;">Your Reference ID</p>
+                          <p style="margin: 4px 0 0; font-size: 18px; font-family: monospace; font-weight: bold; color: #0f172a;">${referenceId}</p>
+                        </td>
+                      </tr>
+                    </table>
 
-            <h2>Next Steps</h2>
-            <p>We will review your request internally and get back to you shortly. To expedite the process, you can schedule a strategic consultation directly:</p>
-            
-            <div class="cta">
-              <a href="https://cal.com/ovelon-prime/introduction-call">Book a Strategic Consultation</a>
-            </div>
+                    <!-- Submission Summary -->
+                    <h2 style="margin: 24px 0 16px; font-size: 16px; color: #0f172a; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;">Your Submission</h2>
+                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td style="padding: 8px 0;">
+                          <span style="color: #64748b; font-size: 13px; display: inline-block; width: 100px;">Name</span>
+                          <span style="color: #1e293b; font-size: 14px;">${escapeHtml(fullName)}</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 8px 0;">
+                          <span style="color: #64748b; font-size: 13px; display: inline-block; width: 100px;">Business</span>
+                          <span style="color: #1e293b; font-size: 14px;">${escapeHtml(payload.businessName)}</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 8px 0;">
+                          <span style="color: #64748b; font-size: 13px; display: inline-block; width: 100px;">Details</span>
+                          <span style="color: #1e293b; font-size: 14px;">${escapeHtml(payload.requestDetails)}</span>
+                        </td>
+                      </tr>
+                    </table>
 
-            <p>Best regards,<br><strong>Ovelon Prime Team</strong></p>
-          </div>
-          <div class="footer">
-            <p><strong>Ovelon Prime</strong></p>
-            <p>Enterprise Operational Systems</p>
-            <p style="margin-top: 12px;">This email and any attachments are confidential.</p>
-          </div>
-        </div>
+                    <!-- Next Steps -->
+                    <h2 style="margin: 24px 0 16px; font-size: 16px; color: #0f172a; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;">Next Steps</h2>
+                    <p style="margin: 0 0 24px; color: #475569; font-size: 15px; line-height: 1.7;">We will review your request internally and get back to you shortly. To expedite the process, you can schedule a strategic consultation directly:</p>
+                    
+                    <!-- CTA Button -->
+                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td align="center" style="padding: 16px 0 32px;">
+                          <a href="https://cal.com/ovelon-prime/introduction-call" style="display: inline-block; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #ffffff; text-decoration: none; padding: 14px 32px; border-radius: 8px; font-size: 15px; font-weight: 500;">Talk to an Expert →</a>
+                        </td>
+                      </tr>
+                    </table>
+
+                    <p style="margin: 0; color: #475569; font-size: 15px; line-height: 1.7;">Best regards,<br><strong>Ovelon Prime Team</strong></p>
+                  </td>
+                </tr>
+
+                ${getEmailFooter(payload.businessEmail)}
+              </table>
+            </td>
+          </tr>
+        </table>
       </body>
       </html>
     `;

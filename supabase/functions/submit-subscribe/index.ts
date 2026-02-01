@@ -15,6 +15,66 @@ interface SubscribeRequest {
 // Operations E-Guide PDF as base64 (embedded for reliable delivery)
 const PDF_URL = "https://ovelon-prime-vision.lovable.app/assets/Operations_E-Guide.pdf";
 
+// Reusable email header with logo SVG
+function getEmailHeader(subtitle: string): string {
+  return `
+    <!-- Premium Header with Logo -->
+    <tr>
+      <td style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 40px 40px 35px;">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>
+              <!-- Hexagonal Logo SVG -->
+              <table role="presentation" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td style="vertical-align: middle; padding-right: 14px;">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwb2x5Z29uIHBvaW50cz0iMjAsMiAzNiwxMSAzNiwyOSAyMCwzOCA0LDI5IDQsMTEiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+CiAgICA8bGluZSB4MT0iMjAiIHkxPSIyMCIgeDI9IjIwIiB5Mj0iMiIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgPGxpbmUgeDE9IjIwIiB5MT0iMjAiIHgyPSIzNiIgeTI9IjI5IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICA8bGluZSB4MT0iMjAiIHkxPSIyMCIgeDI9IjQiIHkyPSIyOSIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iNCIgZmlsbD0iI2ZmZmZmZiIvPgo8L3N2Zz4=" alt="Ovelon Prime" width="40" height="40" style="display: block;" />
+                  </td>
+                  <td style="vertical-align: middle;">
+                    <h1 style="margin: 0; color: #ffffff; font-size: 24px; font-weight: 300; letter-spacing: 4px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">OVELON PRIME</h1>
+                    <p style="margin: 4px 0 0; color: rgba(255,255,255,0.7); font-size: 12px; letter-spacing: 1px;">${subtitle}</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  `;
+}
+
+// Reusable email footer with terms, privacy, and unsubscribe
+function getEmailFooter(email: string): string {
+  const unsubscribeUrl = `https://ovelon-prime.com/unsubscribe?email=${encodeURIComponent(email)}`;
+  return `
+    <!-- Footer -->
+    <tr>
+      <td style="background-color: #f8fafc; padding: 30px 40px; border-top: 1px solid #e2e8f0;">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td style="text-align: center;">
+              <p style="margin: 0 0 12px; color: #64748b; font-size: 12px; line-height: 1.6;">
+                © ${new Date().getFullYear()} Ovelon Prime. All rights reserved.
+              </p>
+              <p style="margin: 0 0 12px; color: #94a3b8; font-size: 11px;">
+                <a href="https://ovelon-prime.com/terms" style="color: #64748b; text-decoration: none;">Terms of Service</a>
+                <span style="margin: 0 8px; color: #cbd5e1;">•</span>
+                <a href="https://ovelon-prime.com/privacy" style="color: #64748b; text-decoration: none;">Privacy Policy</a>
+                <span style="margin: 0 8px; color: #cbd5e1;">•</span>
+                <a href="${unsubscribeUrl}" style="color: #64748b; text-decoration: none;">Unsubscribe</a>
+              </p>
+              <p style="margin: 0; color: #94a3b8; font-size: 11px;">
+                Enterprise Operational Systems
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  `;
+}
+
 serve(async (req: Request): Promise<Response> => {
   // Handle CORS preflight
   if (req.method === "OPTIONS") {
@@ -112,35 +172,7 @@ serve(async (req: Request): Promise<Response> => {
                   <td align="center" style="padding: 40px 20px;">
                     <table role="presentation" width="600" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08);">
                       
-                      <!-- Premium Header with Logo -->
-                      <tr>
-                        <td style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 40px 40px 35px;">
-                          <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
-                            <tr>
-                              <td>
-                                <!-- Hexagonal Logo SVG -->
-                                <table role="presentation" cellspacing="0" cellpadding="0">
-                                  <tr>
-                                    <td style="vertical-align: middle; padding-right: 14px;">
-                                      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <polygon points="20,2 36,11 36,29 20,38 4,29 4,11" stroke="#ffffff" stroke-width="2" fill="none"/>
-                                        <line x1="20" y1="20" x2="20" y2="2" stroke="#ffffff" stroke-width="1.5"/>
-                                        <line x1="20" y1="20" x2="36" y2="29" stroke="#ffffff" stroke-width="1.5"/>
-                                        <line x1="20" y1="20" x2="4" y2="29" stroke="#ffffff" stroke-width="1.5"/>
-                                        <circle cx="20" cy="20" r="4" fill="#ffffff"/>
-                                      </svg>
-                                    </td>
-                                    <td style="vertical-align: middle;">
-                                      <h1 style="margin: 0; color: #ffffff; font-size: 24px; font-weight: 300; letter-spacing: 4px;">OVELON PRIME</h1>
-                                      <p style="margin: 4px 0 0; color: rgba(255,255,255,0.7); font-size: 12px; letter-spacing: 1px;">Seamless Operations</p>
-                                    </td>
-                                  </tr>
-                                </table>
-                              </td>
-                            </tr>
-                          </table>
-                        </td>
-                      </tr>
+                      ${getEmailHeader("Seamless Operations")}
 
                       <!-- Welcome Section -->
                       <tr>
@@ -160,8 +192,8 @@ serve(async (req: Request): Promise<Response> => {
                               <td style="padding: 24px;">
                                 <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
                                   <tr>
-                                    <td style="vertical-align: top; padding-right: 16px;">
-                                      <div style="width: 48px; height: 48px; background-color: #22c55e; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                    <td style="vertical-align: top; padding-right: 16px; width: 48px;">
+                                      <div style="width: 48px; height: 48px; background-color: #22c55e; border-radius: 10px; text-align: center; line-height: 48px;">
                                         <span style="font-size: 24px;">📖</span>
                                       </div>
                                     </td>
@@ -188,7 +220,7 @@ serve(async (req: Request): Promise<Response> => {
                               <td style="padding: 12px 0; border-bottom: 1px solid #e2e8f0;">
                                 <table role="presentation" cellspacing="0" cellpadding="0">
                                   <tr>
-                                    <td style="padding-right: 12px; vertical-align: top;">
+                                    <td style="padding-right: 12px; vertical-align: top; width: 20px;">
                                       <div style="width: 8px; height: 8px; background-color: #0ea5e9; border-radius: 50%; margin-top: 6px;"></div>
                                     </td>
                                     <td style="color: #475569; font-size: 15px; line-height: 1.6;">
@@ -202,7 +234,7 @@ serve(async (req: Request): Promise<Response> => {
                               <td style="padding: 12px 0; border-bottom: 1px solid #e2e8f0;">
                                 <table role="presentation" cellspacing="0" cellpadding="0">
                                   <tr>
-                                    <td style="padding-right: 12px; vertical-align: top;">
+                                    <td style="padding-right: 12px; vertical-align: top; width: 20px;">
                                       <div style="width: 8px; height: 8px; background-color: #0ea5e9; border-radius: 50%; margin-top: 6px;"></div>
                                     </td>
                                     <td style="color: #475569; font-size: 15px; line-height: 1.6;">
@@ -216,7 +248,7 @@ serve(async (req: Request): Promise<Response> => {
                               <td style="padding: 12px 0;">
                                 <table role="presentation" cellspacing="0" cellpadding="0">
                                   <tr>
-                                    <td style="padding-right: 12px; vertical-align: top;">
+                                    <td style="padding-right: 12px; vertical-align: top; width: 20px;">
                                       <div style="width: 8px; height: 8px; background-color: #0ea5e9; border-radius: 50%; margin-top: 6px;"></div>
                                     </td>
                                     <td style="color: #475569; font-size: 15px; line-height: 1.6;">
@@ -239,8 +271,8 @@ serve(async (req: Request): Promise<Response> => {
                                 <p style="margin: 0 0 16px; color: #64748b; font-size: 14px;">
                                   Ready to transform your operations?
                                 </p>
-                                <a href="https://ovelon-prime.com" style="display: inline-block; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #ffffff; text-decoration: none; padding: 14px 32px; border-radius: 8px; font-size: 15px; font-weight: 500;">
-                                  Explore Ovelon Prime →
+                                <a href="https://cal.com/ovelon-prime/introduction-call" style="display: inline-block; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #ffffff; text-decoration: none; padding: 14px 32px; border-radius: 8px; font-size: 15px; font-weight: 500;">
+                                  Talk to an Expert →
                                 </a>
                               </td>
                             </tr>
@@ -248,16 +280,7 @@ serve(async (req: Request): Promise<Response> => {
                         </td>
                       </tr>
 
-                      <!-- Footer -->
-                      <tr>
-                        <td style="background-color: #f8fafc; padding: 30px 40px; border-top: 1px solid #e2e8f0;">
-                          <p style="margin: 0; color: #94a3b8; font-size: 12px; text-align: center; line-height: 1.6;">
-                            © ${new Date().getFullYear()} Ovelon Prime. All rights reserved.<br>
-                            <a href="https://ovelon-prime.com/privacy" style="color: #64748b; text-decoration: none;">Privacy Policy</a> · 
-                            <a href="https://ovelon-prime.com/terms" style="color: #64748b; text-decoration: none;">Terms of Service</a>
-                          </p>
-                        </td>
-                      </tr>
+                      ${getEmailFooter(email)}
                     </table>
                   </td>
                 </tr>
