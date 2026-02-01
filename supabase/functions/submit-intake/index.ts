@@ -231,6 +231,66 @@ interface IntakePayload {
   };
 }
 
+// Reusable email header with logo SVG
+function getEmailHeader(subtitle: string): string {
+  return `
+    <!-- Premium Header with Logo -->
+    <tr>
+      <td style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 40px 40px 35px;">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>
+              <!-- Hexagonal Logo SVG -->
+              <table role="presentation" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td style="vertical-align: middle; padding-right: 14px;">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwb2x5Z29uIHBvaW50cz0iMjAsMiAzNiwxMSAzNiwyOSAyMCwzOCA0LDI5IDQsMTEiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+CiAgICA8bGluZSB4MT0iMjAiIHkxPSIyMCIgeDI9IjIwIiB5Mj0iMiIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgPGxpbmUgeDE9IjIwIiB5MT0iMjAiIHgyPSIzNiIgeTI9IjI5IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICA8bGluZSB4MT0iMjAiIHkxPSIyMCIgeDI9IjQiIHkyPSIyOSIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iNCIgZmlsbD0iI2ZmZmZmZiIvPgo8L3N2Zz4=" alt="Ovelon Prime" width="40" height="40" style="display: block;" />
+                  </td>
+                  <td style="vertical-align: middle;">
+                    <h1 style="margin: 0; color: #ffffff; font-size: 24px; font-weight: 300; letter-spacing: 4px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">OVELON PRIME</h1>
+                    <p style="margin: 4px 0 0; color: rgba(255,255,255,0.7); font-size: 12px; letter-spacing: 1px;">${subtitle}</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  `;
+}
+
+// Reusable email footer with terms, privacy, and unsubscribe
+function getEmailFooter(email: string): string {
+  const unsubscribeUrl = `https://ovelon-prime.com/unsubscribe?email=${encodeURIComponent(email)}`;
+  return `
+    <!-- Footer -->
+    <tr>
+      <td style="background-color: #f8fafc; padding: 30px 40px; border-top: 1px solid #e2e8f0;">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td style="text-align: center;">
+              <p style="margin: 0 0 12px; color: #64748b; font-size: 12px; line-height: 1.6;">
+                © ${new Date().getFullYear()} Ovelon Prime. All rights reserved.
+              </p>
+              <p style="margin: 0 0 12px; color: #94a3b8; font-size: 11px;">
+                <a href="https://ovelon-prime.com/terms" style="color: #64748b; text-decoration: none;">Terms of Service</a>
+                <span style="margin: 0 8px; color: #cbd5e1;">•</span>
+                <a href="https://ovelon-prime.com/privacy" style="color: #64748b; text-decoration: none;">Privacy Policy</a>
+                <span style="margin: 0 8px; color: #cbd5e1;">•</span>
+                <a href="${unsubscribeUrl}" style="color: #64748b; text-decoration: none;">Unsubscribe</a>
+              </p>
+              <p style="margin: 0; color: #94a3b8; font-size: 11px;">
+                Enterprise Operational Systems
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  `;
+}
+
 // deno-lint-ignore no-explicit-any
 function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: string): any {
   const doc = new jsPDF({ unit: "pt", format: "a4" });
@@ -241,10 +301,36 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
   let y = margin;
 
   const checkPageBreak = (neededHeight: number) => {
-    if (y + neededHeight > pageHeight - 60) {
+    if (y + neededHeight > pageHeight - 80) { // Reserve more space for footer
+      addPageFooter();
       doc.addPage();
       y = margin;
     }
+  };
+
+  // Add footer to each page
+  const addPageFooter = () => {
+    const footerY = pageHeight - 50;
+    
+    // Divider line
+    doc.setDrawColor(226, 232, 240);
+    doc.line(margin, footerY - 20, pageWidth - margin, footerY - 20);
+    
+    // Footer text
+    doc.setTextColor(148, 163, 184);
+    doc.setFontSize(7);
+    doc.setFont("helvetica", "normal");
+    
+    // Terms & Privacy links
+    doc.text("Terms of Service: ovelon-prime.com/terms  •  Privacy Policy: ovelon-prime.com/privacy", margin, footerY - 5);
+    
+    // Talk to Expert link
+    doc.setTextColor(14, 165, 233); // Sky blue
+    doc.text("Talk to an Expert: cal.com/ovelon-prime/introduction-call", margin, footerY + 8);
+    
+    // Copyright
+    doc.setTextColor(148, 163, 184);
+    doc.text(`© ${new Date().getFullYear()} Ovelon Prime. All rights reserved.`, pageWidth - margin - 140, footerY + 8);
   };
 
   // Header with branding
@@ -322,15 +408,15 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
 
   y += 75;
 
-  // Helper: Add section title
+  // Helper: Add section title with header-matching style (dark background)
   const addSectionTitle = (title: string) => {
-    checkPageBreak(40);
-    doc.setFillColor(241, 245, 249);
-    doc.rect(margin, y, contentWidth, 28, "F");
-    doc.setTextColor(30, 41, 59);
-    doc.setFontSize(12);
+    checkPageBreak(45);
+    doc.setFillColor(15, 23, 42); // Dark slate matching header
+    doc.roundedRect(margin, y, contentWidth, 28, 3, 3, "F");
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(11);
     doc.setFont("helvetica", "bold");
-    doc.text(title, margin + 12, y + 18);
+    doc.text(title.toUpperCase(), margin + 12, y + 18);
     y += 40;
   };
 
@@ -404,16 +490,16 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
     doc.setFillColor(250, 251, 252);
     doc.roundedRect(margin, y, contentWidth, estimatedHeight, 6, 6, "F");
     
-    // Left accent bar
-    doc.setFillColor(14, 165, 233); // Sky blue accent
+    // Left accent bar - matching dark header style
+    doc.setFillColor(15, 23, 42); // Dark slate matching header
     doc.roundedRect(margin, y, 4, estimatedHeight, 2, 2, "F");
 
-    // Card title with icon
+    // Card title with icon - dark styled like header
     y += 18;
     doc.setTextColor(15, 23, 42);
     doc.setFontSize(11);
     doc.setFont("helvetica", "bold");
-    doc.text(`${icon}  ${title}`, margin + 16, y);
+    doc.text(`${icon}  ${title.toUpperCase()}`, margin + 16, y);
     y += 16;
 
     // Card content
@@ -534,7 +620,7 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
   // Analysis Section - Premium Executive Layout
   const { analysis } = payload;
   
-  // Section header with distinct styling
+  // Section header with distinct styling (matching document header)
   checkPageBreak(50);
   doc.setFillColor(15, 23, 42); // Dark header
   doc.roundedRect(margin, y, contentWidth, 36, 4, 4, "F");
@@ -564,15 +650,31 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
     addAnalysisCard("Strategic Advisory Direction", analysis.advisoryDirection, "→");
   }
 
-  // Footer
-  const footerY = pageHeight - 40;
-  doc.setDrawColor(226, 232, 240);
-  doc.line(margin, footerY - 10, pageWidth - margin, footerY - 10);
+  // Add Talk to Expert CTA section before footer
+  checkPageBreak(70);
+  y += 10;
   
-  doc.setTextColor(148, 163, 184);
-  doc.setFontSize(8);
-  doc.text("This document was generated by Ovelon Prime. All information is confidential.", margin, footerY);
-  doc.text("© Ovelon Prime", pageWidth - margin - 60, footerY);
+  // CTA Box
+  doc.setFillColor(241, 245, 249);
+  doc.roundedRect(margin, y, contentWidth, 55, 6, 6, "F");
+  doc.setDrawColor(14, 165, 233);
+  doc.setLineWidth(1);
+  doc.roundedRect(margin, y, contentWidth, 55, 6, 6, "S");
+  
+  doc.setTextColor(15, 23, 42);
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "bold");
+  doc.text("Ready to accelerate your operational transformation?", margin + 15, y + 22);
+  
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(10);
+  doc.setTextColor(14, 165, 233);
+  doc.text("Talk to an Expert: cal.com/ovelon-prime/introduction-call", margin + 15, y + 40);
+  
+  y += 70;
+
+  // Add footer to the last page
+  addPageFooter();
 
   // Return as arraybuffer for base64 encoding
   return doc.output("arraybuffer");
@@ -741,78 +843,86 @@ serve(async (req: Request): Promise<Response> => {
       <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-          body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #1e293b; margin: 0; padding: 0; background: #f8fafc; }
-          .container { max-width: 600px; margin: 0 auto; background: white; }
-          .header { background: #0f172a; color: white; padding: 32px; text-align: center; }
-          .header h1 { margin: 0; font-size: 24px; font-weight: 600; }
-          .header p { margin: 8px 0 0; opacity: 0.8; font-size: 14px; }
-          .content { padding: 32px; }
-          .reference-box { background: #f1f5f9; border-radius: 8px; padding: 16px; margin-bottom: 24px; }
-          .reference-box p { margin: 0; font-size: 13px; color: #64748b; }
-          .reference-box strong { display: block; font-size: 18px; color: #0f172a; font-family: monospace; margin-top: 4px; }
-          h2 { font-size: 18px; color: #0f172a; margin: 24px 0 12px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; }
-          .info-row { display: flex; margin-bottom: 8px; }
-          .info-label { color: #64748b; font-size: 13px; width: 120px; flex-shrink: 0; }
-          .info-value { color: #1e293b; font-size: 14px; }
-          .cta { text-align: center; margin: 32px 0; }
-          .cta a { display: inline-block; background: #0ea5e9; color: white; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; }
-          .footer { background: #f8fafc; padding: 24px; text-align: center; font-size: 12px; color: #64748b; border-top: 1px solid #e2e8f0; }
-          .footer p { margin: 4px 0; }
-        </style>
       </head>
-      <body>
-        <div class="container">
-          <div class="header">
-            <h1>OVELON PRIME</h1>
-            <p>Operational Review Request Received</p>
-          </div>
-          <div class="content">
-            <p>Dear ${escapeHtml(contactDetails.fullName)},</p>
-            <p>Thank you for submitting your Operational Review Request. We have received your submission and our team will review it shortly.</p>
-            
-            <div class="reference-box">
-              <p>Your Reference ID</p>
-              <strong>${referenceId}</strong>
-            </div>
+      <body style="margin: 0; padding: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f8fafc;">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #f8fafc;">
+          <tr>
+            <td align="center" style="padding: 40px 20px;">
+              <table role="presentation" width="600" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08);">
+                
+                ${getEmailHeader("Operational Review Request Received")}
 
-            <h2>Submission Summary</h2>
-            <div class="info-row">
-              <span class="info-label">Company</span>
-              <span class="info-value">${escapeHtml(contactDetails.companyName)}</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">Industry</span>
-              <span class="info-value">${escapeHtml(getLabel("industry", operationalData.industry))}</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">Scale</span>
-              <span class="info-value">${escapeHtml(getLabel("scale", operationalData.scale))}</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">Location</span>
-              <span class="info-value">${escapeHtml(contactDetails.city)}, ${escapeHtml(contactDetails.country)}</span>
-            </div>
+                <!-- Content -->
+                <tr>
+                  <td style="padding: 40px;">
+                    <p style="margin: 0 0 20px; color: #1e293b; font-size: 16px; line-height: 1.7;">Dear ${escapeHtml(contactDetails.fullName)},</p>
+                    <p style="margin: 0 0 24px; color: #475569; font-size: 15px; line-height: 1.7;">Thank you for submitting your Operational Review Request. We have received your submission and our team will review it shortly.</p>
+                    
+                    <!-- Reference Box -->
+                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-bottom: 24px;">
+                      <tr>
+                        <td style="background: #f1f5f9; border-radius: 8px; padding: 16px;">
+                          <p style="margin: 0; font-size: 13px; color: #64748b;">Your Reference ID</p>
+                          <p style="margin: 4px 0 0; font-size: 18px; font-family: monospace; font-weight: bold; color: #0f172a;">${referenceId}</p>
+                        </td>
+                      </tr>
+                    </table>
 
-            <p style="margin-top: 24px;">A detailed PDF report of your submission is attached to this email for your records.</p>
+                    <!-- Submission Summary -->
+                    <h2 style="margin: 24px 0 16px; font-size: 16px; color: #0f172a; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;">Submission Summary</h2>
+                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td style="padding: 8px 0;">
+                          <span style="color: #64748b; font-size: 13px; display: inline-block; width: 100px;">Company</span>
+                          <span style="color: #1e293b; font-size: 14px;">${escapeHtml(contactDetails.companyName)}</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 8px 0;">
+                          <span style="color: #64748b; font-size: 13px; display: inline-block; width: 100px;">Industry</span>
+                          <span style="color: #1e293b; font-size: 14px;">${escapeHtml(getLabel("industry", operationalData.industry))}</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 8px 0;">
+                          <span style="color: #64748b; font-size: 13px; display: inline-block; width: 100px;">Scale</span>
+                          <span style="color: #1e293b; font-size: 14px;">${escapeHtml(getLabel("scale", operationalData.scale))}</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 8px 0;">
+                          <span style="color: #64748b; font-size: 13px; display: inline-block; width: 100px;">Location</span>
+                          <span style="color: #1e293b; font-size: 14px;">${escapeHtml(contactDetails.city)}, ${escapeHtml(contactDetails.country)}</span>
+                        </td>
+                      </tr>
+                    </table>
 
-            <h2>Next Steps</h2>
-            <p>To accelerate the review process, you can schedule a strategic consultation with our team:</p>
-            
-            <div class="cta">
-              <a href="https://cal.com/ovelon-prime/introduction-call">Schedule Consultation</a>
-            </div>
+                    <p style="margin: 24px 0; color: #475569; font-size: 15px; line-height: 1.7;">A detailed PDF report of your submission is attached to this email for your records.</p>
 
-            <p>If you have any questions, please reply to this email or contact us at <a href="mailto:info@ovelon-prime.com">info@ovelon-prime.com</a>.</p>
+                    <!-- Next Steps -->
+                    <h2 style="margin: 24px 0 16px; font-size: 16px; color: #0f172a; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;">Next Steps</h2>
+                    <p style="margin: 0 0 24px; color: #475569; font-size: 15px; line-height: 1.7;">To accelerate the review process, you can schedule a strategic consultation with our team:</p>
+                    
+                    <!-- CTA Button -->
+                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td align="center" style="padding: 16px 0 32px;">
+                          <a href="https://cal.com/ovelon-prime/introduction-call" style="display: inline-block; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #ffffff; text-decoration: none; padding: 14px 32px; border-radius: 8px; font-size: 15px; font-weight: 500;">Talk to an Expert →</a>
+                        </td>
+                      </tr>
+                    </table>
 
-            <p>Best regards,<br><strong>Ovelon Prime Team</strong></p>
-          </div>
-          <div class="footer">
-            <p><strong>Ovelon Prime</strong></p>
-            <p>Enterprise Operational Systems</p>
-            <p style="margin-top: 12px;">This email and any attachments are confidential.</p>
-          </div>
-        </div>
+                    <p style="margin: 0 0 16px; color: #475569; font-size: 15px; line-height: 1.7;">If you have any questions, please reply to this email or contact us at <a href="mailto:info@ovelon-prime.com" style="color: #0ea5e9;">info@ovelon-prime.com</a>.</p>
+
+                    <p style="margin: 0; color: #475569; font-size: 15px; line-height: 1.7;">Best regards,<br><strong>Ovelon Prime Team</strong></p>
+                  </td>
+                </tr>
+
+                ${getEmailFooter(contactDetails.email)}
+              </table>
+            </td>
+          </tr>
+        </table>
       </body>
       </html>
     `;
@@ -896,77 +1006,69 @@ serve(async (req: Request): Promise<Response> => {
       </html>
     `;
 
-    // Send email to internal team
+    // Email configuration
     const fromEmail = "Ovelon Prime <info@ovelon-prime.com>";
     const internalEmail = Deno.env.get("INTERNAL_EMAIL") || "info@ovelon-prime.com";
 
+    // Send confirmation email to user with PDF
     try {
-      const internalResult = await resend.emails.send({
-        from: fromEmail,
-        to: [internalEmail],
-        subject: `🔔 New Intake: ${contactDetails.companyName} - ${referenceId}`,
-        html: internalEmailHtml,
-        attachments: [
-          {
-            filename: `ovelon-operational-review-${referenceId}.pdf`,
-            content: pdfBase64,
-          },
-        ],
-      });
-
-      console.log("[submit-intake] Internal email sent:", internalResult);
-    } catch (emailError) {
-      console.error("[submit-intake] Failed to send internal email:", emailError);
-      // Continue - don't fail the whole submission for internal email
-    }
-
-    // Send confirmation email to user
-    try {
-      const userResult = await resend.emails.send({
+      const userEmailResult = await resend.emails.send({
         from: fromEmail,
         to: [contactDetails.email],
-        subject: `Your Operational Review Request – ${referenceId} – Ovelon Prime`,
+        subject: `Your Operational Review Request — ${referenceId}`,
         html: userEmailHtml,
         attachments: [
           {
-            filename: `ovelon-operational-review-${referenceId}.pdf`,
+            filename: `Ovelon-Prime-Operational-Review-${referenceId}.pdf`,
             content: pdfBase64,
           },
         ],
       });
-
-      console.log("[submit-intake] User email sent:", userResult);
+      console.log(`[submit-intake] User email sent:`, userEmailResult);
     } catch (emailError) {
       console.error("[submit-intake] Failed to send user email:", emailError);
-      return new Response(
-        JSON.stringify({ 
-          success: false, 
-          error: "Failed to send confirmation email. Please try again.",
-          errorCode: "EMAIL_ERROR"
-        }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+      // Continue - don't fail the whole request if user email fails
     }
 
-    // Success response
+    // Send notification to internal team with PDF
+    try {
+      const internalEmailResult = await resend.emails.send({
+        from: fromEmail,
+        to: [internalEmail],
+        subject: `New Intake — ${contactDetails.companyName} — ${referenceId}`,
+        html: internalEmailHtml,
+        reply_to: contactDetails.email,
+        attachments: [
+          {
+            filename: `Ovelon-Prime-Operational-Review-${referenceId}.pdf`,
+            content: pdfBase64,
+          },
+        ],
+      });
+      console.log(`[submit-intake] Internal email sent:`, internalEmailResult);
+    } catch (emailError) {
+      console.error("[submit-intake] Failed to send internal email:", emailError);
+      // Continue - don't fail the whole request if internal email fails
+    }
+
     console.log(`[submit-intake] Submission complete: ${referenceId}`);
+
     return new Response(
       JSON.stringify({
         success: true,
         referenceId,
         pdfAttached: true,
-        message: "Submission received successfully",
+        submittedAt,
       }),
       { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
-
   } catch (error) {
-    console.error("[submit-intake] Unexpected error:", error);
+    console.error("[submit-intake] Error:", error);
     return new Response(
-      JSON.stringify({ 
-        success: false, 
-        error: error instanceof Error ? error.message : "An unexpected error occurred",
-        errorCode: "INTERNAL_ERROR"
+      JSON.stringify({
+        success: false,
+        error: "An unexpected error occurred. Please try again.",
+        errorCode: "SERVER_ERROR",
       }),
       { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
