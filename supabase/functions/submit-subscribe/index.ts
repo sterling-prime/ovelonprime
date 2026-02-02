@@ -44,9 +44,8 @@ function getEmailHeader(subtitle: string): string {
   `;
 }
 
-// Reusable email footer with terms, privacy, and unsubscribe
-function getEmailFooter(email: string): string {
-  const unsubscribeUrl = `https://ovelon-prime.com/unsubscribe?email=${encodeURIComponent(email)}`;
+// Reusable email footer with terms and privacy
+function getEmailFooter(): string {
   return `
     <!-- Footer -->
     <tr>
@@ -61,8 +60,6 @@ function getEmailFooter(email: string): string {
                 <a href="https://ovelon-prime.com/terms" style="color: #64748b; text-decoration: none;">Terms of Service</a>
                 <span style="margin: 0 8px; color: #cbd5e1;">•</span>
                 <a href="https://ovelon-prime.com/privacy" style="color: #64748b; text-decoration: none;">Privacy Policy</a>
-                <span style="margin: 0 8px; color: #cbd5e1;">•</span>
-                <a href="${unsubscribeUrl}" style="color: #64748b; text-decoration: none;">Unsubscribe</a>
               </p>
               <p style="margin: 0; color: #94a3b8; font-size: 11px;">
                 Enterprise Operational Systems
@@ -280,7 +277,7 @@ serve(async (req: Request): Promise<Response> => {
                         </td>
                       </tr>
 
-                      ${getEmailFooter(email)}
+                      ${getEmailFooter()}
                     </table>
                   </td>
                 </tr>

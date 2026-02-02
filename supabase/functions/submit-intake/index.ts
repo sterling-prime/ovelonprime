@@ -260,9 +260,8 @@ function getEmailHeader(subtitle: string): string {
   `;
 }
 
-// Reusable email footer with terms, privacy, and unsubscribe
-function getEmailFooter(email: string): string {
-  const unsubscribeUrl = `https://ovelon-prime.com/unsubscribe?email=${encodeURIComponent(email)}`;
+// Reusable email footer with terms and privacy
+function getEmailFooter(): string {
   return `
     <!-- Footer -->
     <tr>
@@ -277,8 +276,6 @@ function getEmailFooter(email: string): string {
                 <a href="https://ovelon-prime.com/terms" style="color: #64748b; text-decoration: none;">Terms of Service</a>
                 <span style="margin: 0 8px; color: #cbd5e1;">•</span>
                 <a href="https://ovelon-prime.com/privacy" style="color: #64748b; text-decoration: none;">Privacy Policy</a>
-                <span style="margin: 0 8px; color: #cbd5e1;">•</span>
-                <a href="${unsubscribeUrl}" style="color: #64748b; text-decoration: none;">Unsubscribe</a>
               </p>
               <p style="margin: 0; color: #94a3b8; font-size: 11px;">
                 Enterprise Operational Systems
@@ -300,46 +297,78 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
   const contentWidth = pageWidth - 2 * margin;
   let y = margin;
 
+  // Premium color palette - Charcoal & Champagne Gold
+  const colors = {
+    charcoal: [30, 30, 35] as [number, number, number],
+    charcoalLight: [45, 45, 52] as [number, number, number],
+    champagne: [196, 170, 128] as [number, number, number],
+    champagneLight: [218, 198, 165] as [number, number, number],
+    cream: [252, 250, 245] as [number, number, number],
+    slate: [100, 110, 120] as [number, number, number],
+    textDark: [25, 25, 30] as [number, number, number],
+    textMuted: [120, 125, 135] as [number, number, number],
+  };
+
   const checkPageBreak = (neededHeight: number) => {
-    if (y + neededHeight > pageHeight - 80) { // Reserve more space for footer
+    if (y + neededHeight > pageHeight - 80) {
       addPageFooter();
       doc.addPage();
       y = margin;
     }
   };
 
-  // Add footer to each page
+  // Add footer to each page with clickable links
   const addPageFooter = () => {
-    const footerY = pageHeight - 50;
+    const footerY = pageHeight - 45;
     
-    // Divider line
-    doc.setDrawColor(226, 232, 240);
-    doc.line(margin, footerY - 20, pageWidth - margin, footerY - 20);
+    // Elegant divider line with gradient effect
+    doc.setDrawColor(...colors.champagne);
+    doc.setLineWidth(0.5);
+    doc.line(margin, footerY - 18, pageWidth - margin, footerY - 18);
     
-    // Footer text
-    doc.setTextColor(148, 163, 184);
-    doc.setFontSize(7);
+    // Footer links - clickable
+    doc.setTextColor(...colors.slate);
+    doc.setFontSize(8);
     doc.setFont("helvetica", "normal");
     
-    // Terms & Privacy links
-    doc.text("Terms of Service: ovelon-prime.com/terms  •  Privacy Policy: ovelon-prime.com/privacy", margin, footerY - 5);
+    // Terms link
+    const termsText = "Terms";
+    const termsX = margin;
+    doc.text(termsText, termsX, footerY);
+    const termsWidth = doc.getTextWidth(termsText);
+    doc.link(termsX, footerY - 8, termsWidth, 10, { url: "https://ovelon-prime.com/terms" });
     
-    // Talk to Expert link
-    doc.setTextColor(14, 165, 233); // Sky blue
-    doc.text("Talk to an Expert: cal.com/ovelon-prime/introduction-call", margin, footerY + 8);
+    // Separator
+    doc.text("  •  ", termsX + termsWidth, footerY);
     
-    // Copyright
-    doc.setTextColor(148, 163, 184);
-    doc.text(`© ${new Date().getFullYear()} Ovelon Prime. All rights reserved.`, pageWidth - margin - 140, footerY + 8);
+    // Privacy link
+    const privacyText = "Privacy";
+    const privacyX = termsX + termsWidth + doc.getTextWidth("  •  ");
+    doc.text(privacyText, privacyX, footerY);
+    const privacyWidth = doc.getTextWidth(privacyText);
+    doc.link(privacyX, footerY - 8, privacyWidth, 10, { url: "https://ovelon-prime.com/privacy" });
+    
+    // Talk to Expert link - champagne gold
+    doc.setTextColor(...colors.champagne);
+    const ctaText = "Talk to an Expert";
+    const ctaX = pageWidth - margin - doc.getTextWidth(ctaText);
+    doc.text(ctaText, ctaX, footerY);
+    doc.link(ctaX, footerY - 8, doc.getTextWidth(ctaText), 10, { url: "https://cal.com/ovelon-prime/introduction-call" });
+    
+    // Copyright - centered
+    doc.setTextColor(...colors.textMuted);
+    const copyrightText = `© ${new Date().getFullYear()} Ovelon Prime`;
+    const copyrightWidth = doc.getTextWidth(copyrightText);
+    doc.text(copyrightText, (pageWidth - copyrightWidth) / 2, footerY);
   };
 
-  // Header with branding
-  doc.setFillColor(15, 23, 42); // Dark slate
-  doc.rect(0, 0, pageWidth, 90, "F");
+  // Header with premium branding
+  doc.setFillColor(...colors.charcoal);
+  doc.rect(0, 0, pageWidth, 95, "F");
 
   // Draw hexagonal logo icon
   const logoX = margin;
-  const logoY = 45;
+  const logoY = 47;
   const logoSize = 18;
   
   // Hexagon vertices (pointy-top orientation)
@@ -352,10 +381,10 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
     ]);
   }
   
-  // Draw outer hexagon frame
-  doc.setDrawColor(255, 255, 255);
+  // Draw outer hexagon frame with champagne gold
+  doc.setDrawColor(...colors.champagne);
   doc.setLineWidth(1.5);
-  doc.setFillColor(15, 23, 42);
+  doc.setFillColor(...colors.charcoal);
   doc.lines(
     hexPoints.slice(1).map((p, i) => [p[0] - hexPoints[i][0], p[1] - hexPoints[i][1]]),
     hexPoints[0][0],
@@ -365,8 +394,8 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
     true
   );
 
-  // Draw inner node (center circle)
-  doc.setFillColor(255, 255, 255);
+  // Draw inner node (center circle) - champagne gold
+  doc.setFillColor(...colors.champagne);
   doc.circle(logoX, logoY, 3, "F");
 
   // Draw inner lines from center to 3 alternating vertices
@@ -383,81 +412,88 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
 
   doc.setFontSize(10);
   doc.setFont("helvetica", "normal");
-  doc.setTextColor(200, 200, 200);
-  doc.text("Operational Review Request", logoX + 32, 68);
+  doc.setTextColor(...colors.champagneLight);
+  doc.text("Operational Review Request", logoX + 32, 70);
 
-  y = 115;
+  y = 120;
 
-  // Reference & Date section
-  doc.setFillColor(248, 250, 252);
-  doc.rect(margin, y, contentWidth, 50, "F");
-  doc.setDrawColor(226, 232, 240);
-  doc.rect(margin, y, contentWidth, 50, "S");
+  // Reference & Date section with premium styling
+  doc.setFillColor(...colors.cream);
+  doc.roundedRect(margin, y, contentWidth, 55, 4, 4, "F");
+  doc.setDrawColor(...colors.champagne);
+  doc.setLineWidth(0.5);
+  doc.roundedRect(margin, y, contentWidth, 55, 4, 4, "S");
 
-  doc.setTextColor(100, 116, 139);
+  doc.setTextColor(...colors.textMuted);
   doc.setFontSize(9);
-  doc.text("Reference ID", margin + 15, y + 18);
-  doc.text("Submitted", margin + 200, y + 18);
+  doc.text("Reference ID", margin + 18, y + 20);
+  doc.text("Submitted", margin + 200, y + 20);
 
-  doc.setTextColor(15, 23, 42);
-  doc.setFontSize(11);
+  doc.setTextColor(...colors.textDark);
+  doc.setFontSize(12);
   doc.setFont("helvetica", "bold");
-  doc.text(referenceId, margin + 15, y + 35);
+  doc.text(referenceId, margin + 18, y + 40);
   doc.setFont("helvetica", "normal");
-  doc.text(submittedAt, margin + 200, y + 35);
+  doc.setFontSize(11);
+  doc.text(submittedAt, margin + 200, y + 40);
 
-  y += 75;
+  y += 80;
 
-  // Helper: Add section title with header-matching style (dark background)
+  // Helper: Add section title with premium charcoal & champagne styling
   const addSectionTitle = (title: string) => {
-    checkPageBreak(45);
-    doc.setFillColor(15, 23, 42); // Dark slate matching header
-    doc.roundedRect(margin, y, contentWidth, 28, 3, 3, "F");
+    checkPageBreak(50);
+    // Premium charcoal background with subtle left accent
+    doc.setFillColor(...colors.charcoal);
+    doc.roundedRect(margin, y, contentWidth, 32, 4, 4, "F");
+    // Champagne accent bar
+    doc.setFillColor(...colors.champagne);
+    doc.roundedRect(margin, y, 4, 32, 2, 2, "F");
+    
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(11);
     doc.setFont("helvetica", "bold");
-    doc.text(title.toUpperCase(), margin + 12, y + 18);
-    y += 40;
+    doc.text(title.toUpperCase(), margin + 18, y + 20);
+    y += 45;
   };
 
-  // Helper: Add field
+  // Helper: Add field with refined styling
   const addField = (label: string, value: string) => {
-    checkPageBreak(35);
-    doc.setTextColor(100, 116, 139);
+    checkPageBreak(38);
+    doc.setTextColor(...colors.textMuted);
     doc.setFontSize(9);
     doc.setFont("helvetica", "normal");
-    doc.text(label, margin, y);
-    y += 14;
+    doc.text(label.toUpperCase(), margin, y);
+    y += 15;
 
-    doc.setTextColor(15, 23, 42);
+    doc.setTextColor(...colors.textDark);
     doc.setFontSize(10);
     const lines = doc.splitTextToSize(value || "Not specified", contentWidth);
     doc.text(lines, margin, y);
-    y += lines.length * 14 + 10;
+    y += lines.length * 14 + 12;
   };
 
-  // Helper: Add bullet list with proper text wrapping for long items
+  // Helper: Add bullet list with champagne bullets
   const addBulletList = (label: string, items: string[]) => {
     if (!items || items.length === 0) return;
     
-    doc.setTextColor(100, 116, 139);
+    doc.setTextColor(...colors.textMuted);
     doc.setFontSize(9);
     doc.setFont("helvetica", "normal");
-    doc.text(label, margin, y);
-    y += 14;
+    doc.text(label.toUpperCase(), margin, y);
+    y += 15;
 
-    doc.setTextColor(15, 23, 42);
+    doc.setTextColor(...colors.textDark);
     doc.setFontSize(10);
-    const bulletIndent = 15;
+    const bulletIndent = 18;
     const bulletContentWidth = contentWidth - bulletIndent;
     
     items.forEach((item) => {
-      // Wrap text properly for long items (especially important for Polish/German)
       const lines = doc.splitTextToSize(item, bulletContentWidth);
-      checkPageBreak(lines.length * 14 + 4);
+      checkPageBreak(lines.length * 14 + 6);
       
-      // Draw bullet point
-      doc.text("•", margin + 4, y);
+      // Champagne gold bullet
+      doc.setFillColor(...colors.champagne);
+      doc.circle(margin + 5, y - 3, 2.5, "F");
       
       // Draw wrapped text
       lines.forEach((line: string, lineIndex: number) => {
@@ -468,7 +504,7 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
       });
       y += 18;
     });
-    y += 4;
+    y += 6;
   };
 
   // Helper: Add premium analysis card with executive styling
@@ -478,107 +514,107 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
     if (items.length === 0 || (items.length === 1 && !items[0])) return;
 
     // Calculate card height
-    let estimatedHeight = 50;
+    let estimatedHeight = 55;
     items.forEach((item) => {
-      const lines = doc.splitTextToSize(item, contentWidth - 50);
+      const lines = doc.splitTextToSize(item, contentWidth - 55);
       estimatedHeight += lines.length * 14 + 8;
     });
     
     checkPageBreak(estimatedHeight);
 
-    // Card background with subtle gradient effect
-    doc.setFillColor(250, 251, 252);
+    // Premium cream card background
+    doc.setFillColor(...colors.cream);
     doc.roundedRect(margin, y, contentWidth, estimatedHeight, 6, 6, "F");
     
-    // Left accent bar - matching dark header style
-    doc.setFillColor(15, 23, 42); // Dark slate matching header
-    doc.roundedRect(margin, y, 4, estimatedHeight, 2, 2, "F");
+    // Champagne gold left accent bar
+    doc.setFillColor(...colors.champagne);
+    doc.roundedRect(margin, y, 5, estimatedHeight, 2, 2, "F");
 
-    // Card title with icon - dark styled like header
-    y += 18;
-    doc.setTextColor(15, 23, 42);
+    // Card title with icon - charcoal styled
+    y += 20;
+    doc.setTextColor(...colors.charcoal);
     doc.setFontSize(11);
     doc.setFont("helvetica", "bold");
-    doc.text(`${icon}  ${title.toUpperCase()}`, margin + 16, y);
-    y += 16;
+    doc.text(`${icon}  ${title.toUpperCase()}`, margin + 18, y);
+    y += 18;
 
     // Card content
     doc.setFont("helvetica", "normal");
     doc.setFontSize(10);
-    doc.setTextColor(51, 65, 85);
+    doc.setTextColor(...colors.textDark);
     
     items.forEach((item) => {
-      const lines = doc.splitTextToSize(item, contentWidth - 50);
+      const lines = doc.splitTextToSize(item, contentWidth - 55);
       
       if (isArray && items.length > 1) {
-        // Bullet for multiple items
-        doc.setFillColor(14, 165, 233);
-        doc.circle(margin + 22, y - 3, 2, "F");
+        // Champagne gold bullet for multiple items
+        doc.setFillColor(...colors.champagne);
+        doc.circle(margin + 24, y - 3, 2.5, "F");
         lines.forEach((line: string, idx: number) => {
-          doc.text(line, margin + 30, y);
+          doc.text(line, margin + 34, y);
           y += 14;
         });
       } else {
         // No bullet for single item
         lines.forEach((line: string) => {
-          doc.text(line, margin + 16, y);
+          doc.text(line, margin + 18, y);
           y += 14;
         });
       }
       y += 4;
     });
     
-    y += 10;
+    y += 12;
   };
 
-  // Helper: Add readiness badge
+  // Helper: Add readiness badge with refined styling
   const addReadinessBadge = (label: string, value: string) => {
-    checkPageBreak(60);
+    checkPageBreak(65);
     
     // Determine color based on readiness level
-    let bgColor: [number, number, number] = [241, 245, 249]; // Default gray
-    let textColor: [number, number, number] = [71, 85, 105];
-    let accentColor: [number, number, number] = [100, 116, 139];
+    let bgColor: [number, number, number] = colors.cream;
+    let textColor: [number, number, number] = colors.textDark;
+    let accentColor: [number, number, number] = colors.champagne;
     
     const lowerValue = value.toLowerCase();
     if (lowerValue.includes("high") || lowerValue.includes("wysok") || lowerValue.includes("hoch") || lowerValue.includes("élevé") || lowerValue.includes("alt")) {
-      bgColor = [220, 252, 231]; // Green
+      bgColor = [235, 251, 238];
       textColor = [22, 101, 52];
       accentColor = [34, 197, 94];
     } else if (lowerValue.includes("moderate") || lowerValue.includes("umiarkow") || lowerValue.includes("mittel") || lowerValue.includes("modér") || lowerValue.includes("moder")) {
-      bgColor = [254, 249, 195]; // Yellow
-      textColor = [133, 77, 14];
-      accentColor = [234, 179, 8];
+      bgColor = [255, 251, 235];
+      textColor = [146, 64, 14];
+      accentColor = [245, 158, 11];
     } else if (lowerValue.includes("low") || lowerValue.includes("nisk") || lowerValue.includes("niedrig") || lowerValue.includes("faible") || lowerValue.includes("bass")) {
-      bgColor = [254, 226, 226]; // Red
+      bgColor = [254, 242, 242];
       textColor = [153, 27, 27];
       accentColor = [239, 68, 68];
     }
 
     // Card background
     doc.setFillColor(...bgColor);
-    doc.roundedRect(margin, y, contentWidth, 50, 6, 6, "F");
+    doc.roundedRect(margin, y, contentWidth, 55, 6, 6, "F");
     
     // Accent bar
     doc.setFillColor(...accentColor);
-    doc.roundedRect(margin, y, 4, 50, 2, 2, "F");
+    doc.roundedRect(margin, y, 5, 55, 2, 2, "F");
 
     // Label
-    y += 18;
-    doc.setTextColor(100, 116, 139);
+    y += 20;
+    doc.setTextColor(...colors.textMuted);
     doc.setFontSize(9);
     doc.setFont("helvetica", "normal");
-    doc.text(label, margin + 16, y);
+    doc.text(label.toUpperCase(), margin + 18, y);
     
     // Value
-    y += 16;
+    y += 18;
     doc.setTextColor(...textColor);
-    doc.setFontSize(13);
+    doc.setFontSize(14);
     doc.setFont("helvetica", "bold");
-    const valueLines = doc.splitTextToSize(value, contentWidth - 40);
-    doc.text(valueLines[0], margin + 16, y);
+    const valueLines = doc.splitTextToSize(value, contentWidth - 45);
+    doc.text(valueLines[0], margin + 18, y);
     
-    y += 26;
+    y += 30;
   };
 
   // Contact Details Section
@@ -620,15 +656,19 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
   // Analysis Section - Premium Executive Layout
   const { analysis } = payload;
   
-  // Section header with distinct styling (matching document header)
-  checkPageBreak(50);
-  doc.setFillColor(15, 23, 42); // Dark header
-  doc.roundedRect(margin, y, contentWidth, 36, 4, 4, "F");
+  // Section header with distinct styling (premium charcoal & champagne)
+  checkPageBreak(55);
+  doc.setFillColor(...colors.charcoal);
+  doc.roundedRect(margin, y, contentWidth, 40, 5, 5, "F");
+  // Champagne accent
+  doc.setFillColor(...colors.champagne);
+  doc.roundedRect(margin, y, 5, 40, 2, 2, "F");
+  
   doc.setTextColor(255, 255, 255);
-  doc.setFontSize(13);
+  doc.setFontSize(14);
   doc.setFont("helvetica", "bold");
-  doc.text("EXECUTIVE ANALYSIS", margin + 16, y + 23);
-  y += 50;
+  doc.text("EXECUTIVE ANALYSIS", margin + 20, y + 26);
+  y += 55;
 
   // Key Observations Card
   if (analysis.operationalObservations && analysis.operationalObservations.length > 0) {
@@ -650,28 +690,32 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
     addAnalysisCard("Strategic Advisory Direction", analysis.advisoryDirection, "→");
   }
 
-  // Add Talk to Expert CTA section before footer
-  checkPageBreak(70);
-  y += 10;
+  // Add Talk to Expert CTA section with clickable link
+  checkPageBreak(75);
+  y += 12;
   
-  // CTA Box
-  doc.setFillColor(241, 245, 249);
-  doc.roundedRect(margin, y, contentWidth, 55, 6, 6, "F");
-  doc.setDrawColor(14, 165, 233);
-  doc.setLineWidth(1);
-  doc.roundedRect(margin, y, contentWidth, 55, 6, 6, "S");
+  // Premium CTA Box
+  doc.setFillColor(...colors.charcoal);
+  doc.roundedRect(margin, y, contentWidth, 60, 6, 6, "F");
+  // Champagne accent line
+  doc.setDrawColor(...colors.champagne);
+  doc.setLineWidth(2);
+  doc.line(margin + 20, y + 30, margin + 35, y + 30);
   
-  doc.setTextColor(15, 23, 42);
-  doc.setFontSize(11);
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(12);
   doc.setFont("helvetica", "bold");
-  doc.text("Ready to accelerate your operational transformation?", margin + 15, y + 22);
+  doc.text("Ready to accelerate your operational transformation?", margin + 45, y + 25);
   
   doc.setFont("helvetica", "normal");
-  doc.setFontSize(10);
-  doc.setTextColor(14, 165, 233);
-  doc.text("Talk to an Expert: cal.com/ovelon-prime/introduction-call", margin + 15, y + 40);
+  doc.setFontSize(11);
+  doc.setTextColor(...colors.champagneLight);
+  const ctaLinkText = "Schedule a Strategic Consultation →";
+  const ctaLinkY = y + 43;
+  doc.text(ctaLinkText, margin + 45, ctaLinkY);
+  doc.link(margin + 45, ctaLinkY - 10, doc.getTextWidth(ctaLinkText), 14, { url: "https://cal.com/ovelon-prime/introduction-call" });
   
-  y += 70;
+  y += 75;
 
   // Add footer to the last page
   addPageFooter();
@@ -918,7 +962,7 @@ serve(async (req: Request): Promise<Response> => {
                   </td>
                 </tr>
 
-                ${getEmailFooter(contactDetails.email)}
+                ${getEmailFooter()}
               </table>
             </td>
           </tr>
