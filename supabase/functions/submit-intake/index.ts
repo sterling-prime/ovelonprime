@@ -297,16 +297,16 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
   const contentWidth = pageWidth - 2 * margin;
   let y = margin;
 
-  // Premium color palette - Charcoal & Champagne Gold
+  // Premium color palette - Dark Navy Blue (matching email header)
   const colors = {
-    charcoal: [30, 30, 35] as [number, number, number],
-    charcoalLight: [45, 45, 52] as [number, number, number],
-    champagne: [196, 170, 128] as [number, number, number],
-    champagneLight: [218, 198, 165] as [number, number, number],
-    cream: [252, 250, 245] as [number, number, number],
-    slate: [100, 110, 120] as [number, number, number],
-    textDark: [25, 25, 30] as [number, number, number],
-    textMuted: [120, 125, 135] as [number, number, number],
+    darkNavy: [15, 23, 42] as [number, number, number],      // #0f172a - primary dark
+    navyLight: [30, 41, 59] as [number, number, number],     // #1e293b - lighter navy
+    accent: [14, 165, 233] as [number, number, number],      // #0ea5e9 - bright blue accent
+    accentLight: [56, 189, 248] as [number, number, number], // #38bdf8 - lighter accent
+    cream: [248, 250, 252] as [number, number, number],      // #f8fafc - light background
+    slate: [100, 116, 139] as [number, number, number],      // #64748b - muted text
+    textDark: [15, 23, 42] as [number, number, number],      // matches darkNavy
+    textMuted: [148, 163, 184] as [number, number, number],  // #94a3b8 - secondary text
   };
 
   const checkPageBreak = (neededHeight: number) => {
@@ -321,8 +321,8 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
   const addPageFooter = () => {
     const footerY = pageHeight - 45;
     
-    // Elegant divider line with gradient effect
-    doc.setDrawColor(...colors.champagne);
+    // Elegant divider line with accent color
+    doc.setDrawColor(...colors.accent);
     doc.setLineWidth(0.5);
     doc.line(margin, footerY - 18, pageWidth - margin, footerY - 18);
     
@@ -348,8 +348,8 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
     const privacyWidth = doc.getTextWidth(privacyText);
     doc.link(privacyX, footerY - 8, privacyWidth, 10, { url: "https://ovelon-prime.com/privacy" });
     
-    // Talk to Expert link - champagne gold
-    doc.setTextColor(...colors.champagne);
+    // Talk to Expert link - bright accent blue
+    doc.setTextColor(...colors.accent);
     const ctaText = "Talk to an Expert";
     const ctaX = pageWidth - margin - doc.getTextWidth(ctaText);
     doc.text(ctaText, ctaX, footerY);
@@ -362,8 +362,8 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
     doc.text(copyrightText, (pageWidth - copyrightWidth) / 2, footerY);
   };
 
-  // Header with premium branding
-  doc.setFillColor(...colors.charcoal);
+  // Header with premium dark navy branding (matching email)
+  doc.setFillColor(...colors.darkNavy);
   doc.rect(0, 0, pageWidth, 95, "F");
 
   // Draw hexagonal logo icon
@@ -381,10 +381,10 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
     ]);
   }
   
-  // Draw outer hexagon frame with champagne gold
-  doc.setDrawColor(...colors.champagne);
+  // Draw outer hexagon frame with white (matching email logo)
+  doc.setDrawColor(255, 255, 255);
   doc.setLineWidth(1.5);
-  doc.setFillColor(...colors.charcoal);
+  doc.setFillColor(...colors.darkNavy);
   doc.lines(
     hexPoints.slice(1).map((p, i) => [p[0] - hexPoints[i][0], p[1] - hexPoints[i][1]]),
     hexPoints[0][0],
@@ -394,11 +394,12 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
     true
   );
 
-  // Draw inner node (center circle) - champagne gold
-  doc.setFillColor(...colors.champagne);
+  // Draw inner node (center circle) - white
+  doc.setFillColor(255, 255, 255);
   doc.circle(logoX, logoY, 3, "F");
 
   // Draw inner lines from center to 3 alternating vertices
+  doc.setDrawColor(255, 255, 255);
   doc.setLineWidth(1);
   for (let i = 0; i < 6; i += 2) {
     doc.line(logoX, logoY, hexPoints[i][0], hexPoints[i][1]);
@@ -412,7 +413,7 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
 
   doc.setFontSize(10);
   doc.setFont("helvetica", "normal");
-  doc.setTextColor(...colors.champagneLight);
+  doc.setTextColor(255, 255, 255, 0.7); // White with opacity
   doc.text("Operational Review Request", logoX + 32, 70);
 
   y = 120;
@@ -420,7 +421,7 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
   // Reference & Date section with premium styling
   doc.setFillColor(...colors.cream);
   doc.roundedRect(margin, y, contentWidth, 55, 4, 4, "F");
-  doc.setDrawColor(...colors.champagne);
+  doc.setDrawColor(...colors.accent);
   doc.setLineWidth(0.5);
   doc.roundedRect(margin, y, contentWidth, 55, 4, 4, "S");
 
@@ -442,11 +443,11 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
   // Helper: Add section title with premium charcoal & champagne styling
   const addSectionTitle = (title: string) => {
     checkPageBreak(50);
-    // Premium charcoal background with subtle left accent
-    doc.setFillColor(...colors.charcoal);
+    // Premium dark navy background (matching email header)
+    doc.setFillColor(...colors.darkNavy);
     doc.roundedRect(margin, y, contentWidth, 32, 4, 4, "F");
-    // Champagne accent bar
-    doc.setFillColor(...colors.champagne);
+    // Bright blue accent bar
+    doc.setFillColor(...colors.accent);
     doc.roundedRect(margin, y, 4, 32, 2, 2, "F");
     
     doc.setTextColor(255, 255, 255);
@@ -472,7 +473,7 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
     y += lines.length * 14 + 12;
   };
 
-  // Helper: Add bullet list with champagne bullets
+  // Helper: Add bullet list with accent blue bullets
   const addBulletList = (label: string, items: string[]) => {
     if (!items || items.length === 0) return;
     
@@ -491,8 +492,8 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
       const lines = doc.splitTextToSize(item, bulletContentWidth);
       checkPageBreak(lines.length * 14 + 6);
       
-      // Champagne gold bullet
-      doc.setFillColor(...colors.champagne);
+      // Accent blue bullet
+      doc.setFillColor(...colors.accent);
       doc.circle(margin + 5, y - 3, 2.5, "F");
       
       // Draw wrapped text
@@ -522,17 +523,17 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
     
     checkPageBreak(estimatedHeight);
 
-    // Premium cream card background
+    // Premium light card background
     doc.setFillColor(...colors.cream);
     doc.roundedRect(margin, y, contentWidth, estimatedHeight, 6, 6, "F");
     
-    // Champagne gold left accent bar
-    doc.setFillColor(...colors.champagne);
+    // Bright blue left accent bar
+    doc.setFillColor(...colors.accent);
     doc.roundedRect(margin, y, 5, estimatedHeight, 2, 2, "F");
 
-    // Card title with icon - charcoal styled
+    // Card title with icon - dark navy styled
     y += 20;
-    doc.setTextColor(...colors.charcoal);
+    doc.setTextColor(...colors.darkNavy);
     doc.setFontSize(11);
     doc.setFont("helvetica", "bold");
     doc.text(`${icon}  ${title.toUpperCase()}`, margin + 18, y);
@@ -547,8 +548,8 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
       const lines = doc.splitTextToSize(item, contentWidth - 55);
       
       if (isArray && items.length > 1) {
-        // Champagne gold bullet for multiple items
-        doc.setFillColor(...colors.champagne);
+        // Accent blue bullet for multiple items
+        doc.setFillColor(...colors.accent);
         doc.circle(margin + 24, y - 3, 2.5, "F");
         lines.forEach((line: string, idx: number) => {
           doc.text(line, margin + 34, y);
@@ -574,7 +575,7 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
     // Determine color based on readiness level
     let bgColor: [number, number, number] = colors.cream;
     let textColor: [number, number, number] = colors.textDark;
-    let accentColor: [number, number, number] = colors.champagne;
+    let accentColor: [number, number, number] = colors.accent;
     
     const lowerValue = value.toLowerCase();
     if (lowerValue.includes("high") || lowerValue.includes("wysok") || lowerValue.includes("hoch") || lowerValue.includes("élevé") || lowerValue.includes("alt")) {
@@ -656,12 +657,12 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
   // Analysis Section - Premium Executive Layout
   const { analysis } = payload;
   
-  // Section header with distinct styling (premium charcoal & champagne)
+  // Section header with distinct styling (dark navy & blue accent)
   checkPageBreak(55);
-  doc.setFillColor(...colors.charcoal);
+  doc.setFillColor(...colors.darkNavy);
   doc.roundedRect(margin, y, contentWidth, 40, 5, 5, "F");
-  // Champagne accent
-  doc.setFillColor(...colors.champagne);
+  // Blue accent
+  doc.setFillColor(...colors.accent);
   doc.roundedRect(margin, y, 5, 40, 2, 2, "F");
   
   doc.setTextColor(255, 255, 255);
@@ -694,11 +695,11 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
   checkPageBreak(75);
   y += 12;
   
-  // Premium CTA Box
-  doc.setFillColor(...colors.charcoal);
+  // Premium CTA Box with dark navy
+  doc.setFillColor(...colors.darkNavy);
   doc.roundedRect(margin, y, contentWidth, 60, 6, 6, "F");
-  // Champagne accent line
-  doc.setDrawColor(...colors.champagne);
+  // Blue accent line
+  doc.setDrawColor(...colors.accent);
   doc.setLineWidth(2);
   doc.line(margin + 20, y + 30, margin + 35, y + 30);
   
@@ -709,7 +710,7 @@ function generatePDF(payload: IntakePayload, referenceId: string, submittedAt: s
   
   doc.setFont("helvetica", "normal");
   doc.setFontSize(11);
-  doc.setTextColor(...colors.champagneLight);
+  doc.setTextColor(...colors.accentLight);
   const ctaLinkText = "Schedule a Strategic Consultation →";
   const ctaLinkY = y + 43;
   doc.text(ctaLinkText, margin + 45, ctaLinkY);
