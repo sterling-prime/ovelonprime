@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { ScrollReveal, StaggerContainer } from "./ScrollReveal";
 import sector1 from "@/assets/facility.png?format=webp&quality=80";
 import sector2 from "@/assets/mainte.png?format=webp&quality=80";
 import sector3 from "@/assets/logistic.png?format=webp&quality=80";
@@ -16,31 +17,28 @@ export const Sectors = () => {
   return (
     <section
       id="sectors"
-      className="
-        bg-muted/30
-        pt-12
-        md:pt-16
-        pb-20
-      "
+      className="bg-muted/30 pt-12 md:pt-16 pb-20"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <ScrollReveal variant="fade-up" className="text-center max-w-3xl mx-auto mb-12">
           <p className="section-label mb-3">{t("sectors.label")}</p>
-
           <h2 className="section-title mb-4">
             {t("sectors.title")}{" "}
             <span className="text-muted-foreground">{t("sectors.titleHighlight")}</span>
           </h2>
-
           <p className="section-subtitle mx-auto">
             {t("sectors.subtitle")}
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* Cards */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <StaggerContainer 
+          staggerDelay={150} 
+          baseDelay={100}
+          className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto"
+        >
           {sectors.map((sec, index) => (
             <div
               key={sec.name}
@@ -74,7 +72,7 @@ export const Sectors = () => {
               </p>
             </div>
           ))}
-        </div>
+        </StaggerContainer>
 
       </div>
     </section>

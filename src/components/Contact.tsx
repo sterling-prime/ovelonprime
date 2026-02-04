@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { useTranslation } from "react-i18next";
 import { useSubmitContact } from "@/hooks/use-submit-contact";
 import { ContactSuccessModal } from "@/components/ContactSuccessModal";
+import { ScrollReveal } from "./ScrollReveal";
 import { Loader2 } from "lucide-react";
 import contactBg from "@/assets/u3714841198_Minimalistic_abstract_background_designed_for_a_c_e56f8162-43f3-47ed-8b5e-63ec90910a05_0.png?format=webp&quality=80";
 
@@ -109,33 +110,36 @@ export const Contact = () => {
           <div className="max-w-3xl mx-auto text-center">
 
             {/* Label */}
-            <p
-              className="
-                mb-6
-                text-xs sm:text-sm
-                tracking-[0.3em]
-                font-semibold
-                uppercase
-                text-[#3A8F94]
-              "
-            >
-              {t("contact.label", "ENGAGE")}
-            </p>
+            <ScrollReveal variant="fade-up">
+              <p
+                className="
+                  mb-6
+                  text-xs sm:text-sm
+                  tracking-[0.3em]
+                  font-semibold
+                  uppercase
+                  text-[#3A8F94]
+                "
+              >
+                {t("contact.label", "ENGAGE")}
+              </p>
 
-            {/* Title */}
-            <h2 className="text-4xl sm:text-5xl font-bold leading-tight mb-8 text-foreground/80">
-              <span className="block mt-2 text-foreground/70">
-                {t("contact.title")}
-              </span>
-              {t("contact.titleHighlight")}
-            </h2>
+              {/* Title */}
+              <h2 className="text-4xl sm:text-5xl font-bold leading-tight mb-8 text-foreground/80">
+                <span className="block mt-2 text-foreground/70">
+                  {t("contact.title")}
+                </span>
+                {t("contact.titleHighlight")}
+              </h2>
 
-            {/* Subtitle */}
-            <p className="text-lg sm:text-xl text-foreground/60 max-w-2xl mx-auto mb-12">
-              {t("contact.subtitle")}
-            </p>
+              {/* Subtitle */}
+              <p className="text-lg sm:text-xl text-foreground/60 max-w-2xl mx-auto mb-12">
+                {t("contact.subtitle")}
+              </p>
+            </ScrollReveal>
 
             {/* Form */}
+            <ScrollReveal variant="fade-up" delay={200}>
             <form onSubmit={handleSubmit} className="max-w-xl mx-auto space-y-6">
               {/* Error message */}
               {formError && (
@@ -297,6 +301,7 @@ export const Contact = () => {
                 </Button>
               </div>
             </form>
+            </ScrollReveal>
 
             {/* Guarantee */}
             <p className="text-sm text-foreground/60 max-w-xl mx-auto mt-12 mb-8">
