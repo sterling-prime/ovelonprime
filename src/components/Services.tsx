@@ -56,7 +56,7 @@ export const Services = () => {
             <button
               key={index}
               onClick={() => handleCardClick(index)}
-              className="group bg-card rounded-2xl p-10 border border-border shadow-card text-center flex flex-col items-center relative overflow-hidden transition-all duration-300 hover:shadow-card-hover hover:border-accent/30 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
+              className="group bg-card rounded-2xl p-10 border border-border shadow-card text-center flex flex-col items-center relative overflow-hidden transition-all duration-300 hover:shadow-card-hover hover:border-accent/30 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background h-full min-h-[420px]"
               aria-label={`View details for ${service.title}`}
             >
               {/* Hover indicator */}
@@ -67,7 +67,7 @@ export const Services = () => {
               {/* Subtle gradient overlay on hover */}
               <div className="absolute inset-0 bg-gradient-to-t from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-              <div className="w-24 h-24 rounded-2xl overflow-hidden mb-6 shadow-lg relative z-10 transition-transform duration-300 group-hover:scale-105">
+              <div className="w-24 h-24 rounded-2xl overflow-hidden mb-6 shadow-lg relative z-10 transition-transform duration-300 group-hover:scale-105 flex-shrink-0">
                 <img
                   src={images[index]}
                   alt={service.title}
@@ -78,9 +78,9 @@ export const Services = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <h3 className="text-xl font-semibold text-foreground mb-4 relative z-10">{service.title}</h3>
-              <p className="text-muted-foreground text-sm mb-6 leading-relaxed relative z-10">{service.description}</p>
-              <div className="flex flex-wrap gap-2 justify-center relative z-10">
+              <h3 className="text-xl font-semibold text-foreground mb-4 relative z-10 flex-shrink-0">{service.title}</h3>
+              <p className="text-muted-foreground text-sm mb-6 leading-relaxed relative z-10 flex-grow">{service.description}</p>
+              <div className="flex flex-wrap gap-2 justify-center relative z-10 min-h-[32px] flex-shrink-0">
                 {service.tags.map((tag) => (
                   <span
                     key={tag}
@@ -92,7 +92,7 @@ export const Services = () => {
               </div>
 
               {/* Click hint */}
-              <span className="mt-6 text-xs text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300 relative z-10">
+              <span className="mt-6 text-xs text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300 relative z-10 flex-shrink-0">
                 {t("services.clickToExplore", "Click to explore")}
               </span>
             </button>

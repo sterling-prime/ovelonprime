@@ -82,7 +82,7 @@ export const Pricing = () => {
             <div
               key={plan.key}
               className={cn(
-                "relative bg-card rounded-xl pt-12 p-8 border shadow-card card-hover flex flex-col",
+                "relative bg-card rounded-xl pt-12 p-8 border shadow-card card-hover flex flex-col h-full min-h-[600px]",
                 plan.popular ? "border-accent ring-2 ring-accent/20" : "border-border"
               )}
             >
@@ -94,10 +94,10 @@ export const Pricing = () => {
                 </div>
               )}
 
-              <h3 className="text-xl font-semibold text-foreground mb-2 text-center">{plan.name}</h3>
-              <p className="text-sm text-muted-foreground mb-6 text-center">{plan.description}</p>
+              <h3 className="text-xl font-semibold text-foreground mb-2 text-center flex-shrink-0">{plan.name}</h3>
+              <p className="text-sm text-muted-foreground mb-6 text-center flex-shrink-0">{plan.description}</p>
 
-              <div className="mb-6 text-center">
+              <div className="mb-6 text-center flex-shrink-0">
                 {plan.priceLabel && (
                   <p className="text-xs uppercase tracking-wide text-muted-foreground mb-1">{plan.priceLabel}</p>
                 )}
@@ -114,15 +114,17 @@ export const Pricing = () => {
                 ))}
               </ul>
 
-              <Button
-                variant={plan.popular ? "default" : "outline"}
-                className="w-full mt-auto"
-                onClick={() => navigate(`${plan.href}?lang=${i18n.language}`)}
-              >
-                {plan.cta}
-              </Button>
+              <div className="flex-shrink-0">
+                <Button
+                  variant={plan.popular ? "default" : "outline"}
+                  className="w-full"
+                  onClick={() => navigate(`${plan.href}?lang=${i18n.language}`)}
+                >
+                  {plan.cta}
+                </Button>
 
-              <p className="text-[11px] text-muted-foreground text-center mt-3">{t("pricing.reviewNote")}</p>
+                <p className="text-[11px] text-muted-foreground text-center mt-3">{t("pricing.reviewNote")}</p>
+              </div>
             </div>
           ))}
         </StaggerContainer>

@@ -35,15 +35,15 @@ export const OperationalGovernanceTrends = () => {
             return (
               <div
                 key={col.key}
-                className="bg-card rounded-2xl p-8 border border-border shadow-card card-hover flex flex-col"
+                className="bg-card rounded-2xl p-8 border border-border shadow-card card-hover flex flex-col h-full min-h-[400px] group"
               >
-                <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center mb-6">
-                  <Icon className="w-6 h-6 text-foreground" />
+                <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center mb-6 flex-shrink-0 mx-auto transition-colors duration-300 group-hover:bg-[#3A8F94]/10">
+                  <Icon className="w-6 h-6 text-foreground transition-colors duration-300 group-hover:text-[#3A8F94]" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-5">
+                <h3 className="text-lg font-semibold text-foreground mb-5 flex-shrink-0 text-center">
                   {t(`governanceTrends.${col.key}.title`)}
                 </h3>
-                <ul className="space-y-3 flex-1">
+                <ul className="space-y-3 flex-grow">
                   {Array.from({ length: col.items }).map((_, i) => (
                     <li key={i} className="flex items-start gap-3 text-sm text-muted-foreground">
                       <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0" />

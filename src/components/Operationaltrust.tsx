@@ -23,15 +23,28 @@ export const OperationalTrust = () => {
 
       {/* Trust items */}
       <div className="flex flex-wrap justify-center gap-x-10 gap-y-6 text-sm text-muted-foreground">
+
         {items.map((item, index) => {
           const Icon = icons[index];
+
           return (
             <div key={index} className="flex items-center gap-2">
-              <Icon className="h-4 w-4 text-foreground/70" />
-              {item.text}
+
+              {/* Full text — visible on md+ */}
+              <div className="hidden md:flex items-center gap-2">
+                <Icon className="h-4 w-4 text-foreground/70" />
+                {item.text}
+              </div>
+
+              {/* Mobile-only badge — icon only */}
+              <div className="flex md:hidden items-center justify-center w-8 h-8 bg-secondary rounded-full shadow-sm">
+                <Icon className="h-4 w-4 text-foreground/80" />
+              </div>
+
             </div>
           );
         })}
+
       </div>
 
       {/* CISO / governance line */}

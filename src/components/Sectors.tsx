@@ -46,9 +46,10 @@ export const Sectors = () => {
                 group bg-card rounded-xl p-8 border border-border shadow-sm
                 transition-all duration-300 hover:-translate-y-2
                 hover:shadow-xl hover:border-accent/40 hover:shadow-accent/20
+                h-full min-h-[280px] flex flex-col
               "
             >
-              <div className="flex justify-center">
+              <div className="flex justify-center flex-shrink-0">
                 <img
                   src={images[index]}
                   alt={sec.name}
@@ -63,11 +64,11 @@ export const Sectors = () => {
                 />
               </div>
 
-              <h3 className="text-xl font-semibold mb-3 text-center text-foreground">
+              <h3 className="text-xl font-semibold mb-3 text-center text-foreground flex-shrink-0">
                 {sec.name}
               </h3>
 
-              <p className="text-muted-foreground text-sm leading-relaxed text-center">
+              <p className="text-muted-foreground text-sm leading-relaxed text-center flex-grow">
                 {sec.description}
               </p>
             </div>

@@ -35,6 +35,7 @@ export const VideoSection = () => {
   const isInViewRef = useRef(false);
   const isIntentionalScrollRef = useRef(false);
   const [showHint, setShowHint] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
 
   const lang = resolveLang(i18n.language);
   const videoSrc = useMemo(() => INTRO_VIDEOS[lang], [lang]);
@@ -186,6 +187,8 @@ export const VideoSection = () => {
       id="video-section"
       ref={sectionRef}
       className="relative bg-primary py-24"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
     >
       <div className="container mx-auto px-6 max-w-6xl">
 
