@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { ArrowRight, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
@@ -11,6 +11,8 @@ const ProjectSimulator = lazy(() => import("./ProjectSimulator"));
 export const Hero = () => {
   const { t } = useTranslation();
   const [simulatorOpen, setSimulatorOpen] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+  const heroRef = useRef<HTMLElement>(null);
 
   // Listen for global event to open simulator (from chatbot)
   useEffect(() => {
@@ -19,9 +21,23 @@ export const Hero = () => {
     return () => window.removeEventListener("open-simulator", handleOpenSimulator);
   }, []);
 
+  // Parallax scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      if (heroRef.current) {
+        const rect = heroRef.current.getBoundingClientRect();
+        if (rect.bottom > 0) {
+          setScrollY(window.scrollY);
+        }
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
 
         {/* ===== Background ===== */}
         <div className="absolute inset-0 z-0">
@@ -32,14 +48,10 @@ export const Hero = () => {
             height={1080}
             fetchPriority="high"
             decoding="async"
-            className="
-              w-full
-              h-full
-              object-cover
-              brightness-[1.1]
-              contrast-[1.15]
-              saturate-[1.05]
-            "
+            className="w-full h-full object-cover brightness-[1.1] contrast-[1.15] saturate-[1.05] will-change-transform"
+            style={{
+              transform: `translateY(${scrollY * 0.4}px) scale(${1 + scrollY * 0.0002})`,
+            }}
           />
 
           {/* Readability overlay — 6% */}
