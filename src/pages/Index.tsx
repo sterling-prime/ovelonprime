@@ -5,6 +5,7 @@ import { Services } from "@/components/Services";
 import { Footer } from "@/components/Footer";
 import { BackToTop } from "@/components/BackToTop";
 import { VideoSection } from "@/components/VideoSection";
+ import { ProblemSection } from "@/components/ProblemSection";
 
 // Lazy load below-fold sections to reduce initial bundle size
 const Sectors = lazy(() => import("@/components/Sectors").then(m => ({ default: m.Sectors })));
@@ -24,6 +25,7 @@ const Index = () => {
       <main>
         {/* Critical above-fold content */}
         <Hero />
+         <ProblemSection />
         <VideoSection />
         <Services />
         

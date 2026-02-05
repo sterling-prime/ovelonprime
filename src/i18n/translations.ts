@@ -59,6 +59,16 @@ export const translations: Record<Lang, any> = {
       simulatorCta: "Demand & Execution Intake",
       
     },
+     problem: {
+       badge: "The Challenge",
+       title: "Operational friction costs more than you realize.",
+       description: "Every missed call, booking error, and overloaded staff moment represents lost revenue and diminished guest experience. Your front desk shouldn't be your bottleneck.",
+       pain1: "Missed calls during peak hours",
+       pain2: "Double bookings and scheduling conflicts",
+       pain3: "Staff overwhelmed with administrative tasks",
+       pain4: "Inconsistent guest communication",
+       pain5: "Revenue lost to operational gaps",
+     },
     video: {
       title: "Designed for uninterrupted operations",
       subtitle: "See how Ovelon Prime supports mission-critical environments without disrupting live systems.",
@@ -904,6 +914,16 @@ export const translations: Record<Lang, any> = {
       simulatorCta: "Bedarfs- & Ausführungsaufnahme",
       
     },
+     problem: {
+       badge: "Die Herausforderung",
+       title: "Betriebliche Reibung kostet mehr als Sie denken.",
+       description: "Jeder verpasste Anruf, jeder Buchungsfehler und jeder überforderte Mitarbeiter bedeutet verlorene Einnahmen und ein schlechteres Gästeerlebnis. Ihre Rezeption sollte nicht Ihr Engpass sein.",
+       pain1: "Verpasste Anrufe zu Stoßzeiten",
+       pain2: "Doppelbuchungen und Terminkonflkte",
+       pain3: "Mitarbeiter überlastet mit Verwaltungsaufgaben",
+       pain4: "Inkonsistente Gästekommunikation",
+       pain5: "Umsatzverluste durch betriebliche Lücken",
+     },
     video: {
       title: "Konzipiert für unterbrechungsfreien Betrieb",
       subtitle: "Sehen Sie, wie Ovelon Prime missionskritische Umgebungen unterstützt, ohne laufende Systeme zu stören.",
@@ -1749,6 +1769,16 @@ export const translations: Record<Lang, any> = {
       simulatorCta: "Prise en charge Demande & Exécution",
 
     },
+     problem: {
+       badge: "Le Défi",
+       title: "Les frictions opérationnelles coûtent plus que vous ne le pensez.",
+       description: "Chaque appel manqué, erreur de réservation et moment de surcharge du personnel représente des revenus perdus et une expérience client diminuée. Votre réception ne devrait pas être votre goulot d'étranglement.",
+       pain1: "Appels manqués aux heures de pointe",
+       pain2: "Doubles réservations et conflits d'horaires",
+       pain3: "Personnel débordé par les tâches administratives",
+       pain4: "Communication client incohérente",
+       pain5: "Revenus perdus à cause des lacunes opérationnelles",
+     },
     video: {
       title: "Conçu pour des opérations ininterrompues",
       subtitle: "Découvrez comment Ovelon Prime soutient les environnements critiques sans perturber les systèmes en cours.",
@@ -2594,6 +2624,16 @@ export const translations: Record<Lang, any> = {
       cta: "Recupere el control de las operaciones",
       simulatorCta: "Ingesta de Demanda y Ejecución",
     },
+     problem: {
+       badge: "El Desafío",
+       title: "La fricción operacional cuesta más de lo que crees.",
+       description: "Cada llamada perdida, error de reserva y momento de sobrecarga del personal representa ingresos perdidos y una experiencia del huésped disminuida. Tu recepción no debería ser tu cuello de botella.",
+       pain1: "Llamadas perdidas en horas pico",
+       pain2: "Reservas dobles y conflictos de horarios",
+       pain3: "Personal abrumado con tareas administrativas",
+       pain4: "Comunicación inconsistente con huéspedes",
+       pain5: "Ingresos perdidos por brechas operacionales",
+     },
     video: {
       title: "Diseñado para operaciones ininterrumpidas",
       subtitle: "Vea cómo Ovelon Prime apoya entornos de misión crítica sin interrumpir los sistemas en vivo.",
@@ -3422,6 +3462,16 @@ export const translations: Record<Lang, any> = {
       cta: "Riprendi il controllo delle operazioni",
       simulatorCta: "Acquisizione Domanda ed Esecuzione",
     },
+     problem: {
+       badge: "La Sfida",
+       title: "L'attrito operativo costa più di quanto pensi.",
+       description: "Ogni chiamata persa, errore di prenotazione e momento di sovraccarico del personale rappresenta ricavi persi e un'esperienza ospite diminuita. La tua reception non dovrebbe essere il tuo collo di bottiglia.",
+       pain1: "Chiamate perse nelle ore di punta",
+       pain2: "Doppie prenotazioni e conflitti di orario",
+       pain3: "Personale sopraffatto da compiti amministrativi",
+       pain4: "Comunicazione incoerente con gli ospiti",
+       pain5: "Ricavi persi a causa di lacune operative",
+     },
     video: {
       title: "Progettato per operazioni ininterrotte",
       subtitle: "Scopri come Ovelon Prime supporta ambienti mission-critical senza interrompere i sistemi attivi.",
@@ -4248,6 +4298,16 @@ export const translations: Record<Lang, any> = {
       cta: "Recuperar o Controlo das Operações",
       simulatorCta: "Diagnóstico de Procura e Execução",
     },
+     problem: {
+       badge: "O Desafio",
+       title: "O atrito operacional custa mais do que imagina.",
+       description: "Cada chamada perdida, erro de reserva e momento de sobrecarga da equipa representa receita perdida e uma experiência do hóspede diminuída. A sua receção não deveria ser o seu gargalo.",
+       pain1: "Chamadas perdidas nas horas de pico",
+       pain2: "Reservas duplicadas e conflitos de horários",
+       pain3: "Equipa sobrecarregada com tarefas administrativas",
+       pain4: "Comunicação inconsistente com hóspedes",
+       pain5: "Receita perdida devido a lacunas operacionais",
+     },
     video: {
       title: "Concebido para operações ininterruptas",
       subtitle: "Veja como a Ovelon Prime apoia ambientes de missão crítica sem interromper sistemas ativos.",
