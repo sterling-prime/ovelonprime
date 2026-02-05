@@ -4,9 +4,10 @@ import { Hero } from "@/components/Hero";
 import { Services } from "@/components/Services";
 import { Footer } from "@/components/Footer";
 import { BackToTop } from "@/components/BackToTop";
- import { VideoSection } from "@/components/VideoSection";
- import { ProblemSection } from "@/components/ProblemSection";
- import { ProcessSection } from "@/components/ProcessSection";
+import { VideoSection } from "@/components/VideoSection";
+import { ProblemSection } from "@/components/ProblemSection";
+import { ProcessSection } from "@/components/ProcessSection";
+
 
 // Lazy load below-fold sections to reduce initial bundle size
 const Sectors = lazy(() => import("@/components/Sectors").then(m => ({ default: m.Sectors })));
@@ -19,7 +20,6 @@ const OperationalGovernanceTrends = lazy(() => import("@/components/operationalg
  const Faq = lazy(() => import("@/components/faq").then(m => ({ default: m.Faq })));
  const Contact = lazy(() => import("@/components/Contact").then(m => ({ default: m.Contact })));
  const WorkflowDemo = lazy(() => import("@/components/WorkflowDemo").then(m => ({ default: m.WorkflowDemo })));
-
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">

@@ -120,7 +120,7 @@ export const ServiceDetailModal = ({ isOpen, onClose, serviceIndex, service }: S
               className="w-full sm:w-auto group"
               size="lg"
             >
-              {t("serviceDetails.cta", "Explore Implementation")}
+              {t("serviceDetails.cta", "Explore Demo")}
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
