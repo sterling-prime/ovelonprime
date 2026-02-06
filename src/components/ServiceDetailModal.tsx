@@ -116,7 +116,15 @@ export const ServiceDetailModal = ({ isOpen, onClose, serviceIndex, service }: S
           {/* CTA */}
           <div className="pt-4">
             <Button
-              onClick={onClose}
+              onClick={() => {
+                onClose();
+                setTimeout(() => {
+                  const demoSection = document.querySelector('[data-section="workflow-demo"]');
+                  if (demoSection) {
+                    demoSection.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }
+                }, 300);
+              }}
               className="w-full sm:w-auto group"
               size="lg"
             >
