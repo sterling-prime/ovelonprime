@@ -48,9 +48,9 @@ export const Hero = () => {
             height={1080}
             fetchPriority="high"
             decoding="async"
-            className="w-full h-full object-cover brightness-[1.1] contrast-[1.15] saturate-[1.05] will-change-transform"
+            className="w-full h-full object-cover brightness-[1.1] contrast-[1.15] saturate-[1.05] will-change-transform transition-transform duration-75 ease-linear"
             style={{
-              transform: `translateY(${scrollY * 0.4}px) scale(${1 + scrollY * 0.0002})`,
+              transform: `translate3d(0, ${scrollY * 0.55}px, 0) scale(${1 + scrollY * 0.0003})`,
             }}
           />
 
