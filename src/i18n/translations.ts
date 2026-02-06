@@ -920,6 +920,59 @@ export const translations: Record<Lang, any> = {
       missingInfoDesc: "Please fill in both name and email.",
       failedTitle: "Subscription failed",
     },
+    caseStudies: {
+      badge: "Proven Results",
+      title: "Transforming operations for mission-critical industries.",
+      challengeLabel: "The Challenge",
+      solutionLabel: "The Ovelon Prime Solution",
+      resultsLabel: "Quantifiable Results",
+      cases: {
+        facility: {
+          industry: "Facility Management",
+          client: "Multi-Site Facility Operator",
+          challenge: "Managing service requests across 40+ distributed sites led to inconsistent response times, missed maintenance windows, and fragmented communication between on-site teams and central coordination.",
+          solution: "Ovelon Prime unified all inbound requests into a structured intake system with automated routing, priority classification, and real-time status tracking — enabling centralized oversight without replacing existing tools.",
+          results: [
+            { value: "42%", label: "Faster response times" },
+            { value: "95%", label: "SLA compliance rate" },
+            { value: "60%", label: "Reduction in coordination errors" },
+          ],
+        },
+        supplyChain: {
+          industry: "Supply Chain",
+          client: "Regional Distribution Network",
+          challenge: "Manual coordination between suppliers, warehouses, and transport partners created blind spots in the supply chain, leading to delayed shipments, inventory mismatches, and escalating operational costs.",
+          solution: "Ovelon Prime implemented end-to-end workflow automation linking procurement, inventory management, and logistics scheduling — providing real-time visibility and predictive alerting across the entire supply chain.",
+          results: [
+            { value: "38%", label: "Reduction in lead times" },
+            { value: "99.2%", label: "Order accuracy rate" },
+            { value: "28%", label: "Lower operational costs" },
+          ],
+        },
+        warehouse: {
+          industry: "Warehouse & Storage",
+          client: "Industrial Storage Complex",
+          challenge: "Inventory tracking relied on fragmented spreadsheets and manual counts, causing frequent stock discrepancies, misallocated storage space, and delayed order fulfillment across multiple warehouse zones.",
+          solution: "Ovelon Prime standardized inventory workflows with automated intake logging, zone-based allocation rules, and real-time stock visibility — reducing manual intervention while improving accuracy and throughput.",
+          results: [
+            { value: "55%", label: "Reduction in stock discrepancies" },
+            { value: "40%", label: "Faster order fulfillment" },
+            { value: "35%", label: "Improved space utilization" },
+          ],
+        },
+        maintenance: {
+          industry: "Repair & Maintenance",
+          client: "Industrial Equipment Services",
+          challenge: "Reactive maintenance workflows dominated operations. Work orders were logged inconsistently, parts tracking was manual, and technician scheduling was based on availability rather than priority or proximity.",
+          solution: "Ovelon Prime introduced structured work order management with automated priority routing, parts inventory integration, and optimized technician dispatch — shifting operations from reactive to predictive maintenance.",
+          results: [
+            { value: "47%", label: "Reduction in equipment downtime" },
+            { value: "65%", label: "Faster work order completion" },
+            { value: "30%", label: "Decrease in repeat incidents" },
+          ],
+        },
+      },
+    },
   },
   de: {
 
@@ -1810,6 +1863,59 @@ export const translations: Record<Lang, any> = {
       missingInfo: "Fehlende Informationen",
       missingInfoDesc: "Bitte füllen Sie sowohl Name als auch E-Mail aus.",
       failedTitle: "Abonnement fehlgeschlagen",
+    },
+    caseStudies: {
+      badge: "Nachgewiesene Ergebnisse",
+      title: "Betriebsabläufe für missionskritische Industrien transformieren.",
+      challengeLabel: "Die Herausforderung",
+      solutionLabel: "Die Ovelon Prime Lösung",
+      resultsLabel: "Messbare Ergebnisse",
+      cases: {
+        facility: {
+          industry: "Gebäudemanagement",
+          client: "Multi-Standort Facility Betreiber",
+          challenge: "Die Verwaltung von Serviceanfragen über 40+ verteilte Standorte führte zu inkonsistenten Reaktionszeiten, verpassten Wartungsfenstern und fragmentierter Kommunikation zwischen Vor-Ort-Teams und zentraler Koordination.",
+          solution: "Ovelon Prime vereinheitlichte alle eingehenden Anfragen in einem strukturierten Aufnahmesystem mit automatischer Weiterleitung, Prioritätsklassifizierung und Echtzeit-Statusverfolgung — für zentralisierte Übersicht ohne bestehende Tools zu ersetzen.",
+          results: [
+            { value: "42%", label: "Schnellere Reaktionszeiten" },
+            { value: "95%", label: "SLA-Konformitätsrate" },
+            { value: "60%", label: "Reduzierung von Koordinationsfehlern" },
+          ],
+        },
+        supplyChain: {
+          industry: "Lieferkette",
+          client: "Regionales Distributionsnetzwerk",
+          challenge: "Manuelle Koordination zwischen Lieferanten, Lagerhäusern und Transportpartnern schuf blinde Flecken in der Lieferkette, was zu verzögerten Lieferungen, Bestandsabweichungen und steigenden Betriebskosten führte.",
+          solution: "Ovelon Prime implementierte durchgängige Workflow-Automatisierung, die Beschaffung, Bestandsmanagement und Logistikplanung verknüpfte — mit Echtzeit-Transparenz und vorausschauenden Warnmeldungen über die gesamte Lieferkette.",
+          results: [
+            { value: "38%", label: "Reduzierung der Durchlaufzeiten" },
+            { value: "99,2%", label: "Bestellgenauigkeitsrate" },
+            { value: "28%", label: "Niedrigere Betriebskosten" },
+          ],
+        },
+        warehouse: {
+          industry: "Lager & Speicherung",
+          client: "Industrieller Lagerkomplex",
+          challenge: "Die Bestandsverfolgung basierte auf fragmentierten Tabellen und manuellen Zählungen, was häufige Bestandsabweichungen, falsch zugewiesenen Lagerplatz und verzögerte Auftragsabwicklung über mehrere Lagerzonen verursachte.",
+          solution: "Ovelon Prime standardisierte Bestandsabläufe mit automatischer Aufnahmeprotokollierung, zonenbasierter Zuweisungsregeln und Echtzeit-Bestandstransparenz — Reduzierung manueller Eingriffe bei gleichzeitiger Verbesserung von Genauigkeit und Durchsatz.",
+          results: [
+            { value: "55%", label: "Reduzierung von Bestandsabweichungen" },
+            { value: "40%", label: "Schnellere Auftragsabwicklung" },
+            { value: "35%", label: "Verbesserte Raumnutzung" },
+          ],
+        },
+        maintenance: {
+          industry: "Reparatur & Wartung",
+          client: "Industrielle Ausrüstungsdienste",
+          challenge: "Reaktive Wartungsabläufe dominierten den Betrieb. Arbeitsaufträge wurden inkonsistent erfasst, Teileverfolgung war manuell und Technikerplanung basierte auf Verfügbarkeit statt Priorität oder Nähe.",
+          solution: "Ovelon Prime führte strukturiertes Auftragsmanagement mit automatischer Prioritätsweiterleitung, Teilebestandsintegration und optimierter Technikerzuweisung ein — Umstellung von reaktiver zu vorausschauender Wartung.",
+          results: [
+            { value: "47%", label: "Reduzierung der Ausfallzeiten" },
+            { value: "65%", label: "Schnellere Auftragsabwicklung" },
+            { value: "30%", label: "Weniger Wiederholungsvorfälle" },
+          ],
+        },
+      },
     },
   },
   fr: {
@@ -2702,6 +2808,59 @@ export const translations: Record<Lang, any> = {
       missingInfoDesc: "Veuillez remplir le nom et l'e-mail.",
       failedTitle: "Échec de l'abonnement",
     },
+    caseStudies: {
+      badge: "Résultats prouvés",
+      title: "Transformer les opérations pour les industries critiques.",
+      challengeLabel: "Le défi",
+      solutionLabel: "La solution Ovelon Prime",
+      resultsLabel: "Résultats quantifiables",
+      cases: {
+        facility: {
+          industry: "Gestion d'installations",
+          client: "Opérateur multi-sites",
+          challenge: "La gestion des demandes de service sur plus de 40 sites distribués entraînait des temps de réponse incohérents, des fenêtres de maintenance manquées et une communication fragmentée entre les équipes sur site et la coordination centrale.",
+          solution: "Ovelon Prime a unifié toutes les demandes entrantes dans un système d'intake structuré avec routage automatique, classification par priorité et suivi d'état en temps réel — permettant une supervision centralisée sans remplacer les outils existants.",
+          results: [
+            { value: "42%", label: "Temps de réponse plus rapides" },
+            { value: "95%", label: "Taux de conformité SLA" },
+            { value: "60%", label: "Réduction des erreurs de coordination" },
+          ],
+        },
+        supplyChain: {
+          industry: "Chaîne d'approvisionnement",
+          client: "Réseau de distribution régional",
+          challenge: "La coordination manuelle entre fournisseurs, entrepôts et partenaires de transport créait des angles morts dans la chaîne d'approvisionnement, entraînant des retards de livraison, des écarts d'inventaire et des coûts opérationnels croissants.",
+          solution: "Ovelon Prime a mis en place une automatisation de bout en bout reliant approvisionnement, gestion des stocks et planification logistique — offrant une visibilité en temps réel et des alertes prédictives sur l'ensemble de la chaîne.",
+          results: [
+            { value: "38%", label: "Réduction des délais" },
+            { value: "99,2%", label: "Taux de précision des commandes" },
+            { value: "28%", label: "Coûts opérationnels réduits" },
+          ],
+        },
+        warehouse: {
+          industry: "Entreposage & Stockage",
+          client: "Complexe de stockage industriel",
+          challenge: "Le suivi des stocks reposait sur des tableurs fragmentés et des comptages manuels, causant de fréquentes divergences, une mauvaise allocation de l'espace et des retards de préparation de commandes.",
+          solution: "Ovelon Prime a standardisé les flux d'inventaire avec un enregistrement automatique, des règles d'allocation par zone et une visibilité des stocks en temps réel — réduisant les interventions manuelles tout en améliorant la précision.",
+          results: [
+            { value: "55%", label: "Réduction des écarts de stock" },
+            { value: "40%", label: "Exécution des commandes plus rapide" },
+            { value: "35%", label: "Meilleure utilisation de l'espace" },
+          ],
+        },
+        maintenance: {
+          industry: "Réparation & Maintenance",
+          client: "Services d'équipements industriels",
+          challenge: "Les flux de maintenance réactive dominaient les opérations. Les ordres de travail étaient enregistrés de manière incohérente, le suivi des pièces était manuel et la planification des techniciens se basait sur la disponibilité plutôt que la priorité.",
+          solution: "Ovelon Prime a introduit une gestion structurée des ordres de travail avec routage automatique par priorité, intégration de l'inventaire des pièces et dispatch optimisé des techniciens — passant d'une maintenance réactive à prédictive.",
+          results: [
+            { value: "47%", label: "Réduction des temps d'arrêt" },
+            { value: "65%", label: "Exécution plus rapide des ordres" },
+            { value: "30%", label: "Moins d'incidents récurrents" },
+          ],
+        },
+      },
+    },
   },
   /* ===================== ES ===================== */
   es: {
@@ -3575,6 +3734,59 @@ export const translations: Record<Lang, any> = {
       missingInfoDesc: "Por favor completa nombre y correo electrónico.",
       failedTitle: "Suscripción fallida",
     },
+    caseStudies: {
+      badge: "Resultados probados",
+      title: "Transformando operaciones para industrias críticas.",
+      challengeLabel: "El desafío",
+      solutionLabel: "La solución Ovelon Prime",
+      resultsLabel: "Resultados cuantificables",
+      cases: {
+        facility: {
+          industry: "Gestión de instalaciones",
+          client: "Operador de múltiples sitios",
+          challenge: "La gestión de solicitudes de servicio en más de 40 sitios distribuidos generaba tiempos de respuesta inconsistentes, ventanas de mantenimiento perdidas y comunicación fragmentada entre equipos en sitio y coordinación central.",
+          solution: "Ovelon Prime unificó todas las solicitudes entrantes en un sistema de intake estructurado con enrutamiento automático, clasificación por prioridad y seguimiento de estado en tiempo real — permitiendo supervisión centralizada sin reemplazar herramientas existentes.",
+          results: [
+            { value: "42%", label: "Tiempos de respuesta más rápidos" },
+            { value: "95%", label: "Tasa de cumplimiento SLA" },
+            { value: "60%", label: "Reducción de errores de coordinación" },
+          ],
+        },
+        supplyChain: {
+          industry: "Cadena de suministro",
+          client: "Red de distribución regional",
+          challenge: "La coordinación manual entre proveedores, almacenes y socios de transporte creaba puntos ciegos en la cadena de suministro, provocando envíos retrasados, discrepancias de inventario y costos operativos crecientes.",
+          solution: "Ovelon Prime implementó automatización de flujos de extremo a extremo vinculando adquisición, gestión de inventario y planificación logística — proporcionando visibilidad en tiempo real y alertas predictivas en toda la cadena.",
+          results: [
+            { value: "38%", label: "Reducción de plazos de entrega" },
+            { value: "99,2%", label: "Tasa de precisión de pedidos" },
+            { value: "28%", label: "Menores costos operativos" },
+          ],
+        },
+        warehouse: {
+          industry: "Almacenamiento",
+          client: "Complejo de almacenamiento industrial",
+          challenge: "El seguimiento de inventario dependía de hojas de cálculo fragmentadas y conteos manuales, causando frecuentes discrepancias de stock, espacio mal asignado y retrasos en el cumplimiento de pedidos.",
+          solution: "Ovelon Prime estandarizó los flujos de inventario con registro automático de entradas, reglas de asignación por zona y visibilidad de stock en tiempo real — reduciendo la intervención manual mientras mejoraba la precisión.",
+          results: [
+            { value: "55%", label: "Reducción de discrepancias de stock" },
+            { value: "40%", label: "Cumplimiento de pedidos más rápido" },
+            { value: "35%", label: "Mejor utilización del espacio" },
+          ],
+        },
+        maintenance: {
+          industry: "Reparación y Mantenimiento",
+          client: "Servicios de equipos industriales",
+          challenge: "Los flujos de mantenimiento reactivo dominaban las operaciones. Las órdenes de trabajo se registraban de forma inconsistente, el seguimiento de piezas era manual y la programación de técnicos se basaba en disponibilidad en lugar de prioridad.",
+          solution: "Ovelon Prime introdujo gestión estructurada de órdenes de trabajo con enrutamiento automático por prioridad, integración de inventario de piezas y despacho optimizado de técnicos — pasando de mantenimiento reactivo a predictivo.",
+          results: [
+            { value: "47%", label: "Reducción del tiempo de inactividad" },
+            { value: "65%", label: "Finalización más rápida de órdenes" },
+            { value: "30%", label: "Menos incidentes recurrentes" },
+          ],
+        },
+      },
+    },
   },
 
   /* ===================== IT ===================== */
@@ -4446,6 +4658,59 @@ export const translations: Record<Lang, any> = {
       missingInfoDesc: "Per favore compila nome e email.",
       failedTitle: "Iscrizione fallita",
     },
+    caseStudies: {
+      badge: "Risultati comprovati",
+      title: "Trasformare le operazioni per industrie mission-critical.",
+      challengeLabel: "La sfida",
+      solutionLabel: "La soluzione Ovelon Prime",
+      resultsLabel: "Risultati quantificabili",
+      cases: {
+        facility: {
+          industry: "Gestione strutture",
+          client: "Operatore multi-sito",
+          challenge: "La gestione delle richieste di servizio su oltre 40 siti distribuiti portava a tempi di risposta incoerenti, finestre di manutenzione mancate e comunicazione frammentata tra team sul campo e coordinamento centrale.",
+          solution: "Ovelon Prime ha unificato tutte le richieste in entrata in un sistema di intake strutturato con instradamento automatico, classificazione delle priorità e monitoraggio dello stato in tempo reale — consentendo una supervisione centralizzata senza sostituire gli strumenti esistenti.",
+          results: [
+            { value: "42%", label: "Tempi di risposta più rapidi" },
+            { value: "95%", label: "Tasso di conformità SLA" },
+            { value: "60%", label: "Riduzione errori di coordinamento" },
+          ],
+        },
+        supplyChain: {
+          industry: "Catena di fornitura",
+          client: "Rete di distribuzione regionale",
+          challenge: "Il coordinamento manuale tra fornitori, magazzini e partner di trasporto creava punti ciechi nella catena di fornitura, causando ritardi nelle spedizioni, discrepanze di inventario e costi operativi crescenti.",
+          solution: "Ovelon Prime ha implementato l'automazione end-to-end collegando approvvigionamento, gestione dell'inventario e pianificazione logistica — fornendo visibilità in tempo reale e avvisi predittivi lungo tutta la catena.",
+          results: [
+            { value: "38%", label: "Riduzione dei tempi di consegna" },
+            { value: "99,2%", label: "Tasso di precisione ordini" },
+            { value: "28%", label: "Costi operativi inferiori" },
+          ],
+        },
+        warehouse: {
+          industry: "Magazzino e Stoccaggio",
+          client: "Complesso di stoccaggio industriale",
+          challenge: "Il tracciamento dell'inventario si basava su fogli di calcolo frammentati e conteggi manuali, causando frequenti discrepanze di stock, spazio di stoccaggio mal allocato e ritardi nell'evasione degli ordini.",
+          solution: "Ovelon Prime ha standardizzato i flussi di inventario con registrazione automatica, regole di allocazione per zona e visibilità dello stock in tempo reale — riducendo gli interventi manuali migliorando precisione e produttività.",
+          results: [
+            { value: "55%", label: "Riduzione discrepanze di stock" },
+            { value: "40%", label: "Evasione ordini più rapida" },
+            { value: "35%", label: "Migliore utilizzo dello spazio" },
+          ],
+        },
+        maintenance: {
+          industry: "Riparazione e Manutenzione",
+          client: "Servizi attrezzature industriali",
+          challenge: "I flussi di manutenzione reattiva dominavano le operazioni. Gli ordini di lavoro venivano registrati in modo incoerente, il tracciamento dei ricambi era manuale e la pianificazione dei tecnici si basava sulla disponibilità anziché sulla priorità.",
+          solution: "Ovelon Prime ha introdotto la gestione strutturata degli ordini di lavoro con instradamento automatico per priorità, integrazione dell'inventario ricambi e invio ottimizzato dei tecnici — passando dalla manutenzione reattiva a quella predittiva.",
+          results: [
+            { value: "47%", label: "Riduzione dei tempi di fermo" },
+            { value: "65%", label: "Completamento ordini più rapido" },
+            { value: "30%", label: "Meno incidenti ricorrenti" },
+          ],
+        },
+      },
+    },
   },
 
   /* ===================== PT ===================== */
@@ -5307,6 +5572,59 @@ export const translations: Record<Lang, any> = {
       missingInfo: "Informação em falta",
       missingInfoDesc: "Por favor preencha o nome e o email.",
       failedTitle: "Subscrição falhou",
+    },
+    caseStudies: {
+      badge: "Resultados comprovados",
+      title: "Transformando operações para indústrias de missão crítica.",
+      challengeLabel: "O desafio",
+      solutionLabel: "A solução Ovelon Prime",
+      resultsLabel: "Resultados quantificáveis",
+      cases: {
+        facility: {
+          industry: "Gestão de instalações",
+          client: "Operador multi-site",
+          challenge: "A gestão de solicitações de serviço em mais de 40 sites distribuídos resultava em tempos de resposta inconsistentes, janelas de manutenção perdidas e comunicação fragmentada entre equipas no local e coordenação central.",
+          solution: "Ovelon Prime unificou todas as solicitações num sistema de intake estruturado com encaminhamento automático, classificação por prioridade e rastreamento de estado em tempo real — permitindo supervisão centralizada sem substituir ferramentas existentes.",
+          results: [
+            { value: "42%", label: "Tempos de resposta mais rápidos" },
+            { value: "95%", label: "Taxa de conformidade SLA" },
+            { value: "60%", label: "Redução de erros de coordenação" },
+          ],
+        },
+        supplyChain: {
+          industry: "Cadeia de abastecimento",
+          client: "Rede de distribuição regional",
+          challenge: "A coordenação manual entre fornecedores, armazéns e parceiros de transporte criava pontos cegos na cadeia de abastecimento, resultando em envios atrasados, discrepâncias de inventário e custos operacionais crescentes.",
+          solution: "Ovelon Prime implementou automação de fluxos de ponta a ponta ligando compras, gestão de inventário e planeamento logístico — proporcionando visibilidade em tempo real e alertas preditivos em toda a cadeia.",
+          results: [
+            { value: "38%", label: "Redução dos prazos de entrega" },
+            { value: "99,2%", label: "Taxa de precisão de encomendas" },
+            { value: "28%", label: "Custos operacionais menores" },
+          ],
+        },
+        warehouse: {
+          industry: "Armazém e Armazenamento",
+          client: "Complexo de armazenamento industrial",
+          challenge: "O rastreamento de inventário dependia de folhas de cálculo fragmentadas e contagens manuais, causando discrepâncias frequentes de stock, espaço mal alocado e atrasos no cumprimento de encomendas.",
+          solution: "Ovelon Prime padronizou os fluxos de inventário com registo automático de entradas, regras de alocação por zona e visibilidade de stock em tempo real — reduzindo intervenções manuais enquanto melhorava a precisão e a produtividade.",
+          results: [
+            { value: "55%", label: "Redução de discrepâncias de stock" },
+            { value: "40%", label: "Cumprimento de encomendas mais rápido" },
+            { value: "35%", label: "Melhor utilização do espaço" },
+          ],
+        },
+        maintenance: {
+          industry: "Reparação e Manutenção",
+          client: "Serviços de equipamentos industriais",
+          challenge: "Os fluxos de manutenção reativa dominavam as operações. As ordens de trabalho eram registadas de forma inconsistente, o rastreamento de peças era manual e o agendamento de técnicos baseava-se na disponibilidade em vez da prioridade.",
+          solution: "Ovelon Prime introduziu gestão estruturada de ordens de trabalho com encaminhamento automático por prioridade, integração de inventário de peças e despacho otimizado de técnicos — passando de manutenção reativa para preditiva.",
+          results: [
+            { value: "47%", label: "Redução do tempo de inatividade" },
+            { value: "65%", label: "Conclusão mais rápida de ordens" },
+            { value: "30%", label: "Menos incidentes recorrentes" },
+          ],
+        },
+      },
     },
   },
 };
