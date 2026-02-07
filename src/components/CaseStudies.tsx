@@ -4,10 +4,10 @@ import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 import { ScrollReveal } from "./ScrollReveal";
 
-import caseFacility from "@/assets/case-facility.jpg";
-import caseSupplychain from "@/assets/case-supplychain.jpg";
+import caseFacility from "@/assets/facilitydemo.png";
+import caseSupplychain from "@/assets/supplydemo.png";
 import caseWarehouse from "@/assets/case-warehouse.jpg";
-import caseMaintenance from "@/assets/case-maintenance.jpg";
+import caseMaintenance from "@/assets/repairdemo.png";
 
 const caseImages = [caseFacility, caseSupplychain, caseWarehouse, caseMaintenance];
 
