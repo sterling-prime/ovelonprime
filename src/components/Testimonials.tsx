@@ -18,7 +18,6 @@ export const Testimonials = () => {
     quote: string;
     name: string;
     title: string;
-    facility: string;
   }>;
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
@@ -87,7 +86,6 @@ export const Testimonials = () => {
                         <div className="text-left">
                           <div className="font-medium text-primary-foreground">{testimonial.name}</div>
                           <div className="text-sm text-primary-foreground/60">{testimonial.title}</div>
-                          <div className="text-xs text-primary-foreground/40 mt-0.5">{testimonial.facility}</div>
                         </div>
                       </div>
                     </div>
