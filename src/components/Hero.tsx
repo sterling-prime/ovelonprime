@@ -1,7 +1,8 @@
-import { useState, useEffect, useRef, lazy, Suspense } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { ArrowRight, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
+import { useParallax } from "@/hooks/use-parallax";
 import heroBg from "@/assets/u3714841198_Sleek_minimalistic_abstract_visual_inspired_by_he_53bffa3d-7c36-4acb-858b-afa6bbf35d2a_0.png?format=webp&quality=80";
 import { HeroScrollDown } from "./HeroScrollDown";
 
@@ -11,28 +12,19 @@ const ProjectSimulator = lazy(() => import("./ProjectSimulator"));
 export const Hero = () => {
   const { t } = useTranslation();
   const [simulatorOpen, setSimulatorOpen] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
-  const heroRef = useRef<HTMLElement>(null);
+
+  const { ref: heroRef, style: parallaxStyle } = useParallax({
+    speed: 0.45,
+    mobileSpeed: 0.2,
+    maxTranslate: 350,
+    scaleFactor: 0.00025,
+  });
 
   // Listen for global event to open simulator (from chatbot)
   useEffect(() => {
     const handleOpenSimulator = () => setSimulatorOpen(true);
     window.addEventListener("open-simulator", handleOpenSimulator);
     return () => window.removeEventListener("open-simulator", handleOpenSimulator);
-  }, []);
-
-  // Parallax scroll effect
-  useEffect(() => {
-    const handleScroll = () => {
-      if (heroRef.current) {
-        const rect = heroRef.current.getBoundingClientRect();
-        if (rect.bottom > 0) {
-          setScrollY(window.scrollY);
-        }
-      }
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -48,13 +40,11 @@ export const Hero = () => {
             height={1080}
             fetchPriority="high"
             decoding="async"
-            className="w-full h-full object-cover brightness-[1.1] contrast-[1.15] saturate-[1.05] will-change-transform transition-transform duration-75 ease-linear"
-            style={{
-              transform: `translate3d(0, ${scrollY * 0.55}px, 0) scale(${1 + scrollY * 0.0003})`,
-            }}
+            className="w-full h-full object-cover brightness-[1.1] contrast-[1.15] saturate-[1.05]"
+            style={parallaxStyle}
           />
 
-          {/* Readability overlay — 6% */}
+          {/* Readability overlay */}
           <div className="absolute inset-0 bg-background/35" />
 
           {/* Subtle control-room gradient */}
@@ -88,9 +78,9 @@ export const Hero = () => {
             </p>
 
             {/* Mobile (short, higher contrast) */}
-              <p className="mt-6 text-base text-foreground/80 max-w-xl mx-auto animate-fade-in opacity-0 [animation-delay:240ms] sm:hidden">
+            <p className="mt-6 text-base text-foreground/80 max-w-xl mx-auto animate-fade-in opacity-0 [animation-delay:240ms] sm:hidden">
               {t("hero.subtitleMobile")}
-             </p>
+            </p>
 
             {/* ===== Supporting line (desktop only) ===== */}
             <p className="text-base sm:text-lg text-foreground/55 max-w-2xl mx-auto animate-fade-in opacity-0 [animation-delay:300ms] hidden sm:block">
@@ -139,8 +129,6 @@ export const Hero = () => {
                 {t("hero.simulatorCta")}
               </Button>
             </div>
-
-          
 
           </div>
         </div>
