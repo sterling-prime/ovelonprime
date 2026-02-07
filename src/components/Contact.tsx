@@ -8,10 +8,18 @@ import { useSubmitContact } from "@/hooks/use-submit-contact";
 import { ContactSuccessModal } from "@/components/ContactSuccessModal";
 import { ScrollReveal } from "./ScrollReveal";
 import { Loader2 } from "lucide-react";
+import { useParallax } from "@/hooks/use-parallax";
 import contactBg from "@/assets/u3714841198_Minimalistic_abstract_background_designed_for_a_c_e56f8162-43f3-47ed-8b5e-63ec90910a05_0.png?format=webp&quality=80";
 
 export const Contact = () => {
   const { t } = useTranslation();
+
+  const { ref: sectionRef, style: parallaxStyle } = useParallax({
+    speed: 0.3,
+    mobileSpeed: 0.15,
+    maxTranslate: 200,
+    scaleFactor: 0.00015,
+  });
   
   // Form state
   const [firstName, setFirstName] = useState("");
@@ -32,7 +40,6 @@ export const Contact = () => {
     onSuccess: (result) => {
       setReferenceId(result.referenceId);
       setShowSuccessModal(true);
-      // Reset form
       setFirstName("");
       setLastName("");
       setBusinessName("");
@@ -55,7 +62,6 @@ export const Contact = () => {
     e.preventDefault();
     setFormError(null);
     
-    // Validate fields
     const newErrors: Record<string, boolean> = {};
     
     if (!firstName.trim()) newErrors.firstName = true;
@@ -83,10 +89,11 @@ export const Contact = () => {
   return (
     <>
       <section
+        ref={sectionRef}
         id="contact"  
         className="relative py-28 sm:py-32 overflow-hidden"
       >
-        {/* ===== Background ===== */}
+        {/* ===== Background with parallax ===== */}
         <div className="absolute inset-0">
           <img
             src={contactBg}
@@ -94,14 +101,13 @@ export const Contact = () => {
             loading="lazy"
             decoding="async"
             className="w-full h-full object-cover contrast-[1.08] saturate-[1.05]"
+            style={parallaxStyle}
           />
-          {/* Lighter readability overlay (less heavy than hero) */}
+          {/* Lighter readability overlay */}
           <div className="absolute inset-0 bg-background/35" />
-
           {/* Soft control gradient */}
           <div className="absolute inset-0 bg-gradient-to-b from-background/25 via-transparent to-background/40" />
-
-          {/* Bottom fade (white haze like screenshot) */}
+          {/* Bottom fade */}
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/80" />
         </div>
 
@@ -141,7 +147,6 @@ export const Contact = () => {
             {/* Form */}
             <ScrollReveal variant="fade-up" delay={200}>
             <form onSubmit={handleSubmit} className="max-w-xl mx-auto space-y-6">
-              {/* Error message */}
               {formError && (
                 <div className="p-4 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50">
                   <p className="text-sm text-red-600 dark:text-red-400 text-center sm:text-left">{formError}</p>
