@@ -364,7 +364,7 @@ export const translations: Record<Lang, any> = {
     footer: {
       privacy: "Privacy",
       terms: "Terms",
-      copyright: "Ovelon Prime. All rights reserved.",
+      copyright: "© {{year}} Ovelon Prime. All rights reserved.",
       tagline: "Enterprise operating systems built for clarity, control, and scale.",
     },
     industrialTrust: {
@@ -1324,7 +1324,7 @@ export const translations: Record<Lang, any> = {
     footer: {
       privacy: "Datenschutz",
       terms: "AGB",
-      copyright: "Ovelon Prime. Alle Rechte vorbehalten.",
+      copyright: "© {{year}} Ovelon Prime. Alle Rechte vorbehalten.",
       tagline: "Enterprise-Betriebssysteme für Klarheit, Kontrolle und Skalierbarkeit.",
     },
     industrialTrust: {
@@ -2284,7 +2284,7 @@ export const translations: Record<Lang, any> = {
     footer: {
       privacy: "Confidentialité",
       terms: "Conditions",
-      copyright: "Ovelon Prime. Tous droits réservés.",
+      copyright: "© {{year}} Ovelon Prime. Tous droits réservés.",
       tagline: "Systèmes d'exploitation d'entreprise conçus pour la clarté, le contrôle et l'évolutivité.",
     },
     industrialTrust: {
@@ -3244,7 +3244,7 @@ export const translations: Record<Lang, any> = {
     footer: {
       privacy: "Privacidad",
       terms: "Términos",
-      copyright: "Ovelon Prime. Todos los derechos reservados.",
+      copyright: "© {{year}} Ovelon Prime. Todos los derechos reservados.",
       tagline: "Sistemas operativos empresariales construidos para claridad, control y escala.",
     },
     industrialTrust: {
@@ -4187,7 +4187,7 @@ export const translations: Record<Lang, any> = {
     footer: {
       privacy: "Privacy",
       terms: "Termini",
-      copyright: "Ovelon Prime. Tutti i diritti riservati.",
+      copyright: "© {{year}} Ovelon Prime. Tutti i diritti riservati.",
       tagline: "Sistemi operativi enterprise costruiti per chiarezza, controllo e scala.",
     },
     industrialTrust: {
@@ -5128,7 +5128,7 @@ export const translations: Record<Lang, any> = {
     footer: {
       privacy: "Privacidade",
       terms: "Termos",
-      copyright: "Ovelon Prime. Todos os direitos reservados.",
+      copyright: "© {{year}} Ovelon Prime. Todos os direitos reservados.",
       tagline: "Sistemas operacionais empresariais construídos para clareza, controlo e escala.",
     },
     industrialTrust: {
