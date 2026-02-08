@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-type ServiceKey = "intake" | "safety" | "incident";
+type ServiceKey = "intake" | "safety" | "incident" | "appointment";
 
 export const DemoSurface = () => {
   const { t } = useTranslation();
@@ -114,6 +114,37 @@ export const DemoSurface = () => {
           t("demo.incident.after.bullet4"),
         ],
         tradeoff: t("demo.incident.after.tradeoff"),
+      },
+    },
+
+    appointment: {
+      title: t("demo.appointment.title"),
+      metrics: [
+        { label: t("demo.appointment.metrics.schedulingTime"), value: "−44%" },
+        { label: t("demo.appointment.metrics.noShows"), value: "−58%" },
+        { label: t("demo.appointment.metrics.utilization"), value: t("demo.appointment.metrics.utilizationValue") },
+      ],
+      before: {
+        title: t("demo.appointment.before.title"),
+        text: t("demo.appointment.before.text"),
+        bullets: [
+          t("demo.appointment.before.bullet1"),
+          t("demo.appointment.before.bullet2"),
+          t("demo.appointment.before.bullet3"),
+          t("demo.appointment.before.bullet4"),
+        ],
+        tradeoff: t("demo.appointment.before.tradeoff"),
+      },
+      after: {
+        title: t("demo.appointment.after.title"),
+        text: t("demo.appointment.after.text"),
+        bullets: [
+          t("demo.appointment.after.bullet1"),
+          t("demo.appointment.after.bullet2"),
+          t("demo.appointment.after.bullet3"),
+          t("demo.appointment.after.bullet4"),
+        ],
+        tradeoff: t("demo.appointment.after.tradeoff"),
       },
     },
   };

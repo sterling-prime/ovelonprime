@@ -21,6 +21,7 @@ const OperationalGovernanceTrends = lazy(() => import("@/components/operationalg
  const Contact = lazy(() => import("@/components/Contact").then(m => ({ default: m.Contact })));
  const WorkflowDemo = lazy(() => import("@/components/WorkflowDemo").then(m => ({ default: m.WorkflowDemo })));
 const CaseStudies = lazy(() => import("@/components/CaseStudies"));
+const ComplianceBlog = lazy(() => import("@/components/ComplianceBlog").then(m => ({ default: m.ComplianceBlog })));
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
@@ -44,6 +45,7 @@ const Index = () => {
           <IndustrialTrustStrip />
           <OperationalGovernanceTrends />
           <CaseStudies />
+          <ComplianceBlog />
           <Faq />
           <Contact />
         </Suspense>
