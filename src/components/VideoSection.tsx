@@ -14,11 +14,11 @@ import introPT from "@/assets/intro-pt.mp4";
 const INTRO_VIDEOS: Record<string, string> = {
   en: introEN,
   de: introDE,
-  nl: introDE, // NL fallback → DE
+  nl: introDE,
   fr: introFR,
   es: introES,
   it: introIT,
-  pt: introPT
+  pt: introPT,
 };
 
 const resolveLang = (lng: string) => {
@@ -34,6 +34,7 @@ export const VideoSection = () => {
 
   const isInViewRef = useRef(false);
   const isIntentionalScrollRef = useRef(false);
+
   const [showHint, setShowHint] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -52,7 +53,7 @@ export const VideoSection = () => {
   };
 
   /* -------------------------------------------------------
-     1️⃣ Language change → reset + autoplay muted
+     Language change → reset + autoplay muted
   ------------------------------------------------------- */
   useEffect(() => {
     const v = videoRef.current;
@@ -69,7 +70,7 @@ export const VideoSection = () => {
   }, [videoSrc]);
 
   /* -------------------------------------------------------
-     2️⃣ IntersectionObserver → play / pause
+     IntersectionObserver → play / pause
   ------------------------------------------------------- */
   useEffect(() => {
     const section = sectionRef.current;
@@ -97,7 +98,7 @@ export const VideoSection = () => {
   }, []);
 
   /* -------------------------------------------------------
-     3️⃣ Global scroll → mute unless intentional
+     Global scroll → mute unless intentional
   ------------------------------------------------------- */
   useEffect(() => {
     const onScroll = () => {
@@ -117,7 +118,7 @@ export const VideoSection = () => {
   }, []);
 
   /* -------------------------------------------------------
-     4️⃣ Enable sound (shared)
+     Enable sound
   ------------------------------------------------------- */
   const enableSound = useCallback(() => {
     const v = videoRef.current;
@@ -131,7 +132,7 @@ export const VideoSection = () => {
   }, []);
 
   /* -------------------------------------------------------
-     5️⃣ Hero arrow → play with sound
+     Hero arrow → play with sound
   ------------------------------------------------------- */
   useEffect(() => {
     const handler = () => {
@@ -146,12 +147,11 @@ export const VideoSection = () => {
     };
 
     window.addEventListener("play-hero-video", handler);
-    return () =>
-      window.removeEventListener("play-hero-video", handler);
+    return () => window.removeEventListener("play-hero-video", handler);
   }, [enableSound]);
 
   /* -------------------------------------------------------
-     5️⃣b Mobile helper
+     Mobile helper
   ------------------------------------------------------- */
   useEffect(() => {
     (window as any).__playVideoWithSound = () => {
@@ -171,7 +171,7 @@ export const VideoSection = () => {
   }, [enableSound]);
 
   /* -------------------------------------------------------
-     6️⃣ Click on video → muted replay
+     Click on video → muted replay
   ------------------------------------------------------- */
   const handleVideoClick = () => {
     const v = videoRef.current;
@@ -186,23 +186,23 @@ export const VideoSection = () => {
     <section
       id="video-section"
       ref={sectionRef}
-      className="relative bg-primary py-24"
+      className="relative bg-primary pt-12 pb-24 md:pt-16 md:pb-28"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
       <div className="container mx-auto px-6 max-w-6xl">
 
-        {/* Heading */}
-        <div className="mb-10 text-center">
+        {/* HEADER */}
+        <div className="mb-10 text-center max-w-3xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-semibold text-primary-foreground">
             {t("video.title")}
           </h2>
-          <p className="mt-3 text-primary-foreground/70 max-w-2xl mx-auto">
+          <p className="mt-3 text-primary-foreground/70">
             {t("video.subtitle")}
           </p>
         </div>
 
-        {/* Video */}
+        {/* VIDEO */}
         <div className="mx-auto max-w-5xl">
           <div className="relative aspect-video bg-black rounded-xl overflow-hidden shadow-xl">
 
@@ -218,7 +218,7 @@ export const VideoSection = () => {
               onClick={handleVideoClick}
             />
 
-            {/* 🔊 Enable sound */}
+            {/* ENABLE SOUND */}
             {showHint && (
               <div className="absolute inset-0 flex items-center justify-center">
                 <button
@@ -226,8 +226,7 @@ export const VideoSection = () => {
                   aria-label={t("video.enableSound")}
                   onClick={enableSound}
                   className="
-                    px-4 py-2
-                    min-h-6
+                    px-5 py-2
                     text-xs
                     tracking-widest
                     uppercase
@@ -247,7 +246,7 @@ export const VideoSection = () => {
         </div>
 
         {/* CTA */}
-        <div className="flex justify-center mt-10">
+        <div className="flex justify-center mt-12">
           <Button
             size="lg"
             className="bg-slate-900 text-white px-10 py-4 hover:bg-[#3A8F94]"

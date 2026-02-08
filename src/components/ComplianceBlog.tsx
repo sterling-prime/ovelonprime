@@ -18,27 +18,40 @@ export const ComplianceBlog = () => {
   const [expanded, setExpanded] = useState<ArticleKey | null>(null);
 
   return (
-    <section className="py-32 px-6 md:px-12 bg-primary" data-section="compliance-blog">
+    <section
+      className="pt-20 pb-32 px-6 md:px-12 bg-primary scroll-mt-20"
+      data-section="compliance-blog"
+    >
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <ScrollReveal variant="fade-up" className="text-center mb-20">
+        <ScrollReveal variant="fade-up" className="text-center mb-12">
           <span className="text-xs tracking-[0.4em] text-accent/80 uppercase mb-6 block">
             {t("complianceBlog.badge")}
           </span>
+
           <h2 className="text-3xl md:text-5xl font-light leading-tight max-w-4xl mx-auto text-primary-foreground">
             {t("complianceBlog.title")}
           </h2>
+
           <p className="text-primary-foreground/50 font-light leading-relaxed mt-6 max-w-2xl mx-auto">
             {t("complianceBlog.subtitle")}
           </p>
         </ScrollReveal>
 
         {/* Articles */}
-        <StaggerContainer staggerDelay={150} baseDelay={100} className="space-y-8 max-w-5xl mx-auto">
+        <StaggerContainer
+          staggerDelay={150}
+          baseDelay={100}
+          className="space-y-8 max-w-5xl mx-auto"
+        >
           {articleKeys.map((key) => {
             const Icon = icons[key];
             const isExpanded = expanded === key;
-            const sections = t(`complianceBlog.articles.${key}.sections`, { returnObjects: true }) as {
+
+            const sections = t(
+              `complianceBlog.articles.${key}.sections`,
+              { returnObjects: true }
+            ) as {
               heading: string;
               text: string;
             }[];
@@ -57,17 +70,21 @@ export const ComplianceBlog = () => {
                   <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
                     <Icon className="w-7 h-7 text-accent" />
                   </div>
+
                   <div className="flex-1 min-w-0">
                     <span className="text-xs tracking-[0.3em] uppercase text-accent/70 block mb-2">
                       {t(`complianceBlog.articles.${key}.tag`)}
                     </span>
+
                     <h3 className="text-xl md:text-2xl font-light text-primary-foreground leading-tight mb-3">
                       {t(`complianceBlog.articles.${key}.title`)}
                     </h3>
+
                     <p className="text-sm text-primary-foreground/50 font-light leading-relaxed line-clamp-2">
                       {t(`complianceBlog.articles.${key}.excerpt`)}
                     </p>
                   </div>
+
                   <div className="shrink-0 mt-2">
                     {isExpanded ? (
                       <ChevronUp className="w-5 h-5 text-accent" />
@@ -91,14 +108,20 @@ export const ComplianceBlog = () => {
                         {/* Key Facts */}
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-8 border-b border-primary-foreground/5">
                           {(
-                            t(`complianceBlog.articles.${key}.facts`, { returnObjects: true }) as {
+                            t(`complianceBlog.articles.${key}.facts`, {
+                              returnObjects: true,
+                            }) as {
                               label: string;
                               value: string;
                             }[]
                           ).map((fact) => (
                             <div key={fact.label} className="text-center p-4">
-                              <p className="text-2xl font-light text-accent mb-1">{fact.value}</p>
-                              <p className="text-xs text-primary-foreground/40 uppercase tracking-wide">{fact.label}</p>
+                              <p className="text-2xl font-light text-accent mb-1">
+                                {fact.value}
+                              </p>
+                              <p className="text-xs text-primary-foreground/40 uppercase tracking-wide">
+                                {fact.label}
+                              </p>
                             </div>
                           ))}
                         </div>
@@ -111,6 +134,7 @@ export const ComplianceBlog = () => {
                                 <ArrowRight className="w-4 h-4 text-accent shrink-0" />
                                 {section.heading}
                               </h4>
+
                               <p className="text-sm text-primary-foreground/60 font-light leading-relaxed pl-6">
                                 {section.text}
                               </p>
@@ -123,11 +147,17 @@ export const ComplianceBlog = () => {
                           <h4 className="text-sm tracking-[0.2em] uppercase text-accent mb-4">
                             {t(`complianceBlog.articles.${key}.ovelonTitle`)}
                           </h4>
+
                           <ul className="space-y-3">
                             {(
-                              t(`complianceBlog.articles.${key}.ovelonPoints`, { returnObjects: true }) as string[]
+                              t(`complianceBlog.articles.${key}.ovelonPoints`, {
+                                returnObjects: true,
+                              }) as string[]
                             ).map((point, idx) => (
-                              <li key={idx} className="flex items-start gap-3 text-sm text-primary-foreground/70 font-light">
+                              <li
+                                key={idx}
+                                className="flex items-start gap-3 text-sm text-primary-foreground/70 font-light"
+                              >
                                 <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0" />
                                 {point}
                               </li>
