@@ -103,7 +103,7 @@ export const ServiceDetailModal = ({ isOpen, onClose, serviceIndex, service }: S
             <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">
               {t("serviceDetails.keyBenefits", "Key Benefits")}
             </h4>
-            <ul className="grid sm:grid-cols-2 gap-3">
+            <ul className="grid md:grid-cols-2 gap-3">
               {benefits[serviceIndex].map((benefit, idx) => (
                 <li key={idx} className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0 mt-0.5 drop-shadow-md" />
