@@ -180,7 +180,7 @@ export const Contact = () => {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label>First Name *</Label>
+                      <Label>{t("contactForm.firstName")} *</Label>
                       <Input
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
@@ -188,7 +188,7 @@ export const Contact = () => {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label>Last Name *</Label>
+                      <Label>{t("contactForm.lastName")} *</Label>
                       <Input
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
@@ -198,7 +198,7 @@ export const Contact = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label>Business Name *</Label>
+                    <Label>{t("contactForm.businessName")} *</Label>
                     <Input
                       value={businessName}
                       onChange={(e) => setBusinessName(e.target.value)}
@@ -207,7 +207,7 @@ export const Contact = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label>Business Email *</Label>
+                    <Label>{t("contactForm.businessEmail")} *</Label>
                     <Input
                       type="email"
                       value={businessEmail}
@@ -217,7 +217,7 @@ export const Contact = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label>Request Details *</Label>
+                    <Label>{t("contactForm.requestDetails")} *</Label>
                     <Textarea
                       value={requestDetails}
                       onChange={(e) => setRequestDetails(e.target.value)}
@@ -235,10 +235,10 @@ export const Contact = () => {
                       {isSubmitting ? (
                         <>
                           <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                          Submitting…
+                          {t("contactForm.submitting")}
                         </>
                       ) : (
-                        "Submit Request"
+                        t("contactForm.submit")
                       )}
                     </Button>
                   </div>
@@ -250,7 +250,7 @@ export const Contact = () => {
             <div className="flex flex-col justify-between h-full">
               <div>
                 <h2 className="text-4xl font-semibold mb-6 leading-tight text-center">
-                  Engage with Ovelon Prime
+                  {t("contact.rightTitle", "Engage with Ovelon Prime")}
                 </h2>
 
                 <p className="text-gray-600 mb-6 leading-relaxed text-center">

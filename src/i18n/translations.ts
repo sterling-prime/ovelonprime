@@ -160,6 +160,37 @@ export const translations: Record<Lang, any> = {
           tags: ["Voice scheduling", "24/7 availability", "Callback auto-reply"],
         },
       ] as ServiceItem[],
+      clickToExplore: "Click to explore",
+    },
+    serviceDetails: {
+      keyBenefits: "Key Benefits",
+      cta: "Explore Demo",
+      benefits: [
+        [
+          "Automated intake validation eliminates manual review bottlenecks",
+          "Intelligent routing reduces response time by up to 60%",
+          "Full audit trail for compliance and accountability",
+          "Seamless integration with existing ticketing systems",
+        ],
+        [
+          "Visual SOPs reduce training time and interpretation errors",
+          "Real-time compliance tracking across all shifts",
+          "Contractor onboarding standardized across locations",
+          "HSE-aligned procedures ready for regulatory audits",
+        ],
+        [
+          "Automated classification ensures consistent issue prioritization",
+          "Clear escalation paths with defined ownership at each level",
+          "Response SLAs tracked and enforced automatically",
+          "Post-incident analysis for continuous improvement",
+        ],
+        [
+          "24/7 availability without increasing headcount",
+          "Intelligent rescheduling minimizes no-shows",
+          "Multi-channel confirmation (voice, SMS, email)",
+          "Seamless calendar sync with your existing systems",
+        ],
+      ],
     },
     sectors: {
       label: "Sectors",
@@ -286,6 +317,7 @@ export const translations: Record<Lang, any> = {
       guaranteeHighlight: "Engagements continue only when operational value is demonstrated",
       guaranteeSuffix: " on qualifying engagements.",
       enterpriseLabel: "Enterprise inquiries: ",
+      rightTitle: "Engage with Ovelon Prime",
     },
     contactForm: {
       firstName: "First Name",
@@ -1228,6 +1260,37 @@ export const translations: Record<Lang, any> = {
           tags: ["Sprachplanung", "24/7 Verfügbarkeit", "Automatische Rückrufantwort"],
         },
       ] as ServiceItem[],
+      clickToExplore: "Klicken zum Erkunden",
+    },
+    serviceDetails: {
+      keyBenefits: "Hauptvorteile",
+      cta: "Demo erkunden",
+      benefits: [
+        [
+          "Automatisierte Aufnahmevalidierung beseitigt manuelle Prüfungsengpässe",
+          "Intelligentes Routing reduziert die Reaktionszeit um bis zu 60%",
+          "Vollständiger Audit-Trail für Compliance und Verantwortlichkeit",
+          "Nahtlose Integration in bestehende Ticketing-Systeme",
+        ],
+        [
+          "Visuelle SOPs reduzieren Schulungszeit und Interpretationsfehler",
+          "Echtzeit-Compliance-Überwachung über alle Schichten",
+          "Auftragnehmer-Onboarding standortübergreifend standardisiert",
+          "HSE-konforme Verfahren für regulatorische Audits bereit",
+        ],
+        [
+          "Automatisierte Klassifizierung gewährleistet konsistente Problempriorisierung",
+          "Klare Eskalationspfade mit definierter Verantwortung auf jeder Ebene",
+          "Reaktions-SLAs automatisch verfolgt und durchgesetzt",
+          "Post-Incident-Analyse zur kontinuierlichen Verbesserung",
+        ],
+        [
+          "24/7-Verfügbarkeit ohne Personalaufstockung",
+          "Intelligente Terminverschiebung minimiert No-Shows",
+          "Multi-Kanal-Bestätigung (Sprache, SMS, E-Mail)",
+          "Nahtlose Kalender-Synchronisation mit Ihren bestehenden Systemen",
+        ],
+      ],
     },
     sectors: {
       label: "Branchen",
@@ -1354,6 +1417,7 @@ export const translations: Record<Lang, any> = {
       guaranteeHighlight: "Engagements werden nur fortgesetzt, wenn operativer Mehrwert nachgewiesen wird",
       guaranteeSuffix: " bei qualifizierenden Engagements.",
       enterpriseLabel: "Enterprise-Anfragen: ",
+      rightTitle: "Kontaktieren Sie Ovelon Prime",
     },
     contactForm: {
       firstName: "Vorname",
@@ -2272,6 +2336,37 @@ export const translations: Record<Lang, any> = {
           tags: ["Planification vocale", "Disponibilité 24/7", "réponse automatique de rappel"],
         },
       ] as ServiceItem[],
+      clickToExplore: "Cliquez pour explorer",
+    },
+    serviceDetails: {
+      keyBenefits: "Avantages clés",
+      cta: "Explorer la démo",
+      benefits: [
+        [
+          "La validation automatisée de l'intake élimine les goulots d'étranglement de révision manuelle",
+          "Le routage intelligent réduit le temps de réponse jusqu'à 60%",
+          "Piste d'audit complète pour la conformité et la responsabilité",
+          "Intégration transparente avec les systèmes de ticketing existants",
+        ],
+        [
+          "Les SOP visuels réduisent le temps de formation et les erreurs d'interprétation",
+          "Suivi de conformité en temps réel sur tous les quarts",
+          "Intégration des sous-traitants standardisée sur tous les sites",
+          "Procédures conformes HSE prêtes pour les audits réglementaires",
+        ],
+        [
+          "La classification automatisée assure une priorisation cohérente des problèmes",
+          "Chemins d'escalade clairs avec propriété définie à chaque niveau",
+          "SLA de réponse suivis et appliqués automatiquement",
+          "Analyse post-incident pour l'amélioration continue",
+        ],
+        [
+          "Disponibilité 24/7 sans augmenter les effectifs",
+          "La reprogrammation intelligente minimise les absences",
+          "Confirmation multicanal (voix, SMS, e-mail)",
+          "Synchronisation transparente du calendrier avec vos systèmes existants",
+        ],
+      ],
     },
     sectors: {
       label: "Secteurs",
@@ -2398,6 +2493,7 @@ export const translations: Record<Lang, any> = {
       guaranteeHighlight: "Les engagements se poursuivent uniquement lorsque la valeur opérationnelle est démontrée",
       guaranteeSuffix: " sur les engagements qualifiants.",
       enterpriseLabel: "Demandes Enterprise : ",
+      rightTitle: "Contactez Ovelon Prime",
     },
     contactForm: {
       firstName: "Prénom",
@@ -3316,6 +3412,37 @@ export const translations: Record<Lang, any> = {
           tags: ["Programación de voz", "Disponibilidad 24/7", "respuesta automática de devolución de llamada"],
         },
       ],
+      clickToExplore: "Haga clic para explorar",
+    },
+    serviceDetails: {
+      keyBenefits: "Beneficios clave",
+      cta: "Explorar demo",
+      benefits: [
+        [
+          "La validación automatizada de admisión elimina cuellos de botella de revisión manual",
+          "El enrutamiento inteligente reduce el tiempo de respuesta hasta un 60%",
+          "Rastro de auditoría completo para cumplimiento y responsabilidad",
+          "Integración transparente con sistemas de tickets existentes",
+        ],
+        [
+          "Los SOP visuales reducen el tiempo de capacitación y los errores de interpretación",
+          "Seguimiento de cumplimiento en tiempo real en todos los turnos",
+          "Incorporación de contratistas estandarizada en todas las ubicaciones",
+          "Procedimientos alineados con HSE listos para auditorías regulatorias",
+        ],
+        [
+          "La clasificación automatizada asegura una priorización consistente de problemas",
+          "Rutas de escalamiento claras con propiedad definida en cada nivel",
+          "SLA de respuesta rastreados y aplicados automáticamente",
+          "Análisis post-incidente para la mejora continua",
+        ],
+        [
+          "Disponibilidad 24/7 sin aumentar la plantilla",
+          "La reprogramación inteligente minimiza las ausencias",
+          "Confirmación multicanal (voz, SMS, correo electrónico)",
+          "Sincronización de calendario transparente con sus sistemas existentes",
+        ],
+      ],
     },
     sectors: {
       label: "Sectores",
@@ -3442,6 +3569,7 @@ export const translations: Record<Lang, any> = {
       guaranteeHighlight: "Los compromisos continúan solo cuando se demuestra el valor operacional",
       guaranteeSuffix: " en compromisos calificados.",
       enterpriseLabel: "Consultas empresariales: ",
+      rightTitle: "Contacte con Ovelon Prime",
     },
     contactForm: {
       firstName: "Nombre",
@@ -4342,7 +4470,38 @@ export const translations: Record<Lang, any> = {
             "Pianificazione vocale senza interruzioni che gestisce prenotazioni, conferme e riprogrammazioni con precisione, liberando il tuo team, mantenendo ogni connessione in carreggiata e offrendo un'esperienza cliente impeccabile.",
           tags: ["Pianificazione vocale", "Disponibilità 24/7", "Risposta automatica di richiamata"],
         },
-      ],  
+      ],
+      clickToExplore: "Clicca per esplorare",
+    },
+    serviceDetails: {
+      keyBenefits: "Vantaggi principali",
+      cta: "Esplora la demo",
+      benefits: [
+        [
+          "La validazione automatizzata dell'intake elimina i colli di bottiglia della revisione manuale",
+          "L'instradamento intelligente riduce i tempi di risposta fino al 60%",
+          "Traccia di audit completa per conformità e responsabilità",
+          "Integrazione trasparente con i sistemi di ticketing esistenti",
+        ],
+        [
+          "Le SOP visive riducono i tempi di formazione e gli errori di interpretazione",
+          "Monitoraggio della conformità in tempo reale su tutti i turni",
+          "Onboarding degli appaltatori standardizzato in tutte le sedi",
+          "Procedure allineate HSE pronte per audit regolamentari",
+        ],
+        [
+          "La classificazione automatizzata garantisce una prioritizzazione coerente dei problemi",
+          "Percorsi di escalation chiari con proprietà definita a ogni livello",
+          "SLA di risposta monitorati e applicati automaticamente",
+          "Analisi post-incidente per il miglioramento continuo",
+        ],
+        [
+          "Disponibilità 24/7 senza aumentare l'organico",
+          "La riprogrammazione intelligente minimizza le assenze",
+          "Conferma multicanale (voce, SMS, email)",
+          "Sincronizzazione del calendario trasparente con i sistemi esistenti",
+        ],
+      ],
     },
     sectors: {
       label: "Settori",
@@ -4469,6 +4628,7 @@ export const translations: Record<Lang, any> = {
       guaranteeHighlight: "Gli impegni continuano solo quando il valore operativo è dimostrato",
       guaranteeSuffix: " sugli impegni qualificanti.",
       enterpriseLabel: "Richieste Enterprise: ",
+      rightTitle: "Contatta Ovelon Prime",
     },
     contactForm: {
       firstName: "Nome",
@@ -5368,6 +5528,37 @@ export const translations: Record<Lang, any> = {
           tags: ["Agendamento de chamadas", "Disponibilidade 24/7", "Resposta automática de retorno de chamada"],
         },
       ],
+      clickToExplore: "Clique para explorar",
+    },
+    serviceDetails: {
+      keyBenefits: "Principais vantagens",
+      cta: "Explorar demo",
+      benefits: [
+        [
+          "A validação automatizada de admissão elimina gargalos de revisão manual",
+          "O encaminhamento inteligente reduz o tempo de resposta em até 60%",
+          "Trilha de auditoria completa para conformidade e responsabilidade",
+          "Integração transparente com sistemas de ticketing existentes",
+        ],
+        [
+          "SOPs visuais reduzem tempo de formação e erros de interpretação",
+          "Monitorização de conformidade em tempo real em todos os turnos",
+          "Integração de contratados padronizada em todas as localizações",
+          "Procedimentos alinhados com HSE prontos para auditorias regulamentares",
+        ],
+        [
+          "A classificação automatizada garante priorização consistente de problemas",
+          "Caminhos de escalamento claros com propriedade definida em cada nível",
+          "SLAs de resposta monitorizados e aplicados automaticamente",
+          "Análise pós-incidente para melhoria contínua",
+        ],
+        [
+          "Disponibilidade 24/7 sem aumentar o quadro de pessoal",
+          "O reagendamento inteligente minimiza as faltas",
+          "Confirmação multicanal (voz, SMS, email)",
+          "Sincronização de calendário transparente com os seus sistemas existentes",
+        ],
+      ],
     },
     sectors: {
       label: "Sectores",
@@ -5494,6 +5685,7 @@ export const translations: Record<Lang, any> = {
       guaranteeHighlight: "Os compromissos continuam apenas quando o valor operacional é demonstrado",
       guaranteeSuffix: " em compromissos qualificados.",
       enterpriseLabel: "Consultas empresariais: ",
+      rightTitle: "Contacte a Ovelon Prime",
     },
     contactForm: {
       firstName: "Nome",
