@@ -80,12 +80,12 @@ export const Navbar = () => {
           <div className="flex items-center justify-between h-16 relative">
 
             {/* LOGO DESKTOP */}
-            <a href="/" className="hidden md:block">
+            <a href="/" className="hidden lg:block">
               <Logo size="md" forceBlack={forceBlackHeader} />
             </a>
 
             {/* DESKTOP NAV */}
-            <nav className="hidden md:flex gap-10 absolute left-1/2 -translate-x-1/2">
+            <nav className="hidden lg:flex gap-10 absolute left-1/2 -translate-x-1/2">
               {navLinks.map((link) => (
                 <button
                   key={link.section}
@@ -107,7 +107,7 @@ export const Navbar = () => {
             </nav>
 
             {/* DESKTOP ACTIONS */}
-            <div className="hidden md:flex items-center gap-4 ml-auto">
+            <div className="hidden lg:flex items-center gap-4 ml-auto">
               <LanguageDropdown forceBlack={forceBlackHeader} />
 
               {/* VIEW DEMO */}
@@ -151,7 +151,7 @@ export const Navbar = () => {
             </div>
 
             {/* MOBILE HEADER */}
-            <div className="md:hidden flex items-center w-full relative">
+            <div className="lg:hidden flex items-center w-full relative">
               <a
                 href="/"
                 className="absolute left-1/2 -translate-x-1/2"
@@ -177,7 +177,7 @@ export const Navbar = () => {
 
       {/* ================= MOBILE DROPDOWN ================= */}
       {isOpen && (
-        <div className="md:hidden fixed top-16 left-0 right-0 z-40 bg-white border-t border-gray-200">
+        <div className="lg:hidden fixed top-16 left-0 right-0 z-40 bg-white border-t border-gray-200">
           <div className="px-6 py-8 flex flex-col gap-10">
 
             {/* NAV LINKS */}
