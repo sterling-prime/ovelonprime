@@ -1,18 +1,22 @@
 import { Check } from "lucide-react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
 import { ScrollReveal, StaggerContainer } from "./ScrollReveal";
+import { BookingModal } from "./BookingModal";
 
 const TYPEFORM_URL = "https://form.typeform.com/to/xTB0o3Wd";
+const ENTERPRISE_CAL_URL = "https://cal.com/ovelon-prime/enterprise-automation-program";
 
 export const Pricing = () => {
   const { t, i18n } = useTranslation();
   const isEnglish = i18n.language === "en";
   const focusedPrice = isEnglish ? "$4,999" : "€4.999";
+  const [enterpriseBookingOpen, setEnterpriseBookingOpen] = useState(false);
 
   const openTalkToExpert = () => {
-    window.dispatchEvent(new Event("open-booking-modal"));
+    setEnterpriseBookingOpen(true);
   };
 
   const plans = [
@@ -161,6 +165,12 @@ export const Pricing = () => {
           })}
         </StaggerContainer>
       </div>
+
+      <BookingModal
+        isOpen={enterpriseBookingOpen}
+        onClose={() => setEnterpriseBookingOpen(false)}
+        calUrl={ENTERPRISE_CAL_URL}
+      />
     </section>
   );
 };

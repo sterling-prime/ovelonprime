@@ -6,9 +6,10 @@ import { useTranslation } from "react-i18next";
 interface BookingModalProps {
   isOpen: boolean;
   onClose: () => void;
+  calUrl?: string;
 }
 
-export const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
+export const BookingModal = ({ isOpen, onClose, calUrl = "https://cal.com/ovelon-prime/introduction-call" }: BookingModalProps) => {
   const { i18n } = useTranslation();
   const scrollYRef = useRef(0);
 
@@ -91,7 +92,7 @@ export const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
 
         {/* CAL.COM IFRAME with language */}
         <iframe
-          src={`https://cal.com/ovelon-prime/introduction-call?embed=true&embed_type=inline&theme=light&locale=${calLocale}`}
+          src={`${calUrl}?embed=true&embed_type=inline&theme=light&locale=${calLocale}`}
           className="w-full h-[calc(100%-64px)]"
           frameBorder="0"
           allow="camera; microphone"
