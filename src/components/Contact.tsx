@@ -9,7 +9,7 @@ import { ContactSuccessModal } from "@/components/ContactSuccessModal";
 import { ScrollReveal } from "./ScrollReveal";
 import { Loader2 } from "lucide-react";
 import contactBg from "@/assets/u3714841198_Minimalistic_abstract_background_designed_for_a_c_e56f8162-43f3-47ed-8b5e-63ec90910a05_0.png?format=webp&quality=80";
-import rightBlockImage from "@/assets/contact.png";
+import rightBlockImage from "@/assets/contact-section.png";
 
 export const Contact = () => {
   const { t } = useTranslation();
