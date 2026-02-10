@@ -318,6 +318,8 @@ export const translations: Record<Lang, any> = {
       guaranteeSuffix: " on qualifying engagements.",
       enterpriseLabel: "Enterprise inquiries: ",
       rightTitle: "Engage with Ovelon Prime",
+      infoText1: "If you have any questions or would like to discuss how we can support your business, please do not hesitate to contact us.",
+      infoText2: "Customer Support is available 24/7.",
     },
     contactForm: {
       firstName: "First Name",
@@ -1418,6 +1420,8 @@ export const translations: Record<Lang, any> = {
       guaranteeSuffix: " bei qualifizierenden Engagements.",
       enterpriseLabel: "Enterprise-Anfragen: ",
       rightTitle: "Kontaktieren Sie Ovelon Prime",
+      infoText1: "Wenn Sie Fragen haben oder besprechen möchten, wie wir Ihr Unternehmen unterstützen können, zögern Sie bitte nicht, uns zu kontaktieren.",
+      infoText2: "Der Kundensupport ist rund um die Uhr erreichbar.",
     },
     contactForm: {
       firstName: "Vorname",
@@ -2494,6 +2498,8 @@ export const translations: Record<Lang, any> = {
       guaranteeSuffix: " sur les engagements qualifiants.",
       enterpriseLabel: "Demandes Enterprise : ",
       rightTitle: "Contactez Ovelon Prime",
+      infoText1: "Si vous avez des questions ou souhaitez discuter de la manière dont nous pouvons soutenir votre entreprise, n'hésitez pas à nous contacter.",
+      infoText2: "Le support client est disponible 24h/24 et 7j/7.",
     },
     contactForm: {
       firstName: "Prénom",
@@ -3570,6 +3576,8 @@ export const translations: Record<Lang, any> = {
       guaranteeSuffix: " en compromisos calificados.",
       enterpriseLabel: "Consultas empresariales: ",
       rightTitle: "Contacte con Ovelon Prime",
+      infoText1: "Si tiene alguna pregunta o desea hablar sobre cómo podemos apoyar su negocio, no dude en contactarnos.",
+      infoText2: "El soporte al cliente está disponible las 24 horas, los 7 días de la semana.",
     },
     contactForm: {
       firstName: "Nombre",
@@ -4629,6 +4637,8 @@ export const translations: Record<Lang, any> = {
       guaranteeSuffix: " sugli impegni qualificanti.",
       enterpriseLabel: "Richieste Enterprise: ",
       rightTitle: "Contatta Ovelon Prime",
+      infoText1: "Se hai domande o desideri discutere di come possiamo supportare la tua attività, non esitare a contattarci.",
+      infoText2: "L'assistenza clienti è disponibile 24 ore su 24, 7 giorni su 7.",
     },
     contactForm: {
       firstName: "Nome",
@@ -5686,6 +5696,8 @@ export const translations: Record<Lang, any> = {
       guaranteeSuffix: " em compromissos qualificados.",
       enterpriseLabel: "Consultas empresariais: ",
       rightTitle: "Contacte a Ovelon Prime",
+      infoText1: "Se tiver alguma questão ou quiser discutir como podemos apoiar o seu negócio, não hesite em contactar-nos.",
+      infoText2: "O suporte ao cliente está disponível 24 horas por dia, 7 dias por semana.",
     },
     contactForm: {
       firstName: "Nome",

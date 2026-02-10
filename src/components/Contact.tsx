@@ -149,7 +149,7 @@ export const Contact = () => {
         </div>
 
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-start">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
             {/* LEFT: FORM */}
             <div className="bg-white rounded-2xl shadow-xl p-10 border border-gray-100">
@@ -250,18 +250,15 @@ export const Contact = () => {
             <div className="flex flex-col justify-between h-full">
               <div>
                 <h2 className="text-4xl font-semibold mb-6 leading-tight text-center">
-                  {t("contact.rightTitle", "Engage with Ovelon Prime")}
+                  {t("contact.rightTitle")}
                 </h2>
 
                 <p className="text-gray-600 mb-6 leading-relaxed text-center">
-                  {t(
-                    "contact.infoText1",
-                    "If you have any questions or would like to discuss how we can support your business, please do not hesitate to contact us."
-                  )}
+                  {t("contact.infoText1")}
                 </p>
 
                 <p className="text-gray-600 mb-6 text-center">
-                  {t("contact.infoText2", "Customer Support is available 24/7.")}
+                  {t("contact.infoText2")}
                 </p>
 
                 <a
