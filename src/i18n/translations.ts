@@ -1353,6 +1353,24 @@ export const translations: Record<Lang, any> = {
           title: "Werksleiter",
           facility: "Produktionswerk, Austin",
         },
+        {
+          quote: "Eine Anlage dieser Größe zu verwalten bedeutet Tausende beweglicher Teile. Das System hat uns eine zentrale Informationsquelle für Aufgabenstatus, Gerätewartungszyklen und Compliance-Prüfungen gegeben. Wir haben aufgehört, Updates hinterherzulaufen, und begonnen, danach zu handeln.",
+          name: "James Whitfield",
+          title: "Direktor für Gebäudebetrieb",
+          facility: "Industrielager, Liverpool",  
+        },
+        {
+          quote: "In unserem Umfeld eskalieren selbst kleine Verzögerungen schnell. Die Plattform sorgt für Echtzeit-Verantwortlichkeit in jeder Abteilung. Wir haben die Grauzonen beseitigt, die die Produktion früher stundenlang aufgehalten haben.",
+          name: "Ciarán O'Sullivan",
+          title: "Leitender Betriebsleiter",
+          facility: "Verarbeitungsanlage, Tennessee",
+        },
+        {
+          quote: "Wir haben jede Woche Stunden durch manuelle Disposition und fehlgeleitete Arbeitsaufträge verloren. Seit der Einführung folgen unsere Teams durchgängig strukturierten Arbeitsabläufen — kein Rätselraten, keine Engpässe. Der Durchsatz ist gestiegen und unsere Fehlerquote hat sich stabilisiert.",
+          name: "Rachel Moreno",
+          title: "Leiterin Betriebssteuerung",
+          facility: "Logistikzentrum, Dublin",
+        }
       ] as TestimonialItem[],
     },
     operationalTrust: {
@@ -2431,6 +2449,24 @@ export const translations: Record<Lang, any> = {
           title: "Directeur d'usine",
           facility: "Usine de fabrication, Austin",
         },
+        {
+          quote: "Gérer une installation de cette taille implique des milliers d'éléments en mouvement. Le système nous a donné une source unique de vérité pour le statut des tâches, les cycles d'équipement et les contrôles de conformité. Nous avons cessé de courir après les mises à jour pour commencer à agir en conséquence.",
+          name: "James Whitfield",
+          title: "Directeur des opérations d'installations",
+          facility: "Entrepôt industriel, Liverpool",
+        },
+        {
+          quote: "Dans notre environnement, même de petits retards s'enchaînent rapidement. La plateforme impose une responsabilisation en temps réel dans chaque département. Nous avons éliminé les zones grises qui bloquaient la production pendant des heures.",
+          name: "Ciarán O'Sullivan",
+          title: "Responsable principal des installations",
+          facility: "Usine de traitement, Tennessee",
+        },
+        {
+          quote: "Nous perdions des heures chaque semaine à cause de la répartition manuelle et des ordres de travail mal acheminés. Depuis la mise en service, nos équipes suivent des processus structurés de bout en bout — plus d'approximations, plus de goulets d'étranglement. Le débit a augmenté et notre taux d'erreur s'est stabilisé.",
+          name: "Rachel Moreno",
+          title: "Responsable du contrôle des opérations",
+          facility: "Pôle logistique, Dublin",
+        }
       ] as TestimonialItem[],
     },
     operationalTrust: {
@@ -3508,7 +3544,24 @@ export const translations: Record<Lang, any> = {
           name: "Wyatt Coleman",
           title: "Gerente de planta",
           facility: "Planta de fabricación, Austin",
-        },
+        },{
+  quote: "Gestionar una instalación de este tamaño implica miles de piezas en movimiento. El sistema nos dio una fuente única de verdad para el estado de las tareas, los ciclos de equipos y las verificaciones de cumplimiento. Dejamos de perseguir actualizaciones y empezamos a actuar en base a ellas.",
+  name: "James Whitfield",
+  title: "Director de operaciones de instalaciones",
+  facility: "Almacén industrial, Liverpool",
+},
+{
+  quote: "En nuestro entorno, incluso pequeños retrasos se acumulan rápidamente. La plataforma impone responsabilidad en tiempo real en cada departamento. Hemos eliminado las zonas grises que solían paralizar la producción durante horas.",
+  name: "Ciarán O'Sullivan",
+  title: "Responsable principal de instalaciones",
+  facility: "Planta de procesamiento, Tennessee",
+},
+{
+  quote: "Perdíamos horas cada semana con el despacho manual y órdenes de trabajo mal dirigidas. Desde la puesta en marcha, nuestros equipos siguen flujos de trabajo estructurados de principio a fin — sin conjeturas, sin cuellos de botella. El rendimiento ha aumentado y nuestra tasa de errores se ha estabilizado.",
+  name: "Rachel Moreno",
+  title: "Gerente de control de operaciones",
+  facility: "Centro logístico, Dublín",
+}
       ],
     },
     operationalTrust: {
@@ -4570,6 +4623,24 @@ export const translations: Record<Lang, any> = {
           title: "Direttore di stabilimento",
           facility: "Stabilimento produttivo, Austin",
         },
+        {
+          quote: "Gestire una struttura di queste dimensioni significa migliaia di elementi in movimento. Il sistema ci ha fornito un'unica fonte di verità per lo stato delle attività, i cicli delle attrezzature e i controlli di conformità. Abbiamo smesso di rincorrere aggiornamenti e abbiamo iniziato ad agire su di essi.",
+          name: "James Whitfield",
+          title: "Direttore delle operazioni di struttura",
+          facility: "Magazzino industriale, Liverpool",
+        },
+        {
+          quote: "Nel nostro ambiente, anche piccoli ritardi si propagano rapidamente. La piattaforma impone responsabilità in tempo reale in ogni reparto. Abbiamo eliminato le zone grigie che bloccavano la produzione per ore.",
+          name: "Ciarán O'Sullivan",
+          title: "Responsabile senior della struttura",
+          facility: "Impianto di lavorazione, Tennessee",
+        },
+        {
+          quote: "Perdevamo ore ogni settimana a causa della gestione manuale degli ordini di lavoro e dell'instradamento errato. Dal momento dell'attivazione, i nostri team seguono flussi di lavoro strutturati dall'inizio alla fine — nessuna approssimazione, nessun collo di bottiglia. La produttività è aumentata e il nostro tasso di errore si è stabilizzato.",
+          name: "Rachel Moreno",
+          title: "Responsabile del controllo operativo",
+          facility: "Polo logistico, Dublino",
+        }
       ],
     },
     operationalTrust: {
@@ -5629,6 +5700,24 @@ export const translations: Record<Lang, any> = {
           title: "Gestor de Fábrica",
           facility: "Fábrica Industrial, Austin",
         },
+        {
+          quote: "Gerir uma instalação deste tamanho significa milhares de peças em movimento. O sistema deu-nos uma fonte única de verdade para o estado das tarefas, os ciclos de equipamentos e as verificações de conformidade. Deixámos de perseguir atualizações e começámos a agir com base nelas.",
+          name: "James Whitfield",
+          title: "Diretor de operações de instalações",
+          facility: "Armazém industrial, Liverpool",
+        },
+        {
+          quote: "No nosso ambiente, até pequenos atrasos se propagam rapidamente. A plataforma impõe responsabilização em tempo real em todos os departamentos. Eliminámos as zonas cinzentas que costumavam paralisar a produção durante horas.",
+          name: "Ciarán O'Sullivan",
+          title: "Responsável sénior de instalações",
+          facility: "Unidade de processamento, Tennessee",
+        },
+        {
+          quote: "Perdíamos horas todas as semanas com expedição manual e ordens de trabalho mal encaminhadas. Desde a implementação, as nossas equipas seguem fluxos de trabalho estruturados de ponta a ponta — sem suposições, sem estrangulamentos. A produtividade aumentou e a nossa taxa de erros estabilizou.",
+          name: "Rachel Moreno",
+          title: "Gestora de controlo de operações",
+          facility: "Centro logístico, Dublin",
+        }
       ],
     },
     operationalTrust: {

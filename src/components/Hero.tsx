@@ -15,6 +15,7 @@ export const Hero = () => {
   const imgRef = useRef<HTMLImageElement>(null);
   const rafId = useRef(0);
   const ticking = useRef(false);
+  const lastY = useRef(0);
 
   // Listen for global event to open simulator (from chatbot)
   useEffect(() => {
@@ -23,11 +24,12 @@ export const Hero = () => {
     return () => window.removeEventListener("open-simulator", handleOpenSimulator);
   }, []);
 
-  // Parallax scroll effect — ref-driven, no React re-renders
+  // Parallax scroll — compositor-only transform, no scale, no repaint
   const applyParallax = useCallback(() => {
     if (imgRef.current) {
-      const y = window.scrollY;
-      imgRef.current.style.transform = `translate3d(0, ${y * 0.55}px, 0) scale(${1 + y * 0.0003})`;
+      const y = lastY.current;
+      // Single translate3d only — stays on GPU compositor thread
+      imgRef.current.style.transform = `translate3d(0, ${y * 0.35}px, 0)`;
     }
     ticking.current = false;
   }, []);
@@ -37,6 +39,8 @@ export const Hero = () => {
     if (prefersReduced) return;
 
     const handleScroll = () => {
+      lastY.current = window.scrollY;
+
       if (!ticking.current && heroRef.current) {
         const rect = heroRef.current.getBoundingClientRect();
         if (rect.bottom > 0) {
@@ -57,8 +61,11 @@ export const Hero = () => {
     <>
       <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
 
-        {/* ===== Background ===== */}
-        <div className="absolute inset-0 z-0">
+        {/* ===== Parallax image — isolated on its own GPU layer ===== */}
+        <div
+          className="absolute inset-0 z-0"
+          style={{ contain: "strict", isolation: "isolate" }}
+        >
           <img
             ref={imgRef}
             src={heroBg}
@@ -67,13 +74,22 @@ export const Hero = () => {
             height={1080}
             fetchPriority="high"
             decoding="async"
-            className="w-full h-full object-cover brightness-[1.1] contrast-[1.15] saturate-[1.05] will-change-transform"
+            className="w-full h-[120%] object-cover"
             style={{
+              willChange: "transform",
               backfaceVisibility: "hidden",
+              WebkitBackfaceVisibility: "hidden",
+              transform: "translate3d(0, 0, 0)",
             }}
           />
+        </div>
 
-          {/* Readability overlay — 6% */}
+        {/* ===== Static overlays — separate layer, never repainted by parallax ===== */}
+        <div className="absolute inset-0 z-[1] pointer-events-none">
+          {/* Filters applied here — static, painted once */}
+          <div className="absolute inset-0 brightness-[1.1] contrast-[1.15] saturate-[1.05] mix-blend-normal" />
+
+          {/* Readability overlay */}
           <div className="absolute inset-0 bg-background/35" />
 
           {/* Subtle control-room gradient */}
