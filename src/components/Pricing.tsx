@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
 import { ScrollReveal, StaggerContainer } from "./ScrollReveal";
 import { BookingModal } from "./BookingModal";
+import { TypeformModal } from "./TypeformModal";
 
 const TYPEFORM_URL = "https://form.typeform.com/to/xTB0o3Wd";
 const ENTERPRISE_CAL_URL = "https://cal.com/ovelon-prime/enterprise-automation-program";
@@ -14,6 +15,7 @@ export const Pricing = () => {
   const isEnglish = i18n.language === "en";
   const focusedPrice = isEnglish ? "$4,999" : "€4.999";
   const [enterpriseBookingOpen, setEnterpriseBookingOpen] = useState(false);
+  const [typeformOpen, setTypeformOpen] = useState(false);
 
   const openTalkToExpert = () => {
     setEnterpriseBookingOpen(true);
@@ -142,17 +144,11 @@ export const Pricing = () => {
                     </Button>
                   ) : (
                     <Button
-                      asChild
                       variant="outline"
                       className="w-full"
+                      onClick={() => setTypeformOpen(true)}
                     >
-                      <a
-                        href={TYPEFORM_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {plan.cta}
-                      </a>
+                      {plan.cta}
                     </Button>
                   )}
 
@@ -170,6 +166,13 @@ export const Pricing = () => {
         isOpen={enterpriseBookingOpen}
         onClose={() => setEnterpriseBookingOpen(false)}
         calUrl={ENTERPRISE_CAL_URL}
+      />
+
+      <TypeformModal
+        isOpen={typeformOpen}
+        onClose={() => setTypeformOpen(false)}
+        url={TYPEFORM_URL}
+        title={t("pricing.focused.cta")}
       />
     </section>
   );
