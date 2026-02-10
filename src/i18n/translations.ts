@@ -217,7 +217,7 @@ export const translations: Record<Lang, any> = {
       items: [
         {
           quote: "Before Ovelon Prime, shift coordination depended on individual follow-up. Today, maintenance and planning execute predictably across all shifts — without manual intervention.",
-          name: "Martin Keller",
+          name: "Patrick Sullivan",
           title: "Logistics Operations Lead",
           facility: "Distribution Center, Nebraska",
         },
@@ -229,10 +229,28 @@ export const translations: Record<Lang, any> = {
         },
         {
           quote: "We operate under continuous pressure. Since implementing the system, routing and escalation follow fixed rules — not assumptions. Downtime caused by coordination errors is no longer a factor.",
-          name: "Daniel Hoffman",
+          name: "Wyatt Coleman",
           title: "Plant Manager",
           facility: "Manufacturing Plant, Austin",
         },
+        {
+          quote: "Managing a facility this size means thousands of moving parts. The system gave us a single source of truth for task status, equipment cycling, and compliance checks. We stopped chasing updates and started acting on them.",
+          name: "James Whitfield",
+          title: "Facility Operations Director",
+          facility: "Industrial Warehouse, Liverpool",
+        },
+        {
+          quote: "In our environment, even small delays cascade fast. The platform enforces real-time accountability across every department. We've eliminated the grey areas that used to stall production for hours.",
+          name: "Ciarán O'Sullivan",
+          title: "Senior Facility Lead",
+          facility: "Processing Facility, Tennessee"
+        },
+        {
+          quote: "We were losing hours every week to manual dispatching and misrouted work orders. Since going live, our teams follow structured workflows end to end — no guesswork, no bottlenecks. Throughput is up and our error rate has flatlined.",
+          name: "Rachel Moreno",
+          title: "Operations Control Manager",
+          facility: "Logistics Hub, Dublin",
+        }
       ] as TestimonialItem[],
     },
     operationalTrust: {
@@ -1319,7 +1337,7 @@ export const translations: Record<Lang, any> = {
       items: [
         {
           quote: "Vor Ovelon Prime hing die Schichtkoordination von individueller Nachverfolgung ab. Heute werden Wartung und Planung über alle Schichten hinweg vorhersehbar ausgeführt — ohne manuelle Eingriffe.",
-          name: "Martin Keller",
+          name: "Patrick Sullivan",
           title: "Leiter Logistikbetrieb",
           facility: "Distributionszentrum, Nebraska",
         },
@@ -1331,7 +1349,7 @@ export const translations: Record<Lang, any> = {
         },
         {
           quote: "Wir arbeiten unter ständigem Druck. Seit der Implementierung folgen Weiterleitung und Eskalation festen Regeln — nicht Annahmen. Ausfallzeiten durch Koordinationsfehler sind kein Faktor mehr.",
-          name: "Daniel Hoffman",
+          name: "Wyatt Coleman",
           title: "Werksleiter",
           facility: "Produktionswerk, Austin",
         },
@@ -2397,7 +2415,7 @@ export const translations: Record<Lang, any> = {
       items: [
         {
           quote: "Avant Ovelon Prime, la coordination des équipes dépendait du suivi individuel. Aujourd'hui, la maintenance et la planification s'exécutent de manière prévisible sur toutes les équipes — sans intervention manuelle.",
-          name: "Martin Keller",
+          name: "Patrick Sullivan",
           title: "Responsable des opérations logistiques",
           facility: "Centre de distribution, Nebraska",
         },
@@ -2409,7 +2427,7 @@ export const translations: Record<Lang, any> = {
         },
         {
           quote: "Nous opérons sous pression continue. Depuis l'implémentation du système, le routage et l'escalade suivent des règles fixes — pas des suppositions. Les temps d'arrêt causés par les erreurs de coordination ne sont plus un facteur.",
-          name: "Daniel Hoffman",
+          name: "Wyatt Coleman",
           title: "Directeur d'usine",
           facility: "Usine de fabrication, Austin",
         },
@@ -3475,7 +3493,7 @@ export const translations: Record<Lang, any> = {
       items: [
         {
           quote: "Antes de Ovelon Prime, la coordinación de turnos dependía del seguimiento individual. Hoy, el mantenimiento y la planificación se ejecutan de manera predecible en todos los turnos — sin intervención manual.",
-          name: "Martin Keller",
+          name: "Patrick Sullivan",
           title: "Líder de operaciones logísticas",
           facility: "Centro de distribución, Nebraska",
         },
@@ -3487,7 +3505,7 @@ export const translations: Record<Lang, any> = {
         },
         {
           quote: "Operamos bajo presión continua. Desde que implementamos el sistema, el enrutamiento y el escalamiento siguen reglas fijas — no suposiciones. El tiempo de inactividad causado por errores de coordinación ya no es un factor.",
-          name: "Daniel Hoffman",
+          name: "Wyatt Coleman",
           title: "Gerente de planta",
           facility: "Planta de fabricación, Austin",
         },
@@ -4536,7 +4554,7 @@ export const translations: Record<Lang, any> = {
       items: [
         {
           quote: "Prima di Ovelon Prime, il coordinamento dei turni dipendeva dal follow-up individuale. Oggi, manutenzione e pianificazione si eseguono in modo prevedibile su tutti i turni — senza intervento manuale.",
-          name: "Martin Keller",
+          name: "Patrick Sullivan",
           title: "Responsabile operazioni logistiche",
           facility: "Centro di distribuzione, Nebraska",
         },
@@ -4548,7 +4566,7 @@ export const translations: Record<Lang, any> = {
         },
         {
           quote: "Operiamo sotto pressione continua. Da quando abbiamo implementato il sistema, l'instradamento e l'escalation seguono regole fisse — non supposizioni. Il downtime causato da errori di coordinamento non è più un fattore.",
-          name: "Daniel Hoffman",
+          name: "Wyatt Coleman",
           title: "Direttore di stabilimento",
           facility: "Stabilimento produttivo, Austin",
         },
@@ -5595,7 +5613,7 @@ export const translations: Record<Lang, any> = {
       items: [
         {
           quote: "Antes da Ovelon Prime, a coordenação de turnos dependia do acompanhamento individual. Hoje, manutenção e planeamento executam previsivelmente em todos os turnos — sem intervenção manual.",
-          name: "Martin Keller",
+          name: "Patrick Sullivan",
           title: "Líder de Operações Logísticas",
           facility: "Centro de Distribuição, Nebraska",
         },
@@ -5607,7 +5625,7 @@ export const translations: Record<Lang, any> = {
         },
         {
           quote: "Operamos sob pressão contínua. Desde a implementação do sistema, o encaminhamento e escalamento seguem regras fixas — não suposições. O tempo de inatividade causado por erros de coordenação já não é um fator.",
-          name: "Daniel Hoffman",
+          name: "Wyatt Coleman",
           title: "Gestor de Fábrica",
           facility: "Fábrica Industrial, Austin",
         },

@@ -7,8 +7,21 @@ import { ScrollReveal } from "./ScrollReveal";
 import testimonial1 from "@/assets/testimonial-1.jpg";
 import testimonial2 from "@/assets/testimonial-2.jpg";
 import testimonial3 from "@/assets/testimonial-3.jpg";
+import testimonial4 from "@/assets/testimonial-4.png";
+import testimonial5 from "@/assets/testimonial-5.png";
+import testimonial6 from "@/assets/testimonial-6.png";
 
-const images = [testimonial1, testimonial2, testimonial3];
+const images: Record<number, string> = {
+  0: testimonial1,
+  1: testimonial2,
+  2: testimonial3,
+  3: testimonial4,
+  4: testimonial5,
+  5: testimonial6,
+};
+
+const getInitials = (name: string) =>
+  name.split(" ").map((n) => n[0]).join("").slice(0, 2).toUpperCase();
 
 export const Testimonials = () => {
   const { t } = useTranslation();
@@ -75,15 +88,23 @@ export const Testimonials = () => {
                         "{testimonial.quote}"
                       </p>
                       <div className="flex items-center gap-4">
-                        <img
-                          src={images[index]}
-                          alt={testimonial.name}
-                          width={56}
-                          height={56}
-                          loading="lazy"
-                          decoding="async"
-                          className="w-14 h-14 rounded-full object-cover grayscale"
-                        />
+                        {images[index] ? (
+                          <img
+                            src={images[index]}
+                            alt={testimonial.name}
+                            width={56}
+                            height={56}
+                            loading="lazy"
+                            decoding="async"
+                            className="w-14 h-14 rounded-full object-cover grayscale"
+                          />
+                        ) : (
+                          <div className="w-14 h-14 rounded-full bg-accent/20 border border-accent/30 flex items-center justify-center">
+                            <span className="text-accent text-sm font-semibold">
+                              {getInitials(testimonial.name)}
+                            </span>
+                          </div>
+                        )}
                         <div className="text-left">
                           <div className="font-medium text-primary-foreground">{testimonial.name}</div>
                           <div className="text-sm text-primary-foreground/60">{testimonial.title}</div>
