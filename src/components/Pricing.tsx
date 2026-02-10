@@ -165,6 +165,12 @@ export const Pricing = () => {
           })}
         </StaggerContainer>
       </div>
+
+      <BookingModal
+        isOpen={enterpriseBookingOpen}
+        onClose={() => setEnterpriseBookingOpen(false)}
+        calUrl={ENTERPRISE_CAL_URL}
+      />
     </section>
   );
 };
