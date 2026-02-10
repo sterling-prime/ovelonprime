@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, lazy, Suspense } from "react";
+import { useState, useEffect, useRef, lazy, Suspense, useCallback } from "react";
 import { ArrowRight, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
@@ -11,8 +11,10 @@ const ProjectSimulator = lazy(() => import("./ProjectSimulator"));
 export const Hero = () => {
   const { t } = useTranslation();
   const [simulatorOpen, setSimulatorOpen] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
   const heroRef = useRef<HTMLElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
+  const rafId = useRef(0);
+  const ticking = useRef(false);
 
   // Listen for global event to open simulator (from chatbot)
   useEffect(() => {
@@ -21,19 +23,35 @@ export const Hero = () => {
     return () => window.removeEventListener("open-simulator", handleOpenSimulator);
   }, []);
 
-  // Parallax scroll effect
+  // Parallax scroll effect — ref-driven, no React re-renders
+  const applyParallax = useCallback(() => {
+    if (imgRef.current) {
+      const y = window.scrollY;
+      imgRef.current.style.transform = `translate3d(0, ${y * 0.55}px, 0) scale(${1 + y * 0.0003})`;
+    }
+    ticking.current = false;
+  }, []);
+
   useEffect(() => {
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) return;
+
     const handleScroll = () => {
-      if (heroRef.current) {
+      if (!ticking.current && heroRef.current) {
         const rect = heroRef.current.getBoundingClientRect();
         if (rect.bottom > 0) {
-          setScrollY(window.scrollY);
+          ticking.current = true;
+          rafId.current = requestAnimationFrame(applyParallax);
         }
       }
     };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      cancelAnimationFrame(rafId.current);
+    };
+  }, [applyParallax]);
 
   return (
     <>
@@ -42,15 +60,16 @@ export const Hero = () => {
         {/* ===== Background ===== */}
         <div className="absolute inset-0 z-0">
           <img
+            ref={imgRef}
             src={heroBg}
             alt=""
             width={1920}
             height={1080}
             fetchPriority="high"
             decoding="async"
-            className="w-full h-full object-cover brightness-[1.1] contrast-[1.15] saturate-[1.05] will-change-transform transition-transform duration-75 ease-linear"
+            className="w-full h-full object-cover brightness-[1.1] contrast-[1.15] saturate-[1.05] will-change-transform"
             style={{
-              transform: `translate3d(0, ${scrollY * 0.55}px, 0) scale(${1 + scrollY * 0.0003})`,
+              backfaceVisibility: "hidden",
             }}
           />
 
