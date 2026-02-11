@@ -213,6 +213,7 @@ export const translations: Record<Lang, any> = {
       ] as SectorItem[],
     },
     testimonials: {
+      label: "CLIENT VOICES",
       title: "Client Testimonials",
       items: [
         {
@@ -1333,6 +1334,7 @@ export const translations: Record<Lang, any> = {
       ] as SectorItem[],
     },
     testimonials: {
+      label: "KUNDENSTIMMEN",
       title: "Kundenstimmen",
       items: [
         {
@@ -2429,6 +2431,7 @@ export const translations: Record<Lang, any> = {
       ] as SectorItem[],
     },
     testimonials: {
+      label: "VOIX DES CLIENTS",
       title: "Témoignages clients",
       items: [
         {
@@ -3525,6 +3528,7 @@ export const translations: Record<Lang, any> = {
       ],
     },
     testimonials: {
+      label: "VOCES DE CLIENTES",
       title: "Testimonios de clientes",
       items: [
         {
@@ -4603,6 +4607,7 @@ export const translations: Record<Lang, any> = {
       ],
     },
     testimonials: {
+      label: "VOCI DEI CLIENTI",
       title: "Testimonianze dei clienti",
       items: [
         {
@@ -5680,6 +5685,7 @@ export const translations: Record<Lang, any> = {
       ],
     },
     testimonials: {
+      label: "VOZES DOS CLIENTES",
       title: "Testemunhos de Clientes",
       items: [
         {
