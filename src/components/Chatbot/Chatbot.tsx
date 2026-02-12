@@ -97,7 +97,7 @@ export const Chatbot = () => {
     addUserMessage(t("chatbot.buttons.productInfo", "Product Info"));
     setTimeout(() => {
       addBotMessage(
-        t("chatbot.responses.productInfo", "We offer warehouse and workflow solutions tailored to your operations.\n\nQuick links:\n• Warehouse Solutions\n• Workflow Solutions\n\nAnything specific you want to know?")
+        t("chatbot.responses.productInfo", "Ovelon Prime provides end-to-end operational management solutions:\n\n🏭 Facility & Warehouse Management — Real-time inventory tracking, space optimization, and automated workflows for warehouses and distribution centers.\n\n⚙️ Maintenance & Repair Operations — Predictive maintenance scheduling, work order management, and asset lifecycle tracking.\n\n📦 Supply Chain & Logistics — Demand forecasting, procurement automation, and supply chain visibility across your entire network.\n\n🔧 Workflow Automation — Custom process orchestration, task routing, and operational dashboards for full visibility.\n\nWant to explore a specific area or see a demo?")
       );
       setCurrentPath("product");
     }, 500);
@@ -137,7 +137,7 @@ export const Chatbot = () => {
     addUserMessage(t("chatbot.buttons.pricing", "Pricing"));
     setTimeout(() => {
       addBotMessage(
-        t("chatbot.responses.pricing", `Our platform starts at ${priceDisplay}/month and includes the full suite of warehouse and workflow solutions.\n\nWant to see the detailed pricing section or schedule a call to discuss your needs?`)
+        t("chatbot.responses.pricing", `We offer two engagement levels:\n\n📋 Focused Program — Starting at ${priceDisplay}/month. Includes targeted operational optimization with dedicated support.\n\n🏢 Enterprise Program — Custom pricing for full-scale transformation with dedicated teams.\n\nYou can take our Engagement Assessment or talk directly to an expert.`)
       );
       setCurrentPath("pricing");
     }, 500);
@@ -192,6 +192,22 @@ export const Chatbot = () => {
     addUserMessage(t("chatbot.buttons.startIntake", "Start Intake"));
     setIsOpen(false);
     navigate(`/intake?lang=${i18n.language}`);
+  };
+
+  const handleOpenTypeform = () => {
+    window.dispatchEvent(new CustomEvent("open-typeform-modal"));
+    addUserMessage(t("chatbot.buttons.engagementAssessment", "Engagement Assessment"));
+    setTimeout(() => {
+      addBotMessage(t("chatbot.responses.typeformOpened", "I've opened our Engagement Assessment for you. Complete it to receive a tailored recommendation!"));
+    }, 500);
+  };
+
+  const handleOpenEnterprise = () => {
+    window.dispatchEvent(new CustomEvent("open-enterprise-booking"));
+    addUserMessage(t("chatbot.buttons.talkToExpert", "Talk to Expert"));
+    setTimeout(() => {
+      addBotMessage(t("chatbot.responses.enterpriseOpened", "I've opened the Enterprise booking calendar. Pick a time to speak with our team!"));
+    }, 500);
   };
 
   const handleGoToSection = (sectionId: string, label: string) => {
@@ -284,12 +300,16 @@ export const Chatbot = () => {
         return (
           <div className="flex flex-wrap gap-2 p-3 border-t border-border/50">
             <QuickReply
-              label={t("chatbot.buttons.warehouseSolutions", "Warehouse Solutions")}
-              onClick={() => handleGoToSection("services", "Warehouse Solutions")}
+              label={t("chatbot.buttons.viewServices", "View Services")}
+              onClick={() => handleGoToSection("services", "View Services")}
             />
             <QuickReply
-              label={t("chatbot.buttons.workflowSolutions", "Workflow Solutions")}
-              onClick={() => handleGoToSection("services", "Workflow Solutions")}
+              label={t("chatbot.buttons.scheduleDemo", "Schedule Demo")}
+              onClick={handleScheduleDemo}
+            />
+            <QuickReply
+              label={t("chatbot.buttons.engagementAssessment", "Assessment")}
+              onClick={handleOpenTypeform}
             />
             <QuickReply
               label={t("chatbot.buttons.backToMain", "← Back")}
@@ -331,6 +351,10 @@ export const Chatbot = () => {
               onClick={handleStartIntake}
             />
             <QuickReply
+              label={t("chatbot.buttons.engagementAssessment", "Quick Assessment")}
+              onClick={handleOpenTypeform}
+            />
+            <QuickReply
               label={t("chatbot.buttons.backToMain", "← Back")}
               onClick={handleBackToMain}
             />
@@ -340,12 +364,16 @@ export const Chatbot = () => {
         return (
           <div className="flex flex-wrap gap-2 p-3 border-t border-border/50">
             <QuickReply
-              label={t("chatbot.buttons.viewPricing", "View Pricing")}
-              onClick={() => handleGoToSection("pricing", "View Pricing")}
+              label={t("chatbot.buttons.engagementAssessment", "Engagement Assessment")}
+              onClick={handleOpenTypeform}
             />
             <QuickReply
-              label={t("chatbot.buttons.scheduleDemo", "Schedule Demo")}
-              onClick={handleScheduleDemo}
+              label={t("chatbot.buttons.talkToExpert", "Talk to Expert")}
+              onClick={handleOpenEnterprise}
+            />
+            <QuickReply
+              label={t("chatbot.buttons.viewPricing", "View Pricing")}
+              onClick={() => handleGoToSection("pricing", "View Pricing")}
             />
             <QuickReply
               label={t("chatbot.buttons.backToMain", "← Back")}
