@@ -7,6 +7,7 @@ import { QuickReply } from "./QuickReply";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import brooksAvatar from "@/assets/brooks-avatar.png";
 
 type Message = {
   id: string;
@@ -44,7 +45,7 @@ export const Chatbot = () => {
     if (isOpen && !hasGreeted) {
       const greeting: Message = {
         id: crypto.randomUUID(),
-        text: t("chatbot.greeting", "Hi! I'm Dean. How can I help you today?\n\nI can assist with Product Info, Operational Support, Schedule a Demo, run our Diagnostic Intake, try our Simulator, or answer questions about Pricing."),
+        text: t("chatbot.greeting", "Hi! I'm Brooks. How can I help you today?\n\nI can assist with Product Info, Operational Support, Schedule a Demo, try our Simulator, or answer questions about Pricing."),
         isBot: true,
         timestamp: new Date(),
       };
@@ -63,7 +64,7 @@ export const Chatbot = () => {
           return [
             {
               ...prev[0],
-              text: t("chatbot.greeting", "Hi! I'm Dean. How can I help you today?\n\nI can assist with Product Info, Operational Support, Schedule a Demo, run our Diagnostic Intake, try our Simulator, or answer questions about Pricing."),
+              text: t("chatbot.greeting", "Hi! I'm Brooks. How can I help you today?\n\nI can assist with Product Info, Operational Support, Schedule a Demo, try our Simulator, or answer questions about Pricing."),
             },
             ...prev.slice(1),
           ];
@@ -279,10 +280,6 @@ export const Chatbot = () => {
               onClick={handleScheduleDemo}
             />
             <QuickReply
-              label={t("chatbot.buttons.intake", "Diagnostic Intake")}
-              onClick={handleIntake}
-            />
-            <QuickReply
               label={t("chatbot.buttons.simulation", "Simulator")}
               onClick={handleSimulation}
             />
@@ -456,11 +453,9 @@ export const Chatbot = () => {
       >
         {/* Header */}
         <div className="bg-primary text-primary-foreground p-4 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-primary-foreground/20 flex items-center justify-center">
-            <span className="text-lg font-bold">D</span>
-          </div>
+          <img src={brooksAvatar} alt="Brooks" className="w-10 h-10 rounded-full object-cover border-2 border-primary-foreground/30" />
           <div>
-            <h3 className="font-semibold">Dean</h3>
+            <h3 className="font-semibold">Brooks</h3>
             <p className="text-xs opacity-80">{t("chatbot.subtitle", "Ovelon Prime Assistant")}</p>
           </div>
         </div>
