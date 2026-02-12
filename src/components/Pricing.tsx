@@ -1,5 +1,5 @@
 import { Check } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
@@ -16,6 +16,18 @@ export const Pricing = () => {
   const focusedPrice = isEnglish ? "$4,999" : "€4.999";
   const [enterpriseBookingOpen, setEnterpriseBookingOpen] = useState(false);
   const [typeformOpen, setTypeformOpen] = useState(false);
+
+  // Listen for chatbot events
+  useEffect(() => {
+    const handleOpenTypeform = () => setTypeformOpen(true);
+    const handleOpenEnterprise = () => setEnterpriseBookingOpen(true);
+    window.addEventListener("open-typeform-modal", handleOpenTypeform);
+    window.addEventListener("open-enterprise-booking", handleOpenEnterprise);
+    return () => {
+      window.removeEventListener("open-typeform-modal", handleOpenTypeform);
+      window.removeEventListener("open-enterprise-booking", handleOpenEnterprise);
+    };
+  }, []);
 
   const openTalkToExpert = () => {
     setEnterpriseBookingOpen(true);
