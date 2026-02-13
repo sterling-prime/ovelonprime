@@ -19,6 +19,7 @@ export const ComplianceBlog = () => {
 
   return (
     <section
+      id="compliance-blog"
       className="pt-20 pb-32 px-6 md:px-12 bg-primary scroll-mt-20"
       data-section="compliance-blog"
     >

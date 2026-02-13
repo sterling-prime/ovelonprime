@@ -197,10 +197,33 @@ export const Chatbot = () => {
     addUserMessage(t("chatbot.buttons.writeMessage", "Write a Message"));
     setTimeout(() => {
       addBotMessage(
-        t("chatbot.responses.writeSupportMessage", "Please type your message below. Include your name and email so our team can get back to you. I'll send it directly to our support team.")
+        t("chatbot.responses.writeSupportMessage", "Please provide the following details so our team can assist you:\n\n• First Name\n• Last Name\n• Company Name\n• Business Email\n• Your message\n\nType everything below and press Enter.")
       );
       setCurrentPath("support_message");
     }, 500);
+  };
+
+  const parseSupportMessage = (text: string) => {
+    const lines = text.split(/\n/).map(l => l.trim()).filter(Boolean);
+    const emailMatch = text.match(/[\w.-]+@[\w.-]+\.\w+/);
+    
+    if (lines.length >= 3 && emailMatch) {
+      return {
+        firstName: lines[0].replace(/^(first\s*name[:\-]?\s*)/i, ""),
+        lastName: lines.length >= 4 ? lines[1].replace(/^(last\s*name[:\-]?\s*)/i, "") : "",
+        businessName: lines.length >= 5 ? lines[2].replace(/^(company[:\-]?\s*|business[:\-]?\s*)/i, "") : "",
+        businessEmail: emailMatch[0],
+        requestDetails: lines.slice(lines.indexOf(lines.find(l => l.includes(emailMatch![0]))!) + 1).join("\n") || text,
+      };
+    }
+
+    return {
+      firstName: "Brooks Chat",
+      lastName: "Support Request",
+      businessName: "Via Chatbot",
+      businessEmail: "chatbot@ovelon-prime.com",
+      requestDetails: text,
+    };
   };
 
   const handleSendSupportMessage = async (text: string) => {
@@ -208,14 +231,10 @@ export const Chatbot = () => {
     setIsSendingSupport(true);
 
     try {
+      const parsed = parseSupportMessage(text);
+      
       const { error } = await supabase.functions.invoke("submit-contact", {
-        body: {
-          firstName: "Brooks Chat",
-          lastName: "Support Request",
-          businessName: "Via Chatbot",
-          businessEmail: "chatbot@ovelon-prime.com",
-          requestDetails: text,
-        },
+        body: parsed,
       });
 
       if (error) throw error;
