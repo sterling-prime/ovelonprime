@@ -961,7 +961,7 @@ export const translations: Record<Lang, any> = {
       trend2: "Organizations that succeed will be those that embed standards, safety, hygiene, and data discipline directly into daily execution. Not as overhead, but as operational structure."
     },
     chatbot: {
-      greeting: "Hi! I'm Dean. How can I help you today?\n\nI can assist with Product Info, Operational Support, Schedule a Demo, run our Diagnostic Intake, try our Simulator, or answer questions about Pricing.",
+      greeting: "Hi! I'm Brooks. How can I help you today?\n\nI can assist with Product Info, Operational Support, Schedule a Demo, try our Simulator, Compliance & Governance, or answer questions about Pricing.",
       subtitle: "Ovelon Prime Assistant",
       inputPlaceholder: "Type a message...",
       buttons: {
@@ -2082,7 +2082,7 @@ export const translations: Record<Lang, any> = {
       trend2: "Erfolgreiche Organisationen werden diejenigen sein, die Standards, Sicherheit, Hygiene und Datendisziplin direkt in die tägliche Ausführung einbetten. Nicht als Overhead, sondern als operative Struktur."
     },
     chatbot: {
-      greeting: "Hallo! Ich bin Dean. Wie kann ich Ihnen heute helfen?\n\nIch kann Ihnen bei Produktinformationen, operativer Unterstützung, Terminvereinbarung für eine Demo, unserer Diagnose-Aufnahme, dem Simulator oder Preisfragen weiterhelfen.",
+      greeting: "Hallo! Ich bin Brooks. Wie kann ich Ihnen heute helfen?\n\nIch kann Ihnen bei Produktinformationen, operativer Unterstützung, Terminvereinbarung für eine Demo, dem Simulator, Compliance & Governance oder Preisfragen weiterhelfen.",
       subtitle: "Ovelon Prime Assistent",
       inputPlaceholder: "Nachricht eingeben...",
       buttons: {
@@ -3179,7 +3179,7 @@ export const translations: Record<Lang, any> = {
       trend2: "Les organisations qui réussiront seront celles qui intégreront les normes, la sécurité, l'hygiène et la discipline des données directement dans l'exécution quotidienne. Pas comme une surcharge, mais comme une structure opérationnelle."
     },
     chatbot: {
-      greeting: "Bonjour ! Je suis Dean. Comment puis-je vous aider aujourd'hui ?\n\nJe peux vous aider avec les informations produit, le support opérationnel, planifier une démo, lancer notre diagnostic, essayer notre simulateur ou répondre aux questions sur les tarifs.",
+      greeting: "Bonjour ! Je suis Brooks. Comment puis-je vous aider aujourd'hui ?\n\nJe peux vous aider avec les informations produit, le support opérationnel, planifier une démo, essayer notre simulateur, la Conformité & Gouvernance ou répondre aux questions sur les tarifs.",
       subtitle: "Assistant Ovelon Prime",
       inputPlaceholder: "Écrivez un message...",
       buttons: {
@@ -4257,7 +4257,7 @@ export const translations: Record<Lang, any> = {
       trend2: "Las organizaciones que tendrán éxito serán aquellas que integren estándares, seguridad, higiene y disciplina de datos directamente en la ejecución diaria. No como sobrecarga, sino como estructura operativa."
     },
     chatbot: {
-      greeting: "¡Hola! Soy Dean. ¿En qué puedo ayudarte hoy?\n\nPuedo asistirte con información del producto, soporte operacional, programar una demo, ejecutar nuestro diagnóstico, probar nuestro simulador o responder preguntas sobre precios.",
+      greeting: "¡Hola! Soy Brooks. ¿En qué puedo ayudarte hoy?\n\nPuedo asistirte con información del producto, soporte operacional, programar una demo, probar nuestro simulador, Cumplimiento & Gobernanza o responder preguntas sobre precios.",
       subtitle: "Asistente Ovelon Prime",
       inputPlaceholder: "Escribe un mensaje...",
       buttons: {
@@ -5334,7 +5334,7 @@ export const translations: Record<Lang, any> = {
       trend2: "Le organizzazioni che avranno successo saranno quelle che integreranno standard, sicurezza, igiene e disciplina dei dati direttamente nell'esecuzione quotidiana. Non come sovraccarico, ma come struttura operativa."
     },
     chatbot: {
-      greeting: "Ciao! Sono Dean. Come posso aiutarti oggi?\n\nPosso assisterti con informazioni sul prodotto, supporto operativo, prenotare una demo, eseguire il nostro diagnostico, provare il nostro simulatore o rispondere a domande sui prezzi.",
+      greeting: "Ciao! Sono Brooks. Come posso aiutarti oggi?\n\nPosso assisterti con informazioni sul prodotto, supporto operativo, prenotare una demo, provare il nostro simulatore, Conformità & Governance o rispondere a domande sui prezzi.",
       subtitle: "Assistente Ovelon Prime",
       inputPlaceholder: "Scrivi un messaggio...",
       buttons: {
@@ -6402,7 +6402,7 @@ export const translations: Record<Lang, any> = {
       trend2: "As organizações que terão sucesso serão aquelas que incorporam normas, segurança, higiene e disciplina de dados diretamente na execução diária. Não como sobrecarga, mas como estrutura operacional."
     },
     chatbot: {
-      greeting: "Olá! Sou o Dean. Como posso ajudá-lo hoje?\n\nPosso auxiliar com informações do produto, suporte operacional, agendar uma demo, executar o nosso diagnóstico, experimentar o nosso simulador ou responder a perguntas sobre preços.",
+      greeting: "Olá! Sou o Brooks. Como posso ajudá-lo hoje?\n\nPosso auxiliar com informações do produto, suporte operacional, agendar uma demo, experimentar o nosso simulador, Conformidade & Governança ou responder a perguntas sobre preços.",
       subtitle: "Assistente Ovelon Prime",
       inputPlaceholder: "Escreva uma mensagem...",
       buttons: {
