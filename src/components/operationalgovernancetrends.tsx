@@ -47,21 +47,21 @@ export const OperationalGovernanceTrends = () => {
                 className="bg-card rounded-2xl p-8 border border-border shadow-card card-hover flex flex-col h-full min-h-[400px] group"
               >
                 {/* ICON */}
-                <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center mb-6 mx-auto transition-colors duration-300 group-hover:bg-[#3A8F94]/10">
+                <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center mb-6 md:mx-auto transition-colors duration-300 group-hover:bg-[#3A8F94]/10">
                   <Icon className="w-6 h-6 text-foreground transition-colors duration-300 group-hover:text-[#3A8F94]" />
                 </div>
 
                 {/* TITLE */}
-                <h3 className="text-lg font-semibold text-foreground mb-5 text-center md:text-left">
+                <h3 className="text-lg font-semibold text-foreground mb-5 text-left md:text-center">
                   {t(`governanceTrends.${col.key}.title`)}
                 </h3>
 
                 {/* LIST */}
-                <ul className="space-y-3 flex-grow max-w-md mx-auto md:max-w-none">
+                <ul className="space-y-3 flex-grow">
                   {Array.from({ length: col.items }).map((_, i) => (
                     <li
                       key={i}
-                      className="flex items-start gap-3 text-sm text-muted-foreground justify-center md:justify-start text-center md:text-left"
+                      className="flex items-start gap-3 text-sm text-muted-foreground text-left md:justify-center md:text-center"
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0" />
                       <span>
