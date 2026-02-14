@@ -22,12 +22,25 @@ type ConversationPath =
   | "product"
   | "support"
   | "support_message"
+  | "support_firstName"
+  | "support_lastName"
+  | "support_businessName"
+  | "support_email"
+  | "support_details"
   | "demo"
   | "pricing"
   | "contact"
   | "simulation"
   | "compliance"
   | "fallback";
+
+type SupportFormData = {
+  firstName: string;
+  lastName: string;
+  businessName: string;
+  businessEmail: string;
+  requestDetails: string;
+};
 
 export const Chatbot = () => {
   const { t, i18n } = useTranslation();
@@ -38,6 +51,13 @@ export const Chatbot = () => {
   const [currentPath, setCurrentPath] = useState<ConversationPath>("initial");
   const [hasGreeted, setHasGreeted] = useState(false);
   const [isSendingSupport, setIsSendingSupport] = useState(false);
+  const [supportForm, setSupportForm] = useState<SupportFormData>({
+    firstName: "",
+    lastName: "",
+    businessName: "",
+    businessEmail: "",
+    requestDetails: "",
+  });
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const isEnglish = i18n.language === "en";
@@ -195,63 +215,76 @@ export const Chatbot = () => {
 
   const handleWriteSupportMessage = () => {
     addUserMessage(t("chatbot.buttons.writeMessage", "Write a Message"));
+    setSupportForm({ firstName: "", lastName: "", businessName: "", businessEmail: "", requestDetails: "" });
     setTimeout(() => {
-      addBotMessage(
-        t("chatbot.responses.writeSupportMessage", "Please provide the following details so our team can assist you:\n\n• First Name\n• Last Name\n• Company Name\n• Business Email\n• Your message\n\nType everything below and press Enter.")
-      );
-      setCurrentPath("support_message");
+      addBotMessage(t("chatbot.responses.askFirstName", "What is your first name?"));
+      setCurrentPath("support_firstName");
     }, 500);
   };
 
-  const parseSupportMessage = (text: string) => {
-    const lines = text.split(/\n/).map(l => l.trim()).filter(Boolean);
-    const emailMatch = text.match(/[\w.-]+@[\w.-]+\.\w+/);
-    
-    if (lines.length >= 3 && emailMatch) {
-      return {
-        firstName: lines[0].replace(/^(first\s*name[:\-]?\s*)/i, ""),
-        lastName: lines.length >= 4 ? lines[1].replace(/^(last\s*name[:\-]?\s*)/i, "") : "",
-        businessName: lines.length >= 5 ? lines[2].replace(/^(company[:\-]?\s*|business[:\-]?\s*)/i, "") : "",
-        businessEmail: emailMatch[0],
-        requestDetails: lines.slice(lines.indexOf(lines.find(l => l.includes(emailMatch![0]))!) + 1).join("\n") || text,
-      };
-    }
+  const validateEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-    return {
-      firstName: "Brooks Chat",
-      lastName: "Support Request",
-      businessName: "Via Chatbot",
-      businessEmail: "chatbot@ovelon-prime.com",
-      requestDetails: text,
-    };
-  };
-
-  const handleSendSupportMessage = async (text: string) => {
-    if (isSendingSupport) return;
-    setIsSendingSupport(true);
-
-    try {
-      const parsed = parseSupportMessage(text);
-      
-      const { data, error } = await supabase.functions.invoke("submit-contact", {
-        body: parsed,
-      });
-
-      if (error) throw error;
-
-      const hasUserEmail = parsed.businessEmail !== "chatbot@ovelon-prime.com";
-      addBotMessage(
-        hasUserEmail
-          ? t("chatbot.responses.supportSentWithEmail", `✅ Your message has been sent successfully!\n\n📧 A confirmation email has been sent to ${parsed.businessEmail}\n📋 Reference: ${data?.referenceId || "Pending"}\n\nOur team at info@ovelon-prime.com will review your request and get back to you shortly.`)
-          : t("chatbot.responses.supportSent", "✅ Your message has been sent to our support team at info@ovelon-prime.com. They'll get back to you shortly!")
-      );
-    } catch {
-      addBotMessage(
-        t("chatbot.responses.supportError", "❌ Sorry, I couldn't send your message right now. Please try the contact form or email us directly at info@ovelon-prime.com.")
-      );
-    } finally {
-      setIsSendingSupport(false);
-      setCurrentPath("initial");
+  const handleSupportStep = async (text: string) => {
+    switch (currentPath) {
+      case "support_firstName":
+        setSupportForm(prev => ({ ...prev, firstName: text }));
+        setTimeout(() => {
+          addBotMessage(t("chatbot.responses.askLastName", "And your last name?"));
+          setCurrentPath("support_lastName");
+        }, 300);
+        break;
+      case "support_lastName":
+        setSupportForm(prev => ({ ...prev, lastName: text }));
+        setTimeout(() => {
+          addBotMessage(t("chatbot.responses.askBusinessName", "What is your company name?"));
+          setCurrentPath("support_businessName");
+        }, 300);
+        break;
+      case "support_businessName":
+        setSupportForm(prev => ({ ...prev, businessName: text }));
+        setTimeout(() => {
+          addBotMessage(t("chatbot.responses.askEmail", "What is your business email?"));
+          setCurrentPath("support_email");
+        }, 300);
+        break;
+      case "support_email":
+        if (!validateEmail(text)) {
+          addBotMessage(t("chatbot.responses.invalidEmail", "Please enter a valid email address (e.g. name@company.com)"));
+          return;
+        }
+        setSupportForm(prev => ({ ...prev, businessEmail: text }));
+        setTimeout(() => {
+          addBotMessage(t("chatbot.responses.askDetails", "Please describe your request or message:"));
+          setCurrentPath("support_details");
+        }, 300);
+        break;
+      case "support_details": {
+        const finalForm = {
+          ...supportForm,
+          firstName: supportForm.firstName || text,
+          requestDetails: text,
+        };
+        // Update state for reference
+        setSupportForm(finalForm);
+        setIsSendingSupport(true);
+        try {
+          const { data, error } = await supabase.functions.invoke("submit-contact", {
+            body: finalForm,
+          });
+          if (error) throw error;
+          addBotMessage(
+            t("chatbot.responses.supportSentWithEmail", `✅ Your message has been sent successfully!\n\n📧 A confirmation email has been sent to ${finalForm.businessEmail}\n📋 Reference: ${data?.referenceId || "Pending"}\n\nOur team at info@ovelon-prime.com will review your request and get back to you shortly.`)
+          );
+        } catch {
+          addBotMessage(
+            t("chatbot.responses.supportError", "❌ Sorry, I couldn't send your message right now. Please try the contact form or email us directly at info@ovelon-prime.com.")
+          );
+        } finally {
+          setIsSendingSupport(false);
+          setCurrentPath("initial");
+        }
+        break;
+      }
     }
   };
 
@@ -305,9 +338,9 @@ export const Chatbot = () => {
     addUserMessage(userText);
     setInputValue("");
 
-    // If we're in support_message mode, send the message to support
-    if (currentPath === "support_message") {
-      handleSendSupportMessage(userText);
+    // If we're in a support form step, handle it
+    if (currentPath.startsWith("support_")) {
+      handleSupportStep(userText);
       return;
     }
 
@@ -372,13 +405,17 @@ export const Chatbot = () => {
             <QuickReply label={t("chatbot.buttons.backToMain", "← Back")} onClick={handleBackToMain} />
           </div>
         );
-      case "support_message":
+      case "support_firstName":
+      case "support_lastName":
+      case "support_businessName":
+      case "support_email":
+      case "support_details":
         return (
           <div className="flex flex-wrap gap-2 p-3 border-t border-border/50">
             <p className="text-xs text-muted-foreground w-full text-center">
               {isSendingSupport
                 ? t("chatbot.sending", "Sending...")
-                : t("chatbot.typeBelow", "Type your message below and press Enter ↵")}
+                : t("chatbot.typeBelow", "Type your answer below and press Enter ↵")}
             </p>
             <QuickReply label={t("chatbot.buttons.backToMain", "← Back")} onClick={handleBackToMain} />
           </div>
@@ -487,8 +524,12 @@ export const Chatbot = () => {
             onChange={(e) => setInputValue(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleUserInput()}
             placeholder={
-              currentPath === "support_message"
-                ? t("chatbot.supportPlaceholder", "Describe your issue + your email...")
+              currentPath.startsWith("support_")
+                ? currentPath === "support_email"
+                  ? t("chatbot.emailPlaceholder", "name@company.com")
+                  : currentPath === "support_details"
+                    ? t("chatbot.supportPlaceholder", "Describe your request...")
+                    : t("chatbot.inputPlaceholder", "Type your answer...")
                 : t("chatbot.inputPlaceholder", "Type a message...")
             }
             className="flex-1 text-sm"
