@@ -233,14 +233,17 @@ export const Chatbot = () => {
     try {
       const parsed = parseSupportMessage(text);
       
-      const { error } = await supabase.functions.invoke("submit-contact", {
+      const { data, error } = await supabase.functions.invoke("submit-contact", {
         body: parsed,
       });
 
       if (error) throw error;
 
+      const hasUserEmail = parsed.businessEmail !== "chatbot@ovelon-prime.com";
       addBotMessage(
-        t("chatbot.responses.supportSent", "✅ Your message has been sent to our support team at info@ovelon-prime.com. They'll get back to you shortly!")
+        hasUserEmail
+          ? t("chatbot.responses.supportSentWithEmail", `✅ Your message has been sent successfully!\n\n📧 A confirmation email has been sent to ${parsed.businessEmail}\n📋 Reference: ${data?.referenceId || "Pending"}\n\nOur team at info@ovelon-prime.com will review your request and get back to you shortly.`)
+          : t("chatbot.responses.supportSent", "✅ Your message has been sent to our support team at info@ovelon-prime.com. They'll get back to you shortly!")
       );
     } catch {
       addBotMessage(
@@ -453,10 +456,16 @@ export const Chatbot = () => {
       >
         {/* Header */}
         <div className="bg-primary text-primary-foreground p-4 flex items-center gap-3">
-          <img src={brooksAvatar} alt="Brooks" className="w-10 h-10 rounded-full object-cover border-2 border-primary-foreground/30" />
+          <div className="relative">
+            <img src={brooksAvatar} alt="Brooks" className="w-10 h-10 rounded-full object-cover border-2 border-primary-foreground/30" />
+            <span className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-400 border-2 border-primary rounded-full" />
+          </div>
           <div>
             <h3 className="font-semibold">Brooks</h3>
-            <p className="text-xs opacity-80">{t("chatbot.subtitle", "Ovelon Prime Assistant")}</p>
+            <p className="text-xs opacity-80 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full inline-block" />
+              {t("chatbot.subtitle", "Online · Ovelon Prime Assistant")}
+            </p>
           </div>
         </div>
 
