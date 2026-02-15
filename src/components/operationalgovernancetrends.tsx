@@ -25,10 +25,12 @@ export const OperationalGovernanceTrends = () => {
           <p className="section-label mb-4">
             {t("governanceTrends.label", "GOVERNANCE")}
           </p>
-          <h2 className="section-title mb-6">
+
+          <h2 className="section-title mb-6 text-center">
             {t("governanceTrends.title")}
           </h2>
-          <p className="section-subtitle mx-auto">
+
+          <p className="section-subtitle mx-auto text-center">
             {t("governanceTrends.subtitle")}
           </p>
         </ScrollReveal>
@@ -41,18 +43,27 @@ export const OperationalGovernanceTrends = () => {
         >
           {columns.map((col, index) => {
             const Icon = icons[index];
+
             return (
               <div
                 key={col.key}
-                className="bg-card rounded-2xl p-8 border border-border shadow-card card-hover flex flex-col h-full min-h-[400px] group"
+                className="bg-card rounded-2xl p-8 border border-border shadow-card
+                           card-hover flex flex-col h-full min-h-[400px] group"
               >
                 {/* ICON */}
-                <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center mb-6 md:mx-auto transition-colors duration-300 group-hover:bg-[#3A8F94]/10">
-                  <Icon className="w-6 h-6 text-foreground transition-colors duration-300 group-hover:text-[#3A8F94]" />
+                <div
+                  className="w-12 h-12 rounded-xl bg-secondary flex items-center
+                             justify-center mb-6 mx-auto transition-colors
+                             duration-300 group-hover:bg-[#3A8F94]/10"
+                >
+                  <Icon
+                    className="w-6 h-6 text-foreground transition-colors
+                               duration-300 group-hover:text-[#3A8F94]"
+                  />
                 </div>
 
-                {/* TITLE */}
-                <h3 className="text-lg font-semibold text-foreground mb-5 text-left md:text-center">
+                {/* TITLE (ALWAYS CENTERED) */}
+                <h3 className="text-lg font-semibold text-foreground mb-6 text-center">
                   {t(`governanceTrends.${col.key}.title`)}
                 </h3>
 
@@ -61,10 +72,14 @@ export const OperationalGovernanceTrends = () => {
                   {Array.from({ length: col.items }).map((_, i) => (
                     <li
                       key={i}
-                      className="flex items-start gap-3 text-sm text-muted-foreground text-left md:justify-center md:text-center"
+                      className="
+                        grid grid-cols-[8px_1fr] gap-3
+                        text-sm text-muted-foreground text-left
+                        md:grid-cols-1 md:justify-items-center md:text-center
+                      "
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0" />
-                      <span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2" />
+                      <span className="block">
                         {t(`governanceTrends.${col.key}.items.${i}`)}
                       </span>
                     </li>
@@ -84,6 +99,7 @@ export const OperationalGovernanceTrends = () => {
           <p className="text-foreground text-lg leading-relaxed">
             {t("governanceTrends.trend1")}
           </p>
+
           <p className="mt-4 text-muted-foreground text-sm leading-relaxed">
             {t("governanceTrends.trend2")}
           </p>
