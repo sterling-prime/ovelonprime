@@ -132,26 +132,10 @@ export const translations: Record<Lang, any> = {
         "We remove operational breakdowns caused by manual coordination, unclear execution, and reactive incident handling — restoring control, accountability, and predictable outcomes inside live operations.",
       items: [
         {
-          title: "Request & Demand Handling",
+          title: "Request & Incident Handling",
           description:
             "Incoming requests are captured, validated, and routed consistently — without reliance on ad-hoc follow-up or individual judgment.",
           tags: ["Smart Intake control", "Qualification rules", "System Routing"],
-        },
-        {
-          title: "Safety & Execution Standards",
-          description:
-            "Standardized visual instructions used to align operators, contractors, and teams on safety-critical procedures — reducing interpretation errors, deviations, and execution risk.",
-          tags: [
-            "HSE procedures",
-            "ISO / VCA / OSHA alignment",
-            "Operator & contractor onboarding",
-          ],
-        },
-        {
-          title: "Incident Handling & Escalation",
-          description:
-            "Issues are logged, classified, and escalated in a controlled manner — ensuring accountability, response clarity, and predictable resolution paths",
-          tags: ["Issue classification", "Escalation paths", "Response ownership"],
         },
         {
           title: "Appointment Setting Efficiency",
@@ -177,12 +161,6 @@ export const translations: Record<Lang, any> = {
           "Real-time compliance tracking across all shifts",
           "Contractor onboarding standardized across locations",
           "HSE-aligned procedures ready for regulatory audits",
-        ],
-        [
-          "Automated classification ensures consistent issue prioritization",
-          "Clear escalation paths with defined ownership at each level",
-          "Response SLAs tracked and enforced automatically",
-          "Post-incident analysis for continuous improvement",
         ],
         [
           "24/7 availability without increasing headcount",
@@ -626,33 +604,6 @@ export const translations: Record<Lang, any> = {
           bullet3: "Reduced interpretation errors",
           bullet4: "Aligned safety framework",
           tradeoff: "Safety becomes repeatable and auditable.",
-        },
-      },
-      incident: {
-        title: "Incident Handling & Escalation",
-        metrics: {
-          escalationLoops: "Escalation Loops",
-          responseTime: "Response Time",
-          accountability: "Accountability",
-          accountabilityValue: "Explicit",
-        },
-        before: {
-          title: "Reactive incident handling",
-          text: "Incidents are reported inconsistently and escalated manually. Responsibility is unclear and visibility is limited.",
-          bullet1: "Unclear escalation thresholds",
-          bullet2: "Delayed handovers",
-          bullet3: "Parallel communication threads",
-          bullet4: "Limited management visibility",
-          tradeoff: "Incidents consume attention instead of being resolved.",
-        },
-        after: {
-          title: "Controlled escalation with clear accountability",
-          text: "Incidents are logged, classified, and escalated through predefined paths. Each step has a clear owner and response window.",
-          bullet1: "Defined escalation levels",
-          bullet2: "Clear ownership per incident",
-          bullet3: "Predictable response timelines",
-          bullet4: "Full operational visibility",
-          tradeoff: "Incidents are resolved systematically.",
         },
       },
       appointment: {
@@ -1253,26 +1204,10 @@ export const translations: Record<Lang, any> = {
         "Wir beseitigen operative Ausfälle, die durch manuelle Koordination, unklare Ausführung und reaktive Störungsbehandlung verursacht werden — und stellen Kontrolle, Verantwortlichkeit und vorhersehbare Ergebnisse in laufenden Betrieben wieder her.",
       items: [
         {
-          title: "Anfragen- & Bedarfsmanagement",
+          title: "Anfragen- & Vorfallmanagement",
           description:
             "Eingehende Anfragen werden erfasst, validiert und konsistent weitergeleitet — ohne Abhängigkeit von Ad-hoc-Nachverfolgung oder individueller Einschätzung.",
           tags: ["Intelligente Aufnahmesteuerung", "Qualifizierungsregeln", "Systemweiterleitung"],
-        },
-        {
-          title: "Sicherheits- & Ausführungsstandards",
-          description:
-            "Standardisierte visuelle Anweisungen zur Abstimmung von Bedienern, Auftragnehmern und Teams bei sicherheitskritischen Verfahren — zur Reduzierung von Interpretationsfehlern, Abweichungen und Ausführungsrisiken.",
-          tags: [
-            "HSE-Verfahren",
-            "ISO / VCA / OSHA-Konformität",
-            "Bediener- & Auftragnehmereinführung",
-          ],
-        },
-        {
-          title: "Störungsmanagement & Eskalation",
-          description:
-            "Probleme werden kontrolliert protokolliert, klassifiziert und eskaliert — um Verantwortlichkeit, Reaktionsklarheit und vorhersehbare Lösungswege zu gewährleisten.",
-          tags: ["Problemklassifizierung", "Eskalationspfade", "Reaktionsverantwortung"],
         },
         {
           title: "Effizienz bei der Terminvereinbarung",
@@ -1298,12 +1233,6 @@ export const translations: Record<Lang, any> = {
           "Echtzeit-Compliance-Überwachung über alle Schichten",
           "Auftragnehmer-Onboarding standortübergreifend standardisiert",
           "HSE-konforme Verfahren für regulatorische Audits bereit",
-        ],
-        [
-          "Automatisierte Klassifizierung gewährleistet konsistente Problempriorisierung",
-          "Klare Eskalationspfade mit definierter Verantwortung auf jeder Ebene",
-          "Reaktions-SLAs automatisch verfolgt und durchgesetzt",
-          "Post-Incident-Analyse zur kontinuierlichen Verbesserung",
         ],
         [
           "24/7-Verfügbarkeit ohne Personalaufstockung",
@@ -1747,33 +1676,6 @@ export const translations: Record<Lang, any> = {
           bullet3: "Reduzierte Interpretationsfehler",
           bullet4: "Abgestimmtes Sicherheitsframework",
           tradeoff: "Sicherheit wird wiederholbar und prüfbar.",
-        },
-      },
-      incident: {
-        title: "Vorfallbehandlung & Eskalation",
-        metrics: {
-          escalationLoops: "Eskalationsschleifen",
-          responseTime: "Reaktionszeit",
-          accountability: "Verantwortlichkeit",
-          accountabilityValue: "Explizit",
-        },
-        before: {
-          title: "Reaktive Vorfallbehandlung",
-          text: "Vorfälle werden inkonsistent gemeldet und manuell eskaliert. Verantwortung ist unklar und Sichtbarkeit begrenzt.",
-          bullet1: "Unklare Eskalationsschwellen",
-          bullet2: "Verzögerte Übergaben",
-          bullet3: "Parallele Kommunikationsstränge",
-          bullet4: "Begrenzte Management-Sichtbarkeit",
-          tradeoff: "Vorfälle binden Aufmerksamkeit statt gelöst zu werden.",
-        },
-        after: {
-          title: "Kontrollierte Eskalation mit klarer Verantwortlichkeit",
-          text: "Vorfälle werden protokolliert, klassifiziert und über vordefinierte Pfade eskaliert. Jeder Schritt hat einen klaren Verantwortlichen und ein Reaktionszeitfenster.",
-          bullet1: "Definierte Eskalationsstufen",
-          bullet2: "Klare Verantwortung pro Vorfall",
-          bullet3: "Vorhersehbare Reaktionszeiten",
-          bullet4: "Volle operative Sichtbarkeit",
-          tradeoff: "Vorfälle werden systematisch gelöst.",
         },
       },
       appointment: {
@@ -2350,26 +2252,10 @@ export const translations: Record<Lang, any> = {
         "Nous éliminons les pannes opérationnelles causées par la coordination manuelle, l'exécution floue et la gestion réactive des incidents — restaurant le contrôle, la responsabilité et les résultats prévisibles dans les opérations en cours.",
       items: [
         {
-          title: "Gestion des demandes et des besoins",
+          title: "Gestion des demandes et des incidents",
           description:
             "Les demandes entrantes sont capturées, validées et acheminées de manière cohérente — sans dépendre du suivi ad hoc ou du jugement individuel.",
-          tags: ["Contrôle d'admission intelligent", "Règles de qualification", "Routage système"],
-        },
-        {
-          title: "Normes de sécurité et d'exécution",
-          description:
-            "Instructions visuelles standardisées utilisées pour aligner les opérateurs, les sous-traitants et les équipes sur les procédures critiques pour la sécurité — réduisant les erreurs d'interprétation, les écarts et les risques d'exécution.",
-          tags: [
-            "Procédures HSE",
-            "Alignement ISO / VCA / OSHA",
-            "Intégration opérateurs et sous-traitants",
-          ],
-        },
-        {
-          title: "Gestion des incidents et escalade",
-          description:
-            "Les problèmes sont enregistrés, classifiés et escaladés de manière contrôlée — assurant la responsabilité, la clarté de la réponse et des chemins de résolution prévisibles.",
-          tags: ["Classification des problèmes", "Chemins d'escalade", "Propriété de la réponse"],
+          tags: ["Contrôle d'admission intelligent", "Règles de qualification", "Acheminement système"],
         },
         {
           title: "Efficacité dans la prise de rendez-vous",
@@ -2395,12 +2281,6 @@ export const translations: Record<Lang, any> = {
           "Suivi de conformité en temps réel sur tous les quarts",
           "Intégration des sous-traitants standardisée sur tous les sites",
           "Procédures conformes HSE prêtes pour les audits réglementaires",
-        ],
-        [
-          "La classification automatisée assure une priorisation cohérente des problèmes",
-          "Chemins d'escalade clairs avec propriété définie à chaque niveau",
-          "SLA de réponse suivis et appliqués automatiquement",
-          "Analyse post-incident pour l'amélioration continue",
         ],
         [
           "Disponibilité 24/7 sans augmenter les effectifs",
@@ -2844,33 +2724,6 @@ export const translations: Record<Lang, any> = {
           bullet3: "Erreurs d'interprétation réduites",
           bullet4: "Cadre de sécurité aligné",
           tradeoff: "La sécurité devient reproductible et auditable.",
-        },
-      },
-      incident: {
-        title: "Gestion des incidents et escalade",
-        metrics: {
-          escalationLoops: "Boucles d'escalade",
-          responseTime: "Temps de réponse",
-          accountability: "Responsabilité",
-          accountabilityValue: "Explicite",
-        },
-        before: {
-          title: "Gestion réactive des incidents",
-          text: "Les incidents sont signalés de manière incohérente et escaladés manuellement. La responsabilité est floue et la visibilité limitée.",
-          bullet1: "Seuils d'escalade flous",
-          bullet2: "Transferts retardés",
-          bullet3: "Fils de communication parallèles",
-          bullet4: "Visibilité de la direction limitée",
-          tradeoff: "Les incidents consomment l'attention au lieu d'être résolus.",
-        },
-        after: {
-          title: "Escalade contrôlée avec responsabilité claire",
-          text: "Les incidents sont enregistrés, classifiés et escaladés via des chemins prédéfinis. Chaque étape a un responsable clair et une fenêtre de réponse.",
-          bullet1: "Niveaux d'escalade définis",
-          bullet2: "Responsabilité claire par incident",
-          bullet3: "Délais de réponse prévisibles",
-          bullet4: "Visibilité opérationnelle complète",
-          tradeoff: "Les incidents sont résolus systématiquement.",
         },
       },
       appointment: {
@@ -3447,26 +3300,10 @@ export const translations: Record<Lang, any> = {
         "Eliminamos las averías operacionales causadas por la coordinación manual, la ejecución poco clara y el manejo reactivo de incidentes — restaurando el control, la responsabilidad y los resultados predecibles dentro de las operaciones en vivo.",
       items: [
         {
-          title: "Gestión de solicitudes y demanda",
+          title: "Gestión de solicitudes e incidentes",
           description:
             "Las solicitudes entrantes se capturan, validan y enrutan de manera consistente — sin depender del seguimiento ad hoc o del juicio individual.",
-          tags: ["Control de admisión inteligente", "Reglas de calificación", "Enrutamiento del sistema"],
-        },
-        {
-          title: "Estándares de seguridad y ejecución",
-          description:
-            "Instrucciones visuales estandarizadas utilizadas para alinear a operadores, contratistas y equipos en procedimientos críticos de seguridad — reduciendo errores de interpretación, desviaciones y riesgo de ejecución.",
-          tags: [
-            "Procedimientos HSE",
-            "Alineación ISO / VCA / OSHA",
-            "Incorporación de operadores y contratistas",
-          ],
-        },
-        {
-          title: "Gestión de incidentes y escalamiento",
-          description:
-            "Los problemas se registran, clasifican y escalan de manera controlada — asegurando responsabilidad, claridad de respuesta y rutas de resolución predecibles.",
-          tags: ["Clasificación de problemas", "Rutas de escalamiento", "Propiedad de la respuesta"],
+          tags: ["Control de admisión inteligente", "Reglas de calificación", "Enrutamiento de sistema"],
         },
         {
           title: "Eficiencia en la concertación de citas",
@@ -3492,12 +3329,6 @@ export const translations: Record<Lang, any> = {
           "Seguimiento de cumplimiento en tiempo real en todos los turnos",
           "Incorporación de contratistas estandarizada en todas las ubicaciones",
           "Procedimientos alineados con HSE listos para auditorías regulatorias",
-        ],
-        [
-          "La clasificación automatizada asegura una priorización consistente de problemas",
-          "Rutas de escalamiento claras con propiedad definida en cada nivel",
-          "SLA de respuesta rastreados y aplicados automáticamente",
-          "Análisis post-incidente para la mejora continua",
         ],
         [
           "Disponibilidad 24/7 sin aumentar la plantilla",
@@ -3922,33 +3753,6 @@ export const translations: Record<Lang, any> = {
           bullet3: "Errores de interpretación reducidos",
           bullet4: "Marco de seguridad alineado",
           tradeoff: "La seguridad se vuelve repetible y auditable.",
-        },
-      },
-      incident: {
-        title: "Gestión de Incidentes y Escalamiento",
-        metrics: {
-          escalationLoops: "Ciclos de Escalamiento",
-          responseTime: "Tiempo de Respuesta",
-          accountability: "Responsabilidad",
-          accountabilityValue: "Explícita",
-        },
-        before: {
-          title: "Gestión de incidentes reactiva",
-          text: "Los incidentes se reportan de manera inconsistente y se escalan manualmente. La responsabilidad es poco clara y la visibilidad es limitada.",
-          bullet1: "Umbrales de escalamiento poco claros",
-          bullet2: "Traspasos retrasados",
-          bullet3: "Hilos de comunicación paralelos",
-          bullet4: "Visibilidad gerencial limitada",
-          tradeoff: "Los incidentes consumen atención en lugar de resolverse.",
-        },
-        after: {
-          title: "Escalamiento controlado con responsabilidad clara",
-          text: "Los incidentes se registran, clasifican y escalan a través de rutas predefinidas. Cada paso tiene un propietario claro y una ventana de respuesta.",
-          bullet1: "Niveles de escalamiento definidos",
-          bullet2: "Propiedad clara por incidente",
-          bullet3: "Plazos de respuesta predecibles",
-          bullet4: "Visibilidad operacional completa",
-          tradeoff: "Los incidentes se resuelven sistemáticamente.",
         },
       },
       appointment: {
@@ -4526,26 +4330,10 @@ export const translations: Record<Lang, any> = {
         "Eliminiamo i guasti operativi causati dal coordinamento manuale, dall'esecuzione poco chiara e dalla gestione reattiva degli incidenti — ripristinando controllo, responsabilità e risultati prevedibili all'interno delle operazioni attive.",
       items: [
         {
-          title: "Gestione richieste e domanda",
+          title: "Gestione richieste e incidenti",
           description:
             "Le richieste in arrivo vengono acquisite, validate e instradate in modo coerente — senza dipendere dal follow-up ad hoc o dal giudizio individuale.",
           tags: ["Controllo intelligente dell'intake", "Regole di qualificazione", "Instradamento di sistema"],
-        },
-        {
-          title: "Standard di sicurezza ed esecuzione",
-          description:
-            "Istruzioni visive standardizzate utilizzate per allineare operatori, appaltatori e team su procedure critiche per la sicurezza — riducendo errori di interpretazione, deviazioni e rischi di esecuzione.",
-          tags: [
-            "Procedure HSE",
-            "Allineamento ISO / VCA / OSHA",
-            "Onboarding operatori e appaltatori",
-          ],
-        },
-        {
-          title: "Gestione incidenti e escalation",
-          description:
-            "I problemi vengono registrati, classificati e escalati in modo controllato — garantendo responsabilità, chiarezza nella risposta e percorsi di risoluzione prevedibili.",
-          tags: ["Classificazione dei problemi", "Percorsi di escalation", "Proprietà della risposta"],
         },
         {
           title: "Efficienza nella fissazione degli appuntamenti",
@@ -4571,12 +4359,6 @@ export const translations: Record<Lang, any> = {
           "Monitoraggio della conformità in tempo reale su tutti i turni",
           "Onboarding degli appaltatori standardizzato in tutte le sedi",
           "Procedure allineate HSE pronte per audit regolamentari",
-        ],
-        [
-          "La classificazione automatizzata garantisce una prioritizzazione coerente dei problemi",
-          "Percorsi di escalation chiari con proprietà definita a ogni livello",
-          "SLA di risposta monitorati e applicati automaticamente",
-          "Analisi post-incidente per il miglioramento continuo",
         ],
         [
           "Disponibilità 24/7 senza aumentare l'organico",
@@ -5002,33 +4784,6 @@ export const translations: Record<Lang, any> = {
           bullet3: "Errori di interpretazione ridotti",
           bullet4: "Framework di sicurezza allineato",
           tradeoff: "La sicurezza diventa ripetibile e verificabile.",
-        },
-      },
-      incident: {
-        title: "Gestione Incidenti ed Escalation",
-        metrics: {
-          escalationLoops: "Cicli di Escalation",
-          responseTime: "Tempo di Risposta",
-          accountability: "Responsabilità",
-          accountabilityValue: "Esplicita",
-        },
-        before: {
-          title: "Gestione incidenti reattiva",
-          text: "Gli incidenti vengono segnalati in modo incoerente e scalati manualmente. La responsabilità è poco chiara e la visibilità è limitata.",
-          bullet1: "Soglie di escalation poco chiare",
-          bullet2: "Passaggi di consegna ritardati",
-          bullet3: "Thread di comunicazione paralleli",
-          bullet4: "Visibilità manageriale limitata",
-          tradeoff: "Gli incidenti consumano attenzione invece di essere risolti.",
-        },
-        after: {
-          title: "Escalation controllata con responsabilità chiara",
-          text: "Gli incidenti vengono registrati, classificati e scalati attraverso percorsi predefiniti. Ogni passo ha un proprietario chiaro e una finestra di risposta.",
-          bullet1: "Livelli di escalation definiti",
-          bullet2: "Proprietà chiara per incidente",
-          bullet3: "Tempi di risposta prevedibili",
-          bullet4: "Visibilità operativa completa",
-          tradeoff: "Gli incidenti vengono risolti sistematicamente.",
         },
       },
       appointment: {
@@ -5604,26 +5359,10 @@ export const translations: Record<Lang, any> = {
         "Eliminamos falhas operacionais causadas por coordenação manual, execução pouco clara e gestão reativa de incidentes — restaurando controlo, responsabilidade e resultados previsíveis em operações ativas.",
       items: [
         {
-          title: "Gestão de Pedidos e Procura",
+          title: "Gestão de Pedidos e Incidentes",
           description:
             "Os pedidos recebidos são capturados, validados e encaminhados de forma consistente — sem depender de acompanhamento ad-hoc ou julgamento individual.",
           tags: ["Controlo de admissão inteligente", "Regras de qualificação", "Encaminhamento de sistema"],
-        },
-        {
-          title: "Normas de Segurança e Execução",
-          description:
-            "Instruções visuais padronizadas utilizadas para alinhar operadores, empreiteiros e equipas em procedimentos críticos de segurança — reduzindo erros de interpretação, desvios e risco de execução.",
-          tags: [
-            "Procedimentos HSE",
-            "Alinhamento ISO / VCA / OSHA",
-            "Integração de operadores e empreiteiros",
-          ],
-        },
-        {
-          title: "Gestão de Incidentes e Escalamento",
-          description:
-            "Os problemas são registados, classificados e escalados de forma controlada — garantindo responsabilidade, clareza de resposta e caminhos de resolução previsíveis.",
-          tags: ["Classificação de problemas", "Caminhos de escalamento", "Propriedade da resposta"],
         },
         {
           title: "Eficiência na marcação de consultas",
@@ -5649,12 +5388,6 @@ export const translations: Record<Lang, any> = {
           "Monitorização de conformidade em tempo real em todos os turnos",
           "Integração de contratados padronizada em todas as localizações",
           "Procedimentos alinhados com HSE prontos para auditorias regulamentares",
-        ],
-        [
-          "A classificação automatizada garante priorização consistente de problemas",
-          "Caminhos de escalamento claros com propriedade definida em cada nível",
-          "SLAs de resposta monitorizados e aplicados automaticamente",
-          "Análise pós-incidente para melhoria contínua",
         ],
         [
           "Disponibilidade 24/7 sem aumentar o quadro de pessoal",
@@ -6060,33 +5793,6 @@ export const translations: Record<Lang, any> = {
           bullet3: "Erros de interpretação reduzidos",
           bullet4: "Framework de segurança alinhado",
           tradeoff: "A segurança torna-se repetível e auditável.",
-        },
-      },
-      incident: {
-        title: "Gestão de Incidentes e Escalamento",
-        metrics: {
-          escalationLoops: "Ciclos de Escalamento",
-          responseTime: "Tempo de Resposta",
-          accountability: "Responsabilidade",
-          accountabilityValue: "Explícita",
-        },
-        before: {
-          title: "Gestão de incidentes reativa",
-          text: "Os incidentes são reportados de forma inconsistente e escalados manualmente. A responsabilidade é pouco clara e a visibilidade é limitada.",
-          bullet1: "Limiares de escalamento pouco claros",
-          bullet2: "Transferências atrasadas",
-          bullet3: "Threads de comunicação paralelos",
-          bullet4: "Visibilidade de gestão limitada",
-          tradeoff: "Os incidentes consomem atenção em vez de serem resolvidos.",
-        },
-        after: {
-          title: "Escalamento controlado com responsabilidade clara",
-          text: "Os incidentes são registados, classificados e escalados através de caminhos predefinidos. Cada passo tem um proprietário claro e uma janela de resposta.",
-          bullet1: "Níveis de escalamento definidos",
-          bullet2: "Propriedade clara por incidente",
-          bullet3: "Prazos de resposta previsíveis",
-          bullet4: "Visibilidade operacional completa",
-          tradeoff: "Os incidentes são resolvidos sistematicamente.",
         },
       },
       appointment: {

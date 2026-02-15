@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-type ServiceKey = "intake" | "safety" | "incident" | "appointment";
+type ServiceKey = "intake" | "safety" | "appointment";
 
 export const DemoSurface = () => {
   const { t } = useTranslation();
@@ -86,36 +86,6 @@ export const DemoSurface = () => {
       },
     },
 
-    incident: {
-      title: t("demo.incident.title"),
-      metrics: [
-        { label: t("demo.incident.metrics.escalationLoops"), value: "−52%" },
-        { label: t("demo.incident.metrics.responseTime"), value: "−29%" },
-        { label: t("demo.incident.metrics.accountability"), value: t("demo.incident.metrics.accountabilityValue") },
-      ],
-      before: {
-        title: t("demo.incident.before.title"),
-        text: t("demo.incident.before.text"),
-        bullets: [
-          t("demo.incident.before.bullet1"),
-          t("demo.incident.before.bullet2"),
-          t("demo.incident.before.bullet3"),
-          t("demo.incident.before.bullet4"),
-        ],
-        tradeoff: t("demo.incident.before.tradeoff"),
-      },
-      after: {
-        title: t("demo.incident.after.title"),
-        text: t("demo.incident.after.text"),
-        bullets: [
-          t("demo.incident.after.bullet1"),
-          t("demo.incident.after.bullet2"),
-          t("demo.incident.after.bullet3"),
-          t("demo.incident.after.bullet4"),
-        ],
-        tradeoff: t("demo.incident.after.tradeoff"),
-      },
-    },
 
     appointment: {
       title: t("demo.appointment.title"),

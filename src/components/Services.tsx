@@ -5,13 +5,11 @@ import { ServiceDetailModal } from "./ServiceDetailModal";
 import { ScrollReveal, StaggerContainer } from "./ScrollReveal";
 import serviceLeadImg from "@/assets/service-lead.png?format=webp&quality=80";
 import serviceSchedulingImg from "@/assets/service-scheduling.png?format=webp&quality=80";
-import serviceSupportImg from "@/assets/service-support.png?format=webp&quality=80";
 import serviceVoiceImg from "@/assets/service-phone.png?format=webp&quality=80";
 
 const images = [
   serviceLeadImg,
   serviceSchedulingImg,
-  serviceSupportImg,
   serviceVoiceImg
 ];
 
