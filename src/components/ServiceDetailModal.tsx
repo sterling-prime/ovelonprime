@@ -5,9 +5,10 @@ import { Button } from "@/components/ui/button";
 
 import serviceDetail1 from "@/assets/demand-handeling2.png";
 import serviceDetail2 from "@/assets/safety.png";
-import serviceDetail3 from "@/assets/appointment-setting2.png";
+import serviceDetail3 from "@/assets/service-detail-3.jpg";
+import serviceDetail4 from "@/assets/appointment-setting2.png";
 
-const detailImages = [serviceDetail1, serviceDetail2, serviceDetail3];
+const detailImages = [serviceDetail1, serviceDetail2, serviceDetail3, serviceDetail4];
 
 interface ServiceDetailModalProps {
   isOpen: boolean;
@@ -38,6 +39,12 @@ export const ServiceDetailModal = ({ isOpen, onClose, serviceIndex, service }: S
       t("serviceDetails.benefits.1.1", "Real-time compliance tracking across all shifts"),
       t("serviceDetails.benefits.1.2", "Contractor onboarding standardized across locations"),
       t("serviceDetails.benefits.1.3", "HSE-aligned procedures ready for regulatory audits"),
+    ],
+    [
+      t("serviceDetails.benefits.2.0", "Automated classification ensures consistent issue prioritization"),
+      t("serviceDetails.benefits.2.1", "Clear escalation paths with defined ownership at each level"),
+      t("serviceDetails.benefits.2.2", "Response SLAs tracked and enforced automatically"),
+      t("serviceDetails.benefits.2.3", "Post-incident analysis for continuous improvement"),
     ],
     [
       t("serviceDetails.benefits.3.0", "24/7 availability without increasing headcount"),
