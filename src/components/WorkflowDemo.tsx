@@ -16,6 +16,18 @@ import {
   CalendarCheck,
   UserCheck,
   RefreshCw,
+  AlertTriangle,
+  ShieldAlert,
+  UserCog,
+  ArrowUpCircle,
+  Activity,
+  FileText,
+  Video,
+  Globe,
+  MonitorPlay,
+  ClipboardCheck,
+  BarChart3,
+  ShieldCheck,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -284,12 +296,12 @@ const AppointmentSchedulingDemo = () => {
   const [isRunning, setIsRunning] = useState(false);
 
   const steps = [
-    { icon: PhoneIncoming, titleKey: "workflowDemo.appointment.step1.title", descKey: "workflowDemo.appointment.step1.desc", time: "09:15 AM" },
-    { icon: Clock, titleKey: "workflowDemo.appointment.step2.title", descKey: "workflowDemo.appointment.step2.desc", time: "09:15 AM" },
-    { icon: CalendarCheck, titleKey: "workflowDemo.appointment.step3.title", descKey: "workflowDemo.appointment.step3.desc", time: "09:16 AM" },
-    { icon: Mail, titleKey: "workflowDemo.appointment.step4.title", descKey: "workflowDemo.appointment.step4.desc", time: "09:16 AM" },
-    { icon: UserCheck, titleKey: "workflowDemo.appointment.step5.title", descKey: "workflowDemo.appointment.step5.desc", time: "09:16 AM" },
-    { icon: RefreshCw, titleKey: "workflowDemo.appointment.step6.title", descKey: "workflowDemo.appointment.step6.desc", time: "09:17 AM" },
+    { icon: AlertTriangle, titleKey: "workflowDemo.appointment.step1.title", descKey: "workflowDemo.appointment.step1.desc", time: "09:15 AM" },
+    { icon: ShieldAlert, titleKey: "workflowDemo.appointment.step2.title", descKey: "workflowDemo.appointment.step2.desc", time: "09:15 AM" },
+    { icon: UserCog, titleKey: "workflowDemo.appointment.step3.title", descKey: "workflowDemo.appointment.step3.desc", time: "09:16 AM" },
+    { icon: ArrowUpCircle, titleKey: "workflowDemo.appointment.step4.title", descKey: "workflowDemo.appointment.step4.desc", time: "09:16 AM" },
+    { icon: Activity, titleKey: "workflowDemo.appointment.step5.title", descKey: "workflowDemo.appointment.step5.desc", time: "09:16 AM" },
+    { icon: FileText, titleKey: "workflowDemo.appointment.step6.title", descKey: "workflowDemo.appointment.step6.desc", time: "09:17 AM" },
   ];
 
   const runDemo = () => {
@@ -419,9 +431,149 @@ const AppointmentSchedulingDemo = () => {
   );
 };
 
+const SafetyVideoManualDemo = () => {
+  const { t } = useTranslation();
+  const [activeStep, setActiveStep] = useState(-1);
+  const [isRunning, setIsRunning] = useState(false);
+
+  const steps = [
+    { icon: AlertTriangle, titleKey: "workflowDemo.safety.step1.title", descKey: "workflowDemo.safety.step1.desc", time: "10:00 AM" },
+    { icon: Video, titleKey: "workflowDemo.safety.step2.title", descKey: "workflowDemo.safety.step2.desc", time: "10:01 AM" },
+    { icon: Globe, titleKey: "workflowDemo.safety.step3.title", descKey: "workflowDemo.safety.step3.desc", time: "10:02 AM" },
+    { icon: MonitorPlay, titleKey: "workflowDemo.safety.step4.title", descKey: "workflowDemo.safety.step4.desc", time: "10:02 AM" },
+    { icon: ClipboardCheck, titleKey: "workflowDemo.safety.step5.title", descKey: "workflowDemo.safety.step5.desc", time: "10:03 AM" },
+    { icon: BarChart3, titleKey: "workflowDemo.safety.step6.title", descKey: "workflowDemo.safety.step6.desc", time: "10:03 AM" },
+  ];
+
+  const runDemo = () => {
+    setIsRunning(true);
+    setActiveStep(-1);
+    steps.forEach((_, index) => {
+      setTimeout(() => {
+        setActiveStep(index);
+        if (index === steps.length - 1) {
+          setTimeout(() => setIsRunning(false), 2000);
+        }
+      }, index * 1200);
+    });
+  };
+
+  const reset = () => {
+    setActiveStep(-1);
+    setIsRunning(false);
+  };
+
+  return (
+    <div className="space-y-8">
+      <div className="text-center">
+        <p className="text-primary-foreground/60 text-sm max-w-xl mx-auto">
+          {t("workflowDemo.safety.description")}
+        </p>
+      </div>
+
+      <div className="space-y-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {steps.map((step, index) => {
+            const StepIcon = step.icon;
+            return (
+              <motion.div
+                key={index}
+                animate={{
+                  opacity: activeStep >= index ? 1 : 0.3,
+                  scale: activeStep === index ? 1.02 : 1,
+                }}
+                transition={{ duration: 0.4 }}
+                className={cn(
+                  "relative p-6 border transition-all duration-500",
+                  activeStep >= index
+                    ? "border-accent/50 bg-accent/5"
+                    : "border-primary-foreground/10 bg-primary/30"
+                )}
+              >
+                <div className="flex items-start gap-4">
+                  <div
+                    className={cn(
+                      "w-10 h-10 rounded-full border flex items-center justify-center shrink-0",
+                      activeStep >= index ? "border-accent bg-accent/10" : "border-primary-foreground/20"
+                    )}
+                  >
+                    <StepIcon
+                      className={cn(
+                        "w-5 h-5",
+                        activeStep >= index ? "text-accent" : "text-primary-foreground/40"
+                      )}
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between gap-2 mb-1">
+                      <h4 className="text-primary-foreground font-medium text-sm truncate">
+                        {t(step.titleKey)}
+                      </h4>
+                      <span
+                        className={cn(
+                          "text-xs shrink-0",
+                          activeStep >= index ? "text-accent" : "text-primary-foreground/30"
+                        )}
+                      >
+                        {step.time}
+                      </span>
+                    </div>
+                    <p className="text-primary-foreground/50 text-xs">{t(step.descKey)}</p>
+                  </div>
+                </div>
+                {activeStep >= index && (
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className="absolute top-2 right-2"
+                  >
+                    <CheckCircle className="w-4 h-4 text-green-400" />
+                  </motion.div>
+                )}
+              </motion.div>
+            );
+          })}
+        </div>
+
+        <div className="flex justify-center">
+          {!isRunning && activeStep === -1 ? (
+            <Button
+              onClick={runDemo}
+              variant="outline"
+              className="border-accent/50 text-accent hover:bg-accent/10"
+            >
+              <ShieldCheck className="w-4 h-4 mr-2" />
+              {t("workflowDemo.safety.runDemo")}
+            </Button>
+          ) : !isRunning && activeStep >= 0 ? (
+            <div className="flex flex-col items-center gap-4">
+              <p className="text-green-400 text-sm flex items-center gap-2">
+                <CheckCircle className="w-4 h-4" />
+                {t("workflowDemo.safety.complete")}
+              </p>
+              <Button
+                onClick={reset}
+                variant="ghost"
+                className="text-primary-foreground/60 hover:text-primary-foreground"
+              >
+                {t("workflowDemo.safety.reset")}
+              </Button>
+            </div>
+          ) : (
+            <div className="flex items-center gap-2 text-primary-foreground/60">
+              <div className="w-4 h-4 border-2 border-accent border-t-transparent rounded-full animate-spin" />
+              {t("workflowDemo.safety.processing")}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export const WorkflowDemo = () => {
   const { t } = useTranslation();
-  const [activeTab, setActiveTab] = useState<"workflow" | "call" | "appointment">("workflow");
+  const [activeTab, setActiveTab] = useState<"workflow" | "call" | "appointment" | "safety">("workflow");
 
   return (
     <section data-section="workflow-demo" className="py-32 px-6 md:px-12 bg-primary">
@@ -453,9 +605,16 @@ export const WorkflowDemo = () => {
           <DemoTab
             active={activeTab === "appointment"}
             onClick={() => setActiveTab("appointment")}
-            icon={CalendarCheck}
+            icon={ShieldAlert}
           >
             {t("workflowDemo.tabs.appointment")}
+          </DemoTab>
+          <DemoTab
+            active={activeTab === "safety"}
+            onClick={() => setActiveTab("safety")}
+            icon={ShieldCheck}
+          >
+            {t("workflowDemo.tabs.safety")}
           </DemoTab>
         </div>
 
@@ -481,7 +640,7 @@ export const WorkflowDemo = () => {
               >
                 <MissedCallDemo />
               </motion.div>
-            ) : (
+            ) : activeTab === "appointment" ? (
               <motion.div
                 key="appointment"
                 initial={{ opacity: 0, y: 10 }}
@@ -490,6 +649,16 @@ export const WorkflowDemo = () => {
                 transition={{ duration: 0.3 }}
               >
                 <AppointmentSchedulingDemo />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="safety"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+              >
+                <SafetyVideoManualDemo />
               </motion.div>
             )}
           </AnimatePresence>
