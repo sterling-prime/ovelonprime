@@ -1,6 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Logo } from "./Logo";
+import { ShieldCheck, FileCheck, HardHat, Lock } from "lucide-react";
 
 // High-end LinkedIn icon
 const LinkedInIcon = ({ className }: { className?: string }) => (
@@ -15,6 +16,8 @@ const FacebookIcon = ({ className }: { className?: string }) => (
     <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 5 3.66 9.13 8.44 9.88v-6.99H7.9v-2.89h2.54V9.41c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.89h-2.34v6.99C18.34 21.13 22 17 22 12z" />
   </svg>
 );
+
+const trustIcons = [ShieldCheck, FileCheck, HardHat, Lock];
 
 type FooterLink = {
   labelKey: string;
@@ -44,9 +47,30 @@ export const Footer = () => {
     { labelKey: "footer.terms", href: "/terms" },
   ];
 
+  const trustItems = t("footer.trustItems", { returnObjects: true }) as string[];
+
   return (
     <footer className="bg-muted/40 border-t border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        {/* Trust signals strip */}
+        <div className="mb-10 pb-10 border-b border-border/50">
+          <p className="text-xs tracking-widest uppercase text-muted-foreground text-center mb-6">
+            {t("footer.trustHeading")}
+          </p>
+          <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm text-muted-foreground">
+            {Array.isArray(trustItems) && trustItems.map((item, index) => {
+              const Icon = trustIcons[index] ?? ShieldCheck;
+              return (
+                <div key={index} className="flex items-center gap-2">
+                  <Icon className="h-4 w-4 text-foreground/60 shrink-0" />
+                  <span>{item}</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
         {/* Navigation Links */}
         <nav className="flex flex-wrap justify-center gap-x-12 gap-y-4 mb-10">
           {footerLinks.map((link) =>

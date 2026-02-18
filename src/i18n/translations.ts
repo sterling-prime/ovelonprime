@@ -338,6 +338,25 @@ export const translations: Record<Lang, any> = {
       intakeNote:
         "Structured intake · No sales pressure · Directly with an experienced expert",
       reviewNote: "All requests are reviewed before scheduling.",
+      comparisonTable: {
+        title: "Plan Comparison",
+        featureCol: "Feature",
+        focusedCol: "Focused",
+        enterpriseCol: "Enterprise",
+        rows: [
+          { feature: "Operational assessment & scoping", focused: true, enterprise: true },
+          { feature: "Process & responsibility mapping", focused: true, enterprise: true },
+          { feature: "Controlled implementation & rollout", focused: true, enterprise: true },
+          { feature: "Post-implementation validation", focused: true, enterprise: true },
+          { feature: "Documentation & operational handover", focused: true, enterprise: true },
+          { feature: "Multi-system operational architecture", focused: false, enterprise: true },
+          { feature: "Custom system integrations", focused: false, enterprise: true },
+          { feature: "Dedicated transition support team", focused: false, enterprise: true },
+          { feature: "Compliance-aware operational design", focused: false, enterprise: true },
+          { feature: "Custom SLA & governance framework", focused: false, enterprise: true },
+          { feature: "Multi-site rollout capability", focused: false, enterprise: true },
+        ],
+      },
     },
     contact: {
       label: "ENGAGE",
@@ -427,11 +446,26 @@ export const translations: Record<Lang, any> = {
         },
       ] as FAQItem[],
     },
+    metricsStrip: {
+      items: [
+        { value: "40%", label: "Downtime Reduction" },
+        { value: "200+", label: "Workflows Automated" },
+        { value: "3", label: "Continents Served" },
+        { value: "98%", label: "SLA Compliance Rate" },
+      ],
+    },
     footer: {
       privacy: "Privacy",
       terms: "Terms",
       copyright: "© {{year}} Ovelon Prime. All rights reserved.",
       tagline: "Enterprise operating systems built for clarity, control, and scale.",
+      trustHeading: "Designed for regulated & safety-critical environments",
+      trustItems: [
+        "ISO 27001-aligned security principles",
+        "HSE-aware operational design",
+        "Audit-ready documentation & controls",
+        "Full client ownership — no black-box systems",
+      ],
     },
     industrialTrust: {
       heading: "Trusted by operators in mission-critical environments",
@@ -1561,11 +1595,26 @@ export const translations: Record<Lang, any> = {
         },
       ] as FAQItem[],
     },
+    metricsStrip: {
+      items: [
+        { value: "40%", label: "Weniger Ausfallzeiten" },
+        { value: "200+", label: "Automatisierte Workflows" },
+        { value: "3", label: "Bediente Kontinente" },
+        { value: "98%", label: "SLA-Erfüllungsrate" },
+      ],
+    },
     footer: {
       privacy: "Datenschutz",
       terms: "AGB",
       copyright: "© {{year}} Ovelon Prime. Alle Rechte vorbehalten.",
       tagline: "Enterprise-Betriebssysteme für Klarheit, Kontrolle und Skalierbarkeit.",
+      trustHeading: "Konzipiert für regulierte & sicherheitskritische Umgebungen",
+      trustItems: [
+        "ISO 27001-konforme Sicherheitsprinzipien",
+        "HSE-bewusstes operatives Design",
+        "Prüfungsfertige Dokumentation & Kontrollen",
+        "Vollständige Kundeneigenverantwortung — keine Black-Box-Systeme",
+      ],
     },
     industrialTrust: {
       heading: "Vertrauenswürdig für Betreiber in missionskritischen Umgebungen",
@@ -2671,11 +2720,26 @@ export const translations: Record<Lang, any> = {
         },
       ] as FAQItem[],
     },
+    metricsStrip: {
+      items: [
+        { value: "40%", label: "Réduction des pannes" },
+        { value: "200+", label: "Workflows automatisés" },
+        { value: "3", label: "Continents couverts" },
+        { value: "98%", label: "Taux de conformité SLA" },
+      ],
+    },
     footer: {
       privacy: "Confidentialité",
       terms: "Conditions",
       copyright: "© {{year}} Ovelon Prime. Tous droits réservés.",
       tagline: "Systèmes d'exploitation d'entreprise conçus pour la clarté, le contrôle et l'évolutivité.",
+      trustHeading: "Conçu pour les environnements réglementés et à risque sécurité",
+      trustItems: [
+        "Principes de sécurité alignés ISO 27001",
+        "Conception opérationnelle HSE",
+        "Documentation prête pour l'audit",
+        "Propriété totale du client — aucun système boîte noire",
+      ],
     },
     industrialTrust: {
       heading: "Approuvé par les opérateurs dans les environnements critiques",
@@ -3780,11 +3844,26 @@ export const translations: Record<Lang, any> = {
         },
       ],
     },
+    metricsStrip: {
+      items: [
+        { value: "40%", label: "Reducción de inactividad" },
+        { value: "200+", label: "Flujos automatizados" },
+        { value: "3", label: "Continentes cubiertos" },
+        { value: "98%", label: "Cumplimiento de SLA" },
+      ],
+    },
     footer: {
       privacy: "Privacidad",
       terms: "Términos",
       copyright: "© {{year}} Ovelon Prime. Todos los derechos reservados.",
       tagline: "Sistemas operativos empresariales construidos para claridad, control y escala.",
+      trustHeading: "Diseñado para entornos regulados y críticos para la seguridad",
+      trustItems: [
+        "Principios de seguridad alineados con ISO 27001",
+        "Diseño operativo consciente de HSE",
+        "Documentación lista para auditoría",
+        "Propiedad total del cliente — sin sistemas de caja negra",
+      ],
     },
     industrialTrust: {
       heading: "Confiado por operadores en entornos de misión crítica",
@@ -4873,11 +4952,26 @@ export const translations: Record<Lang, any> = {
         },
       ],
     },
+    metricsStrip: {
+      items: [
+        { value: "40%", label: "Riduzione dei tempi di inattività" },
+        { value: "200+", label: "Workflow automatizzati" },
+        { value: "3", label: "Continenti serviti" },
+        { value: "98%", label: "Tasso conformità SLA" },
+      ],
+    },
     footer: {
       privacy: "Privacy",
       terms: "Termini",
       copyright: "© {{year}} Ovelon Prime. Tutti i diritti riservati.",
       tagline: "Sistemi operativi enterprise costruiti per chiarezza, controllo e scala.",
+      trustHeading: "Progettato per ambienti regolamentati e critici per la sicurezza",
+      trustItems: [
+        "Principi di sicurezza allineati ISO 27001",
+        "Design operativo consapevole HSE",
+        "Documentazione pronta per l'audit",
+        "Piena proprietà del cliente — nessun sistema black-box",
+      ],
     },
     industrialTrust: {
       heading: "Affidato dagli operatori in ambienti mission-critical",
@@ -5964,11 +6058,26 @@ export const translations: Record<Lang, any> = {
         },
       ],
     },
+    metricsStrip: {
+      items: [
+        { value: "40%", label: "Redução de inatividade" },
+        { value: "200+", label: "Fluxos automatizados" },
+        { value: "3", label: "Continentes cobertos" },
+        { value: "98%", label: "Taxa de conformidade SLA" },
+      ],
+    },
     footer: {
       privacy: "Privacidade",
       terms: "Termos",
       copyright: "© {{year}} Ovelon Prime. Todos os direitos reservados.",
       tagline: "Sistemas operacionais empresariais construídos para clareza, controlo e escala.",
+      trustHeading: "Concebido para ambientes regulamentados e de segurança crítica",
+      trustItems: [
+        "Princípios de segurança alinhados com ISO 27001",
+        "Design operacional consciente de HSE",
+        "Documentação pronta para auditoria",
+        "Propriedade total do cliente — sem sistemas de caixa negra",
+      ],
     },
     industrialTrust: {
       heading: "Confiado por operadores em ambientes de missão crítica",
