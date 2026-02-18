@@ -1,4 +1,4 @@
-import { Check } from "lucide-react";
+import { Check, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -172,6 +172,47 @@ export const Pricing = () => {
             );
           })}
         </StaggerContainer>
+
+        {/* COMPARISON TABLE */}
+        <ScrollReveal variant="fade-up" className="mt-20 max-w-5xl mx-auto">
+          <h3 className="text-xl font-semibold text-foreground text-center mb-8">
+            {t("pricing.comparisonTable.title", "Plan Comparison")}
+          </h3>
+          <div className="overflow-x-auto rounded-xl border border-border shadow-card">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-muted/60 border-b border-border">
+                  <th className="text-left px-6 py-4 font-medium text-muted-foreground w-1/2">
+                    {t("pricing.comparisonTable.featureCol", "Feature")}
+                  </th>
+                  <th className="text-center px-6 py-4 font-semibold text-foreground w-1/4">
+                    {t("pricing.comparisonTable.focusedCol", "Focused")}
+                  </th>
+                  <th className="text-center px-6 py-4 font-semibold text-accent w-1/4">
+                    {t("pricing.comparisonTable.enterpriseCol", "Enterprise")}
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border/60 bg-card">
+                {(t("pricing.comparisonTable.rows", { returnObjects: true }) as Array<{ feature: string; focused: boolean; enterprise: boolean }>).map((row, i) => (
+                  <tr key={i} className={cn("transition-colors hover:bg-muted/30", i % 2 === 0 ? "" : "bg-muted/10")}>
+                    <td className="px-6 py-3.5 text-foreground/80">{row.feature}</td>
+                    <td className="px-6 py-3.5 text-center">
+                      {row.focused
+                        ? <Check className="h-4 w-4 text-accent mx-auto" />
+                        : <X className="h-4 w-4 text-muted-foreground/40 mx-auto" />}
+                    </td>
+                    <td className="px-6 py-3.5 text-center">
+                      {row.enterprise
+                        ? <Check className="h-4 w-4 text-accent mx-auto" />
+                        : <X className="h-4 w-4 text-muted-foreground/40 mx-auto" />}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </ScrollReveal>
       </div>
 
       <BookingModal
