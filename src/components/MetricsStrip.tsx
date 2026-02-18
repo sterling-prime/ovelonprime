@@ -1,5 +1,18 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
+import {
+  TrendingUp,
+  ShieldCheck,
+  Clock,
+  Users,
+} from "lucide-react";
+
+const icons = [
+  TrendingUp,
+  ShieldCheck,
+  Clock,
+  Users,
+];
 
 export const MetricsStrip = () => {
   const { t } = useTranslation();
@@ -10,26 +23,51 @@ export const MetricsStrip = () => {
   }>;
 
   return (
-    <section className="bg-background border-b border-border/40 py-8">
+    <section className="bg-[#5FB3B3]/12 py-14">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0 md:divide-x md:divide-border/40">
-          {metrics.map((metric, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: index * 0.08 }}
-              className="flex flex-col items-center text-center px-4 py-2"
-            >
-              <span className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">
-                {metric.value}
-              </span>
-              <span className="mt-1 text-xs uppercase tracking-widest text-muted-foreground font-medium">
-                {metric.label}
-              </span>
-            </motion.div>
-          ))}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          {metrics.map((metric, index) => {
+            const Icon = icons[index % icons.length];
+
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: index * 0.08 }}
+                className="
+                  group bg-muted/70 border border-border
+                  rounded-2xl px-6 py-6 text-center
+                  shadow-sm transition-all duration-300
+                  hover:border-[#5FB3B3]
+                  hover:shadow-md
+                "
+              >
+                {/* ICON — NO BACKGROUND */}
+                <div className="mx-auto mb-4 flex items-center justify-center">
+                  <Icon className="w-6 h-6 text-foreground/70 transition-colors duration-300 group-hover:text-[#5FB3B3]" />
+                </div>
+
+                {/* VALUE */}
+                <span className="
+                  block text-3xl md:text-4xl font-bold tracking-tight
+                  text-foreground transition-colors duration-300
+                  group-hover:text-[#5FB3B3]
+                ">
+                  {metric.value}
+                </span>
+
+                {/* LABEL */}
+                <span className="
+                  mt-2 block text-xs uppercase tracking-widest font-medium
+                  text-muted-foreground
+                ">
+                  {metric.label}
+                </span>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

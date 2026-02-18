@@ -47,39 +47,44 @@ export const OperationalGovernanceTrends = () => {
             return (
               <div
                 key={col.key}
-                className="bg-card rounded-2xl p-8 border border-border shadow-card
-                           card-hover flex flex-col h-full min-h-[400px] group"
+                className="
+                  bg-card rounded-2xl p-8 border border-border shadow-card
+                  card-hover flex flex-col h-full min-h-[400px] group
+                "
               >
                 {/* ICON */}
                 <div
-                  className="w-12 h-12 rounded-xl bg-secondary flex items-center
-                             justify-center mb-6 mx-auto transition-colors
-                             duration-300 group-hover:bg-[#3A8F94]/10"
+                  className="
+                    w-12 h-12 rounded-xl bg-secondary flex items-center
+                    justify-center mb-6 mx-auto transition-colors
+                    duration-300 group-hover:bg-[#3A8F94]/10
+                  "
                 >
                   <Icon
-                    className="w-6 h-6 text-foreground transition-colors
-                               duration-300 group-hover:text-[#3A8F94]"
+                    className="
+                      w-6 h-6 text-foreground transition-colors
+                      duration-300 group-hover:text-[#3A8F94]
+                    "
                   />
                 </div>
 
-                {/* TITLE (ALWAYS CENTERED) */}
+                {/* TITLE */}
                 <h3 className="text-lg font-semibold text-foreground mb-6 text-center">
                   {t(`governanceTrends.${col.key}.title`)}
                 </h3>
 
-                {/* LIST */}
+                {/* LIST — DOTS ALWAYS LEFT-ALIGNED */}
                 <ul className="space-y-3 flex-grow">
                   {Array.from({ length: col.items }).map((_, i) => (
                     <li
                       key={i}
                       className="
-                        grid grid-cols-[8px_1fr] gap-3
-                        text-sm text-muted-foreground text-left
-                        md:grid-cols-1 md:justify-items-center md:text-center
+                        grid grid-cols-[12px_1fr] gap-3
+                        items-start text-sm text-muted-foreground text-left
                       "
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2" />
-                      <span className="block">
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5" />
+                      <span className="block leading-relaxed">
                         {t(`governanceTrends.${col.key}.items.${i}`)}
                       </span>
                     </li>
