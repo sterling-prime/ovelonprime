@@ -304,8 +304,7 @@ export const translations: Record<Lang, any> = {
         name: "Focused Operational Engagement",
         description:
           "A fixed-scope engagement designed to resolve a clearly defined operational bottleneck with measurable impact.",
-        priceLabel: "Starting from",
-        period: "one-time fee",
+        requestQuote: "Request Quote",
         cta: "Request Engagement Assessment",
         features: [
           "Single, clearly defined operational improvement",
@@ -1196,6 +1195,68 @@ export const translations: Record<Lang, any> = {
             "Operational metrics and trend analysis that enable evidence-based continuous improvement under Clause 10",
           ],
         },
+        soc2: {
+          tag: "AICPA Trust Service Criteria",
+          title: "SOC 2: Demonstrating operational trust through verified security controls",
+          excerpt: "SOC 2 (Service Organization Control 2) is the leading audit framework for verifying that an organization's information security practices meet rigorous standards across five Trust Service Criteria. A SOC 2 report is increasingly required by enterprise clients and regulated industries.",
+          type1Label: "Type I",
+          type2Label: "Type II",
+          type1: {
+            facts: [
+              { label: "Audit scope", value: "Point-in-time" },
+              { label: "Duration", value: "Single date" },
+              { label: "Trust criteria", value: "Up to 5" },
+            ],
+            sections: [
+              {
+                heading: "What is SOC 2 Type I?",
+                text: "A SOC 2 Type I report evaluates whether an organization's security controls are suitably designed at a specific point in time. It answers the question: 'Are the right controls in place today?' Type I is typically the starting point for organizations pursuing SOC 2 certification, providing a baseline assessment without testing operational effectiveness over time.",
+              },
+              {
+                heading: "The five Trust Service Criteria",
+                text: "SOC 2 evaluates controls across five criteria: Security (mandatory), Availability, Processing Integrity, Confidentiality, and Privacy. Most organizations begin with Security alone. Type I verifies that policies, procedures, and technical controls addressing these criteria are designed appropriately — not that they function consistently over time.",
+              },
+              {
+                heading: "When Type I is appropriate",
+                text: "Type I is commonly used when an organization needs to quickly demonstrate a baseline level of security assurance to clients or partners. It is also the natural precursor to Type II, allowing organizations to identify and remediate control gaps before committing to a sustained audit period.",
+              },
+            ],
+          },
+          type2: {
+            facts: [
+              { label: "Audit period", value: "6–12 months" },
+              { label: "Trust criteria", value: "Up to 5" },
+              { label: "Market standard", value: "Enterprise" },
+            ],
+            sections: [
+              {
+                heading: "What is SOC 2 Type II?",
+                text: "A SOC 2 Type II report evaluates whether an organization's security controls not only exist but operate effectively over an extended period — typically 6 to 12 months. It is the gold standard for enterprise trust and is increasingly required by procurement teams, regulators, and enterprise clients in sectors such as financial services, healthcare, and critical infrastructure.",
+              },
+              {
+                heading: "Operational discipline is the foundation",
+                text: "Unlike Type I, Type II requires consistent, documented, and auditable execution of controls across the review period. This means incident logs must be complete, access controls must be enforced consistently, change management must be documented, and monitoring must be continuous. Ad-hoc operations and manual processes will struggle to produce the evidence required for a clean Type II opinion.",
+              },
+              {
+                heading: "Common findings that derail Type II audits",
+                text: "The most common Type II failures involve incomplete incident records, inconsistent user access reviews, missing change approval documentation, and gaps in security monitoring. Each finding requires evidence remediation and may trigger auditor qualifications. Organizations with fragmented operations and manual coordination are at highest risk.",
+              },
+              {
+                heading: "SOC 2 Type II and continuous compliance",
+                text: "Unlike a one-time certification, Type II compliance is an ongoing operational discipline. Organizations must maintain audit-ready documentation year-round, not just in the weeks before the audit window. This requires embedding compliance controls directly into daily operational workflows — from incident handling to access provisioning to vendor management.",
+              },
+            ],
+          },
+          ovelonTitle: "How Ovelon Prime supports SOC 2 readiness",
+          ovelonPoints: [
+            "Structured incident intake and response workflows that produce complete, timestamped audit evidence for every security event",
+            "Automated access control workflows that enforce consistent user provisioning and de-provisioning across systems",
+            "Change management documentation that captures every modification with approval chains and timestamps",
+            "Real-time operational monitoring aligned with SOC 2 Security and Availability criteria",
+            "Standardized execution procedures that eliminate undocumented workarounds and informal processes",
+            "Compliance reporting dashboards that provide continuous visibility into control effectiveness across the audit period",
+          ],
+        },
       },
     },
   },
@@ -1472,8 +1533,7 @@ export const translations: Record<Lang, any> = {
         name: "Fokussiertes operatives Engagement",
         description:
           "Ein fest umrissenes Engagement zur Lösung eines klar definierten operativen Engpasses mit messbarer Wirkung.",
-        priceLabel: "Ab",
-        period: "einmalige Gebühr",
+        requestQuote: "Angebot anfordern",
         cta: "Engagement-Bewertung anfordern",
         features: [
           "Einzelne, klar definierte operative Verbesserung",
@@ -2321,6 +2381,68 @@ export const translations: Record<Lang, any> = {
             "Operative Metriken und Trendanalysen für evidenzbasierte kontinuierliche Verbesserung unter Klausel 10",
           ],
         },
+        soc2: {
+          tag: "AICPA Trust Service Kriterien",
+          title: "SOC 2: Operatives Vertrauen durch verifizierte Sicherheitskontrollen nachweisen",
+          excerpt: "SOC 2 (Service Organization Control 2) ist das führende Prüfrahmenwerk zur Überprüfung, ob die Informationssicherheitspraktiken einer Organisation strenge Standards über fünf Trust Service Kriterien erfüllen. Ein SOC 2-Bericht wird von Enterprise-Kunden und regulierten Industrien zunehmend verlangt.",
+          type1Label: "Typ I",
+          type2Label: "Typ II",
+          type1: {
+            facts: [
+              { label: "Prüfungsumfang", value: "Stichtagsbezogen" },
+              { label: "Dauer", value: "Einzeldatum" },
+              { label: "Trust-Kriterien", value: "Bis zu 5" },
+            ],
+            sections: [
+              {
+                heading: "Was ist SOC 2 Typ I?",
+                text: "Ein SOC 2 Typ I-Bericht bewertet, ob die Sicherheitskontrollen einer Organisation zu einem bestimmten Zeitpunkt geeignet konzipiert sind. Er beantwortet die Frage: 'Sind heute die richtigen Kontrollen vorhanden?' Typ I ist typischerweise der Ausgangspunkt für Organisationen, die eine SOC 2-Zertifizierung anstreben, und liefert eine Basisbewertung ohne Prüfung der operativen Wirksamkeit im Zeitverlauf.",
+              },
+              {
+                heading: "Die fünf Trust Service Kriterien",
+                text: "SOC 2 bewertet Kontrollen über fünf Kriterien: Sicherheit (obligatorisch), Verfügbarkeit, Verarbeitungsintegrität, Vertraulichkeit und Datenschutz. Typ I überprüft, ob Richtlinien, Verfahren und technische Kontrollen zu diesen Kriterien angemessen konzipiert sind — nicht ob sie konsistent über die Zeit funktionieren.",
+              },
+              {
+                heading: "Wann Typ I geeignet ist",
+                text: "Typ I wird häufig eingesetzt, wenn eine Organisation schnell ein Basissicherheitsniveau gegenüber Kunden oder Partnern nachweisen muss. Es ist auch der natürliche Vorläufer zu Typ II und ermöglicht Organisationen, Kontrollmängel zu identifizieren und zu beheben, bevor sie sich auf einen längeren Prüfungszeitraum einlassen.",
+              },
+            ],
+          },
+          type2: {
+            facts: [
+              { label: "Prüfungszeitraum", value: "6–12 Monate" },
+              { label: "Trust-Kriterien", value: "Bis zu 5" },
+              { label: "Marktstandard", value: "Enterprise" },
+            ],
+            sections: [
+              {
+                heading: "Was ist SOC 2 Typ II?",
+                text: "Ein SOC 2 Typ II-Bericht bewertet, ob die Sicherheitskontrollen einer Organisation nicht nur vorhanden sind, sondern über einen längeren Zeitraum (typischerweise 6 bis 12 Monate) effektiv funktionieren. Er ist der Goldstandard für Enterprise-Vertrauen und wird zunehmend von Beschaffungsteams, Regulierungsbehörden und Enterprise-Kunden in Sektoren wie Finanzdienstleistungen und kritischer Infrastruktur verlangt.",
+              },
+              {
+                heading: "Operative Disziplin ist das Fundament",
+                text: "Im Gegensatz zu Typ I erfordert Typ II eine konsistente, dokumentierte und prüfbare Durchführung von Kontrollen über den gesamten Überprüfungszeitraum. Vorfallprotokolle müssen vollständig sein, Zugriffskontrollen müssen konsistent durchgesetzt werden, und Änderungsmanagement muss dokumentiert sein.",
+              },
+              {
+                heading: "Häufige Befunde, die Typ II-Prüfungen gefährden",
+                text: "Die häufigsten Typ II-Fehler betreffen unvollständige Vorfallprotokolle, inkonsistente Benutzer-Zugriffsüberprüfungen, fehlende Genehmigungsdokumentation und Lücken in der Sicherheitsüberwachung.",
+              },
+              {
+                heading: "SOC 2 Typ II und kontinuierliche Compliance",
+                text: "Im Gegensatz zu einer einmaligen Zertifizierung ist Typ II-Compliance eine fortlaufende operative Disziplin. Organisationen müssen ganzjährig prüfungsbereite Dokumentation vorhalten — nicht nur in den Wochen vor dem Prüfungsfenster.",
+              },
+            ],
+          },
+          ovelonTitle: "Wie Ovelon Prime die SOC 2-Bereitschaft unterstützt",
+          ovelonPoints: [
+            "Strukturierte Vorfallaufnahme- und Reaktions-Workflows, die vollständige, zeitgestempelte Prüfnachweise für jedes Sicherheitsereignis erzeugen",
+            "Automatisierte Zugriffskontroll-Workflows zur konsistenten Benutzerbereitstellung und -deaktivierung",
+            "Änderungsmanagement-Dokumentation mit Genehmigungsketten und Zeitstempeln",
+            "Echtzeit-Betriebsüberwachung ausgerichtet auf SOC 2 Sicherheits- und Verfügbarkeitskriterien",
+            "Standardisierte Ausführungsverfahren zur Beseitigung undokumentierter Workarounds",
+            "Compliance-Reporting-Dashboards für kontinuierliche Kontrolleffektivitäts-Sichtbarkeit",
+          ],
+        },
       },
     },
   },
@@ -2597,8 +2719,7 @@ export const translations: Record<Lang, any> = {
         name: "Engagement opérationnel ciblé",
         description:
           "Un engagement à périmètre fixe conçu pour résoudre un goulot d'étranglement opérationnel clairement défini avec un impact mesurable.",
-        priceLabel: "À partir de",
-        period: "frais unique",
+        requestQuote: "Demander un devis",
         cta: "Demander une évaluation d'engagement",
         features: [
           "Amélioration opérationnelle unique et clairement définie",
@@ -3446,6 +3567,68 @@ export const translations: Record<Lang, any> = {
             "Métriques opérationnelles et analyse des tendances pour l'amélioration continue sous la Clause 10",
           ],
         },
+        soc2: {
+          tag: "Critères de services de confiance AICPA",
+          title: "SOC 2 : Démontrer la confiance opérationnelle par des contrôles de sécurité vérifiés",
+          excerpt: "SOC 2 (Service Organization Control 2) est le principal cadre d'audit pour vérifier que les pratiques de sécurité de l'information d'une organisation répondent à des normes rigoureuses selon cinq critères de services de confiance. Un rapport SOC 2 est de plus en plus exigé par les clients enterprise et les secteurs réglementés.",
+          type1Label: "Type I",
+          type2Label: "Type II",
+          type1: {
+            facts: [
+              { label: "Périmètre d'audit", value: "Point dans le temps" },
+              { label: "Durée", value: "Date unique" },
+              { label: "Critères de confiance", value: "Jusqu'à 5" },
+            ],
+            sections: [
+              {
+                heading: "Qu'est-ce que le SOC 2 Type I ?",
+                text: "Un rapport SOC 2 Type I évalue si les contrôles de sécurité d'une organisation sont convenablement conçus à un moment précis. Il répond à la question : 'Les bons contrôles sont-ils en place aujourd'hui ?' Le Type I est généralement le point de départ pour les organisations qui visent la certification SOC 2.",
+              },
+              {
+                heading: "Les cinq critères de services de confiance",
+                text: "Le SOC 2 évalue les contrôles selon cinq critères : Sécurité (obligatoire), Disponibilité, Intégrité du traitement, Confidentialité et Vie privée. Le Type I vérifie que les politiques, procédures et contrôles techniques sont convenablement conçus — pas qu'ils fonctionnent de manière cohérente dans le temps.",
+              },
+              {
+                heading: "Quand le Type I est approprié",
+                text: "Le Type I est couramment utilisé lorsqu'une organisation doit rapidement démontrer un niveau de base d'assurance sécurité à des clients ou partenaires. C'est également le précurseur naturel du Type II.",
+              },
+            ],
+          },
+          type2: {
+            facts: [
+              { label: "Période d'audit", value: "6–12 mois" },
+              { label: "Critères de confiance", value: "Jusqu'à 5" },
+              { label: "Standard marché", value: "Enterprise" },
+            ],
+            sections: [
+              {
+                heading: "Qu'est-ce que le SOC 2 Type II ?",
+                text: "Un rapport SOC 2 Type II évalue si les contrôles de sécurité d'une organisation non seulement existent mais fonctionnent efficacement sur une période prolongée — généralement 6 à 12 mois. C'est l'étalon-or pour la confiance enterprise et est de plus en plus exigé par les équipes de procurement dans les secteurs de la finance et des infrastructures critiques.",
+              },
+              {
+                heading: "La discipline opérationnelle est le fondement",
+                text: "Contrairement au Type I, le Type II exige une exécution cohérente, documentée et auditable des contrôles sur toute la période d'examen. Les journaux d'incidents doivent être complets, les contrôles d'accès appliqués systématiquement et la gestion des changements documentée.",
+              },
+              {
+                heading: "Constats fréquents qui compromettent les audits Type II",
+                text: "Les échecs Type II les plus courants concernent des journaux d'incidents incomplets, des révisions d'accès incohérentes, une documentation d'approbation manquante et des lacunes dans la surveillance de la sécurité.",
+              },
+              {
+                heading: "SOC 2 Type II et conformité continue",
+                text: "Contrairement à une certification ponctuelle, la conformité Type II est une discipline opérationnelle permanente. Les organisations doivent maintenir une documentation prête pour l'audit tout au long de l'année — pas seulement dans les semaines précédant la fenêtre d'audit.",
+              },
+            ],
+          },
+          ovelonTitle: "Comment Ovelon Prime soutient la préparation SOC 2",
+          ovelonPoints: [
+            "Flux de travail structurés d'intake et de réponse aux incidents produisant des preuves d'audit complètes et horodatées",
+            "Flux de contrôle d'accès automatisés pour le provisionnement et le déprovisionnement cohérents des utilisateurs",
+            "Documentation de gestion des changements avec chaînes d'approbation et horodatages",
+            "Surveillance opérationnelle en temps réel alignée sur les critères SOC 2 de Sécurité et Disponibilité",
+            "Procédures d'exécution standardisées éliminant les contournements non documentés",
+            "Tableaux de bord de reporting de conformité pour une visibilité continue sur l'efficacité des contrôles",
+          ],
+        },
       },
     },
   },
@@ -3721,8 +3904,7 @@ export const translations: Record<Lang, any> = {
         name: "Compromiso operacional enfocado",
         description:
           "Un compromiso de alcance fijo diseñado para resolver un cuello de botella operacional claramente definido con impacto medible.",
-        priceLabel: "Desde",
-        period: "tarifa única",
+        requestQuote: "Solicitar presupuesto",
         cta: "Solicitar evaluación de compromiso",
         features: [
           "Mejora operacional única y claramente definida",
@@ -4551,6 +4733,68 @@ export const translations: Record<Lang, any> = {
             "Métricas operativas y análisis de tendencias para mejora continua bajo Cláusula 10",
           ],
         },
+        soc2: {
+          tag: "Criterios de servicios de confianza AICPA",
+          title: "SOC 2: Demostrar confianza operacional mediante controles de seguridad verificados",
+          excerpt: "SOC 2 (Service Organization Control 2) es el principal marco de auditoría para verificar que las prácticas de seguridad de la información de una organización cumplen estándares rigurosos en cinco Criterios de Servicios de Confianza. Un informe SOC 2 es cada vez más requerido por clientes empresariales e industrias reguladas.",
+          type1Label: "Tipo I",
+          type2Label: "Tipo II",
+          type1: {
+            facts: [
+              { label: "Alcance de auditoría", value: "Punto en el tiempo" },
+              { label: "Duración", value: "Fecha única" },
+              { label: "Criterios de confianza", value: "Hasta 5" },
+            ],
+            sections: [
+              {
+                heading: "¿Qué es SOC 2 Tipo I?",
+                text: "Un informe SOC 2 Tipo I evalúa si los controles de seguridad de una organización están adecuadamente diseñados en un momento específico. Responde la pregunta: '¿Están los controles correctos en su lugar hoy?' El Tipo I es típicamente el punto de partida para organizaciones que buscan certificación SOC 2.",
+              },
+              {
+                heading: "Los cinco Criterios de Servicios de Confianza",
+                text: "SOC 2 evalúa controles en cinco criterios: Seguridad (obligatorio), Disponibilidad, Integridad del procesamiento, Confidencialidad y Privacidad. El Tipo I verifica que las políticas y controles técnicos están adecuadamente diseñados — no que funcionen consistentemente en el tiempo.",
+              },
+              {
+                heading: "Cuándo el Tipo I es apropiado",
+                text: "El Tipo I se usa comúnmente cuando una organización necesita demostrar rápidamente un nivel básico de seguridad a clientes o socios. También es el precursor natural del Tipo II.",
+              },
+            ],
+          },
+          type2: {
+            facts: [
+              { label: "Período de auditoría", value: "6–12 meses" },
+              { label: "Criterios de confianza", value: "Hasta 5" },
+              { label: "Estándar del mercado", value: "Enterprise" },
+            ],
+            sections: [
+              {
+                heading: "¿Qué es SOC 2 Tipo II?",
+                text: "Un informe SOC 2 Tipo II evalúa si los controles de seguridad de una organización no solo existen sino que operan efectivamente durante un período prolongado — típicamente 6 a 12 meses. Es el estándar de oro para la confianza enterprise y es requerido crecientemente por equipos de adquisiciones en sectores como servicios financieros e infraestructura crítica.",
+              },
+              {
+                heading: "La disciplina operacional es el fundamento",
+                text: "A diferencia del Tipo I, el Tipo II requiere ejecución consistente, documentada y auditable de controles durante todo el período de revisión. Los registros de incidentes deben estar completos, los controles de acceso aplicados consistentemente y la gestión de cambios documentada.",
+              },
+              {
+                heading: "Hallazgos frecuentes que frustran auditorías Tipo II",
+                text: "Los fallos Tipo II más comunes involucran registros de incidentes incompletos, revisiones de acceso inconsistentes, documentación de aprobación faltante y brechas en el monitoreo de seguridad.",
+              },
+              {
+                heading: "SOC 2 Tipo II y cumplimiento continuo",
+                text: "A diferencia de una certificación única, el cumplimiento Tipo II es una disciplina operacional continua. Las organizaciones deben mantener documentación lista para auditoría durante todo el año, no solo en las semanas previas a la ventana de auditoría.",
+              },
+            ],
+          },
+          ovelonTitle: "Cómo Ovelon Prime apoya la preparación SOC 2",
+          ovelonPoints: [
+            "Flujos de trabajo estructurados de intake y respuesta a incidentes que producen evidencia de auditoría completa y con marca de tiempo",
+            "Flujos de control de acceso automatizados para aprovisionamiento y desaprovisionamiento consistente de usuarios",
+            "Documentación de gestión de cambios con cadenas de aprobación y marcas de tiempo",
+            "Monitoreo operacional en tiempo real alineado con criterios SOC 2 de Seguridad y Disponibilidad",
+            "Procedimientos de ejecución estandarizados que eliminan workarounds no documentados",
+            "Paneles de reporting de cumplimiento para visibilidad continua sobre la efectividad de controles",
+          ],
+        },
       },
     },
   },
@@ -4829,8 +5073,7 @@ export const translations: Record<Lang, any> = {
         name: "Impegno operativo mirato",
         description:
           "Un impegno a scope fisso progettato per risolvere un collo di bottiglia operativo chiaramente definito con impatto misurabile.",
-        priceLabel: "A partire da",
-        period: "tariffa una tantum",
+        requestQuote: "Richiedi preventivo",
         cta: "Richiedi valutazione dell'impegno",
         features: [
           "Miglioramento operativo singolo e chiaramente definito",
@@ -5655,6 +5898,68 @@ export const translations: Record<Lang, any> = {
             "Metriche operative e analisi delle tendenze per miglioramento continuo sotto la Clausola 10",
           ],
         },
+        soc2: {
+          tag: "Criteri dei servizi di fiducia AICPA",
+          title: "SOC 2: Dimostrare la fiducia operativa attraverso controlli di sicurezza verificati",
+          excerpt: "SOC 2 (Service Organization Control 2) è il principale framework di audit per verificare che le pratiche di sicurezza delle informazioni di un'organizzazione soddisfino standard rigorosi su cinque Criteri dei Servizi di Fiducia. Un report SOC 2 è sempre più richiesto da clienti enterprise e settori regolamentati.",
+          type1Label: "Tipo I",
+          type2Label: "Tipo II",
+          type1: {
+            facts: [
+              { label: "Ambito di audit", value: "Punto nel tempo" },
+              { label: "Durata", value: "Data singola" },
+              { label: "Criteri di fiducia", value: "Fino a 5" },
+            ],
+            sections: [
+              {
+                heading: "Cos'è il SOC 2 Tipo I?",
+                text: "Un report SOC 2 Tipo I valuta se i controlli di sicurezza di un'organizzazione sono adeguatamente progettati in un momento specifico. Risponde alla domanda: 'I controlli giusti sono in atto oggi?' Il Tipo I è tipicamente il punto di partenza per le organizzazioni che perseguono la certificazione SOC 2.",
+              },
+              {
+                heading: "I cinque Criteri dei Servizi di Fiducia",
+                text: "SOC 2 valuta i controlli su cinque criteri: Sicurezza (obbligatorio), Disponibilità, Integrità del trattamento, Riservatezza e Privacy. Il Tipo I verifica che politiche, procedure e controlli tecnici siano adeguatamente progettati — non che funzionino in modo coerente nel tempo.",
+              },
+              {
+                heading: "Quando il Tipo I è appropriato",
+                text: "Il Tipo I viene comunemente utilizzato quando un'organizzazione deve dimostrare rapidamente un livello base di garanzia di sicurezza a clienti o partner. È anche il naturale precursore del Tipo II.",
+              },
+            ],
+          },
+          type2: {
+            facts: [
+              { label: "Periodo di audit", value: "6–12 mesi" },
+              { label: "Criteri di fiducia", value: "Fino a 5" },
+              { label: "Standard di mercato", value: "Enterprise" },
+            ],
+            sections: [
+              {
+                heading: "Cos'è il SOC 2 Tipo II?",
+                text: "Un report SOC 2 Tipo II valuta se i controlli di sicurezza di un'organizzazione non solo esistono ma operano efficacemente per un periodo prolungato — tipicamente 6-12 mesi. È il gold standard per la fiducia enterprise ed è sempre più richiesto da team di procurement in settori come servizi finanziari e infrastrutture critiche.",
+              },
+              {
+                heading: "La disciplina operativa è il fondamento",
+                text: "A differenza del Tipo I, il Tipo II richiede un'esecuzione coerente, documentata e verificabile dei controlli per tutto il periodo di revisione. I log degli incidenti devono essere completi, i controlli di accesso applicati in modo coerente e la gestione dei cambiamenti documentata.",
+              },
+              {
+                heading: "Risultati frequenti che compromettono gli audit Tipo II",
+                text: "I fallimenti più comuni del Tipo II riguardano registri di incidenti incompleti, revisioni di accesso degli utenti incoerenti, documentazione di approvazione mancante e lacune nel monitoraggio della sicurezza.",
+              },
+              {
+                heading: "SOC 2 Tipo II e conformità continua",
+                text: "A differenza di una certificazione una tantum, la conformità Tipo II è una disciplina operativa continua. Le organizzazioni devono mantenere documentazione pronta per l'audit durante tutto l'anno — non solo nelle settimane prima della finestra di audit.",
+              },
+            ],
+          },
+          ovelonTitle: "Come Ovelon Prime supporta la prontezza SOC 2",
+          ovelonPoints: [
+            "Flussi di lavoro strutturati di intake e risposta agli incidenti che producono prove di audit complete e con timestamp",
+            "Flussi di controllo degli accessi automatizzati per provisioning e deprovisioning coerenti degli utenti",
+            "Documentazione di gestione dei cambiamenti con catene di approvazione e timestamp",
+            "Monitoraggio operativo in tempo reale allineato ai criteri SOC 2 di Sicurezza e Disponibilità",
+            "Procedure di esecuzione standardizzate che eliminano workaround non documentati",
+            "Dashboard di reporting sulla conformità per visibilità continua sull'efficacia dei controlli",
+          ],
+        },
       },
     },
   },
@@ -5935,8 +6240,7 @@ export const translations: Record<Lang, any> = {
         name: "Compromisso Operacional Focado",
         description:
           "Um compromisso de âmbito fixo concebido para resolver um estrangulamento operacional claramente definido com impacto mensurável.",
-        priceLabel: "A partir de",
-        period: "taxa única",
+        requestQuote: "Solicitar orçamento",
         cta: "Solicitar Avaliação de Compromisso",
         features: [
           "Melhoria operacional única e claramente definida",
@@ -6751,6 +7055,68 @@ export const translations: Record<Lang, any> = {
             "Painéis de monitorização em tempo real para verificação contínua de conformidade (A.8.16)",
             "Fluxos de gestão de mudanças estruturados com cadeias de aprovação documentadas",
             "Métricas operacionais e análise de tendências para melhoria contínua baseada em evidências sob a Cláusula 10",
+          ],
+        },
+        soc2: {
+          tag: "Critérios de Serviços de Confiança AICPA",
+          title: "SOC 2: Demonstrar confiança operacional através de controlos de segurança verificados",
+          excerpt: "SOC 2 (Service Organization Control 2) é o principal framework de auditoria para verificar que as práticas de segurança da informação de uma organização cumprem padrões rigorosos em cinco Critérios de Serviços de Confiança. Um relatório SOC 2 é cada vez mais exigido por clientes enterprise e sectores regulados.",
+          type1Label: "Tipo I",
+          type2Label: "Tipo II",
+          type1: {
+            facts: [
+              { label: "Âmbito de auditoria", value: "Ponto no tempo" },
+              { label: "Duração", value: "Data única" },
+              { label: "Critérios de confiança", value: "Até 5" },
+            ],
+            sections: [
+              {
+                heading: "O que é o SOC 2 Tipo I?",
+                text: "Um relatório SOC 2 Tipo I avalia se os controlos de segurança de uma organização estão adequadamente concebidos num momento específico. Responde à pergunta: 'Os controlos certos estão implementados hoje?' O Tipo I é tipicamente o ponto de partida para organizações que buscam certificação SOC 2.",
+              },
+              {
+                heading: "Os cinco Critérios de Serviços de Confiança",
+                text: "O SOC 2 avalia controlos em cinco critérios: Segurança (obrigatório), Disponibilidade, Integridade do processamento, Confidencialidade e Privacidade. O Tipo I verifica que políticas, procedimentos e controlos técnicos estão adequadamente concebidos — não que funcionem de forma consistente ao longo do tempo.",
+              },
+              {
+                heading: "Quando o Tipo I é apropriado",
+                text: "O Tipo I é comummente utilizado quando uma organização precisa demonstrar rapidamente um nível base de garantia de segurança a clientes ou parceiros. É também o precursor natural do Tipo II.",
+              },
+            ],
+          },
+          type2: {
+            facts: [
+              { label: "Período de auditoria", value: "6–12 meses" },
+              { label: "Critérios de confiança", value: "Até 5" },
+              { label: "Padrão de mercado", value: "Enterprise" },
+            ],
+            sections: [
+              {
+                heading: "O que é o SOC 2 Tipo II?",
+                text: "Um relatório SOC 2 Tipo II avalia se os controlos de segurança de uma organização não apenas existem, mas operam eficazmente durante um período alargado — tipicamente 6 a 12 meses. É o padrão de ouro para a confiança enterprise e é cada vez mais exigido por equipas de procurement em sectores como serviços financeiros e infraestruturas críticas.",
+              },
+              {
+                heading: "A disciplina operacional é o fundamento",
+                text: "Ao contrário do Tipo I, o Tipo II exige execução consistente, documentada e auditável de controlos durante todo o período de revisão. Os registos de incidentes devem estar completos, os controlos de acesso aplicados de forma consistente e a gestão de mudanças documentada.",
+              },
+              {
+                heading: "Constatações frequentes que comprometem auditorias Tipo II",
+                text: "As falhas mais comuns do Tipo II envolvem registos de incidentes incompletos, revisões de acesso de utilizadores inconsistentes, documentação de aprovação em falta e lacunas na monitorização de segurança.",
+              },
+              {
+                heading: "SOC 2 Tipo II e conformidade contínua",
+                text: "Ao contrário de uma certificação pontual, a conformidade Tipo II é uma disciplina operacional contínua. As organizações devem manter documentação pronta para auditoria durante todo o ano — não apenas nas semanas antes da janela de auditoria.",
+              },
+            ],
+          },
+          ovelonTitle: "Como a Ovelon Prime apoia a prontidão SOC 2",
+          ovelonPoints: [
+            "Fluxos de trabalho estruturados de intake e resposta a incidentes que produzem evidências de auditoria completas e com timestamp",
+            "Fluxos de controlo de acesso automatizados para aprovisionamento e desaprovisionamento consistentes de utilizadores",
+            "Documentação de gestão de mudanças com cadeias de aprovação e timestamps",
+            "Monitorização operacional em tempo real alinhada com os critérios SOC 2 de Segurança e Disponibilidade",
+            "Procedimentos de execução padronizados que eliminam workarounds não documentados",
+            "Painéis de reporting de conformidade para visibilidade contínua sobre a eficácia dos controlos",
           ],
         },
       },
