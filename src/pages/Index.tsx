@@ -21,6 +21,8 @@ const WorkflowDemo = lazy(() => import("@/components/WorkflowDemo").then(m => ({
 const CaseStudies = lazy(() => import("@/components/CaseStudies"));
 const ComplianceBlog = lazy(() => import("@/components/ComplianceBlog").then(m => ({ default: m.ComplianceBlog })));
 
+
+
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
