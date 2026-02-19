@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, lazy, Suspense, useCallback } from "react";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight, Play, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import heroBg from "@/assets/u3714841198_Sleek_minimalistic_abstract_visual_inspired_by_he_53bffa3d-7c36-4acb-858b-afa6bbf35d2a_0.png?format=webp&quality=80";
@@ -175,7 +175,20 @@ export const Hero = () => {
               </Button>
             </div>
 
-          
+
+
+            {/* ===== Compliance Badges ===== */}
+            <div className="pt-10 flex flex-wrap items-center justify-center gap-3 animate-fade-in [animation-delay:420ms] opacity-0">
+              {(["ISO 27001", "NIS2", "GDPR", "SOC 2"] as const).map((badge) => (
+                <span
+                  key={badge}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-foreground/15 bg-background/40 backdrop-blur-sm text-[11px] font-medium tracking-wider text-foreground/60 uppercase select-none"
+                >
+                  <ShieldCheck className="w-3 h-3 text-accent shrink-0" />
+                  {badge}
+                </span>
+              ))}
+            </div>
 
           </div>
         </div>

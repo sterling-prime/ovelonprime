@@ -11,9 +11,7 @@ const TYPEFORM_URL = "https://form.typeform.com/to/xTB0o3Wd";
 const ENTERPRISE_CAL_URL = "https://cal.com/ovelon-prime/enterprise-automation-program";
 
 export const Pricing = () => {
-  const { t, i18n } = useTranslation();
-  const isEnglish = i18n.language === "en";
-  const focusedPrice = isEnglish ? "$4,999" : "€4.999";
+  const { t } = useTranslation();
   const [enterpriseBookingOpen, setEnterpriseBookingOpen] = useState(false);
   const [typeformOpen, setTypeformOpen] = useState(false);
 
@@ -38,13 +36,13 @@ export const Pricing = () => {
       key: "focused",
       name: t("pricing.focused.name"),
       description: t("pricing.focused.description"),
-      price: focusedPrice,
-      priceLabel: t("pricing.focused.priceLabel"),
-      period: t("pricing.focused.period"),
+      price: null,
+      priceLabel: null,
+      period: null,
       features: t("pricing.focused.features", {
         returnObjects: true,
       }) as string[],
-      cta: t("pricing.focused.cta"), // Engagement Assessment
+      cta: t("pricing.focused.cta"),
       popular: false,
     },
     {
@@ -115,20 +113,28 @@ export const Pricing = () => {
                 </p>
 
                 <div className="mb-6 text-center">
-                  {plan.priceLabel && (
-                    <p className="text-xs uppercase tracking-wide text-muted-foreground mb-1">
-                      {plan.priceLabel}
-                    </p>
-                  )}
-
-                  <span className="text-4xl font-bold text-foreground">
-                    {plan.price}
-                  </span>
-
-                  {plan.period && (
-                    <p className="text-xs text-muted-foreground mt-1">
-                      {plan.period}
-                    </p>
+                  {plan.price !== null ? (
+                    <>
+                      {plan.priceLabel && (
+                        <p className="text-xs uppercase tracking-wide text-muted-foreground mb-1">
+                          {plan.priceLabel}
+                        </p>
+                      )}
+                      <span className="text-4xl font-bold text-foreground">
+                        {plan.price}
+                      </span>
+                      {plan.period && (
+                        <p className="text-xs text-muted-foreground mt-1">
+                          {plan.period}
+                        </p>
+                      )}
+                    </>
+                  ) : (
+                    <div className="py-2">
+                      <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/30 bg-accent/5 text-accent font-medium text-sm">
+                        {t("pricing.focused.requestQuote")}
+                      </span>
+                    </div>
                   )}
                 </div>
 

@@ -1,21 +1,23 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
-import { Shield, FileCheck, ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
+import { Shield, FileCheck, ShieldCheck, ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
 import { ScrollReveal, StaggerContainer } from "./ScrollReveal";
 import { cn } from "@/lib/utils";
 
-const articleKeys = ["nis2", "iso27001"] as const;
+const articleKeys = ["nis2", "iso27001", "soc2"] as const;
 type ArticleKey = (typeof articleKeys)[number];
 
 const icons: Record<ArticleKey, typeof Shield> = {
   nis2: Shield,
   iso27001: FileCheck,
+  soc2: ShieldCheck,
 };
 
 export const ComplianceBlog = () => {
   const { t } = useTranslation();
   const [expanded, setExpanded] = useState<ArticleKey | null>(null);
+  const [soc2Type, setSoc2Type] = useState<"type1" | "type2">("type2");
 
   return (
     <section
@@ -48,14 +50,26 @@ export const ComplianceBlog = () => {
           {articleKeys.map((key) => {
             const Icon = icons[key];
             const isExpanded = expanded === key;
+            const isSoc2 = key === "soc2";
 
             const sections = t(
-              `complianceBlog.articles.${key}.sections`,
+              isSoc2
+                ? `complianceBlog.articles.${key}.${soc2Type}.sections`
+                : `complianceBlog.articles.${key}.sections`,
               { returnObjects: true }
             ) as {
               heading: string;
               text: string;
             }[];
+
+            const facts = (
+              t(
+                isSoc2
+                  ? `complianceBlog.articles.${key}.${soc2Type}.facts`
+                  : `complianceBlog.articles.${key}.facts`,
+                { returnObjects: true }
+              ) as { label: string; value: string }[]
+            );
 
             return (
               <div
@@ -106,16 +120,42 @@ export const ComplianceBlog = () => {
                       className="overflow-hidden"
                     >
                       <div className="px-8 md:px-10 pb-10 pt-0 border-t border-primary-foreground/5">
+
+                        {/* SOC 2 Type Toggle */}
+                        {isSoc2 && (
+                          <div className="flex justify-center mt-8 mb-6">
+                            <div className="inline-flex items-center bg-primary-foreground/5 border border-primary-foreground/10 rounded-full p-1 gap-1">
+                              <button
+                                type="button"
+                                onClick={(e) => { e.stopPropagation(); setSoc2Type("type1"); }}
+                                className={cn(
+                                  "px-5 py-2 rounded-full text-xs font-medium tracking-wide uppercase transition-all duration-200",
+                                  soc2Type === "type1"
+                                    ? "bg-accent text-accent-foreground shadow-sm"
+                                    : "text-primary-foreground/50 hover:text-primary-foreground/80"
+                                )}
+                              >
+                                {t("complianceBlog.articles.soc2.type1Label")}
+                              </button>
+                              <button
+                                type="button"
+                                onClick={(e) => { e.stopPropagation(); setSoc2Type("type2"); }}
+                                className={cn(
+                                  "px-5 py-2 rounded-full text-xs font-medium tracking-wide uppercase transition-all duration-200",
+                                  soc2Type === "type2"
+                                    ? "bg-accent text-accent-foreground shadow-sm"
+                                    : "text-primary-foreground/50 hover:text-primary-foreground/80"
+                                )}
+                              >
+                                {t("complianceBlog.articles.soc2.type2Label")}
+                              </button>
+                            </div>
+                          </div>
+                        )}
+
                         {/* Key Facts */}
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-8 border-b border-primary-foreground/5">
-                          {(
-                            t(`complianceBlog.articles.${key}.facts`, {
-                              returnObjects: true,
-                            }) as {
-                              label: string;
-                              value: string;
-                            }[]
-                          ).map((fact) => (
+                        <div className={cn("grid grid-cols-1 md:grid-cols-3 gap-4 py-8 border-b border-primary-foreground/5", !isSoc2 && "mt-0 pt-8")}>
+                          {facts.map((fact) => (
                             <div key={fact.label} className="text-center p-4">
                               <p className="text-2xl font-light text-accent mb-1">
                                 {fact.value}
