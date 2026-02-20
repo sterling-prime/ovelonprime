@@ -198,11 +198,28 @@ export const Chatbot = () => {
       addBotMessage(
         t(
           "chatbot.responses.compliance",
-          "We help organizations navigate complex regulatory landscapes:\n\n🛡️ NIS2 Directive — Network and Information Security compliance readiness for critical infrastructure.\n\n📋 ISO 27001 — Information security management system implementation and audit preparation.\n\n📑 Operational Governance — Policy frameworks, audit trails, and compliance dashboards for full visibility.\n\nWant to learn more or speak with a compliance expert?"
+          "We help organizations navigate complex regulatory landscapes:\n\n🛡️ NIS2 Directive — Network and Information Security compliance readiness for critical infrastructure.\n\n📋 ISO 27001 — Information security management system implementation and audit preparation.\n\n🔒 SOC 2 — Service Organization Control audits (Type I & Type II) for trust services criteria.\n\n📑 Operational Governance — Policy frameworks, audit trails, and compliance dashboards for full visibility.\n\nAsk me any question about these frameworks, or explore the articles below!"
         )
       );
       setCurrentPath("compliance");
     }, 500);
+  };
+
+  const handleComplianceAI = async (question: string) => {
+    addBotMessage(t("chatbot.responses.complianceThinking", "Let me look into that for you..."));
+    try {
+      const { data, error } = await supabase.functions.invoke("compliance-chat", {
+        body: { question, language: i18n.language },
+      });
+      if (error) throw error;
+      // Remove the "thinking" message and add the real answer
+      setMessages((prev) => [...prev.slice(0, -1)]);
+      addBotMessage(data?.answer || t("chatbot.responses.complianceError", "I couldn't find an answer right now. Please check our compliance articles or contact info@ovelon-prime.com."));
+    } catch {
+      setMessages((prev) => [...prev.slice(0, -1)]);
+      addBotMessage(t("chatbot.responses.complianceError", "I couldn't find an answer right now. Please check our compliance articles or contact info@ovelon-prime.com."));
+    }
+    setCurrentPath("compliance");
   };
 
   const handleOpenSimulator = () => {
@@ -344,7 +361,22 @@ export const Chatbot = () => {
       return;
     }
 
+    // If we're in compliance mode, send to AI
+    if (currentPath === "compliance") {
+      handleComplianceAI(userText);
+      return;
+    }
+
     const lower = userText.toLowerCase();
+
+    // Check if user is asking a compliance-related question from any context
+    const complianceKeywords = ["compliance", "govern", "nis2", "nis 2", "iso", "iso27001", "iso 27001", "soc2", "soc 2", "gdpr", "audit", "certification", "directive", "annex"];
+    const isComplianceQuestion = complianceKeywords.some(kw => lower.includes(kw));
+
+    if (isComplianceQuestion) {
+      handleComplianceAI(userText);
+      return;
+    }
 
     setTimeout(() => {
       if (lower.includes("demo") || lower.includes("book") || lower.includes("schedule")) {
@@ -359,8 +391,6 @@ export const Chatbot = () => {
       } else if (lower.includes("contact") || lower.includes("email") || lower.includes("reach") || lower.includes("form")) {
         addBotMessage(t("chatbot.responses.contact", "You can reach us at info@ovelon-prime.com or use our contact form. Want me to take you there?"));
         setCurrentPath("contact");
-      } else if (lower.includes("compliance") || lower.includes("govern") || lower.includes("nis2") || lower.includes("iso")) {
-        handleCompliance();
       } else if (lower.includes("support") || lower.includes("help") || lower.includes("issue") || lower.includes("problem")) {
         addBotMessage(t("chatbot.responses.operationalSupport", "I can help connect you with our support team. Please type your issue below or use the buttons."));
         setCurrentPath("support");
@@ -453,6 +483,9 @@ export const Chatbot = () => {
       case "compliance":
         return (
           <div className="flex flex-wrap gap-2 p-3 border-t border-border/50">
+            <p className="text-xs text-muted-foreground w-full text-center mb-1">
+              {t("chatbot.complianceHint", "Ask me anything about SOC 2, ISO 27001, or NIS2 ↵")}
+            </p>
             <QuickReply label={t("chatbot.buttons.viewCompliance", "View Articles")} onClick={() => handleGoToSection("compliance-blog", "Compliance Articles")} />
             <QuickReply label={t("chatbot.buttons.talkToExpert", "Talk to Expert")} onClick={handleOpenEnterprise} />
             <QuickReply label={t("chatbot.buttons.backToMain", "← Back")} onClick={handleBackToMain} />
