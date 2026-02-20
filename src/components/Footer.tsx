@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Logo } from "./Logo";
-import { ShieldCheck, FileCheck, HardHat, Lock } from "lucide-react";
+import { ShieldCheck, FileCheck, HardHat, Lock, Shield, ClipboardCheck } from "lucide-react";
 
 // High-end LinkedIn icon
 const LinkedInIcon = ({ className }: { className?: string }) => (
@@ -17,7 +17,7 @@ const FacebookIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const trustIcons = [ShieldCheck, FileCheck, HardHat, Lock];
+const trustIcons = [ShieldCheck, FileCheck, Shield, ClipboardCheck, HardHat, Lock];
 
 type FooterLink = {
   labelKey: string;
