@@ -369,39 +369,26 @@ export const Chatbot = () => {
 
     const lower = userText.toLowerCase();
 
-    // Check if user is asking a compliance-related question from any context
-    const complianceKeywords = ["compliance", "govern", "nis2", "nis 2", "iso", "iso27001", "iso 27001", "soc2", "soc 2", "gdpr", "audit", "certification", "directive", "annex"];
-    const isComplianceQuestion = complianceKeywords.some(kw => lower.includes(kw));
-
-    if (isComplianceQuestion) {
-      handleComplianceAI(userText);
-      return;
-    }
-
-    setTimeout(() => {
-      if (lower.includes("demo") || lower.includes("book") || lower.includes("schedule")) {
+    // Route navigation intents to quick paths, everything else to AI
+    if (lower.includes("demo") || lower.includes("book") || lower.includes("schedule")) {
+      setTimeout(() => {
         addBotMessage(t("chatbot.responses.scheduleDemo", "I can schedule a demo for you. Click the button below to pick a time that works for you!"));
         setCurrentPath("demo");
-      } else if (lower.includes("simulat") || lower.includes("project") || lower.includes("try")) {
+      }, 500);
+    } else if (lower.includes("simulat") || lower.includes("project simulator")) {
+      setTimeout(() => {
         addBotMessage(t("chatbot.responses.simulation", "Our Project Simulator helps you visualize potential improvements. Want to try it?"));
         setCurrentPath("simulation");
-      } else if (lower.includes("price") || lower.includes("cost") || lower.includes("pricing")) {
-        addBotMessage(t("chatbot.responses.pricing", `Our platform starts at ${priceDisplay}/month. Want to see details or schedule a call?`));
-        setCurrentPath("pricing");
-      } else if (lower.includes("contact") || lower.includes("email") || lower.includes("reach") || lower.includes("form")) {
+      }, 500);
+    } else if (lower.includes("contact") && (lower.includes("form") || lower.includes("reach"))) {
+      setTimeout(() => {
         addBotMessage(t("chatbot.responses.contact", "You can reach us at info@ovelon-prime.com or use our contact form. Want me to take you there?"));
         setCurrentPath("contact");
-      } else if (lower.includes("support") || lower.includes("help") || lower.includes("issue") || lower.includes("problem")) {
-        addBotMessage(t("chatbot.responses.operationalSupport", "I can help connect you with our support team. Please type your issue below or use the buttons."));
-        setCurrentPath("support");
-      } else if (lower.includes("product") || lower.includes("warehouse") || lower.includes("workflow") || lower.includes("solution")) {
-        addBotMessage(t("chatbot.responses.productInfo", "We offer warehouse and workflow solutions tailored to your operations.\n\nQuick links:\n• Warehouse Solutions\n• Workflow Solutions"));
-        setCurrentPath("product");
-      } else {
-        addBotMessage(t("chatbot.responses.fallback", "I don't have that info, but the team can follow up with you shortly. Would you like to leave your contact details or try the contact form?"));
-        setCurrentPath("fallback");
-      }
-    }, 500);
+      }, 500);
+    } else {
+      // Send all other questions to AI — Brooks knows about products, pricing, compliance, and more
+      handleComplianceAI(userText);
+    }
   };
 
   const renderQuickReplies = () => {
