@@ -973,7 +973,7 @@ export const translations: Record<Lang, any> = {
       pdfAttached: "PDF summary attached for your records",
     },
     governanceTrends: {
-      title: "Operating in a Regulated Reality",
+      title: "Operating in a Regulated Reality — ISO 27001, NIS2 & SOC 2",
       subtitle: "As operational environments become more regulated, interconnected, and scrutinized, leadership is increasingly defined by control, documentation, and consistency — not by speed or improvisation.",
       column1: {
         title: "What Operating Leaders Prioritize",
@@ -2189,7 +2189,7 @@ export const translations: Record<Lang, any> = {
       pdfAttached: "PDF-Zusammenfassung für Ihre Unterlagen beigefügt",
     },
     governanceTrends: {
-      title: "Operieren in einer regulierten Realität",
+      title: "Operieren in einer regulierten Realität — ISO 27001, NIS2 & SOC 2",
       subtitle: "Da operative Umgebungen zunehmend reguliert, vernetzt und überprüft werden, wird Führung immer mehr durch Kontrolle, Dokumentation und Konsistenz definiert — nicht durch Geschwindigkeit oder Improvisation.",
       column1: {
         title: "Was Betriebsleiter priorisieren",
@@ -3381,7 +3381,7 @@ export const translations: Record<Lang, any> = {
       pdfAttached: "Résumé PDF joint pour vos archives",
     },
     governanceTrends: {
-      title: "Opérer dans une réalité réglementée",
+      title: "Opérer dans une réalité réglementée — ISO 27001, NIS2 & SOC 2",
       subtitle: "À mesure que les environnements opérationnels deviennent plus réglementés, interconnectés et scrutés, le leadership est de plus en plus défini par le contrôle, la documentation et la cohérence — et non par la vitesse ou l'improvisation.",
       column1: {
         title: "Ce que les leaders opérationnels priorisent",
@@ -4554,7 +4554,7 @@ export const translations: Record<Lang, any> = {
       pdfAttached: "Resumen PDF adjunto para sus registros",
     },
     governanceTrends: {
-      title: "Operar en una realidad regulada",
+      title: "Operar en una realidad regulada — ISO 27001, NIS2 & SOC 2",
       subtitle: "A medida que los entornos operativos se vuelven más regulados, interconectados y escrutados, el liderazgo se define cada vez más por el control, la documentación y la consistencia — no por la velocidad o la improvisación.",
       column1: {
         title: "Lo que priorizan los líderes operativos",
@@ -5726,7 +5726,7 @@ export const translations: Record<Lang, any> = {
       pdfAttached: "Riepilogo PDF allegato per i tuoi archivi",
     },
     governanceTrends: {
-      title: "Operare in una realtà regolamentata",
+      title: "Operare in una realtà regolamentata — ISO 27001, NIS2 & SOC 2",
       subtitle: "Man mano che gli ambienti operativi diventano più regolamentati, interconnessi e scrutinati, la leadership è sempre più definita dal controllo, dalla documentazione e dalla coerenza — non dalla velocità o dall'improvvisazione.",
       column1: {
         title: "Cosa danno priorità i leader operativi",
@@ -6889,7 +6889,7 @@ export const translations: Record<Lang, any> = {
       pdfAttached: "Resumo PDF anexado para os seus registos",
     },
     governanceTrends: {
-      title: "Operar numa Realidade Regulada",
+      title: "Operar numa Realidade Regulada — ISO 27001, NIS2 & SOC 2",
       subtitle: "À medida que os ambientes operacionais se tornam mais regulados, interconectados e escrutinados, a liderança é cada vez mais definida pelo controlo, documentação e consistência — não pela velocidade ou improvisação.",
       column1: {
         title: "O Que os Líderes Operacionais Priorizam",
