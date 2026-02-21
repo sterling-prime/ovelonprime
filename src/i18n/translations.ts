@@ -1124,8 +1124,8 @@ export const translations: Record<Lang, any> = {
     },
     complianceBlog: {
       badge: "Compliance & Governance",
-      title: "NIS2 and ISO 27001: What operational leaders must know now.",
-      subtitle: "As regulatory pressure intensifies across critical infrastructure, understanding NIS2 and ISO 27001 is no longer optional — it's operational survival. Here's how Ovelon Prime aligns your operations with both frameworks.",
+      title: "NIS2, ISO 27001 & SOC 2: What operational leaders must know now.",
+      subtitle: "As regulatory pressure intensifies across critical infrastructure, understanding NIS2, ISO 27001 and SOC 2 is no longer optional — it's operational survival. Here's how Ovelon Prime aligns your operations with these frameworks.",
       articles: {
         nis2: {
           tag: "EU Directive 2022/2555",
@@ -2340,8 +2340,8 @@ export const translations: Record<Lang, any> = {
     },
     complianceBlog: {
       badge: "Compliance & Governance",
-      title: "NIS2 und ISO 27001: Was operative Führungskräfte jetzt wissen müssen.",
-      subtitle: "Mit zunehmendem regulatorischem Druck auf kritische Infrastrukturen ist das Verständnis von NIS2 und ISO 27001 nicht mehr optional — es ist operatives Überleben.",
+      title: "NIS2, ISO 27001 & SOC 2: Was operative Führungskräfte jetzt wissen müssen.",
+      subtitle: "Mit zunehmendem regulatorischem Druck auf kritische Infrastrukturen ist das Verständnis von NIS2, ISO 27001 und SOC 2 nicht mehr optional — es ist operatives Überleben.",
       articles: {
         nis2: {
           tag: "EU-Richtlinie 2022/2555",
@@ -3532,8 +3532,8 @@ export const translations: Record<Lang, any> = {
     },
     complianceBlog: {
       badge: "Conformité et Gouvernance",
-      title: "NIS2 et ISO 27001 : Ce que les dirigeants opérationnels doivent savoir maintenant.",
-      subtitle: "Alors que la pression réglementaire s'intensifie sur les infrastructures critiques, comprendre NIS2 et ISO 27001 n'est plus optionnel — c'est une question de survie opérationnelle.",
+      title: "NIS2, ISO 27001 & SOC 2 : Ce que les dirigeants opérationnels doivent savoir maintenant.",
+      subtitle: "Alors que la pression réglementaire s'intensifie sur les infrastructures critiques, comprendre NIS2, ISO 27001 et SOC 2 n'est plus optionnel — c'est une question de survie opérationnelle.",
       articles: {
         nis2: {
           tag: "Directive UE 2022/2555",
@@ -4704,8 +4704,8 @@ export const translations: Record<Lang, any> = {
     },
     complianceBlog: {
       badge: "Cumplimiento y Gobernanza",
-      title: "NIS2 e ISO 27001: Lo que los líderes operativos deben saber ahora.",
-      subtitle: "A medida que la presión regulatoria se intensifica en infraestructuras críticas, comprender NIS2 e ISO 27001 ya no es opcional — es supervivencia operativa.",
+      title: "NIS2, ISO 27001 y SOC 2: Lo que los líderes operativos deben saber ahora.",
+      subtitle: "A medida que la presión regulatoria se intensifica en infraestructuras críticas, comprender NIS2, ISO 27001 y SOC 2 ya no es opcional — es supervivencia operativa.",
       articles: {
         nis2: {
           tag: "Directiva UE 2022/2555",
@@ -5875,8 +5875,8 @@ export const translations: Record<Lang, any> = {
     },
     complianceBlog: {
       badge: "Conformità e Governance",
-      title: "NIS2 e ISO 27001: Cosa devono sapere ora i leader operativi.",
-      subtitle: "Con l'intensificarsi della pressione normativa sulle infrastrutture critiche, comprendere NIS2 e ISO 27001 non è più facoltativo — è sopravvivenza operativa. Ecco come Ovelon Prime allinea le tue operazioni con entrambi i framework.",
+      title: "NIS2, ISO 27001 e SOC 2: Cosa devono sapere ora i leader operativi.",
+      subtitle: "Con l'intensificarsi della pressione normativa sulle infrastrutture critiche, comprendere NIS2, ISO 27001 e SOC 2 non è più facoltativo — è sopravvivenza operativa. Ecco come Ovelon Prime allinea le tue operazioni con questi framework.",
       articles: {
         nis2: {
           tag: "Direttiva UE 2022/2555",
@@ -7040,8 +7040,8 @@ export const translations: Record<Lang, any> = {
     },
     complianceBlog: {
       badge: "Conformidade e Governança",
-      title: "NIS2 e ISO 27001: O que os líderes operacionais devem saber agora.",
-      subtitle: "À medida que a pressão regulatória se intensifica nas infraestruturas críticas, compreender a NIS2 e a ISO 27001 deixou de ser opcional — é sobrevivência operacional. Veja como a Ovelon Prime alinha as suas operações com ambos os quadros.",
+      title: "NIS2, ISO 27001 e SOC 2: O que os líderes operacionais devem saber agora.",
+      subtitle: "À medida que a pressão regulatória se intensifica nas infraestruturas críticas, compreender a NIS2, a ISO 27001 e o SOC 2 deixou de ser opcional — é sobrevivência operacional. Veja como a Ovelon Prime alinha as suas operações com estes quadros.",
       articles: {
         nis2: {
           tag: "Diretiva UE 2022/2555",
