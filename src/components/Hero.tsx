@@ -134,18 +134,9 @@ export const Hero = () => {
 
             {/* ===== CTA Buttons ===== */}
             <div className="pt-10 sm:pt-4 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in [animation-delay:340ms] opacity-0">
-              <Button
+                <Button
                 size="lg"
-                className="
-                  bg-slate-900
-                  text-white
-                  font-medium
-                  px-6
-                  py-3
-                  rounded-md
-                  transition-colors
-                  hover:!bg-[#3A8F94]
-                "
+                className="bg-primary text-primary-foreground font-medium px-6 py-3 rounded-md transition-colors hover:bg-accent hover:text-accent-foreground"
                 asChild
               >
                 <a href="#services" className="inline-flex items-center">

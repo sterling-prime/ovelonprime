@@ -71,7 +71,7 @@ export const Navbar = () => {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300
           ${
             forceBlackHeader
-              ? "bg-white/95 backdrop-blur-sm border-b border-gray-200"
+              ? "bg-background/95 backdrop-blur-sm border-b border-border"
               : "bg-transparent"
           }
         `}
@@ -94,8 +94,8 @@ export const Navbar = () => {
                     text-[16px]
                     font-medium
                     tracking-wide
-                    text-gray-700
-                    hover:text-gray-900
+                    text-foreground/70
+                    hover:text-foreground
                     transition-colors
                     min-h-6
                     py-0.5
@@ -119,13 +119,13 @@ export const Navbar = () => {
                   px-4 py-2
                   min-h-6
                   rounded-md
-                  border border-gray-300
-                  bg-gray-100
+                  border border-border
+                  bg-secondary
                   text-[15px]
                   font-medium
-                  text-gray-800
+                  text-secondary-foreground
                   transition
-                  hover:bg-gray-200
+                  hover:bg-secondary/80
                 "
               >
                 {t("nav.viewDemo")}
@@ -135,16 +135,7 @@ export const Navbar = () => {
               <Button
                 size="sm"
                 onClick={() => setBookingOpen(true)}
-                className="
-                  bg-slate-900
-                  text-white
-                  font-medium
-                  px-4 py-2
-                  min-h-6
-                  rounded-md
-                  transition-colors
-                  hover:bg-[#3A8F94]
-                "
+                className="bg-primary text-primary-foreground font-medium px-4 py-2 min-h-6 rounded-md transition-colors hover:bg-accent hover:text-accent-foreground"
               >
                 {t("nav.cta")}
               </Button>
@@ -165,9 +156,9 @@ export const Navbar = () => {
                 className="ml-auto p-2 rounded-md"
               >
                 {isOpen ? (
-                  <X className="h-6 w-6 text-gray-900" />
+                  <X className="h-6 w-6 text-foreground" />
                 ) : (
-                  <Menu className="h-6 w-6 text-gray-900" />
+                  <Menu className="h-6 w-6 text-foreground" />
                 )}
               </button>
             </div>
@@ -177,7 +168,7 @@ export const Navbar = () => {
 
       {/* ================= MOBILE DROPDOWN ================= */}
       {isOpen && (
-        <div className="lg:hidden fixed top-16 left-0 right-0 z-40 bg-white border-t border-gray-200">
+        <div className="lg:hidden fixed top-16 left-0 right-0 z-40 bg-background border-t border-border">
           <div className="px-6 py-8 flex flex-col gap-10">
 
             {/* NAV LINKS */}
@@ -194,7 +185,7 @@ export const Navbar = () => {
                     text-[22px]
                     font-medium
                     tracking-wide
-                    text-gray-800
+                    text-foreground
                   "
                 >
                   {link.label}
@@ -215,12 +206,12 @@ export const Navbar = () => {
                 w-full
                 py-3
                 rounded-xl
-                border border-gray-300
-                bg-gray-100
+                border border-border
+                bg-secondary
                 text-[15px]
                 font-medium
-                text-gray-800
-                hover:bg-gray-200
+                text-secondary-foreground
+                hover:bg-secondary/80
               "
             >
               {t("nav.viewDemo")}
@@ -231,13 +222,13 @@ export const Navbar = () => {
               size="lg"
               className="
                 w-full
-                bg-slate-900
-                text-white
+                bg-primary
+                text-primary-foreground
                 font-semibold
                 tracking-wide
                 rounded-xl
                 py-4
-                hover:bg-[#3A8F94]
+                hover:bg-accent hover:text-accent-foreground
               "
               onClick={() => {
                 setBookingOpen(true);

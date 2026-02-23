@@ -33,7 +33,7 @@ export const CookieConsent = () => {
     <div
       className={`
         fixed bottom-0 left-0 right-0 z-[100]
-        bg-gray-900 border-t border-gray-700
+        bg-primary border-t border-border
         transform transition-transform duration-500 ease-out
         ${isVisible ? "translate-y-0" : "translate-y-full"}
       `}
@@ -41,11 +41,11 @@ export const CookieConsent = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           {/* Message */}
-          <p className="text-sm text-gray-300 text-center sm:text-left max-w-2xl">
+          <p className="text-sm text-primary-foreground/70 text-center sm:text-left max-w-2xl">
             {t("cookie.message")}{" "}
             <Link
               to="/privacy"
-              className="text-gray-100 underline underline-offset-2 hover:text-white transition-colors"
+              className="text-primary-foreground underline underline-offset-2 hover:text-primary-foreground/90 transition-colors"
             >
               {t("cookie.learnMore")}
             </Link>
@@ -58,9 +58,9 @@ export const CookieConsent = () => {
               className="
                 px-4 py-2
                 text-sm font-medium
-                text-gray-400
-                border border-gray-600
-                hover:text-gray-200 hover:border-gray-500
+                text-primary-foreground/50
+                border border-primary-foreground/20
+                hover:text-primary-foreground/80 hover:border-primary-foreground/40
                 transition-colors duration-200
               "
             >
@@ -71,8 +71,8 @@ export const CookieConsent = () => {
               className="
                 px-4 py-2
                 text-sm font-medium
-                text-gray-900 bg-white
-                hover:bg-gray-100
+                text-primary bg-primary-foreground
+                hover:bg-primary-foreground/90
                 transition-colors duration-200
               "
             >

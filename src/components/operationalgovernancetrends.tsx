@@ -57,13 +57,13 @@ export const OperationalGovernanceTrends = () => {
                   className="
                     w-12 h-12 rounded-xl bg-secondary flex items-center
                     justify-center mb-6 mx-auto transition-colors
-                    duration-300 group-hover:bg-[#3A8F94]/10
+                    duration-300 group-hover:bg-accent/10
                   "
                 >
                   <Icon
                     className="
                       w-6 h-6 text-foreground transition-colors
-                      duration-300 group-hover:text-[#3A8F94]
+                      duration-300 group-hover:text-accent
                     "
                   />
                 </div>

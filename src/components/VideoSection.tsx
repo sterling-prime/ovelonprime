@@ -249,7 +249,7 @@ export const VideoSection = () => {
         <div className="flex justify-center mt-12">
           <Button
             size="lg"
-            className="bg-slate-900 text-white px-10 py-4 hover:bg-[#3A8F94]"
+            className="bg-primary text-primary-foreground px-10 py-4 hover:bg-accent hover:text-accent-foreground"
             onClick={() =>
               window.dispatchEvent(new Event("open-booking-modal"))
             }
