@@ -152,9 +152,9 @@ export const Contact = () => {
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
             {/* LEFT: FORM */}
-            <div className="bg-white rounded-2xl shadow-xl p-10 border border-gray-100">
+            <div className="bg-card rounded-2xl shadow-xl p-10 border border-border">
               <ScrollReveal variant="fade-up">
-                <p className="mb-6 text-xs sm:text-sm tracking-[0.3em] font-semibold uppercase text-[#3A8F94] text-center">
+                <p className="mb-6 text-xs sm:text-sm tracking-[0.3em] font-semibold uppercase text-accent text-center">
                   {t("contact.label", "ENGAGE")}
                 </p>
 
@@ -173,8 +173,8 @@ export const Contact = () => {
               <ScrollReveal variant="fade-up" delay={200}>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {formError && (
-                    <div className="p-4 rounded-lg bg-red-50 border border-red-200">
-                      <p className="text-sm text-red-600">{formError}</p>
+                    <div className="p-4 rounded-lg bg-destructive/10 border border-destructive/30">
+                      <p className="text-sm text-destructive">{formError}</p>
                     </div>
                   )}
 
@@ -253,11 +253,11 @@ export const Contact = () => {
                   {t("contact.rightTitle")}
                 </h2>
 
-                <p className="text-gray-600 mb-6 leading-relaxed text-center">
+                <p className="text-muted-foreground mb-6 leading-relaxed text-center">
                   {t("contact.infoText1")}
                 </p>
 
-                <p className="text-gray-600 mb-6 text-center">
+                <p className="text-muted-foreground mb-6 text-center">
                   {t("contact.infoText2")}
                 </p>
 

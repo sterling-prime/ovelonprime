@@ -47,7 +47,7 @@ export const TypeformModal = ({ isOpen, onClose, url, title = "Engagement Assess
       <div
         className="
           fixed inset-x-0 bottom-0
-          bg-white rounded-t-2xl shadow-2xl
+          bg-card rounded-t-2xl shadow-2xl
           h-[92vh] overflow-hidden
 
           lg:inset-auto lg:top-1/2 lg:left-1/2
@@ -57,16 +57,16 @@ export const TypeformModal = ({ isOpen, onClose, url, title = "Engagement Assess
         "
       >
         {/* Header */}
-        <div className="relative flex items-center px-6 py-4 border-b border-gray-100 bg-gray-50/80">
-          <h2 className="absolute left-1/2 -translate-x-1/2 text-base font-semibold text-gray-900 tracking-tight">
+        <div className="relative flex items-center px-6 py-4 border-b border-border bg-muted/80">
+          <h2 className="absolute left-1/2 -translate-x-1/2 text-base font-semibold text-foreground tracking-tight">
             {title}
           </h2>
           <button
             onClick={onClose}
-            className="ml-auto p-2 rounded-full hover:bg-gray-200/80 transition"
+            className="ml-auto p-2 rounded-full hover:bg-muted transition"
             aria-label="Close"
           >
-            <X className="h-5 w-5 text-gray-600" />
+            <X className="h-5 w-5 text-muted-foreground" />
           </button>
         </div>
 

@@ -49,8 +49,8 @@ export const LanguageDropdown = ({
 
           ${
             forceBlack
-              ? "!text-black hover:!text-black"
-              : "text-white/80 hover:text-white"
+              ? "text-foreground hover:text-foreground"
+              : "text-primary-foreground/80 hover:text-primary-foreground"
           }
         `}
       >
@@ -83,8 +83,8 @@ export const LanguageDropdown = ({
           }
           ${
             forceBlack
-              ? "bg-white border border-gray-200"
-              : "bg-[#111] border border-white/10"
+              ? "bg-card border border-border"
+              : "bg-popover border border-border/30"
           }
         `}
       >
@@ -103,10 +103,10 @@ export const LanguageDropdown = ({
               min-h-6
               ${
                 forceBlack
-                  ? "!text-black hover:bg-gray-100"
-                  : "text-white/70 hover:text-white hover:bg-white/5"
+                  ? "text-foreground hover:bg-muted"
+                  : "text-popover-foreground/70 hover:text-popover-foreground hover:bg-muted/10"
               }
-              ${l.lang === i18n.language ? (forceBlack ? "bg-gray-50" : "bg-white/10") : ""}
+              ${l.lang === i18n.language ? (forceBlack ? "bg-muted/50" : "bg-muted/20") : ""}
             `}
           >
             <span className="text-base">{l.flag}</span>

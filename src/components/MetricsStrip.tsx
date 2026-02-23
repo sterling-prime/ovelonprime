@@ -23,7 +23,7 @@ export const MetricsStrip = () => {
   }>;
 
   return (
-    <section className="bg-[#5FB3B3]/12 py-14">
+    <section className="bg-accent/10 py-14">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {metrics.map((metric, index) => {
@@ -40,20 +40,20 @@ export const MetricsStrip = () => {
                   group bg-muted/70 border border-border
                   rounded-2xl px-6 py-6 text-center
                   shadow-sm transition-all duration-300
-                  hover:border-[#5FB3B3]
+                  hover:border-accent
                   hover:shadow-md
                 "
               >
                 {/* ICON — NO BACKGROUND */}
                 <div className="mx-auto mb-4 flex items-center justify-center">
-                  <Icon className="w-6 h-6 text-foreground/70 transition-colors duration-300 group-hover:text-[#5FB3B3]" />
+                  <Icon className="w-6 h-6 text-foreground/70 transition-colors duration-300 group-hover:text-accent" />
                 </div>
 
                 {/* VALUE */}
                 <span className="
                   block text-3xl md:text-4xl font-bold tracking-tight
                   text-foreground transition-colors duration-300
-                  group-hover:text-[#5FB3B3]
+                  group-hover:text-accent
                 ">
                   {metric.value}
                 </span>
