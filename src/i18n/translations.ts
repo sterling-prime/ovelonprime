@@ -135,7 +135,7 @@ export const translations: Record<Lang, any> = {
     video: {
       title: "Designed for uninterrupted operations",
       subtitle: "See how Ovelon Prime supports mission-critical environments without disrupting live systems.",
-      cta: "Operational Fit Session",
+      cta: "Discovery Call",
     },
     services: {
       label: "WHAT WE STABILIZE",
@@ -1370,7 +1370,7 @@ export const translations: Record<Lang, any> = {
     video: {
       title: "Konzipiert für unterbrechungsfreien Betrieb",
       subtitle: "Sehen Sie, wie Ovelon Prime missionskritische Umgebungen unterstützt, ohne laufende Systeme zu stören.",
-      cta: "Operative Eignungssitzung",
+      cta: "Discovery Call",
     },
     services: {
       label: "WAS WIR STABILISIEREN",
@@ -2562,7 +2562,7 @@ export const translations: Record<Lang, any> = {
     video: {
       title: "Conçu pour des opérations ininterrompues",
       subtitle: "Découvrez comment Ovelon Prime soutient les environnements critiques sans perturber les systèmes en cours.",
-      cta: "Session d'adéquation opérationnelle",
+      cta: "Discovery Call",
     },
     services: {
       label: "CE QUE NOUS STABILISONS",
@@ -3754,7 +3754,7 @@ export const translations: Record<Lang, any> = {
     video: {
       title: "Diseñado para operaciones ininterrumpidas",
       subtitle: "Vea cómo Ovelon Prime apoya entornos de misión crítica sin interrumpir los sistemas en vivo.",
-      cta: "Sesión de ajuste operacional",
+      cta: "Discovery Call",
     },
     services: {
       label: "LO QUE ESTABILIZAMOS",
@@ -4928,7 +4928,7 @@ export const translations: Record<Lang, any> = {
     video: {
       title: "Progettato per operazioni ininterrotte",
       subtitle: "Scopri come Ovelon Prime supporta ambienti mission-critical senza interrompere i sistemi attivi.",
-      cta: "Sessione di idoneità operativa",
+      cta: "Discovery Call",
     },
     services: {
       label: "COSA STABILIZIAMO",
@@ -6101,7 +6101,7 @@ export const translations: Record<Lang, any> = {
     video: {
       title: "Concebido para operações ininterruptas",
       subtitle: "Veja como a Ovelon Prime apoia ambientes de missão crítica sem interromper sistemas ativos.",
-      cta: "Sessão de Adequação Operacional",
+      cta: "Discovery Call",
     },
     services: {
       label: "O QUE ESTABILIZAMOS",
