@@ -44,7 +44,7 @@ export const translations: Record<Lang, any> = {
       pricing: "Pricing",
       about: "About",
       contact: "Contact",
-      cta: "Talk to Expert",
+      cta: "Discovery Call",
       viewDemo: "View Demo",
     },
     hero: {
@@ -333,7 +333,7 @@ export const translations: Record<Lang, any> = {
       },
       securityNote:
         "Every engagement is built with enterprise-grade security, data protection, and operational compliance.",
-      talkToExpert: "Talk to Expert",
+      talkToExpert: "Discovery Call",
       intakeNote:
         "Structured intake · No sales pressure · Directly with an experienced expert",
       reviewNote: "All requests are reviewed before scheduling.",
@@ -1279,7 +1279,7 @@ export const translations: Record<Lang, any> = {
       pricing: "Preise",
       about: "Über uns",
       contact: "Kontakt",
-      cta: "Experten kontaktieren",
+      cta: "Discovery Call",
       viewDemo: "Demo ansehen",
     },
     hero: {
@@ -1568,7 +1568,7 @@ export const translations: Record<Lang, any> = {
       },
       securityNote:
         "Jedes Engagement wird mit Enterprise-Sicherheit, Datenschutz und operativer Compliance erstellt.",
-      talkToExpert: "Experten kontaktieren",
+      talkToExpert: "Discovery Call",
       intakeNote:
         "Strukturierte Aufnahme · Kein Verkaufsdruck · Direkt mit einem erfahrenen Experten",
       reviewNote: "Alle Anfragen werden vor der Terminplanung geprüft.",
@@ -2471,7 +2471,7 @@ export const translations: Record<Lang, any> = {
       pricing: "Tarifs",
       about: "À propos",
       contact: "Contact",
-      cta: "Parler à un expert",
+      cta: "Discovery Call",
       viewDemo: "Voir la démo",
     },
     hero: {
@@ -2760,7 +2760,7 @@ export const translations: Record<Lang, any> = {
       },
       securityNote:
         "Chaque engagement est construit avec une sécurité de niveau entreprise, une protection des données et une conformité opérationnelle.",
-      talkToExpert: "Parler à un expert",
+      talkToExpert: "Discovery Call",
       intakeNote:
         "Admission structurée · Pas de pression commerciale · Directement avec un expert expérimenté",
       reviewNote: "Toutes les demandes sont examinées avant la planification.",
@@ -3664,7 +3664,7 @@ export const translations: Record<Lang, any> = {
       pricing: "Precios",
       about: "Nosotros",
       contact: "Contacto",
-      cta: "Hablar con experto",
+      cta: "Discovery Call",
       viewDemo: "Ver demo",
     },
     hero: {
@@ -3951,7 +3951,7 @@ export const translations: Record<Lang, any> = {
       },
       securityNote:
         "Cada compromiso se construye con seguridad de nivel empresarial, protección de datos y cumplimiento operacional.",
-      talkToExpert: "Hablar con experto",
+      talkToExpert: "Discovery Call",
       intakeNote:
         "Admisión estructurada · Sin presión de ventas · Directamente con un experto experimentado",
       reviewNote: "Todas las solicitudes se revisan antes de programar.",
@@ -4838,7 +4838,7 @@ export const translations: Record<Lang, any> = {
       pricing: "Prezzi",
       about: "Chi siamo",
       contact: "Contatto",
-      cta: "Parla con un esperto",
+      cta: "Discovery Call",
       viewDemo: "Vedi demo",
     },
     hero: {
@@ -5126,7 +5126,7 @@ export const translations: Record<Lang, any> = {
       },
       securityNote:
         "Ogni impegno è costruito con sicurezza di livello enterprise, protezione dei dati e conformità operativa.",
-      talkToExpert: "Parla con un esperto",
+      talkToExpert: "Discovery Call",
       intakeNote:
         "Acquisizione strutturata · Nessuna pressione commerciale · Direttamente con un esperto esperto",
       reviewNote: "Tutte le richieste vengono esaminate prima della programmazione.",
@@ -6011,7 +6011,7 @@ export const translations: Record<Lang, any> = {
       pricing: "Preços",
       about: "Sobre",
       contact: "Contacto",
-      cta: "Falar com Especialista",
+      cta: "Discovery Call",
       viewDemo: "Ver Demonstração",
     },
     hero: {
@@ -6299,7 +6299,7 @@ export const translations: Record<Lang, any> = {
       },
       securityNote:
         "Cada compromisso é construído com segurança de nível empresarial, proteção de dados e conformidade operacional.",
-      talkToExpert: "Falar com Especialista",
+      talkToExpert: "Discovery Call",
       intakeNote:
         "Admissão estruturada · Sem pressão de vendas · Diretamente com um especialista experiente",
       reviewNote: "Todos os pedidos são revisados antes do agendamento.",

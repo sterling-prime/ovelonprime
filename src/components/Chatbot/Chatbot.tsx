@@ -330,7 +330,7 @@ export const Chatbot = () => {
 
   const handleOpenEnterprise = () => {
     window.dispatchEvent(new CustomEvent("open-enterprise-booking"));
-    addUserMessage(t("chatbot.buttons.talkToExpert", "Talk to Expert"));
+    addUserMessage(t("chatbot.buttons.talkToExpert", "Discovery Call"));
     setTimeout(() => {
       addBotMessage(t("chatbot.responses.enterpriseOpened", "I've opened the Enterprise booking calendar. Pick a time to speak with our team!"));
     }, 500);
@@ -448,7 +448,7 @@ export const Chatbot = () => {
         return (
           <div className="flex flex-wrap gap-2 p-3 border-t border-border/50">
             <QuickReply label={t("chatbot.buttons.engagementAssessment", "Engagement Assessment")} onClick={handleOpenTypeform} />
-            <QuickReply label={t("chatbot.buttons.talkToExpert", "Talk to Expert")} onClick={handleOpenEnterprise} />
+            <QuickReply label={t("chatbot.buttons.talkToExpert", "Discovery Call")} onClick={handleOpenEnterprise} />
             <QuickReply label={t("chatbot.buttons.viewPricing", "View Pricing")} onClick={() => handleGoToSection("pricing", "View Pricing")} />
             <QuickReply label={t("chatbot.buttons.backToMain", "← Back")} onClick={handleBackToMain} />
           </div>
@@ -474,7 +474,7 @@ export const Chatbot = () => {
               {t("chatbot.complianceHint", "Ask me anything about SOC 2, ISO 27001, or NIS2 ↵")}
             </p>
             <QuickReply label={t("chatbot.buttons.viewCompliance", "View Articles")} onClick={() => handleGoToSection("compliance-blog", "Compliance Articles")} />
-            <QuickReply label={t("chatbot.buttons.talkToExpert", "Talk to Expert")} onClick={handleOpenEnterprise} />
+            <QuickReply label={t("chatbot.buttons.talkToExpert", "Discovery Call")} onClick={handleOpenEnterprise} />
             <QuickReply label={t("chatbot.buttons.backToMain", "← Back")} onClick={handleBackToMain} />
           </div>
         );
