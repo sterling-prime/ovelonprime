@@ -29,7 +29,7 @@ export const Hero = () => {
     if (imgRef.current) {
       const y = lastY.current;
       // Single translate3d only — stays on GPU compositor thread
-      imgRef.current.style.transform = `translate3d(0, ${y * 0.35}px, 0)`;
+      imgRef.current.style.transform = `translate3d(0, ${Math.round(y * 0.25)}px, 0)`;
     }
     ticking.current = false;
   }, []);
@@ -74,12 +74,13 @@ export const Hero = () => {
             height={1080}
             fetchPriority="high"
             decoding="async"
-            className="w-full h-[120%] object-cover"
+            className="w-full h-[130%] object-cover"
             style={{
               willChange: "transform",
               backfaceVisibility: "hidden",
               WebkitBackfaceVisibility: "hidden",
               transform: "translate3d(0, 0, 0)",
+              containIntrinsicSize: "1920px 1080px",
             }}
           />
         </div>

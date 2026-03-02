@@ -31,9 +31,11 @@ const Index = () => {
         {/* Critical above-fold content */}
         <Hero />
         <MetricsStrip />
+        <div className="section-divider" />
         <ProblemSection />
         <VideoSection />
         <ProcessSection />
+        <div className="section-divider" />
         <Services />
 
         {/* Below-fold content - lazy loaded */}
