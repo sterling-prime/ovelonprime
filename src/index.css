@@ -172,3 +172,40 @@
 .animate-scale-in {
   animation: scale-in 0.2s ease-out forwards;
 }
+
+/* Section divider — elegant fade line between sections */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    hsl(var(--border)) 20%,
+    hsl(var(--border)) 80%,
+    transparent 100%
+  );
+}
+
+/* Smooth section transition gradient overlays */
+.section-fade-top {
+  position: relative;
+}
+
+.section-fade-top::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, hsl(var(--background)), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* GPU-accelerated parallax container */
+.parallax-layer {
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+}
