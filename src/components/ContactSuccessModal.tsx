@@ -25,7 +25,7 @@ export const ContactSuccessModal = ({
   };
 
   return createPortal(
-    <div className="fixed inset-0 z-[10000] flex items-center justify-center">
+    <div role="dialog" aria-modal="true" aria-label={t("contactForm.successTitle", "Submitted Successfully")} className="fixed inset-0 z-[10000] flex items-center justify-center">
       {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-fade-in"

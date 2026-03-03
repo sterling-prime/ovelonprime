@@ -152,7 +152,7 @@ export const DemoSurface = () => {
   const current = services[active];
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center px-3">
+    <div role="dialog" aria-modal="true" aria-label={t("demo.header")} className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center px-3">
       <div
         className="
           w-full

@@ -167,8 +167,13 @@ export const Navbar = () => {
       </header>
 
       {/* ================= MOBILE DROPDOWN ================= */}
-      {isOpen && (
-        <div className="lg:hidden fixed top-16 left-0 right-0 z-40 bg-background border-t border-border">
+      <div
+        className={`lg:hidden fixed top-16 left-0 right-0 z-40 bg-background border-t border-border transition-all duration-300 ease-out ${
+          isOpen
+            ? "opacity-100 translate-y-0 pointer-events-auto"
+            : "opacity-0 -translate-y-2 pointer-events-none"
+        }`}
+      >
           <div className="px-6 py-8 flex flex-col gap-10">
 
             {/* NAV LINKS */}
@@ -238,8 +243,7 @@ export const Navbar = () => {
               {t("nav.cta")}
             </Button>
           </div>
-        </div>
-      )}
+      </div>
 
       <BookingModal
         isOpen={bookingOpen}

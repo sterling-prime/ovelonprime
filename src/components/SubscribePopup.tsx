@@ -99,7 +99,7 @@ export const SubscribePopup = () => {
       />
 
       {/* Popup Container */}
-      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[900px] w-[calc(100%-32px)] sm:w-[calc(100%-40px)] bg-white rounded-2xl overflow-hidden shadow-2xl z-[9999] animate-in zoom-in-95 fade-in duration-400">
+      <div role="dialog" aria-modal="true" aria-label={t("subscribe.title")} className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[900px] w-[calc(100%-32px)] sm:w-[calc(100%-40px)] bg-white rounded-2xl overflow-hidden shadow-2xl z-[9999] animate-in zoom-in-95 fade-in duration-400">
         {/* Close Button - Enhanced for mobile with larger touch target */}
         <button
           onClick={(e) => {
