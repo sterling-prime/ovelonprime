@@ -8,6 +8,8 @@ import { VideoSection } from "@/components/VideoSection";
 import { ProblemSection } from "@/components/ProblemSection";
 import { ProcessSection } from "@/components/ProcessSection";
 import { MetricsStrip } from "@/components/MetricsStrip";
+import { ScrollReveal } from "@/components/ScrollReveal";
+import { MobileStickyBar } from "@/components/MobileStickyBar";
 
 // Lazy load below-fold sections to reduce initial bundle size
 const Sectors = lazy(() => import("@/components/Sectors").then(m => ({ default: m.Sectors })));
@@ -21,8 +23,6 @@ const WorkflowDemo = lazy(() => import("@/components/WorkflowDemo").then(m => ({
 const CaseStudies = lazy(() => import("@/components/CaseStudies"));
 const ComplianceBlog = lazy(() => import("@/components/ComplianceBlog").then(m => ({ default: m.ComplianceBlog })));
 
-
-
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
@@ -32,27 +32,34 @@ const Index = () => {
         <Hero />
         <MetricsStrip />
         <div className="section-divider" />
-        <ProblemSection />
+        <ScrollReveal variant="fade-up">
+          <ProblemSection />
+        </ScrollReveal>
         <VideoSection />
-        <ProcessSection />
+        <ScrollReveal variant="fade-up">
+          <ProcessSection />
+        </ScrollReveal>
         <div className="section-divider" />
-        <Services />
+        <ScrollReveal variant="fade-up">
+          <Services />
+        </ScrollReveal>
 
         {/* Below-fold content - lazy loaded */}
         <Suspense fallback={null}>
-          <Sectors />
-          <WorkflowDemo />
-          <Pricing />
-          <About />
-          <Testimonials />
-          <OperationalGovernanceTrends />
-          <CaseStudies />
-          <ComplianceBlog />
-          <Faq />
-          <Contact />
+          <ScrollReveal variant="fade-up"><Sectors /></ScrollReveal>
+          <ScrollReveal variant="fade-up"><WorkflowDemo /></ScrollReveal>
+          <ScrollReveal variant="fade-up"><Pricing /></ScrollReveal>
+          <ScrollReveal variant="fade-up"><About /></ScrollReveal>
+          <ScrollReveal variant="fade-up"><Testimonials /></ScrollReveal>
+          <ScrollReveal variant="fade-up"><OperationalGovernanceTrends /></ScrollReveal>
+          <ScrollReveal variant="fade-up"><CaseStudies /></ScrollReveal>
+          <ScrollReveal variant="fade-up"><ComplianceBlog /></ScrollReveal>
+          <ScrollReveal variant="fade-up"><Faq /></ScrollReveal>
+          <ScrollReveal variant="fade-up"><Contact /></ScrollReveal>
         </Suspense>
 
         <BackToTop />
+        <MobileStickyBar />
       </main>
       <Footer />
     </div>
@@ -60,4 +67,3 @@ const Index = () => {
 };
 
 export default Index;
-

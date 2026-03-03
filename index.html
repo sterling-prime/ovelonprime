@@ -70,11 +70,11 @@
     <link rel="dns-prefetch" href="https://maps.googleapis.com" />
     <link rel="dns-prefetch" href="https://www.google.com" />
 
-    <!-- Preload critical fonts to break CSS->Font chain -->
+    <!-- Preload only the primary font weight; prefetch others to avoid unused-preload warnings -->
     <link rel="preload" href="/assets/outfit-latin-400-normal-BGsTXAXT.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/assets/outfit-latin-500-normal-DKnIMDSk.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/assets/outfit-latin-600-normal-B7SfZ07L.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/assets/outfit-latin-700-normal-Cu9v6i1X.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="prefetch" href="/assets/outfit-latin-500-normal-DKnIMDSk.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="prefetch" href="/assets/outfit-latin-600-normal-B7SfZ07L.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="prefetch" href="/assets/outfit-latin-700-normal-Cu9v6i1X.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png" />

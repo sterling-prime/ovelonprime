@@ -56,7 +56,8 @@ export const ServiceDetailModal = ({ isOpen, onClose, serviceIndex, service }: S
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl p-0 overflow-hidden bg-card border-border gap-0">
+      <DialogContent className="max-w-4xl p-0 overflow-hidden bg-card border-border gap-0" aria-describedby={undefined}>
+        <DialogTitle className="sr-only">{service.title}</DialogTitle>
         {/* Hero Image */}
         <div className="relative h-56 sm:h-72 w-full overflow-hidden">
           <img
@@ -81,8 +82,7 @@ export const ServiceDetailModal = ({ isOpen, onClose, serviceIndex, service }: S
               ))}
             </div>
 
-            {/* Title without DialogHeader to avoid extra X */}
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground" aria-hidden="true">
               {service.title}
             </h2>
           </div>
