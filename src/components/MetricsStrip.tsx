@@ -23,7 +23,7 @@ export const MetricsStrip = () => {
   }>;
 
   return (
-    <section className="bg-accent/10 py-14">
+    <section className="bg-background py-14">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {metrics.map((metric, index) => {
