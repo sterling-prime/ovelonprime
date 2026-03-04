@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ChevronDown, Clock, Euro, TrendingUp, Users, Settings2, ArrowRight, ExternalLink } from "lucide-react";
+import { ChevronDown, Clock, DollarSign, TrendingUp, Users, Settings2, ArrowRight, ArrowDown } from "lucide-react";
 
 /* ────────────── Sector config ────────────── */
 type SectorKey = "facility" | "logistics" | "warehousing" | "repair";
@@ -81,7 +81,7 @@ function useAnimatedValue(target: number, duration = 600) {
 
 /* ────────────── Format helpers ────────────── */
 const fmt = (n: number) => Math.round(n).toLocaleString("en-US");
-const fmtEur = (n: number) => "€" + Math.round(n).toLocaleString("en-US");
+const fmtUsd = (n: number) => "$" + Math.round(n).toLocaleString("en-US");
 
 /* ────────────── Result card ────────────── */
 function ResultCard({ icon: Icon, label, value, suffix, className }: {
@@ -109,7 +109,7 @@ function ResultCard({ icon: Icon, label, value, suffix, className }: {
           <span className="text-sm font-medium text-muted-foreground">{label}</span>
         </div>
         <div className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
-          {suffix === "FTE" ? animated.toFixed(1) : typeof value === "number" && label.includes("€") ? fmtEur(animated) : fmt(animated)}
+          {suffix === "FTE" ? animated.toFixed(1) : typeof value === "number" && label.includes("$") ? fmtUsd(animated) : fmt(animated)}
           {suffix && suffix !== "FTE" && <span className="text-lg font-medium text-muted-foreground ml-1">{suffix}</span>}
         </div>
         {suffix === "FTE" && (
@@ -319,7 +319,7 @@ export const OperationalImpactCalculator = () => {
                   label="Loaded Labor Cost"
                   value={laborCost} onChange={setLaborCost}
                   min={12} max={60} step={1}
-                  prefix="€"
+                  prefix="$"
                   suffix="/hr"
                   helper="Use your fully-loaded operations cost (wages + overhead)."
                 />
@@ -365,8 +365,8 @@ export const OperationalImpactCalculator = () => {
             {/* Result cards */}
             <div className="grid grid-cols-2 gap-4">
               <ResultCard icon={Clock} label="Hours saved / month" value={results.hoursSavedMonth} suffix="hrs" />
-              <ResultCard icon={Euro} label="€ saved / month" value={results.costSavedMonth} />
-              <ResultCard icon={TrendingUp} label="€ saved / year" value={results.costSavedYear} />
+              <ResultCard icon={DollarSign} label="$ saved / month" value={results.costSavedMonth} />
+              <ResultCard icon={TrendingUp} label="$ saved / year" value={results.costSavedYear} />
               <ResultCard icon={Users} label="Capacity unlocked" value={results.fte} suffix="FTE" />
             </div>
 
@@ -434,7 +434,7 @@ export const OperationalImpactCalculator = () => {
               className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
               View examples of automated workflows
-              <ExternalLink className="w-3.5 h-3.5" />
+              <ArrowDown className="w-3.5 h-3.5" />
             </button>
           </div>
         </div>
