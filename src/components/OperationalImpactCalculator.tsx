@@ -421,25 +421,21 @@ export const OperationalImpactCalculator = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
               size="lg"
-              onClick={scrollToCTA}
-              className={cn(
-                "px-8 py-3 text-base font-semibold rounded-xl",
-                "bg-accent text-accent-foreground",
-                "shadow-[0_0_24px_-4px_hsl(var(--accent)/0.35)]",
-                "hover:shadow-[0_0_32px_-2px_hsl(var(--accent)/0.5)] hover:-translate-y-0.5",
-                "transition-all duration-300"
-              )}
+              className="bg-accent text-accent-foreground px-10 py-4 text-base font-semibold shadow-lg hover:bg-accent/90 hover:shadow-xl transition-all"
+              onClick={() =>
+                window.dispatchEvent(new Event("open-booking-modal"))
+              }
             >
               Book a Discovery Call
               <ArrowRight className="w-4 h-4 ml-1" />
             </Button>
-            <a
-              href="#workflow-demo"
+            <button
+              onClick={() => document.getElementById("workflow-demo")?.scrollIntoView({ behavior: "smooth" })}
               className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
               View examples of automated workflows
               <ExternalLink className="w-3.5 h-3.5" />
-            </a>
+            </button>
           </div>
         </div>
       </div>
