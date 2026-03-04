@@ -13,6 +13,7 @@ import { MobileStickyBar } from "@/components/MobileStickyBar";
 
 // Lazy load below-fold sections to reduce initial bundle size
 const Sectors = lazy(() => import("@/components/Sectors").then(m => ({ default: m.Sectors })));
+const OperationalImpactCalculator = lazy(() => import("@/components/OperationalImpactCalculator"));
 const Pricing = lazy(() => import("@/components/Pricing").then(m => ({ default: m.Pricing })));
 const About = lazy(() => import("@/components/About").then(m => ({ default: m.About })));
 const Testimonials = lazy(() => import("@/components/Testimonials").then(m => ({ default: m.Testimonials })));
@@ -47,6 +48,7 @@ const Index = () => {
         {/* Below-fold content - lazy loaded */}
         <Suspense fallback={null}>
           <ScrollReveal variant="fade-up"><Sectors /></ScrollReveal>
+          <ScrollReveal variant="fade-up"><OperationalImpactCalculator /></ScrollReveal>
           <ScrollReveal variant="fade-up"><WorkflowDemo /></ScrollReveal>
           <ScrollReveal variant="fade-up"><Pricing /></ScrollReveal>
           <ScrollReveal variant="fade-up"><About /></ScrollReveal>
