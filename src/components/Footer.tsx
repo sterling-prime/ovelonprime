@@ -1,7 +1,9 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Logo } from "./Logo";
-import { ShieldCheck, FileCheck, HardHat, Lock, Shield, ClipboardCheck } from "lucide-react";
+import badgeIso from "@/assets/badge-iso27001.png";
+import badgeSoc2 from "@/assets/badge-soc2.png";
+import badgeGdpr from "@/assets/badge-gdpr.png";
 
 // High-end LinkedIn icon
 const LinkedInIcon = ({ className }: { className?: string }) => (
