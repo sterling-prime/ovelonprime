@@ -19,7 +19,7 @@ const FacebookIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const trustIcons = [ShieldCheck, FileCheck, Shield, ClipboardCheck, HardHat, Lock];
+
 
 type FooterLink = {
   labelKey: string;
