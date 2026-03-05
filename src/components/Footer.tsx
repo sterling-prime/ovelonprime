@@ -56,30 +56,30 @@ export const Footer = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
         {/* Trust signals — certification cards */}
-        <div className="mb-10 pb-10 border-b border-border/50">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
+        <div className="mb-12 pb-12 border-b border-border/50">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {/* ISO 27001 */}
-            <div className="flex items-center gap-4 bg-muted/60 rounded-xl px-6 py-5">
-              <img src={badgeIso} alt="ISO 27001" className="w-12 h-12 object-contain shrink-0" loading="lazy" />
+            <div className="flex items-center gap-5 bg-muted/60 rounded-2xl px-8 py-7">
+              <img src={badgeIso} alt="ISO 27001" className="w-16 h-16 object-contain shrink-0 mix-blend-multiply" loading="lazy" />
               <div>
-                <p className="text-sm font-semibold text-foreground">ISO 27001</p>
-                <p className="text-xs text-muted-foreground">ISO Security Management</p>
+                <p className="text-base font-semibold text-foreground">ISO 27001</p>
+                <p className="text-sm text-muted-foreground">ISO Security Management</p>
               </div>
             </div>
             {/* SOC 2 Type II */}
-            <div className="flex items-center gap-4 bg-muted/60 rounded-xl px-6 py-5">
-              <img src={badgeSoc2} alt="SOC 2 Type II" className="w-12 h-12 object-contain shrink-0" loading="lazy" />
+            <div className="flex items-center gap-5 bg-muted/60 rounded-2xl px-8 py-7">
+              <img src={badgeSoc2} alt="SOC 2 Type II" className="w-16 h-16 object-contain shrink-0 mix-blend-multiply" loading="lazy" />
               <div>
-                <p className="text-sm font-semibold text-foreground">SOC 2 Type II</p>
-                <p className="text-xs text-muted-foreground">SOC for Service Organizations</p>
+                <p className="text-base font-semibold text-foreground">SOC 2 Type II</p>
+                <p className="text-sm text-muted-foreground">SOC for Service Organizations</p>
               </div>
             </div>
             {/* GDPR */}
-            <div className="flex items-center gap-4 bg-muted/60 rounded-xl px-6 py-5">
-              <img src={badgeGdpr} alt="GDPR" className="w-12 h-12 object-contain shrink-0" loading="lazy" />
+            <div className="flex items-center gap-5 bg-muted/60 rounded-2xl px-8 py-7">
+              <img src={badgeGdpr} alt="GDPR" className="w-16 h-16 object-contain shrink-0 mix-blend-multiply" loading="lazy" />
               <div>
-                <p className="text-sm font-semibold text-foreground">GDPR</p>
-                <p className="text-xs text-muted-foreground">Data Protection and Privacy Regulation</p>
+                <p className="text-base font-semibold text-foreground">GDPR</p>
+                <p className="text-sm text-muted-foreground">Data Protection and Privacy Regulation</p>
               </div>
             </div>
           </div>
