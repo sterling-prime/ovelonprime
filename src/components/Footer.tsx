@@ -60,9 +60,7 @@ export const Footer = () => {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
             {/* ISO 27001 */}
             <div className="flex items-center gap-4 bg-muted/60 rounded-xl px-6 py-5">
-              <div className="w-12 h-12 rounded-lg bg-background flex items-center justify-center shrink-0 shadow-sm">
-                <ShieldCheck className="w-6 h-6 text-foreground/70" />
-              </div>
+              <img src={badgeIso} alt="ISO 27001" className="w-12 h-12 object-contain shrink-0" loading="lazy" />
               <div>
                 <p className="text-sm font-semibold text-foreground">ISO 27001</p>
                 <p className="text-xs text-muted-foreground">ISO Security Management</p>
@@ -70,9 +68,7 @@ export const Footer = () => {
             </div>
             {/* SOC 2 Type II */}
             <div className="flex items-center gap-4 bg-muted/60 rounded-xl px-6 py-5">
-              <div className="w-12 h-12 rounded-lg bg-background flex items-center justify-center shrink-0 shadow-sm">
-                <FileCheck className="w-6 h-6 text-foreground/70" />
-              </div>
+              <img src={badgeSoc2} alt="SOC 2 Type II" className="w-12 h-12 object-contain shrink-0" loading="lazy" />
               <div>
                 <p className="text-sm font-semibold text-foreground">SOC 2 Type II</p>
                 <p className="text-xs text-muted-foreground">SOC for Service Organizations</p>
@@ -80,9 +76,7 @@ export const Footer = () => {
             </div>
             {/* GDPR */}
             <div className="flex items-center gap-4 bg-muted/60 rounded-xl px-6 py-5">
-              <div className="w-12 h-12 rounded-lg bg-background flex items-center justify-center shrink-0 shadow-sm">
-                <Shield className="w-6 h-6 text-foreground/70" />
-              </div>
+              <img src={badgeGdpr} alt="GDPR" className="w-12 h-12 object-contain shrink-0" loading="lazy" />
               <div>
                 <p className="text-sm font-semibold text-foreground">GDPR</p>
                 <p className="text-xs text-muted-foreground">Data Protection and Privacy Regulation</p>
