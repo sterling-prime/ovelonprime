@@ -53,21 +53,39 @@ export const Footer = () => {
     <footer className="bg-muted/40 border-t border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-        {/* Trust signals strip */}
+        {/* Trust signals — certification cards */}
         <div className="mb-10 pb-10 border-b border-border/50">
-          <p className="text-xs tracking-widest uppercase text-muted-foreground text-center mb-6">
-            {t("footer.trustHeading")}
-          </p>
-          <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm text-muted-foreground">
-            {Array.isArray(trustItems) && trustItems.map((item, index) => {
-              const Icon = trustIcons[index] ?? ShieldCheck;
-              return (
-                <div key={index} className="flex items-center gap-2">
-                  <Icon className="h-4 w-4 text-foreground/60 shrink-0" />
-                  <span>{item}</span>
-                </div>
-              );
-            })}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
+            {/* ISO 27001 */}
+            <div className="flex items-center gap-4 bg-muted/60 rounded-xl px-6 py-5">
+              <div className="w-12 h-12 rounded-lg bg-background flex items-center justify-center shrink-0 shadow-sm">
+                <ShieldCheck className="w-6 h-6 text-foreground/70" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-foreground">ISO 27001</p>
+                <p className="text-xs text-muted-foreground">ISO Security Management</p>
+              </div>
+            </div>
+            {/* SOC 2 Type II */}
+            <div className="flex items-center gap-4 bg-muted/60 rounded-xl px-6 py-5">
+              <div className="w-12 h-12 rounded-lg bg-background flex items-center justify-center shrink-0 shadow-sm">
+                <FileCheck className="w-6 h-6 text-foreground/70" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-foreground">SOC 2 Type II</p>
+                <p className="text-xs text-muted-foreground">SOC for Service Organizations</p>
+              </div>
+            </div>
+            {/* GDPR */}
+            <div className="flex items-center gap-4 bg-muted/60 rounded-xl px-6 py-5">
+              <div className="w-12 h-12 rounded-lg bg-background flex items-center justify-center shrink-0 shadow-sm">
+                <Shield className="w-6 h-6 text-foreground/70" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-foreground">GDPR</p>
+                <p className="text-xs text-muted-foreground">Data Protection and Privacy Regulation</p>
+              </div>
+            </div>
           </div>
         </div>
 
