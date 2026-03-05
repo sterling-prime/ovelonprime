@@ -1,9 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Logo } from "./Logo";
-import badgeIso from "@/assets/badge-iso27001.png";
-import badgeSoc2 from "@/assets/badge-soc2.png";
-import badgeGdpr from "@/assets/badge-gdpr.png";
 
 // High-end LinkedIn icon
 const LinkedInIcon = ({ className }: { className?: string }) => (
@@ -60,7 +57,15 @@ export const Footer = () => {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {/* ISO 27001 */}
             <div className="flex items-center gap-5 bg-muted/60 rounded-2xl px-8 py-7">
-              <img src={badgeIso} alt="ISO 27001" className="w-16 h-16 object-contain shrink-0 mix-blend-multiply" loading="lazy" />
+              <div className="w-14 h-14 shrink-0">
+                <svg viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+                  <path d="M40 5L72 25V65L40 85L8 65V25L40 5Z" fill="#C8A415" opacity="0.15"/>
+                  <path d="M40 12L66 28V60L40 76L14 60V28L40 12Z" stroke="#C8A415" strokeWidth="2.5" fill="none"/>
+                  <path d="M40 20L58 30V54L40 64L22 54V30L40 20Z" fill="#C8A415" opacity="0.25"/>
+                  <circle cx="40" cy="42" r="14" fill="#C8A415" opacity="0.12" stroke="#C8A415" strokeWidth="1.5"/>
+                  <path d="M33 42L38 47L48 37" stroke="#C8A415" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
               <div>
                 <p className="text-base font-semibold text-foreground">ISO 27001</p>
                 <p className="text-sm text-muted-foreground">ISO Security Management</p>
@@ -68,7 +73,15 @@ export const Footer = () => {
             </div>
             {/* SOC 2 Type II */}
             <div className="flex items-center gap-5 bg-muted/60 rounded-2xl px-8 py-7">
-              <img src={badgeSoc2} alt="SOC 2 Type II" className="w-16 h-16 object-contain shrink-0 mix-blend-multiply" loading="lazy" />
+              <div className="w-14 h-14 shrink-0">
+                <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+                  <path d="M40 4L70 18V50C70 62 56 72 40 76C24 72 10 62 10 50V18L40 4Z" fill="#2563EB" opacity="0.1" stroke="#2563EB" strokeWidth="2"/>
+                  <path d="M40 14L60 24V48C60 56 50 64 40 66C30 64 20 56 20 48V24L40 14Z" fill="#2563EB" opacity="0.08" stroke="#2563EB" strokeWidth="1.5"/>
+                  <rect x="30" y="34" width="20" height="16" rx="2" stroke="#2563EB" strokeWidth="2" fill="none"/>
+                  <path d="M34 34V30C34 26.7 36.7 24 40 24C43.3 24 46 26.7 46 30V34" stroke="#2563EB" strokeWidth="2" strokeLinecap="round"/>
+                  <circle cx="40" cy="42" r="2" fill="#2563EB"/>
+                </svg>
+              </div>
               <div>
                 <p className="text-base font-semibold text-foreground">SOC 2 Type II</p>
                 <p className="text-sm text-muted-foreground">SOC for Service Organizations</p>
@@ -76,7 +89,22 @@ export const Footer = () => {
             </div>
             {/* GDPR */}
             <div className="flex items-center gap-5 bg-muted/60 rounded-2xl px-8 py-7">
-              <img src={badgeGdpr} alt="GDPR" className="w-16 h-16 object-contain shrink-0 mix-blend-multiply" loading="lazy" />
+              <div className="w-14 h-14 shrink-0">
+                <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+                  <circle cx="40" cy="40" r="34" fill="#1D4ED8" opacity="0.1" stroke="#1D4ED8" strokeWidth="2"/>
+                  {/* EU stars */}
+                  {Array.from({ length: 12 }).map((_, i) => {
+                    const angle = (i * 30 - 90) * (Math.PI / 180);
+                    const cx = 40 + 26 * Math.cos(angle);
+                    const cy = 40 + 26 * Math.sin(angle);
+                    return <circle key={i} cx={cx} cy={cy} r="2.2" fill="#FACC15" />;
+                  })}
+                  {/* Lock */}
+                  <rect x="33" y="38" width="14" height="12" rx="2" stroke="#1D4ED8" strokeWidth="1.8" fill="#1D4ED8" opacity="0.15"/>
+                  <path d="M36 38V34C36 31.8 37.8 30 40 30C42.2 30 44 31.8 44 34V38" stroke="#1D4ED8" strokeWidth="1.8" strokeLinecap="round"/>
+                  <circle cx="40" cy="44" r="1.5" fill="#1D4ED8"/>
+                </svg>
+              </div>
               <div>
                 <p className="text-base font-semibold text-foreground">GDPR</p>
                 <p className="text-sm text-muted-foreground">Data Protection and Privacy Regulation</p>
