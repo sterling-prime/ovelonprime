@@ -7,10 +7,42 @@ import { useTranslation } from "react-i18next";
 import { useSubmitContact } from "@/hooks/use-submit-contact";
 import { ContactSuccessModal } from "@/components/ContactSuccessModal";
 import { ScrollReveal } from "./ScrollReveal";
-import { Loader2, Mail } from "lucide-react";
+import { Loader2, Mail, MapPin } from "lucide-react";
 import contactBg from "@/assets/u3714841198_Minimalistic_abstract_background_designed_for_a_c_e56f8162-43f3-47ed-8b5e-63ec90910a05_0.png?format=webp&quality=80";
 import rightBlockImage from "@/assets/contact-section.png";
 
+/** Lazy-loads the Google Maps iframe only when visible */
+const LazyMap = () => {
+  const ref = useRef<HTMLIFrameElement>(null);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !loaded) {
+          el.src = "https://www.google.com/maps?q=Meydan+Grandstand+Dubai&output=embed";
+          setLoaded(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [loaded]);
+
+  return (
+    <iframe
+      ref={ref}
+      title="Ovelon Prime Location"
+      src="about:blank"
+      className="w-full h-full border-0"
+      loading="lazy"
+    />
+  );
+};
 
 export const Contact = () => {
   const { t } = useTranslation();
@@ -271,6 +303,10 @@ export const Contact = () => {
                     <Mail className="w-4 h-4 text-accent" />
                     info@ovelon-prime.com
                   </a>
+                  <div className="inline-flex items-center gap-2 text-muted-foreground text-sm">
+                    <MapPin className="w-4 h-4 text-accent" />
+                    Meydan Grandstand, Dubai, UAE
+                  </div>
                 </div>
               </div>
 
@@ -282,6 +318,10 @@ export const Contact = () => {
                   loading="lazy"
                   decoding="async"
                 />
+              </div>
+
+              <div className="rounded-2xl overflow-hidden shadow-lg border border-border h-[320px]">
+                <LazyMap />
               </div>
             </div>
 

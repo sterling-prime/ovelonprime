@@ -5,23 +5,19 @@ import badgeIso from "@/assets/badge-iso27001.png";
 import badgeSoc2 from "@/assets/badge-soc2.png";
 import badgeGdpr from "@/assets/badge-gdpr.png";
 
+// High-end LinkedIn icon
 const LinkedInIcon = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
     <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 23.5h4V7.98h-4V23.5zM8.5 7.98h3.8v2.12h.05c.53-1 1.82-2.12 3.75-2.12 4 0 4.74 2.63 4.74 6.05v7.47h-4v-6.62c0-1.58-.03-3.62-2.21-3.62-2.21 0-2.55 1.72-2.55 3.5v6.74h-4V7.98z" />
   </svg>
 );
 
+// High-end Facebook icon
 const FacebookIcon = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
     <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 5 3.66 9.13 8.44 9.88v-6.99H7.9v-2.89h2.54V9.41c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.89h-2.34v6.99C18.34 21.13 22 17 22 12z" />
   </svg>
 );
-
-const badges = [
-  { img: badgeIso, titleKey: "footer.badgeIsoTitle", descKey: "footer.badgeIsoDesc", alt: "ISO 27001" },
-  { img: badgeSoc2, titleKey: "footer.badgeSocTitle", descKey: "footer.badgeSocDesc", alt: "SOC 2 Type II" },
-  { img: badgeGdpr, titleKey: "footer.badgeGdprTitle", descKey: "footer.badgeGdprDesc", alt: "GDPR" },
-];
 
 type FooterLink = {
   labelKey: string;
@@ -51,34 +47,34 @@ export const Footer = () => {
     { labelKey: "footer.terms", href: "/terms" },
   ];
 
+  const badges = [
+    { img: badgeIso, titleKey: "footer.badgeIsoTitle", descKey: "footer.badgeIsoDesc", alt: "ISO 27001" },
+    { img: badgeSoc2, titleKey: "footer.badgeSocTitle", descKey: "footer.badgeSocDesc", alt: "SOC 2 Type II" },
+    { img: badgeGdpr, titleKey: "footer.badgeGdprTitle", descKey: "footer.badgeGdprDesc", alt: "GDPR" },
+  ];
+
   return (
     <footer className="bg-muted/40 border-t border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-        {/* Trust Badge Strip */}
-        <p className="text-[11px] tracking-[0.15em] uppercase text-muted-foreground text-center mb-6">
-          {t("footer.trustedCertified", "Trusted & Certified")}
-        </p>
-
-        <div className="flex flex-wrap justify-center gap-4 mb-10 pb-10 border-b border-border/50">
-          {badges.map((badge) => (
-            <div
-              key={badge.alt}
-              className="flex items-center gap-4 bg-secondary border border-border/60 rounded-2xl px-5 py-4 min-w-[220px] flex-1 max-w-[280px] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
-            >
-              <img
-                src={badge.img}
-                alt={badge.alt}
-                className="w-14 h-14 object-contain shrink-0 drop-shadow-md"
-                style={{ mixBlendMode: "multiply" }}
-                loading="lazy"
-              />
-              <div>
-                <h3 className="text-sm font-bold text-foreground leading-tight">{t(badge.titleKey)}</h3>
-                <p className="text-xs text-muted-foreground leading-snug mt-0.5">{t(badge.descKey)}</p>
+        {/* Trust signals — certification cards */}
+        <div className="mb-12 pb-12 border-b border-border/50">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {badges.map((badge) => (
+              <div key={badge.alt} className="flex items-center gap-6 bg-muted/60 rounded-2xl px-8 py-8">
+                <img
+                  src={badge.img}
+                  alt={badge.alt}
+                  className="w-20 h-20 object-contain shrink-0 drop-shadow-md"
+                  loading="lazy"
+                />
+                <div>
+                  <p className="text-base font-semibold text-foreground">{t(badge.titleKey)}</p>
+                  <p className="text-sm text-muted-foreground">{t(badge.descKey)}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         {/* Navigation Links */}
