@@ -23,7 +23,7 @@ const Contact = lazy(() => import("@/components/Contact").then(m => ({ default: 
 const WorkflowDemo = lazy(() => import("@/components/WorkflowDemo").then(m => ({ default: m.WorkflowDemo })));
 const CaseStudies = lazy(() => import("@/components/CaseStudies"));
 const ComplianceBlog = lazy(() => import("@/components/ComplianceBlog").then(m => ({ default: m.ComplianceBlog })));
-const CertificationBadges = lazy(() => import("@/components/CertificationBadges"));
+
 
 const Index = () => {
   return (
