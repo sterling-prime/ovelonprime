@@ -58,7 +58,7 @@ const Index = () => {
           <ScrollReveal variant="fade-up"><CaseStudies /></ScrollReveal>
           <ScrollReveal variant="fade-up"><ComplianceBlog /></ScrollReveal>
           <ScrollReveal variant="fade-up"><Faq /></ScrollReveal>
-          <ScrollReveal variant="fade-up"><CertificationBadges /></ScrollReveal>
+          
           <ScrollReveal variant="fade-up"><Contact /></ScrollReveal>
         </Suspense>
 
