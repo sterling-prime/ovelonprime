@@ -69,7 +69,8 @@ img: badgeIso,
 title: "ISO 27001",
 desc: "Information Security Management Standard",
 modalImg: isoModal,
-description: "ISO 27001 ensures organizations systematically manage sensitive information and apply risk-based security controls.",
+description:
+"ISO 27001 ensures organizations systematically manage sensitive information and apply risk-based security controls.",
 help: [
 "Secure infrastructure architecture",
 "Encrypted communication pipelines",
@@ -82,7 +83,8 @@ img: badgeSoc2,
 title: "SOC 2 Type II",
 desc: "Service Organization Control",
 modalImg: socModal,
-description: "SOC 2 Type II certifies that systems securely process customer data across security, availability and privacy standards.",
+description:
+"SOC 2 Type II certifies that systems securely process customer data across security, availability and privacy standards.",
 help: [
 "Secure platform infrastructure",
 "Controlled system access",
@@ -95,7 +97,8 @@ img: badgeGdpr,
 title: "GDPR",
 desc: "General Data Protection Regulation",
 modalImg: gdprModal,
-description: "GDPR regulates how organizations collect, process and protect personal data of individuals in the EU.",
+description:
+"GDPR regulates how organizations collect, process and protect personal data of individuals in the EU.",
 help: [
 "Privacy-first architecture",
 "Secure data processing",
@@ -108,7 +111,8 @@ img: badgeNis2,
 title: "NIS2",
 desc: "EU Cybersecurity Directive",
 modalImg: nisModal,
-description: "NIS2 strengthens cybersecurity requirements for essential and important organizations across Europe.",
+description:
+"NIS2 strengthens cybersecurity requirements for essential and important organizations across Europe.",
 help: [
 "Secure digital infrastructure",
 "Reliable communication systems",
@@ -125,6 +129,8 @@ return (
 <footer className="bg-muted/40 border-t border-border">
 
 <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
+{/* ENTERPRISE SECTION */}
 
 <div className="mb-20">
 
@@ -255,9 +261,133 @@ Trusted by security-conscious organizations across United States and Europe.
 
 </div>
 
+{/* FOOTER NAV */}
+
+<nav className="flex flex-wrap justify-center gap-x-12 gap-y-4 mb-10">
+
+{footerLinks.map((link) =>
+link.href ? (
+<Link key={link.labelKey} to={link.href} className="text-[15px] font-medium tracking-wide text-muted-foreground hover:text-foreground transition">
+{t(link.labelKey)}
+</Link>
+) : (
+<button key={link.labelKey} onClick={() => scrollToSection(link.section!)} className="text-[15px] font-medium tracking-wide text-muted-foreground hover:text-foreground transition">
+{t(link.labelKey)}
+</button>
+)
+)}
+
+</nav>
+
+<div className="border-t border-border/50 my-8" />
+
+<div className="flex flex-col md:flex-row items-center justify-between gap-6 text-[14px] text-muted-foreground">
+
+<span>
+{t("footer.copyright", { year: new Date().getFullYear() })}
+</span>
+
+<div className="flex gap-6">
+
+<a href="https://www.linkedin.com/company/ovelon-prime/" target="_blank" rel="noopener noreferrer">
+<LinkedInIcon className="h-6 w-6"/>
+</a>
+
+<a href="https://www.facebook.com/ovelon-prime" target="_blank" rel="noopener noreferrer">
+<FacebookIcon className="h-6 w-6"/>
+</a>
+
+</div>
+
+<Logo size="sm" forceBlack/>
+
+</div>
+
 </div>
 
 </footer>
+
+{/* BADGE MODAL */}
+
+{selectedBadge !== null && (
+
+<div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-6">
+
+<div className="bg-white rounded-2xl shadow-xl max-w-4xl w-full overflow-hidden relative">
+
+<button
+onClick={() => setSelectedBadge(null)}
+className="absolute top-4 right-4 bg-white/90 rounded-full p-1"
+>
+<X className="w-5 h-5"/>
+</button>
+
+<div className="w-full h-56 overflow-hidden">
+<img
+src={badges[selectedBadge].modalImg}
+alt={badges[selectedBadge].title}
+className="w-full h-full object-cover"
+/>
+</div>
+
+<div className="px-8 pt-6">
+<h3 className="text-2xl font-semibold text-center mb-6">
+{badges[selectedBadge].title}
+</h3>
+</div>
+
+<div className="grid md:grid-cols-2 gap-10 px-8 pb-8">
+
+<div>
+
+<p className="text-muted-foreground mb-6">
+{badges[selectedBadge].description}
+</p>
+
+<h4 className="text-lg font-semibold mb-3">
+How Ovelon Prime Helps
+</h4>
+
+<ul className="space-y-2 text-muted-foreground">
+
+{badges[selectedBadge].help.map((item, i) => (
+<li key={i} className="flex gap-2">
+<span className="text-primary">•</span>
+{item}
+</li>
+))}
+
+</ul>
+
+</div>
+
+<div className="flex flex-col justify-center bg-muted/40 rounded-xl p-8 text-center">
+
+<h4 className="text-lg font-semibold mb-3">
+Discovery Call
+</h4>
+
+<p className="text-sm text-muted-foreground mb-6">
+Schedule a short discovery call to explore how Ovelon Prime can support secure automation and compliance-ready infrastructure.
+</p>
+
+<Button
+size="lg"
+onClick={() => setBookingOpen(true)}
+className="w-full bg-[#4A8F95] text-white font-semibold rounded-xl"
+>
+Book Discovery Call
+</Button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+)}
 
 <BookingModal
 isOpen={bookingOpen}
