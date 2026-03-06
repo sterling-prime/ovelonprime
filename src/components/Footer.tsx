@@ -46,10 +46,8 @@ const [bookingOpen, setBookingOpen] = useState(false);
 const scrollToSection = (section: string) => {
 
 if (location.pathname !== "/") {
-
 navigate("/", { state: { scrollTo: section } });
 return;
-
 }
 
 document.getElementById(section)?.scrollIntoView({ behavior: "smooth" });
@@ -57,14 +55,12 @@ document.getElementById(section)?.scrollIntoView({ behavior: "smooth" });
 };
 
 const footerLinks: FooterLink[] = [
-
 { labelKey: "nav.services", section: "services" },
 { labelKey: "nav.pricing", section: "pricing" },
 { labelKey: "nav.about", section: "about" },
 { labelKey: "nav.contact", section: "contact" },
 { labelKey: "footer.privacy", href: "/privacy" },
 { labelKey: "footer.terms", href: "/terms" }
-
 ];
 
 const badges = [
@@ -139,7 +135,79 @@ return (
 
 <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
 
-{/* Trust Badges */}
+{/* ENTERPRISE SECTION */}
+
+<div className="mb-20">
+
+<div className="relative rounded-[28px] overflow-hidden text-white bg-gradient-to-br from-[#020b1f] via-[#071b3b] to-[#0f2f5c]">
+
+<div className="relative px-12 py-16 grid lg:grid-cols-2 gap-14 items-center">
+
+<div>
+
+<h2 className="text-3xl font-semibold mb-4">
+Ovelon Prime for Enterprise
+</h2>
+
+<p className="text-white/80 text-lg mb-8 max-w-md">
+Deploy secure AI communication systems that automate requests,
+scheduling, and operational workflows — built for organizations
+that require reliability, security, and scale.
+</p>
+
+<Button
+size="lg"
+onClick={() => setBookingOpen(true)}
+className="bg-primary text-primary-foreground font-semibold rounded-md transition-all hover:bg-accent hover:text-accent-foreground"
+>
+Discovery Call
+</Button>
+
+</div>
+
+<div className="grid sm:grid-cols-2 gap-10">
+
+<div>
+<h4 className="font-semibold mb-2">Operational Automation</h4>
+<p className="text-white/80 text-sm">
+Automate service requests, phone calls and scheduling across
+facility management, logistics and repair teams.
+</p>
+</div>
+
+<div>
+<h4 className="font-semibold mb-2">Dedicated Implementation</h4>
+<p className="text-white/80 text-sm">
+Work directly with Ovelon specialists to deploy automation
+into your existing operational workflows.
+</p>
+</div>
+
+<div>
+<h4 className="font-semibold mb-2">Priority Enterprise Support</h4>
+<p className="text-white/80 text-sm">
+Receive guaranteed response times and priority assistance
+for mission-critical automation environments.
+</p>
+</div>
+
+<div>
+<h4 className="font-semibold mb-2">Security & Compliance</h4>
+<p className="text-white/80 text-sm">
+Enterprise-grade architecture aligned with GDPR,
+ISO security standards and secure communication pipelines.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{/* TRUST BADGES */}
 
 <div className="mb-16">
 
@@ -166,30 +234,13 @@ hover:scale-[1.02]
 
 <div className="flex justify-center mb-6">
 
-<div
-className="
-relative
-h-20
-w-32
-flex
-items-center
-justify-center
-overflow-hidden
-rounded-xl
-bg-[#fff]
-"
->
+<div className="relative h-20 w-32 flex items-center justify-center overflow-hidden rounded-xl bg-[#fff]">
 
 <img
 src={badge.img}
 alt={badge.title}
 loading="lazy"
-className="
-object-contain
-max-w-[300%]
-max-h-[300%]
-scale-[1.25]
-"
+className="object-contain max-w-[300%] max-h-[300%] scale-[1.25]"
 />
 
 </div>
@@ -197,15 +248,11 @@ scale-[1.25]
 </div>
 
 <h3 className="text-xl font-semibold text-foreground mb-2">
-
 {badge.title}
-
 </h3>
 
 <p className="text-sm text-muted-foreground">
-
 {badge.desc}
-
 </p>
 
 </button>
@@ -215,52 +262,30 @@ scale-[1.25]
 </div>
 
 <p className="text-center text-sm text-muted-foreground mt-8">
-
 Trusted by security-conscious organizations across United States and Europe.
-
 </p>
 
 </div>
 
-{/* Navigation */}
+{/* FOOTER NAV */}
 
 <nav className="flex flex-wrap justify-center gap-x-12 gap-y-4 mb-10">
 
 {footerLinks.map((link) =>
-
 link.href ? (
-
-<Link
-key={link.labelKey}
-to={link.href}
-className="text-[15px] font-medium tracking-wide text-muted-foreground hover:text-foreground transition"
->
-
+<Link key={link.labelKey} to={link.href} className="text-[15px] font-medium tracking-wide text-muted-foreground hover:text-foreground transition">
 {t(link.labelKey)}
-
 </Link>
-
 ) : (
-
-<button
-key={link.labelKey}
-onClick={() => scrollToSection(link.section!)}
-className="text-[15px] font-medium tracking-wide text-muted-foreground hover:text-foreground transition"
->
-
+<button key={link.labelKey} onClick={() => scrollToSection(link.section!)} className="text-[15px] font-medium tracking-wide text-muted-foreground hover:text-foreground transition">
 {t(link.labelKey)}
-
 </button>
-
 )
-
 )}
 
 </nav>
 
 <div className="border-t border-border/50 my-8" />
-
-{/* Footer Bottom */}
 
 <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-[14px] text-muted-foreground">
 
@@ -288,7 +313,7 @@ className="text-[15px] font-medium tracking-wide text-muted-foreground hover:tex
 
 </footer>
 
-{/* Modal */}
+{/* BADGE MODAL */}
 
 {selectedBadge !== null && (
 
@@ -296,10 +321,7 @@ className="text-[15px] font-medium tracking-wide text-muted-foreground hover:tex
 
 <div className="bg-white rounded-2xl shadow-xl max-w-4xl w-full overflow-hidden relative">
 
-<button
-onClick={() => setSelectedBadge(null)}
-className="absolute top-4 right-4 z-10 bg-white/90 rounded-full p-1"
->
+<button onClick={() => setSelectedBadge(null)} className="absolute top-4 right-4 bg-white/90 rounded-full p-1">
 <X className="w-5 h-5"/>
 </button>
 
@@ -316,9 +338,7 @@ className="w-full h-full object-cover"
 <div className="px-8 pt-6">
 
 <h3 className="text-2xl font-semibold text-center mb-6">
-
 {badges[selectedBadge].title}
-
 </h3>
 
 </div>
@@ -328,29 +348,20 @@ className="w-full h-full object-cover"
 <div>
 
 <p className="text-muted-foreground mb-6">
-
 {badges[selectedBadge].description}
-
 </p>
 
 <h4 className="text-lg font-semibold mb-3">
-
 How Ovelon Prime Helps
-
 </h4>
 
 <ul className="space-y-2 text-muted-foreground">
 
 {badges[selectedBadge].help.map((item, i) => (
-
 <li key={i} className="flex gap-2">
-
 <span className="text-primary">•</span>
-
 {item}
-
 </li>
-
 ))}
 
 </ul>
@@ -360,15 +371,12 @@ How Ovelon Prime Helps
 <div className="flex flex-col justify-center bg-muted/40 rounded-xl p-8 text-center">
 
 <h4 className="text-lg font-semibold mb-3">
-
 Discovery Call
-
 </h4>
 
 <p className="text-sm text-muted-foreground mb-6">
-
-Schedule a short discovery call to explore how Ovelon Prime can support secure automation and compliance-ready infrastructure.
-
+Schedule a short discovery call to explore how Ovelon Prime
+can support secure automation and compliance-ready infrastructure.
 </p>
 
 <Button
@@ -376,9 +384,7 @@ size="lg"
 onClick={() => setBookingOpen(true)}
 className="w-full bg-primary text-primary-foreground font-semibold rounded-md transition-all hover:bg-accent hover:text-accent-foreground"
 >
-
 Book Discovery Call
-
 </Button>
 
 </div>
