@@ -473,6 +473,7 @@ export const translations: Record<Lang, any> = {
       badgeSocDesc: "Service Organization Controls",
       badgeGdprTitle: "GDPR",
       badgeGdprDesc: "Data Protection & Privacy Regulation",
+      trustedCertified: "Trusted & Certified",
     },
     industrialTrust: {
       heading: "Trusted by operators in mission-critical environments",
@@ -1695,6 +1696,7 @@ export const translations: Record<Lang, any> = {
       badgeSocDesc: "Kontrollen für Dienstleistungsorganisationen",
       badgeGdprTitle: "DSGVO",
       badgeGdprDesc: "Datenschutz-Grundverordnung",
+      trustedCertified: "Vertrauenswürdig & Zertifiziert",
     },
     industrialTrust: {
       heading: "Vertrauenswürdig für Betreiber in missionskritischen Umgebungen",
@@ -2893,6 +2895,7 @@ export const translations: Record<Lang, any> = {
       badgeSocDesc: "Contrôles des organisations de services",
       badgeGdprTitle: "RGPD",
       badgeGdprDesc: "Règlement sur la protection des données",
+      trustedCertified: "Fiable & Certifié",
     },
     industrialTrust: {
       heading: "Approuvé par les opérateurs dans les environnements critiques",
@@ -4090,6 +4093,7 @@ export const translations: Record<Lang, any> = {
       badgeSocDesc: "Controles de organizaciones de servicios",
       badgeGdprTitle: "RGPD",
       badgeGdprDesc: "Reglamento de protección de datos y privacidad",
+      trustedCertified: "Confiable & Certificado",
     },
     industrialTrust: {
       heading: "Confiado por operadores en entornos de misión crítica",
@@ -5271,6 +5275,7 @@ export const translations: Record<Lang, any> = {
       badgeSocDesc: "Controlli per organizzazioni di servizi",
       badgeGdprTitle: "GDPR",
       badgeGdprDesc: "Regolamento sulla protezione dei dati e la privacy",
+      trustedCertified: "Affidabile & Certificato",
     },
     industrialTrust: {
       heading: "Affidato dagli operatori in ambienti mission-critical",
@@ -6450,6 +6455,7 @@ export const translations: Record<Lang, any> = {
       badgeSocDesc: "Controlos de organizações de serviços",
       badgeGdprTitle: "RGPD",
       badgeGdprDesc: "Regulamento de proteção de dados e privacidade",
+      trustedCertified: "Confiável & Certificado",
     },
     industrialTrust: {
       heading: "Confiado por operadores em ambientes de missão crítica",
