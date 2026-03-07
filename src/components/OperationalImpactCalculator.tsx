@@ -433,7 +433,7 @@ export const OperationalImpactCalculator = () => {
               onClick={() => document.getElementById("workflow-demo")?.scrollIntoView({ behavior: "smooth" })}
               className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
-              View examples of automated workflows
+              See it in action
               <ArrowDown className="w-3.5 h-3.5" />
             </button>
           </div>
